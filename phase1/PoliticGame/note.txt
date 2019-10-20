@@ -1,2 +1,11 @@
 ###
 Testing the username
+
+###
+Martin has logged in
+
+####
+Change # 1
+Editor: Wentao Yang
+Content: Hey guys, this will be our very basic format for logs. Please specify your name, change #,
+        and what you have changed based on this format. (Please try it once)
