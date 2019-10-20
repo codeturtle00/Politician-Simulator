@@ -23,7 +23,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
                 });
     }
 
-    public void BackToMenu(){
+    public void BackToMenu() {
         Intent switchBabyIntent = new Intent(this, MainActivity.class);
         startActivity(switchBabyIntent);
     }

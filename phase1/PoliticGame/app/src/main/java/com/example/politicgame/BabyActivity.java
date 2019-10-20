@@ -23,7 +23,7 @@ public class BabyActivity extends AppCompatActivity {
                 });
     }
 
-    public void openSpeechGame(){
+    public void openSpeechGame() {
         Intent switchSpeechIntent = new Intent(this, SpeechActivity.class);
         startActivity(switchSpeechIntent);
     }
