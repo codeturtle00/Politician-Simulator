@@ -4,6 +4,7 @@ Testing the username
 ###
 Martin has logged in
 Jacky has logged in
+Cullen has logged in
 
 ####
 Change # 1
