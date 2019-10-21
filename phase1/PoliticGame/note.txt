@@ -2,4 +2,16 @@
 Testing the username
 
 ###
-Testing username Jacky Yang
+Martin has logged in
+
+####
+Change # 1
+Editor: Wentao Yang
+Content: Hey guys, this will be our very basic format for logs. Please specify your name, change #,
+and what you have changed based on this format. (Please try it once)
+
+####
+Change # 2
+Editor: Wentao Yang
+Files Affected: SpeechActivity.java, LeaderBoardActivity.java, MainActivity.java, BabyActivity.java
+Reformatted the code for the corresponding files
