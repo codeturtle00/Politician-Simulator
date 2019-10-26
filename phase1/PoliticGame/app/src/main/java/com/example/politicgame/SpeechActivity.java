@@ -27,7 +27,7 @@ public class SpeechActivity extends AppCompatActivity {
     }
 
     public void openStampGame() {
-        Intent switchStampIntent = new Intent(this, StampActivity.class);
+        Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
         startActivity(switchStampIntent);
     }
 

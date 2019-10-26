@@ -13,18 +13,18 @@ public class StampInstructionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp_instruction);
 
-        final Button button = findViewById(R.id.speechNext);
+        final Button button = findViewById(R.id.start_game);
         button.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         // Code here executes on main thread after user presses button
-                        openStampGame();
+                        startStampGame();
                     }
                 });
     }
 
-    public void openStampGame() {
-        Intent switchStampIntent = new Intent(this, StampActivity.class);
-        startActivity(switchStampIntent);
+    public void startStampGame() {
+        Intent startStampIntent = new Intent(this, StampActivity.class);
+        startActivity(startStampIntent);
     }
 }
