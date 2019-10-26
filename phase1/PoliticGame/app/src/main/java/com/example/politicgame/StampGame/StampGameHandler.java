@@ -20,7 +20,7 @@ public class StampGameHandler {
                 "legalize"));
 
         for (String item: verbListPositive){
-            verbs.add(new Verb(item, 'p'));
+            verbs.add(new Verb(item, 1));
         }
 
 
@@ -32,7 +32,7 @@ public class StampGameHandler {
                 "send an army against"));
 
         for (String item: verbListNegative){
-            verbs.add(new Verb(item, 'n'));
+            verbs.add(new Verb(item, -1));
         }
 
 
@@ -42,7 +42,7 @@ public class StampGameHandler {
                 "Gandhi, a recently popular peace advocate who campaigns in India"));
 
         for (String item: nounListPositiveNA){
-            nouns.add(new Noun(item, 'p', false));
+            nouns.add(new Noun(item, 1, false));
         }
 
 
@@ -52,7 +52,7 @@ public class StampGameHandler {
                 "puppies"));
 
         for (String item: nounListPositiveYA){
-            nouns.add(new Noun(item, 'p', true));
+            nouns.add(new Noun(item, 1, true));
         }
 
 
@@ -61,7 +61,7 @@ public class StampGameHandler {
                 "The country of North Korea"));
 
         for (String item: nounListNegativeNA){
-            nouns.add(new Noun(item, 'n', false));
+            nouns.add(new Noun(item, -1, false));
         }
 
 
@@ -70,7 +70,7 @@ public class StampGameHandler {
                 "seal clubbers"));
 
         for (String item: nounListNegativeYA){
-            nouns.add(new Noun(item, 'n', false));
+            nouns.add(new Noun(item, -1, false));
         }
     }
 }
