@@ -32,15 +32,30 @@ public class StampActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         // Code here executes on main thread after user presses button
                         TextView rating = findViewById(R.id.stamp_game_rating_score);
-                        String oldRating = rating.getText().toString();
-                        Integer score = Integer.valueOf(oldRating.substring(0, oldRating.length() -1));
-                        if (score != 0){
-                            Integer newScore = score - 5;
-                            String newRating = newScore.toString() + '%';
-                            rating.setText(newRating);
-                        }
+                        changeScore(rating);
                     }
                 });
+
+        final Button button3 = findViewById(R.id.stamp_game_no);
+        button3.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        // Code here executes on main thread after user presses button
+                        TextView rating = findViewById(R.id.stamp_game_rating_score);
+                        changeScore(rating);
+                    }
+                });
+    }
+
+    public void changeScore(TextView rating){
+        String oldRating = rating.getText().toString();
+        Integer score = Integer.valueOf(oldRating.substring(0, oldRating.length() -1));
+        if (score != 0){
+            Integer newScore = score - 5;
+            String newRating = newScore.toString() + '%';
+            rating.setText(newRating);
+        }
+
     }
 
     public void openLeaderBoard() {
