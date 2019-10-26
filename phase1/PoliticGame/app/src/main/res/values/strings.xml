@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PoliticGame</string>
+
+
+
+    <string name="speech_instruction">PoliticGame Speech Instructions:</string>
+    <string name="speech_result_instruction"> PoliticGame Result Instructions:</string>
 </resources>
