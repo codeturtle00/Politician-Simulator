@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">PoliticGame</string>
     <string name="view_leader_board">View Leader Board</string>
-    <string name="yes">Button</string>
-    <string name="no">Button</string>
-    <string name="trump">TODO</string>
+    <string name="stamp_game_yes">Yes</string>
+    <string name="stamp_game_char_image">Charater Image</string>
 
     <string name="speech_instruction">PoliticGame Speech Instructions:</string>
     <string name="speech_result_instruction"> PoliticGame Result Instructions:</string>
     <string name="the_stamping_game">The Stamping Game</string>
     <string name="in_this_game_you_are_sorting_out_the_policies_of_your_party_as_the_campaign_leader_you_decide_what_your_party_should_fight_for_however_the_general_populace_will_not_always_be_happy_with_what_you_decide_on_so_use_your_judgement_to_decide_what_may_be_best_for_the_country">In this game you are sorting out the policies of your party. As the campaign leader, you decide what your party should fight for. However, the general populace will not always be happy with what you decide on, so use your judgement to decide what may be best for the country.</string>
     <string name="open_the_game">Open The Game!</string>
+    <string name="stamp_game_no">No</string>
 </resources>
