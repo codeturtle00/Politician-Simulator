@@ -13,8 +13,8 @@
         <activity
             android:name=".LeaderBoardActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".StampActivity" />
-        <activity android:name=".StampInstructionActivity" />
+        <activity android:name=".StampGame.StampActivity" />
+        <activity android:name=".StampGame.StampInstructionActivity" />
         <activity android:name=".SpeechActivity" />
         <activity android:name=".BabyActivity" />
         <activity android:name=".MainActivity">

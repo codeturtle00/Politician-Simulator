@@ -17,14 +17,13 @@ public class SpeechGame {
     private final String PATH = "app\\assets\\SpeechPrompts.txt";
 
     public SpeechGame() {
-        this.points = 0;
         this.input = "";
         this.prompt = "";
         this.relevantWord = "";
         readFile();
     }
 
-    private void readFile(){
+    private void readFile() {
         File text = new File(PATH);
         Scanner sc = new Scanner("");
         try {
@@ -32,13 +31,16 @@ public class SpeechGame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.prompt = sc.nextLine();
-        sc.useDelimiter(",");
-        while(sc.hasNext()){
-            String word = sc.next();
-            if (word.charAt(0) != '*') {
-                relevantWord = word;
+        while (sc.hasNextLine()) {
+            this.prompt = sc.nextLine();
+            sc.useDelimiter(",");
+            while (sc.hasNext()) {
+                String word = sc.next();
+                if (word.charAt(0) != '*') {
+                    relevantWord = word;
+                }
             }
+            sc.useDelimiter("\n");
         }
     }
 
@@ -46,14 +48,8 @@ public class SpeechGame {
         this.input = input.toLowerCase();
     }
 
-    private void awardPoints(){
-        if (input.equals(relevantWord)){
-            this.points += POINTSGIVEN;
-        }
-    }
-
-    public int getPoints() {
-        return points;
+    private boolean awardPoints() {
+        return input.equals(relevantWord);
     }
 
     public String getPrompt() {

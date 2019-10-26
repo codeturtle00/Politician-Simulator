@@ -1,4 +1,4 @@
-package com.example.politicgame;
+package com.example.politicgame.StampGame;
 
 public class Word {
     private String value;
