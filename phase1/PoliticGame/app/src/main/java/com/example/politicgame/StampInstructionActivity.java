@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class SpeechActivity extends AppCompatActivity {
-
+public class StampInstructionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_speech);
+        setContentView(R.layout.activity_stamp_instruction);
+
         final Button button = findViewById(R.id.speechNext);
         button.setOnClickListener(
                 new View.OnClickListener() {
@@ -24,7 +24,7 @@ public class SpeechActivity extends AppCompatActivity {
     }
 
     public void openStampGame() {
-        Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
+        Intent switchStampIntent = new Intent(this, StampActivity.class);
         startActivity(switchStampIntent);
     }
 }
