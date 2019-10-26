@@ -15,14 +15,14 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="169dp"
         android:layout_marginRight="169dp"
-        android:text="The Stamping Game"
+        android:text="@string/the_stamping_game"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/stamp_instructions_body"
         android:layout_width="298dp"
         android:layout_height="241dp"
         android:layout_marginStart="163dp"
@@ -30,7 +30,8 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="171dp"
         android:layout_marginRight="171dp"
-        android:text="In this game you are sorting out the policies of your party. As the campaign leader, you decide what your party should fight for. However, the general populace will not always be happy with what you decide on, so use your judgement to decide what may be best for the country."
+        android:text="@string/in_this_game_you_are_sorting_out_the_policies_of_your_party_as_the_campaign_leader_you_decide_what_your_party_should_fight_for_however_the_general_populace_will_not_always_be_happy_with_what_you_decide_on_so_use_your_judgement_to_decide_what_may_be_best_for_the_country"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +46,7 @@
         android:layout_marginEnd="150dp"
         android:layout_marginRight="150dp"
         android:layout_marginBottom="148dp"
-        android:text="Open The Game!"
+        android:text="@string/open_the_game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
