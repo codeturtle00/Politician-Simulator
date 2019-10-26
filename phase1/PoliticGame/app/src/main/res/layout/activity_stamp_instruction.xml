@@ -9,4 +9,5 @@
         android:layout_width="293dp"
         android:layout_height="wrap_content"
         android:text="Start the game!" />
+
 </LinearLayout>
