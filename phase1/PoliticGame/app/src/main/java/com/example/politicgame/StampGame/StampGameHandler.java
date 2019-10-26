@@ -83,7 +83,7 @@ public class StampGameHandler {
         int verbIndex = (int)(Math.random() * (verbs.size() + 1));
         int nounIndex = (int)(Math.random() * (nouns.size() + 1));
 
-        currentPrompt = new Proposal("This is an example prompt, but I want you to ", verbs.get(verbIndex), nouns.get(nounIndex));
+        currentPrompt = new Proposal("This is an example prompt, but I want you to ", verbs.remove(verbIndex), nouns.remove(nounIndex));
 
         prompts.add(currentPrompt);
     }
