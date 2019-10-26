@@ -2,12 +2,10 @@ package com.example.politicgame.StampGame;
 
 public class Word {
     private String value;
-    private int points;
-    private String category;
+    private char category;
 
-    public Word(String value, int points, String category) {
+    public Word(String value, char category) {
         this.value = value;
-        this.points = points;
         this.category = category;
     }
 
@@ -15,11 +13,7 @@ public class Word {
         return this.value;
     }
 
-    public int getPoints() {
-        return this.points;
-    }
-
-    public String getcategory() {
+    public char getcategory() {
         return this.category;
     }
 
