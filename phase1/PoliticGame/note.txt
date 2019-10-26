@@ -1,10 +1,17 @@
 ###
 Testing the username
 
+TEMPLATE
+###
+Change #
+Editor:
+Files Affected:
+
 ###
 Martin has logged in
 Jacky has logged in
 Cullen has logged in
+Yitian has logged in
 
 ####
 Change # 1
@@ -17,3 +24,9 @@ Change # 2
 Editor: Wentao Yang
 Files Affected: SpeechActivity.java, LeaderBoardActivity.java, MainActivity.java, BabyActivity.java
 Reformatted the code for the corresponding files
+
+###
+Change # 3
+Editor: Yitian Zhao
+Files Affected: SpeechGame.java
+Made a new class for our speech game objects
