@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">PoliticGame</string>
-
-
+    <string name="view_leader_board">View Leader Board</string>
+    <string name="yes">Button</string>
+    <string name="no">Button</string>
+    <string name="trump">TODO</string>
 
     <string name="speech_instruction">PoliticGame Speech Instructions:</string>
     <string name="speech_result_instruction"> PoliticGame Result Instructions:</string>
