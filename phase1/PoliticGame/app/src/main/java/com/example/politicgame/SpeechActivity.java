@@ -7,14 +7,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class SpeechActivity extends AppCompatActivity {
+    private SpeechGame speech;
     public static final String INPUT_MESSAGE = "politicgame.speech.result.MESSAGE";
+
+    private void setSpeech(SpeechGame speech){
+        this.speech = speech;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setSpeech(new SpeechGame());
         setContentView(R.layout.activity_speech);
+//        TextView prompt = findViewById(R.id.prompt);
+//        System.out.println("Prompt" + this.speech.getPrompt());
+//        prompt.setText(this.speech.getPrompt());
         final Button button = findViewById(R.id.speechNext);
 
         button.setOnClickListener(

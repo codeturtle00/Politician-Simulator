@@ -21,10 +21,11 @@ public class SpeechGame {
         this.input = "";
         this.prompt = "";
         this.relevantWord = "";
+        readFile();
     }
 
-    private void readFile(String path){
-        File text = new File(path);
+    private void readFile(){
+        File text = new File(PATH);
         Scanner sc = new Scanner("");
         try {
             sc = new Scanner(text);
