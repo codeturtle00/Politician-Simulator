@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_ground"
     tools:context=".StampGame.StampActivity">
 
     <Button
@@ -67,6 +68,8 @@
         android:layout_marginRight="68dp"
         android:layout_marginBottom="120dp"
         android:text="@string/stamp_game_supports"
+        android:textColor="#00BCD4"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -78,6 +81,8 @@
         android:layout_marginRight="64dp"
         android:layout_marginBottom="16dp"
         android:text="@string/stamp_game_rating"
+        android:textColor="#00BCD4"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/stamp_game_supporters"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -89,6 +94,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/stamp_game_rating_score"
+        android:textColor="#00BCD4"
         app:layout_constraintBottom_toTopOf="@+id/stamp_game_num_supporters"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -100,7 +106,20 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="120dp"
         android:text="@string/stamp_game_supporters"
+        android:textColor="#00BCD4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="174dp"
+        android:layout_height="233dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.465"
+        app:srcCompat="@drawable/helmet_guy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
