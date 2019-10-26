@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.politicgame.StampGame.StampInstructionActivity;
+
 public class SpeechActivity extends AppCompatActivity {
     public static final String INPUT_MESSAGE = "politicgame.speech.result.MESSAGE";
 
