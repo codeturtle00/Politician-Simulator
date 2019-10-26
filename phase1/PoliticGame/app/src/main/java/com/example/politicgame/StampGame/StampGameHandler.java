@@ -1,5 +1,6 @@
 package com.example.politicgame.StampGame;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,10 +8,13 @@ import java.util.List;
 public class StampGameHandler {
     private List<Verb> verbs;
     private List<Noun> nouns;
+    private List<Proposal> prompts;
+    private Proposal currentPrompt;
 
     public StampGameHandler(){
         verbs = new ArrayList<Verb>();
         nouns = new ArrayList<Noun>();
+        prompts = new ArrayList<Proposal>();
 
         //Positive verbs that has a positive effect on the object
         List<String> verbListPositive = new ArrayList<String>(Arrays.asList(
@@ -73,4 +77,16 @@ public class StampGameHandler {
             nouns.add(new Noun(item, -1, false));
         }
     }
+
+    //Must be called first
+    public void createPrompt(){
+        int verbIndex = (int)(Math.random() * (verbs.size() + 1));
+        int nounIndex = (int)(Math.random() * (nouns.size() + 1));
+
+        currentPrompt = new Proposal("This is an example prompt, but I want you to ", verbs.get(verbIndex), nouns.get(nounIndex));
+
+        prompts.add(currentPrompt);
+    }
+
+    public Proposal getCurrentPrompt(){return currentPrompt;}
 }
