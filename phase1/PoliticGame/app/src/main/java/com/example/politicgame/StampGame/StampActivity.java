@@ -14,9 +14,21 @@ import com.example.politicgame.R;
 public class StampActivity extends AppCompatActivity {
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        StampGameHandler gh = new StampGameHandler();
+        gh.createPrompt();
+        String npcProposal = gh.getCurrentPrompt().getString();
+        TextView promptDisplay = findViewById(R.id.npcPrompt);
+        promptDisplay.setText(npcProposal);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp);
+
+
         final Button button = findViewById(R.id.leaderBoard);
         button.setOnClickListener(
                 new View.OnClickListener() {
