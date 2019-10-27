@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.politicgame.LeaderBoardActivity;
+import com.example.politicgame.PauseActivity;
 import com.example.politicgame.R;
 
 public class StampActivity extends AppCompatActivity {
@@ -57,6 +59,18 @@ public class StampActivity extends AppCompatActivity {
                         setPrompt(gh);
                     }
                 });
+
+
+        final Button pauseB = findViewById(R.id.pause);
+        pauseB.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Log.i("Button", "The pause button has been clicked");
+
+                        //The method below will pause the game and handle the following inputs
+                        openPauseMenu();
+                    }
+                });
     }
 
     private void changeScore(TextView rating, int scoreChange){
@@ -80,5 +94,10 @@ public class StampActivity extends AppCompatActivity {
     public void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
+    }
+
+    public void openPauseMenu(){
+        Intent PauseMenu = new Intent(this, PauseActivity.class);
+        startActivityForResult(PauseMenu, 1);
     }
 }
