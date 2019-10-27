@@ -62,7 +62,7 @@ public class StampGameHandler {
 
         //Negative nouns that are not amountable
         List<String> nounListNegativeNA = new ArrayList<String>(Arrays.asList(
-                "The country of North Korea"));
+                "the country of North Korea"));
 
         for (String item: nounListNegativeNA){
             nouns.add(new Noun(item, -1, false));
@@ -80,8 +80,8 @@ public class StampGameHandler {
 
     //Must be called first
     public void createPrompt(){
-        int verbIndex = (int)(Math.random() * (verbs.size() + 1));
-        int nounIndex = (int)(Math.random() * (nouns.size() + 1));
+        int verbIndex = (int)(Math.random() * (verbs.size()));
+        int nounIndex = (int)(Math.random() * (nouns.size()));
 
         currentPrompt = new Proposal("This is an example prompt, but I want you to ", verbs.remove(verbIndex), nouns.remove(nounIndex));
 

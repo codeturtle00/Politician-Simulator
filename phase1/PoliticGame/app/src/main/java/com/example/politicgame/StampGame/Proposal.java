@@ -13,10 +13,9 @@ public class Proposal {
 
         //The values of both getCategory functions will return -1 or 1 and the player will get the
         //result of category as their point if they answer with yes.
-        this.category = action.getCategory() * item.getCategory();
+        this.category = this.action.getCategory() * this.item.getCategory();
 
-
-        this.prompt = prompt + action.getString() + item.getString();
+        this.prompt = this.prompt + " " + this.action.getString() + " " + this.item.getString();
     }
 
     public String getString(){return prompt;}
