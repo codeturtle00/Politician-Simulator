@@ -13,10 +13,20 @@ import com.example.politicgame.R;
 
 public class StampActivity extends AppCompatActivity {
 
+    StampGameHandler gh = new StampGameHandler();
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setPrompt(gh);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp);
+
+
         final Button button = findViewById(R.id.leaderBoard);
         button.setOnClickListener(
                 new View.OnClickListener() {
@@ -33,6 +43,7 @@ public class StampActivity extends AppCompatActivity {
                         // Code here executes on main thread after user presses button
                         TextView rating = findViewById(R.id.stamp_game_rating_score);
                         changeScore(rating);
+                        setPrompt(gh);
                     }
                 });
 
@@ -43,11 +54,12 @@ public class StampActivity extends AppCompatActivity {
                         // Code here executes on main thread after user presses button
                         TextView rating = findViewById(R.id.stamp_game_rating_score);
                         changeScore(rating);
+                        setPrompt(gh);
                     }
                 });
     }
 
-    public void changeScore(TextView rating){
+    private void changeScore(TextView rating){
         String oldRating = rating.getText().toString();
         Integer score = Integer.valueOf(oldRating.substring(0, oldRating.length() -1));
         if (score != 0){
@@ -56,6 +68,13 @@ public class StampActivity extends AppCompatActivity {
             rating.setText(newRating);
         }
 
+    }
+
+    private void setPrompt(StampGameHandler gh){
+        gh.createPrompt();
+        String npcProposal = gh.getCurrentPrompt().getString();
+        TextView promptDisplay = findViewById(R.id.npcPrompt);
+        promptDisplay.setText(npcProposal);
     }
 
     public void openLeaderBoard() {
