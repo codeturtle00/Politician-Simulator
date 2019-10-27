@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BabyActivity">
+    tools:context=".BabyGame.BabyActivity">
 
     <Button
         android:id="@+id/babyNext"
@@ -21,16 +21,16 @@
 
     <ImageView
         android:id="@+id/baby"
-        android:layout_width="374dp"
-        android:layout_height="635dp"
+        android:layout_width="320dp"
+        android:layout_height="640dp"
+        android:contentDescription="Baby Image"
         android:soundEffectsEnabled="false"
-        app:layout_constraintTop_toBottomOf="@+id/babyNext"
-        tools:layout_editor_absoluteX="18dp"
-        tools:src="@drawable/baby"
+        android:src="@drawable/baby"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/babyNext"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
