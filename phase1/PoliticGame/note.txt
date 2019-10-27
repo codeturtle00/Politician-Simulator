@@ -30,3 +30,9 @@ Change # 3
 Editor: Yitian Zhao
 Files Affected: SpeechGame.java
 Made a new class for our speech game objects
+
+###
+Change # 4
+Editor: Cullen Pu
+Files Affected: BabyActivity.java, DetectSwipe.java, Shake.java
+Created class for shaking the baby game mode and implemented countdown timer in BabyActivity.

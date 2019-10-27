@@ -16,7 +16,8 @@
         <activity android:name=".StampGame.StampActivity" />
         <activity android:name=".StampGame.StampInstructionActivity" />
         <activity android:name=".SpeechActivity" />
-        <activity android:name=".BabyActivity" />
+        <activity android:name=".BabyGame.BabyActivity" />
+        <activity android:name=".BabyGame.Shake" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
