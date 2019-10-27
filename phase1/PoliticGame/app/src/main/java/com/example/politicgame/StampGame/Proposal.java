@@ -28,7 +28,7 @@ public class Proposal {
         //result of category as their point if they answer with yes.
         this.category = this.action.getCategory() * this.item.getCategory();
 
-        this.prompt = this.prompt + " " + this.action.getString() + " " + amount + " " + this.item.getString();
+        this.prompt = this.prompt + " " + this.action.getString() + " the " + amount + " " + this.item.getString();
     }
 
     public String getString(){return prompt;}

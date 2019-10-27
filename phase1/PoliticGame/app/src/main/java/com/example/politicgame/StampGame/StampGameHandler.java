@@ -18,7 +18,7 @@ public class StampGameHandler {
 
         //Positive verbs that has a positive effect on the object
         List<String> verbListPositive = new ArrayList<String>(Arrays.asList(
-                "save",
+                "campaign with the best interests of",
                 "send aid to",
                 "donate money to charities that work with"));
 
@@ -41,7 +41,7 @@ public class StampGameHandler {
 
         //Positive nouns that are not amountable
         List<String> nounListPositiveNA = new ArrayList<String>(Arrays.asList(
-                "Canada",
+                "the premier Ontario, Canada",
                 "Gandhi, a recently popular peace advocate who campaigns in India",
                 "the popular late-night TV show host John Olive Oil",
                 "Bill Rye, a once popular figure in science who recently published a paper on the benefits of foot rubs",
@@ -55,9 +55,8 @@ public class StampGameHandler {
 
         //Positive nouns that are amountable
         List<String> nounListPositiveYA = new ArrayList<String>(Arrays.asList(
-                "children",
-                "puppies",
-                "Boundless Peacocks, the very last of their kind"));
+                "puppies, specifically the ones at the Downtown Toronto Dog Shelter",
+                "Boundless Peacocks, the very last of their species"));
 
         for (String item: nounListPositiveYA){
             nouns.add(new Noun(item, 1, true));
@@ -66,9 +65,9 @@ public class StampGameHandler {
 
         //Negative nouns that are not amountable
         List<String> nounListNegativeNA = new ArrayList<String>(Arrays.asList(
-                "the country of North Korea",
+                "the leader of North Korea",
                 "Colin, a medical practitioner found to have cheated on his medical exams after a related illegal nose smuggling ring was busted",
-                "Kavin, a phantom thief who masterminded the theft all the laptop chargers, but not the laptops, at the University of Toronto"));
+                "Kavin, a phantom thief who masterminded the theft all the laptop chargers, but not the laptops, at the University of Toronto last Fall"));
 
         for (String item: nounListNegativeNA){
             nouns.add(new Noun(item, -1, false));
@@ -86,9 +85,20 @@ public class StampGameHandler {
 
     //Must be called first
     public void createPrompt(){
+        //For when we have a male or female player
+        String pronoun = "sir";
+
+
         int verbIndex = (int)(Math.random() * (verbs.size()));
         int nounIndex = (int)(Math.random() * (nouns.size()));
-        String promptBegin = "Hello,";
+        List<String> promptBeginList = new ArrayList<String>(Arrays.asList(
+                "Good afternoon " + pronoun + ", our campaign researchers speculate that it may be in our best interests to declare that you would",
+                "This just in " + pronoun + ", there are rumors that some of our more excited supporters have been advocating that you would",
+                "I'm here for a briefing " + pronoun + ", there seems to be a growing support for campaign leaders who would",
+                "Greetings " + pronoun + ", here to drop off a report about our supporters in the west. It seems that there are rumors that you would",
+                "Nice to meet you " + pronoun + ". I am one of your many campaign assistants and was wondering if you would advocate to"));
+
+        String promptBegin = promptBeginList.get((int)(Math.random() * (promptBeginList.size())));
 
         if (nouns.get(nounIndex).getAmountable()){
             int amount = (int)(Math.random() * (1000));
@@ -103,4 +113,6 @@ public class StampGameHandler {
     }
 
     public Proposal getCurrentPrompt(){return currentPrompt;}
+
+    public int getPromptsDone(){return prompts.size();}
 }
