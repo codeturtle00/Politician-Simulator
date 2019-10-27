@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.politicgame.LeaderBoardActivity;
 import com.example.politicgame.PauseActivity;
+import com.example.politicgame.MainActivity;
 import com.example.politicgame.R;
 
 public class StampActivity extends AppCompatActivity {
@@ -20,7 +21,6 @@ public class StampActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        setPrompt(gh);
     }
 
     @Override
@@ -71,6 +71,9 @@ public class StampActivity extends AppCompatActivity {
                         openPauseMenu();
                     }
                 });
+
+
+        setPrompt(gh);
     }
 
     private void changeScore(TextView rating, int scoreChange){
@@ -97,7 +100,37 @@ public class StampActivity extends AppCompatActivity {
     }
 
     public void openPauseMenu(){
-        Intent PauseMenu = new Intent(this, PauseActivity.class);
-        startActivityForResult(PauseMenu, 1);
+        Intent pauseMenuIntent = new Intent(this, PauseActivity.class);
+        startActivityForResult(pauseMenuIntent, 1);
+    }
+
+    public void openMainMenu(){
+        Intent mainMenuIntent = new Intent(this, MainActivity.class);
+        startActivity(mainMenuIntent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //requestCode refers to the request code parameter of openPauseMenu's startActivityForResult call
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK){
+                int userInput = data.getIntExtra("result", 0);
+
+                if (userInput == 1){
+                    Log.i("Pause Result", "User has decided to resume play");
+                }
+
+                else if (userInput == 2){
+                    Log.i("Pause Result", "User has decided to quit the game");
+                    openMainMenu();
+                }
+            }
+
+            else {
+                Log.i("Result Code", "Result code is " + resultCode);
+            }
+        }
     }
 }
