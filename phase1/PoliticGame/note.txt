@@ -34,4 +34,4 @@ Made a new class for our speech game objects
 ###
 Change # 4
 Editor: Guanjie Wang
-Play Mode version2
+Finish Instruction page for speech and speech activity

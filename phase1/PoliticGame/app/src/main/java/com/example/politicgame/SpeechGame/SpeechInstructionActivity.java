@@ -1,35 +1,33 @@
-package com.example.politicgame.BabyGame;
+package com.example.politicgame.SpeechGame;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.politicgame.R;
-import com.example.politicgame.SpeechGame.SpeechInstructionActivity;
+import com.example.politicgame.StampGame.StampActivity;
 
-public class BabyActivity extends AppCompatActivity {
+public class SpeechInstructionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_baby);
-        final Button button = findViewById(R.id.babyNext);
+        setContentView(R.layout.activity_speech_instruction);
+        final Button button = findViewById(R.id.start_game);
         button.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         // Code here executes on main thread after user presses button
-                        openSpeechGame();
+                        startSpeechGame();
                     }
                 });
     }
 
-    public void openSpeechGame() {
-        Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
-        startActivity(switchSpeechIntent);
+    public void startSpeechGame() {
+        Intent startSpeechIntent = new Intent(this, SpeechActivity.class);
+        startActivity(startSpeechIntent);
     }
-
-
 }

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SpeechGame.FailureSpeechResult"></activity>
+        <activity android:name=".SpeechGame.SpeechInstructionActivity"></activity>
+        <activity android:name=".SpeechGame.FailureSpeechResult" />
         <activity android:name=".SpeechGame.SuccessSpeechResult" />
         <activity android:name=".SpeechGame.SpeechResult" />
         <activity
