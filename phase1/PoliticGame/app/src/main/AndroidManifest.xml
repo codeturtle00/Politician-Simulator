@@ -9,13 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SpeechResult"></activity>
+        <activity android:name=".SpeechGame.SpeechInstructionActivity"></activity>
+        <activity android:name=".SpeechGame.FailureSpeechResult" />
+        <activity android:name=".SpeechGame.SuccessSpeechResult" />
+        <activity android:name=".SpeechGame.SpeechResult" />
         <activity
             android:name=".LeaderBoardActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".StampGame.StampActivity" />
         <activity android:name=".StampGame.StampInstructionActivity" />
-        <activity android:name=".SpeechActivity" />
+        <activity android:name=".SpeechGame.SpeechActivity" />
         <activity android:name=".BabyGame.BabyActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

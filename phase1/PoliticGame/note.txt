@@ -30,3 +30,8 @@ Change # 3
 Editor: Yitian Zhao
 Files Affected: SpeechGame.java
 Made a new class for our speech game objects
+
+###
+Change # 4
+Editor: Guanjie Wang
+Finish Instruction page for speech and speech activity
