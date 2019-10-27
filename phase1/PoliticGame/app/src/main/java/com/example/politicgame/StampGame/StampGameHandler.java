@@ -96,29 +96,35 @@ public class StampGameHandler {
     public void createPrompt(){
         //For when we have a male or female player
         String pronoun = "sir";
-
+        String emptyListMessage = "Sorry, we do not have a new proposal for you yet, ";
+        Verb emptyAction = new Verb("come back later", 0);
+        Noun emptyNoun = new Noun(" sir", 0, false);
 
         int verbIndex = (int)(Math.random() * (verbs.size()));
         int nounIndex = (int)(Math.random() * (nouns.size()));
-        List<String> promptBeginList = new ArrayList<String>(Arrays.asList(
-                "Good afternoon " + pronoun + ", our campaign researchers speculate that it may be in our best interests to declare that you would",
-                "This just in " + pronoun + ", there are rumors that some of our more excited supporters have been advocating that you would",
-                "I'm here for a briefing " + pronoun + ", there seems to be a growing support for campaign leaders who would",
-                "Greetings " + pronoun + ", here to drop off a report about our supporters in the west. It seems that there are rumors that you would",
-                "Nice to meet you " + pronoun + ". I am one of your many campaign assistants and was wondering if you would advocate to"));
 
-        String promptBegin = promptBeginList.get((int)(Math.random() * (promptBeginList.size())));
+        if (verbs.isEmpty() || nouns.isEmpty()){
+            currentPrompt = new Proposal(emptyListMessage, emptyAction, emptyNoun);
 
-        if (nouns.get(nounIndex).getAmountable()){
-            int amount = (int)(Math.random() * (1000));
-            currentPrompt = new Proposal(promptBegin, verbs.remove(verbIndex), nouns.remove(nounIndex), amount);
+        } else {
+            List<String> promptBeginList = new ArrayList<String>(Arrays.asList(
+                    "Good afternoon " + pronoun + ", our campaign researchers speculate that it may be in our best interests to declare that you would",
+                    "This just in " + pronoun + ", there are rumors that some of our more excited supporters have been advocating that you would",
+                    "I'm here for a briefing " + pronoun + ", there seems to be a growing support for campaign leaders who would",
+                    "Greetings " + pronoun + ", here to drop off a report about our supporters in the west. It seems that there are rumors that you would",
+                    "Nice to meet you " + pronoun + ". I am one of your many campaign assistants and was wondering if you would advocate to"));
+
+            String promptBegin = promptBeginList.get((int) (Math.random() * (promptBeginList.size())));
+
+            if (nouns.get(nounIndex).getAmountable()) {
+                int amount = (int) (Math.random() * (1000));
+                currentPrompt = new Proposal(promptBegin, verbs.remove(verbIndex), nouns.remove(nounIndex), amount);
+            } else {
+                currentPrompt = new Proposal(promptBegin, verbs.remove(verbIndex), nouns.remove(nounIndex));
+            }
+
+            prompts.add(currentPrompt);
         }
-
-        else{
-            currentPrompt = new Proposal(promptBegin, verbs.remove(verbIndex), nouns.remove(nounIndex));
-        }
-
-        prompts.add(currentPrompt);
     }
 
     public Proposal getCurrentPrompt(){return currentPrompt;}
