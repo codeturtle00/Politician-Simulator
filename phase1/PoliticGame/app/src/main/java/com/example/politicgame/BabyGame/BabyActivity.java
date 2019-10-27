@@ -8,7 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.politicgame.R;
-import com.example.politicgame.SpeechActivity;
+import com.example.politicgame.SpeechGame.SpeechActivity;
 
 public class BabyActivity extends AppCompatActivity {
 

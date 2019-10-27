@@ -1,4 +1,4 @@
-package com.example.politicgame;
+package com.example.politicgame.SpeechGame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.politicgame.R;
 import com.example.politicgame.StampGame.StampInstructionActivity;
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,8 +21,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
 import java.util.Set;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 
 public class SpeechActivity extends AppCompatActivity {

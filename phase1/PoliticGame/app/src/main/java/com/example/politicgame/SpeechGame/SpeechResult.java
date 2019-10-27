@@ -1,4 +1,4 @@
-package com.example.politicgame;
+package com.example.politicgame.SpeechGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.politicgame.R;
 
 public class SpeechResult extends AppCompatActivity {
 

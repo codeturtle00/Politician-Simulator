@@ -1,4 +1,4 @@
-package com.example.politicgame;
+package com.example.politicgame.SpeechGame;
 
 import java.util.HashMap;
 
