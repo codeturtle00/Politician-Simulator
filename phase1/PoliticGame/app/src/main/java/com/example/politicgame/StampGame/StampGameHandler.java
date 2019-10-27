@@ -20,7 +20,8 @@ public class StampGameHandler {
         List<String> verbListPositive = new ArrayList<String>(Arrays.asList(
                 "campaign with the best interests of",
                 "send aid to",
-                "donate money to charities that work with"));
+                "donate money to charities that work with",
+                "gift a bouquet of flowers to"));
 
         for (String item: verbListPositive){
             verbs.add(new Verb(item, 1));
@@ -30,9 +31,11 @@ public class StampGameHandler {
         //Positive verbs that has a negative effect on the object
         List<String> verbListNegative = new ArrayList<String>(Arrays.asList(
                 "send a police squad to detain and imprison",
-                "punch",
+                "punch the daylights out of",
                 "launch nukes against",
-                "send an army against"));
+                "send an army against",
+                "launch an investigation against",
+                "personally find and laugh at"));
 
         for (String item: verbListNegative){
             verbs.add(new Verb(item, -1));
@@ -41,7 +44,6 @@ public class StampGameHandler {
 
         //Positive nouns that are not amountable
         List<String> nounListPositiveNA = new ArrayList<String>(Arrays.asList(
-                "the premier Ontario, Canada",
                 "Gandhi, a recently popular peace advocate who campaigns in India",
                 "the popular late-night TV show host John Olive Oil",
                 "Bill Rye, a once popular figure in science who recently published a paper on the benefits of foot rubs",
@@ -56,7 +58,8 @@ public class StampGameHandler {
         //Positive nouns that are amountable
         List<String> nounListPositiveYA = new ArrayList<String>(Arrays.asList(
                 "puppies, specifically the ones at the Downtown Toronto Dog Shelter",
-                "Boundless Peacocks, the very last of their species"));
+                "Boundless Peacocks, the very last of their species",
+                "sad computer science students at the University of Toronto"));
 
         for (String item: nounListPositiveYA){
             nouns.add(new Noun(item, 1, true));
@@ -65,6 +68,7 @@ public class StampGameHandler {
 
         //Negative nouns that are not amountable
         List<String> nounListNegativeNA = new ArrayList<String>(Arrays.asList(
+                "the premier of Ontario, Canada",
                 "the leader of North Korea",
                 "Colin, a medical practitioner found to have cheated on his medical exams after a related illegal nose smuggling ring was busted",
                 "Kavin, a phantom thief who masterminded the theft all the laptop chargers, but not the laptops, at the University of Toronto last Fall"));
@@ -113,6 +117,8 @@ public class StampGameHandler {
     }
 
     public Proposal getCurrentPrompt(){return currentPrompt;}
+
+    public int getCurrentPromptScore(){return currentPrompt.getCategory();}
 
     public int getPromptsDone(){return prompts.size();}
 }

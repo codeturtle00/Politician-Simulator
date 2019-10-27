@@ -42,7 +42,7 @@ public class StampActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         // Code here executes on main thread after user presses button
                         TextView rating = findViewById(R.id.stamp_game_rating_score);
-                        changeScore(rating);
+                        changeScore(rating, gh.getCurrentPromptScore());
                         setPrompt(gh);
                     }
                 });
@@ -53,17 +53,17 @@ public class StampActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         // Code here executes on main thread after user presses button
                         TextView rating = findViewById(R.id.stamp_game_rating_score);
-                        changeScore(rating);
+                        changeScore(rating, (-1)*gh.getCurrentPromptScore());
                         setPrompt(gh);
                     }
                 });
     }
 
-    private void changeScore(TextView rating){
+    private void changeScore(TextView rating, int scoreChange){
         String oldRating = rating.getText().toString();
         Integer score = Integer.valueOf(oldRating.substring(0, oldRating.length() -1));
         if (score != 0){
-            Integer newScore = score - 5;
+            Integer newScore = score + scoreChange*5;
             String newRating = newScore.toString() + '%';
             rating.setText(newRating);
         }
