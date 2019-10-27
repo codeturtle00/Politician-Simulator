@@ -21,4 +21,12 @@
     <string name="NPC_image">npcImage</string>
     <string name="NPC_Prompt">npcPrompt</string>
     <string name="next_game">Next</string>
+    <string name="prompt_email">Email or UserName</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_short"> Sign In</string>
+    <string name="action_sign_in"> Sign In</string>
+    <string name="invalid_password">Invalid Password</string>
+    <string name="invalid_username">Invalid Password</string>
+    <string name="login_failed">Invalid Password</string>
+    <string name="welcome">welcome</string>
 </resources>

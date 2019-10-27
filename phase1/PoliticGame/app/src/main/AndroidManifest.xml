@@ -20,12 +20,17 @@
         <activity android:name=".StampGame.StampInstructionActivity" />
         <activity android:name=".SpeechGame.SpeechActivity" />
         <activity android:name=".BabyGame.BabyActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.Login.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".RegistrationActivity">
+            
+        </activity>
+        <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".PauseActivity"/>
     </application>
