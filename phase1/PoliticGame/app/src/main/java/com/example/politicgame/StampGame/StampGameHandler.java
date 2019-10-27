@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/*
+* TODO: fix the index out of bound bug
+*  TODO: fix the over rated system
+*   TODO: Optimize the scoring system
+* */
 public class StampGameHandler {
     private List<Verb> verbs;
     private List<Noun> nouns;
