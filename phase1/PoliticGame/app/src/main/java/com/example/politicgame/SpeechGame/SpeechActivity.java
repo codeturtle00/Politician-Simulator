@@ -151,12 +151,19 @@ public class SpeechActivity extends AppCompatActivity {
      * If the user input matches the answer, add points and show successful hints
      * If the user input does not match the answer, keep the point and show the right answer*/
     public void compare(View view) {
-        Intent intent = new Intent(this, SpeechResult.class);
+
         EditText editText = (EditText) findViewById(R.id.answer);
         String userInput = editText.getText().toString();
-        //boolean matches = userInput.equals(this.correct);
-        intent.putExtra(INPUT_MESSAGE, userInput);
-        startActivity(intent);
+        boolean matches = userInput.equals(this.correct);
+        if (matches) {
+            Intent successfulIntent = new Intent(this, SuccessSpeechResult.class);
+            successfulIntent.putExtra(INPUT_MESSAGE, userInput);
+            startActivity(successfulIntent);
+        } else {
+            Intent failIntent = new Intent(this, FailureSpeechResult.class);
+            failIntent.putExtra(INPUT_MESSAGE, userInput);
+            startActivity(failIntent);
+            }
 
     }
 
