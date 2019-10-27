@@ -1,2 +1,20 @@
 The country needs more budget to spend on improving public education and there is discussion for raising the money
 taxes,*environment,*religion,*military
+Many young people in the country are struggling to pay back student loans and there is discussion for the government to relieve this debt
+*immigration,*healthcare,*corporations,taxes
+Climate change is rising threat to the planet and there is discussion to expand on the country's renewable energy sources
+energy,*economy,*unions,*trade
+The homelessness rate in the country is rising each year and there is discussion to introduce a universal basic income
+*immigration,poverty,*internet,*security
+Surveys show that many citizens do not like their governors on the provincial and municipal level and there is discussion to introduce a term limit
+voting,*education,*taxes,*medication
+A recent trend shows that many corporations are outsourcing jobs to other parts of the world and there is discussion so keep jobs domestic
+*diversity,*religion,*healthcare,economy
+Genetically modified foods is a controversial topic and there is discussion to heavily regulate them or ban them
+*energy,*corporations,agriculture,*voting
+New strains of diseases are on the rise and there is discussion for the government to introduce mandatory vaccinations
+*trade,*military,*education,healthcare
+Studies have shown that a 4 day work week increases productivity and there is discussion for this change to be implemented
+*security,corporations,*immigration,*poverty
+Older citizens are struggling to retire at reasonable age and there is discussion to increase senior assissance
+pension,*internet,*military,*diversity

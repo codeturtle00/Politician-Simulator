@@ -1,10 +1,6 @@
 package com.example.politicgame;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
+import java.util.HashMap;
 
 public class SpeechGame {
 
@@ -12,37 +8,25 @@ public class SpeechGame {
     private String input;
     private String prompt;
     private String relevantWord;
-
+    HashMap<String, String> display = new HashMap<String, String>();
+    private static final String EXAMPLE_FILE = "SpeechPrompt.txt";
     private final int POINTSGIVEN = 1;
-    private final String PATH = "app\\assets\\SpeechPrompts.txt";
+    private static final String TAG = "Main Activity";
+
+    public void setDisplay(String prompt, String choice ) {
+        this.display.put(prompt, choice);
+    }
+
+    public HashMap<String, String> getDisplay() {
+        return this.display;
+    }
 
     public SpeechGame() {
         this.input = "";
         this.prompt = "";
         this.relevantWord = "";
-        readFile();
     }
 
-    private void readFile() {
-        File text = new File(PATH);
-        Scanner sc = new Scanner("");
-        try {
-            sc = new Scanner(text);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        while (sc.hasNextLine()) {
-            this.prompt = sc.nextLine();
-            sc.useDelimiter(",");
-            while (sc.hasNext()) {
-                String word = sc.next();
-                if (word.charAt(0) != '*') {
-                    relevantWord = word;
-                }
-            }
-            sc.useDelimiter("\n");
-        }
-    }
 
     public void setInput(String input) {
         this.input = input.toLowerCase();
@@ -55,4 +39,13 @@ public class SpeechGame {
     public String getPrompt() {
         return prompt;
     }
+
+    public void setPrompt(String prompt) {
+        this.prompt = prompt;
+    }
+
+
+
+
+
 }
