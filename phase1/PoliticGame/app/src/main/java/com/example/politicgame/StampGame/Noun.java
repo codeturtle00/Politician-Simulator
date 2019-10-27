@@ -3,7 +3,14 @@ package com.example.politicgame.StampGame;
 import com.example.politicgame.StampGame.Word;
 
 public class Noun extends Word {
-    public Noun(String value, int points, String category){
-        super(value, points, category);
+    private boolean amountable;
+
+    public Noun(String value, int category, boolean amountable){
+        super(value, category);
+        this.amountable = amountable;
+    }
+
+    public boolean getAmountable(){
+        return this.amountable;
     }
 }
