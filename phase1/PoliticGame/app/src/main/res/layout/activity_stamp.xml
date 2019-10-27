@@ -111,15 +111,30 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/NPC_image"
         android:layout_width="174dp"
         android:layout_height="233dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:contentDescription="@string/NPC_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.465"
         app:srcCompat="@drawable/helmet_guy" />
+
+    <TextView
+        android:id="@+id/npcPrompt"
+        android:layout_width="379dp"
+        android:layout_height="132dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/NPC_Prompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaderBoard" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
