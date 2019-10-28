@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.politicgame.BabyGame.BabyActivity;
 import com.example.politicgame.SpeechGame.SpeechInstructionActivity;
@@ -85,9 +86,8 @@ public class RegistrationActivity extends AppCompatActivity {
       JSONObject userLogin = new JSONObject();
       JSONArray loginArray = new JSONArray();
       if (this.isDuplicate(nameString)) {
-        // TODO: Disabled button for register
-        //
-        //
+        String duplicate = nameString + "was found.Please select another name!";
+        Toast.makeText(getApplicationContext(), duplicate, Toast.LENGTH_LONG).show();
       } else {
         String jsonString = new String();
         try {
