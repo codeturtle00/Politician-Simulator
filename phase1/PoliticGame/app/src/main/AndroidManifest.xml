@@ -18,10 +18,11 @@
             android:parentActivityName=".MainActivity" />
         <activity android:name=".StampGame.StampActivity" />
         <activity android:name=".StampGame.StampInstructionActivity" />
+
         <activity android:name=".SpeechGame.SpeechActivity" />
         <activity android:name=".BabyGame.BabyActivity" />
-        <activity android:name=".ui.Login.LoginActivity">
-        </activity>
+        <activity android:name=".BabyGame.Shake" />
+        <activity android:name=".ui.Login.LoginActivity"></activity>
         <activity android:name=".RegistrationActivity">
 
         </activity>
@@ -32,7 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PauseActivity"/>
+        <activity android:name=".PauseActivity" />
     </application>
 
 </manifest>

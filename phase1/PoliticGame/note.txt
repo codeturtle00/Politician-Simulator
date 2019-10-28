@@ -35,3 +35,9 @@ Made a new class for our speech game objects
 Change # 4
 Editor: Guanjie Wang
 Finish Instruction page for speech and speech activity
+
+###
+Change # 5
+Editor: Cullen Pu
+Files Affected: BabyActivity.java, DetectSwipe.java, Shake.java
+Created class for shaking the baby game mode and implemented countdown timer in BabyActivity.
