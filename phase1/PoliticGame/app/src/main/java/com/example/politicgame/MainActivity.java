@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.politicgame.BabyGame.BabyActivity;
+import com.example.politicgame.ui.Login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         final Button playButton = findViewById(R.id.start);
         playButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -23,6 +26,18 @@ public class MainActivity extends AppCompatActivity {
                         openBabyGame();
                     }
                 });
+
+
+        final Button loginButton = findViewById(R.id.login);
+        loginButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        // Code here executes on main thread after user presses button
+                        openLoginPage();
+                    }
+                });
+
+
         final Button boardButton = findViewById(R.id.leaderBoard);
         boardButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -36,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
     public void openBabyGame() {
         Intent switchBabyIntent = new Intent(this, BabyActivity.class);
         startActivity(switchBabyIntent);
+    }
+
+    public void openLoginPage() {
+        Intent loginPageIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginPageIntent);
     }
 
     public void openLeaderBoard() {
