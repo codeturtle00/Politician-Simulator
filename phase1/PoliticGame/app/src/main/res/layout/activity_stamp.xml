@@ -113,14 +113,16 @@
     <ImageView
         android:id="@+id/NPC_image"
         android:layout_width="174dp"
-        android:layout_height="233dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/NPC_image"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/stamp_game_char_rating"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.528"
+        app:layout_constraintTop_toBottomOf="@+id/npcPrompt"
+        app:layout_constraintVertical_bias="0.058"
         app:srcCompat="@drawable/helmet_guy" />
 
     <TextView
