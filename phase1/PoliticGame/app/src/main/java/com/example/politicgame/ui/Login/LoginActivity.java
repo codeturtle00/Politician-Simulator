@@ -24,24 +24,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.politicgame.BabyGame.BabyActivity;
 import com.example.politicgame.R;
 import com.example.politicgame.RegistrationActivity;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class LoginActivity extends AppCompatActivity {
-    private boolean loggedIn;
     private LoginViewModel loginViewModel;
     private void register(){
-        Intent backToSpeech = new Intent(this, RegistrationActivity.class);
-        startActivity(backToSpeech);
+        Intent registerIntent = new Intent(this, RegistrationActivity.class);
+        startActivity(registerIntent);
     }
 
     @Override
@@ -63,9 +54,8 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        this.loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
+        this.loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory(this))
                 .get(LoginViewModel.class);
-
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
@@ -147,43 +137,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
+        Intent startIntent = new Intent(this, BabyActivity.class);
+        startActivity(startIntent);
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
-
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
-
-    private static final String FILE_NAME = "SpeechPrompts.txt";
-
-  public void userAuthentication(String username, String password) {
-    String jsonString = new String();
-    try {
-
-      FileInputStream fileInputStream = openFileInput(FILE_NAME);
-      System.out.println( "File is empty?" +fileInputStream.toString());
-      int size = fileInputStream.available();
-      byte[] buffer = new byte[size];
-      fileInputStream.read(buffer);
-      fileInputStream.close();
-      jsonString = new String(buffer, "UTF-8");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    try {
-      JSONArray jsonList = new JSONArray(jsonString);
-      for (int i = 0; i < jsonList.length(); i++) {
-        if (jsonList.getJSONObject(i).getString("UserName").equals(username)) {
-          this.loggedIn = jsonList.getJSONObject(i).getString("Password").equals(password);
-        }
-      }
-      this.loggedIn = false;
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
-  }
 }
