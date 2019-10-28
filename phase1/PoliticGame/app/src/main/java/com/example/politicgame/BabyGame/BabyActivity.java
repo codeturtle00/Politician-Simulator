@@ -16,14 +16,17 @@ import com.example.politicgame.R;
 import com.example.politicgame.SpeechGame.SpeechInstructionActivity;
 
 public class BabyActivity extends AppCompatActivity {
+  // Happiness of the baby. Also the player's score.
   static Integer happiness = 50;
+
+  private TextView score_display = null;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_baby);
-    final TextView timer = findViewById(R.id.timer);
-    final TextView score_display = findViewById(R.id.score_display);
+    final TextView timer_display = findViewById(R.id.timer_display);
+    score_display = findViewById(R.id.score_display);
 
     final Button pauseB = findViewById(R.id.pause);
     pauseB.setOnClickListener(
@@ -38,20 +41,32 @@ public class BabyActivity extends AppCompatActivity {
     String score = score_display.toString() + "%";
     score_display.setText(score);
 
-    new CountDownTimer(60000, 1000) {
-
+    // Game lasts for 60 seconds.
+    final CountDownTimer timer = new CountDownTimer(60000, 1000) {
       public void onTick(long millisUntilFinished) {
         String timeLeft = "seconds remaining: " + millisUntilFinished / 1000;
-        timer.setText(timeLeft);
+        timer_display.setText(timeLeft);
         if ((millisUntilFinished / 1000) % 5 == 0) {
-          randomEvent();
+          randomEvent(); // Randomly chooses a baby action (can be nothing)
         }
       }
 
       public void onFinish() {
         openSpeechGame();
       }
-    }.start();
+    };
+    timer.start();
+
+    /* DELETE LATER */
+    final Button next = findViewById(R.id.next);
+    next.setOnClickListener(
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                openSpeechGame();
+                timer.cancel();
+              }
+            });
   }
 
   void randomEvent() {
