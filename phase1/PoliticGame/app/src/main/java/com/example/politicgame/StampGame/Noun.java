@@ -9,4 +9,8 @@ public class Noun extends Word {
         super(value, category);
         this.amountable = amountable;
     }
+
+    public boolean getAmountable(){
+        return this.amountable;
+    }
 }
