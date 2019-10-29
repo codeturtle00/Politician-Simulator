@@ -29,7 +29,7 @@ public class StampActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stamp);
         final TextView rating = findViewById(R.id.stamp_game_rating_score);
         final TextView promptDisplay = findViewById(R.id.npcPrompt);
-        final TextView supportersCount = findViewById(R.id.stamp_game_num_supporters);
+        final TextView proposalLeft = findViewById(R.id.stamp_game_proposal_left);
 
 
         final Button button = findViewById(R.id.leaderBoard);
@@ -47,6 +47,7 @@ public class StampActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         // Code here executes on main thread after user presses button
                         gh.changeRating(rating, true);
+                        gh.changeProposalNum(proposalLeft);
                         gh.setPrompt(promptDisplay);
                     }
                 });
@@ -57,6 +58,7 @@ public class StampActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         // Code here executes on main thread after user presses button
                         gh.changeRating(rating, false);
+                        gh.changeProposalNum(proposalLeft);
                         gh.setPrompt(promptDisplay);
                     }
                 });
@@ -73,6 +75,7 @@ public class StampActivity extends AppCompatActivity {
                     }
                 });
 
+        gh.changeProposalNum(proposalLeft);
         gh.setPrompt(promptDisplay);
     }
 

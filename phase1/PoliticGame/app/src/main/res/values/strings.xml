@@ -17,7 +17,7 @@
     <string name="stamp_game_proposal">number of proposals left</string>
     <string name="stamp_game_rating">your current rating</string>
     <string name="stamp_game_proposal_left">0</string>
-    <string name="stamp_game_rating_score">100%</string>
+    <string name="stamp_game_rating_score">50%</string>
     <string name="NPC_image">npcImage</string>
     <string name="NPC_Prompt">npcPrompt</string>
     <string name="next_game">Next</string>
