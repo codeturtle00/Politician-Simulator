@@ -14,5 +14,10 @@ public class FailureSpeechResult extends SpeechResult {
         setContentView(R.layout.activity_failure_speech_result);
     }
 
+    protected void onStart() {
+        getRating().losePoints();
+        super.onStart();
+    }
+
 
 }

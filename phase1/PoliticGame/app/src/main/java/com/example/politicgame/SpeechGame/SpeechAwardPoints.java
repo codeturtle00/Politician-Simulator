@@ -7,16 +7,19 @@ public class SpeechAwardPoints {
         currentPoints = rating;
     }
 
+
     public void awardPoints(){
-        currentPoints += POINTSGIVEN;
+        if (currentPoints <= 100 - POINTSGIVEN)
+            currentPoints += POINTSGIVEN;
     }
 
     public void losePoints() {
-        currentPoints -= POINTSGIVEN;
+        if (currentPoints >= POINTSGIVEN)
+            currentPoints -= POINTSGIVEN;
     }
 
-    public int getCurrentPoints() {
-        return currentPoints;
+    public Integer getCurrentPoints() {
+        return new Integer(currentPoints);
     }
 
 

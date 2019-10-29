@@ -9,7 +9,7 @@
     tools:context=".SpeechGame.SpeechResult">
 
     <TextView
-        android:id="@+id/curRating2"
+        android:id="@+id/curRating"
         android:layout_width="199dp"
         android:layout_height="33dp"
         android:layout_marginEnd="104dp"
