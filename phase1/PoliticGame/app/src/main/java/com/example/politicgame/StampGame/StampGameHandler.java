@@ -11,14 +11,63 @@ import java.util.List;
 *   TODO: Optimize the scoring system
 * */
 public class StampGameHandler {
-    private List<Verb> verbs;
-    private List<Noun> nouns;
+    private List<Word> verbs;
+    private List<Word> nouns;
     private List<Proposal> prompts;
     private Proposal currentPrompt;
 
+    private double getRandomDoubleBetweenRange (double min, double max){
+        double x = (Math.random()*((max-min)+1))+min;
+        return x;
+    }
+
+    private void addWordToList (List<String> stringList, List<Word> wordList, String word){
+         int min = 1;
+         int max = 5;
+
+        switch (word) {
+            case "posVerb":
+                for (String item : stringList) {
+                    int posCategory = (int)(getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Verb(item, posCategory));
+                }
+                break;
+            case "negVerb":
+                for (String item : stringList) {
+                    int negCategory = (int)(getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Verb(item, -negCategory));
+                }
+                break;
+            case "negNounYA":
+                for (String item : stringList) {
+                    int negCategory = (int)(getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Noun(item, -negCategory, true));
+                }
+                break;
+            case "negNounNA":
+                for (String item : stringList) {
+                    int negCategory = (int)(getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Noun(item, -negCategory, false));
+                }
+                break;
+            case "posNounYA":
+                for (String item : stringList) {
+                    int posCategory = (int)(getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Noun(item, posCategory, true));
+                }
+                break;
+            case "posNounNA":
+                for (String item : stringList) {
+                    int posCategory = (int)(getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Noun(item, posCategory, false));
+                }
+                break;
+        }
+    }
+
     public StampGameHandler(){
-        verbs = new ArrayList<Verb>();
-        nouns = new ArrayList<Noun>();
+        verbs = new ArrayList<Word>();
+        nouns = new ArrayList<Word>();
         prompts = new ArrayList<Proposal>();
 
         //Positive verbs that has a positive effect on the object
@@ -28,9 +77,7 @@ public class StampGameHandler {
                 "donate money to charities that work with",
                 "gift a bouquet of flowers to"));
 
-        for (String item: verbListPositive){
-            verbs.add(new Verb(item, 1));
-        }
+        addWordToList(verbListPositive, verbs, "posVerb");
 
 
         //Positive verbs that has a negative effect on the object
@@ -42,9 +89,8 @@ public class StampGameHandler {
                 "launch an investigation against",
                 "personally find and laugh at"));
 
-        for (String item: verbListNegative){
-            verbs.add(new Verb(item, -1));
-        }
+
+        addWordToList(verbListNegative, verbs, "negVerb");
 
 
         //Positive nouns that are not amountable
@@ -55,9 +101,7 @@ public class StampGameHandler {
                 "Toe-Knee, a rising star in the genre of Jazz, who recently released his hit album \"CS Blues\"",
                 "Jacki, a citizen who has been wrongfully imprisoned in the country of Canada for not holding the door for the boy behind him"));
 
-        for (String item: nounListPositiveNA){
-            nouns.add(new Noun(item, 1, false));
-        }
+        addWordToList(nounListPositiveNA, nouns, "posNounNA");
 
 
         //Positive nouns that are amountable
@@ -66,9 +110,7 @@ public class StampGameHandler {
                 "Boundless Peacocks, the very last of their species",
                 "sad computer science students at the University of Toronto"));
 
-        for (String item: nounListPositiveYA){
-            nouns.add(new Noun(item, 1, true));
-        }
+        addWordToList(nounListPositiveYA, nouns, "posNounYA");
 
 
         //Negative nouns that are not amountable
@@ -78,18 +120,14 @@ public class StampGameHandler {
                 "Colin, a medical practitioner found to have cheated on his medical exams after a related illegal nose smuggling ring was busted",
                 "Kavin, a phantom thief who masterminded the theft all the laptop chargers, but not the laptops, at the University of Toronto last Fall"));
 
-        for (String item: nounListNegativeNA){
-            nouns.add(new Noun(item, -1, false));
-        }
+        addWordToList(nounListNegativeNA, nouns, "negNounNA");
 
 
         //Negative nouns that are amountable
         List<String> nounListNegativeYA = new ArrayList<String>(Arrays.asList(
                 "seal clubbers"));
 
-        for (String item: nounListNegativeYA){
-            nouns.add(new Noun(item, -1, true));
-        }
+        addWordToList(nounListNegativeYA, nouns, "negNounYA");
     }
 
     //Must be called first
@@ -116,11 +154,11 @@ public class StampGameHandler {
 
             String promptBegin = promptBeginList.get((int) (Math.random() * (promptBeginList.size())));
 
-            if (nouns.get(nounIndex).getAmountable()) {
+            if (((Noun) nouns.get(nounIndex)).getAmountable()) {
                 int amount = (int) (Math.random() * (1000));
-                currentPrompt = new Proposal(promptBegin, verbs.remove(verbIndex), nouns.remove(nounIndex), amount);
+                currentPrompt = new Proposal(promptBegin, ((Verb) verbs.remove(verbIndex)), ((Noun) nouns.remove(nounIndex)), amount);
             } else {
-                currentPrompt = new Proposal(promptBegin, verbs.remove(verbIndex), nouns.remove(nounIndex));
+                currentPrompt = new Proposal(promptBegin, ((Verb) verbs.remove(verbIndex)), ((Noun) nouns.remove(nounIndex)));
             }
 
             prompts.add(currentPrompt);
