@@ -58,6 +58,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+        final Button settingButton = findViewById(R.id.settings);
+        settingButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        // Code here executes on main thread after user presses button
+                        openSettings();
+                    }
+                });
+
+        //Check if file exists
         if (!fileExists()) {
             Log.i("File Status", "The file does not exist yet");
             createFile();
@@ -122,5 +132,10 @@ public class MainActivity extends AppCompatActivity {
     public void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
+    }
+
+    public void openSettings() {
+        Intent settingsIntent = new Intent(this, SettingsActivity.class);
+        startActivity(settingsIntent);
     }
 }
