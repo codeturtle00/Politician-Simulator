@@ -2,6 +2,7 @@ package com.example.politicgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +15,14 @@ import com.example.politicgame.PauseActivity;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class SaveActivity extends AppCompatActivity {
     /**
@@ -42,15 +50,57 @@ public class SaveActivity extends AppCompatActivity {
      *    leaderboard instead
      * 6) The level is written into with the keys and values that are given by the user
      * 7) SaveActivity will return a result afterwards
+     *
+     *
+     * DATA STRUCTURE
+     * {
+     *      userData:
+     *      {
+     *          user1:{
+     *              character: {
+     *
+     *              },
+     *              Level_1: {
+     *                  score1: int
+     *                  time: int
+     *              },
+     *              Level_2: {
+     *                  score2: int
+     *                  time: int
+     *              },
+     *              Level_3: {
+     *                  score3: int
+     *                  time: int
+     *              }
+     *          },
+     *
+     *          user2: {
+     *              Level_1: {},
+     *              Level_2: {},
+     *              Level_3: {}
+     *          }
+     *      },
+     *
+     *      leaderBoards: {
+     *          player1: score1,
+     *          player2: score2,
+     *          ...
+     *          ...
+     *          player10: score10
+     *      }
+     * }
      */
 
 
-    private final String FILENAME = "user_game_data.json";
+    private final String FILE_NAME = "user_game_data.json";
     private final int NOLEVEL = 0;
     private final int LEVELONE = 1;
     private final int LEVELTWO = 2;
     private final int LEVELTHREE = 3;
     private final int LEADERBOARD = 4;
+
+    private final int SAVE_OK = 0;
+    private final int SAVE_FAIL = 1;
 
     private String currentUser;
     private JSONObject fileState;
@@ -60,7 +110,12 @@ public class SaveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp);
 
+        if (!fileExists())
+            Log.i("File Status", "The file does not exist yet");
+            createFile();
 
+
+        returnRequest(SAVE_OK);
     }
 
     public boolean fileExists(){
@@ -68,8 +123,51 @@ public class SaveActivity extends AppCompatActivity {
          * Checks if the file exists in the directory the game will be saved in
          */
 
+        return (new File(FILE_NAME)).exists();
+    }
 
-        return false;
+    public void createFile(){
+        /**
+         * Creates the file in the device which we will use to store user data and other persistent
+         * game info.
+         */
+
+        try {
+            FileOutputStream outputStream = openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
+            JSONObject fileStructure = new JSONObject();
+
+            fileStructure.put("leaderBoards", generateEmptyLeaderBoard());
+            fileStructure.put("userData", new JSONObject());
+
+            outputStream.write(fileStructure.toString().getBytes());
+            outputStream.close();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            returnRequest(SAVE_FAIL);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            returnRequest(SAVE_FAIL);
+        } catch (IOException e) {
+            e.printStackTrace();
+            returnRequest(SAVE_FAIL);
+        }
+    }
+
+    public JSONObject generateEmptyLeaderBoard(){
+        JSONObject leaderBoard = new JSONObject();
+
+        try{
+            leaderBoard.put("Kullen", 10);
+            leaderBoard.put("Yitan", 8);
+            leaderBoard.put("Toe-knee", 3);
+            leaderBoard.put("Jak-ee", 1);
+        } catch (JSONException e){
+            e.printStackTrace();
+            returnRequest(SAVE_FAIL);
+        }
+
+        return leaderBoard;
     }
 
     public void createUser(String userName){
@@ -78,13 +176,6 @@ public class SaveActivity extends AppCompatActivity {
          * beforehand. This will also set the current user to the user that was also created
          */
 
-    }
-
-    public void createFile(){
-        /**
-         * Creates the file in the device which we will use to store user data and other persistent
-         * game info.
-         */
     }
 
     public void saveGame (int levelNum){
@@ -98,11 +189,14 @@ public class SaveActivity extends AppCompatActivity {
         /**
          * Sets currentUser to userName, makes sure the user exists first
          */
+
     }
 
-    public void update(){
-        /**
-         * Updates
-         */
+    private void returnRequest(int requestCode){
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("result", requestCode);
+
+        setResult(RESULT_OK, resultIntent);
+        finish();
     }
 }
