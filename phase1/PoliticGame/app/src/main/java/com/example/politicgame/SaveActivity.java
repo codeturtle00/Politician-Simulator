@@ -57,14 +57,20 @@ public class SaveActivity extends AppCompatActivity {
      *      userData:
      *      {
      *          user1:{
+     *              character: {
+     *
+     *              },
      *              Level_1: {
      *                  score1: int
+     *                  time: int
      *              },
      *              Level_2: {
      *                  score2: int
+     *                  time: int
      *              },
      *              Level_3: {
      *                  score3: int
+     *                  time: int
      *              }
      *          },
      *
@@ -155,6 +161,7 @@ public class SaveActivity extends AppCompatActivity {
             leaderBoard.put("Kullen", 10);
             leaderBoard.put("Yitan", 8);
             leaderBoard.put("Toe-knee", 3);
+            leaderBoard.put("Jak-ee", 1);
         } catch (JSONException e){
             e.printStackTrace();
             returnRequest(SAVE_FAIL);
