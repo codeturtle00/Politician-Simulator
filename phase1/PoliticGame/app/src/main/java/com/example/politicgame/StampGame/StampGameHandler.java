@@ -172,16 +172,18 @@ public class StampGameHandler {
     //change the rating depending on where it is yes or no button pushed
     void changeRating(TextView tv, boolean clickedYes) {
         String oldRating = tv.getText().toString();
-
-        int scoreChange = this.getCurrentPromptScore();
-        if (!clickedYes) {
-            scoreChange = -scoreChange;
-        }
-
         Integer currentScore = Integer.valueOf(oldRating.substring(0, oldRating.length() - 1));
-        Integer updatedScore = currentScore + scoreChange;
         Integer minScore = 0;
         Integer maxScore = 100;
+        Integer updatedScore;
+
+        Integer scoreChange = this.getCurrentPromptScore();
+        if (!clickedYes) {
+            updatedScore = currentScore - scoreChange;
+        } else {
+            updatedScore = currentScore + scoreChange;
+        }
+
 
 
         if (currentScore >= 0 && currentScore <= 100) {
