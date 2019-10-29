@@ -27,6 +27,8 @@ public class StampActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp);
+        final TextView rating = findViewById(R.id.stamp_game_rating_score);
+        final TextView promptDisplay = findViewById(R.id.npcPrompt);
 
 
         final Button button = findViewById(R.id.leaderBoard);
@@ -43,9 +45,8 @@ public class StampActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         // Code here executes on main thread after user presses button
-                        TextView rating = findViewById(R.id.stamp_game_rating_score);
-                        changeScore(rating, gh.getCurrentPromptScore());
-                        setPrompt(gh);
+                        gh.changeRating(rating, true);
+                        gh.setPrompt(promptDisplay);
                     }
                 });
 
@@ -54,9 +55,8 @@ public class StampActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         // Code here executes on main thread after user presses button
-                        TextView rating = findViewById(R.id.stamp_game_rating_score);
-                        changeScore(rating, (-1)*gh.getCurrentPromptScore());
-                        setPrompt(gh);
+                        gh.changeRating(rating, false);
+                        gh.setPrompt(promptDisplay);
                     }
                 });
 
@@ -72,76 +72,41 @@ public class StampActivity extends AppCompatActivity {
                     }
                 });
 
-
-        setPrompt(gh);
+        gh.setPrompt(promptDisplay);
     }
 
-    // TODO: try to change this into StampGameHandler
-    private void changeScore(TextView rating, int scoreChange){
-        String oldRating = rating.getText().toString();
-        Integer currentScore = Integer.valueOf(oldRating.substring(0, oldRating.length() -1));
-        Integer updatedScore = currentScore + scoreChange;
-        Integer minScore = 0;
-        Integer maxScore = 100;
-
-        if (currentScore >= 0 && currentScore <= 100){
-            if (updatedScore >= 0 && updatedScore <= 100) {
-
-                String newRating = updatedScore.toString() + '%';
-                rating.setText(newRating);
-            } else if (updatedScore < 0) {
-                String newRating = minScore.toString() + '%';
-                rating.setText(newRating);
-            } else {
-                String newRating = maxScore.toString() + '%';
-                rating.setText(newRating);
-            }
-        }
-
-    }
-
-    private void setPrompt(StampGameHandler gh){
-        gh.createPrompt();
-        String npcProposal = gh.getCurrentPrompt().getString();
-        TextView promptDisplay = findViewById(R.id.npcPrompt);
-        promptDisplay.setText(npcProposal);
-    }
 
     public void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
     }
 
-    public void openPauseMenu(){
+    public void openPauseMenu() {
         Intent pauseMenuIntent = new Intent(this, PauseActivity.class);
         startActivityForResult(pauseMenuIntent, 1);
     }
 
-    public void openMainMenu(){
+    public void openMainMenu() {
         Intent mainMenuIntent = new Intent(this, MainActivity.class);
         startActivity(mainMenuIntent);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         //requestCode refers to the request code parameter of openPauseMenu's startActivityForResult call
         if (requestCode == 1) {
-            if (resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
                 int userInput = data.getIntExtra("result", 0);
 
-                if (userInput == 1){
+                if (userInput == 1) {
                     Log.i("Pause Result", "User has decided to resume play");
-                }
-
-                else if (userInput == 2){
+                } else if (userInput == 2) {
                     Log.i("Pause Result", "User has decided to quit the game");
                     openMainMenu();
                 }
-            }
-
-            else {
+            } else {
                 Log.i("Result Code", "Result code is " + resultCode);
             }
         }
