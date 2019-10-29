@@ -1,13 +1,14 @@
 package com.example.politicgame.BabyGame;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 
 import com.example.politicgame.MainActivity;
@@ -18,15 +19,18 @@ import com.example.politicgame.SpeechGame.SpeechInstructionActivity;
 public class BabyActivity extends AppCompatActivity {
   // Happiness of the baby. Also the player's score.
   static Integer happiness = 50;
-
-  private TextView score_display = null;
+  long timeLeft;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_baby);
+
     final TextView timer_display = findViewById(R.id.timer_display);
-    score_display = findViewById(R.id.score_display);
+
+    TextView score_display = findViewById(R.id.score_display);
+    String score = happiness.toString() + "%";
+    score_display.setText(score);
 
     final Button pauseB = findViewById(R.id.pause);
     pauseB.setOnClickListener(
@@ -38,35 +42,38 @@ public class BabyActivity extends AppCompatActivity {
           }
         });
 
-    String score = score_display.toString() + "%";
-    score_display.setText(score);
-
     // Game lasts for 60 seconds.
-    final CountDownTimer timer = new CountDownTimer(60000, 1000) {
-      public void onTick(long millisUntilFinished) {
-        String timeLeft = "seconds remaining: " + millisUntilFinished / 1000;
-        timer_display.setText(timeLeft);
-        if ((millisUntilFinished / 1000) % 5 == 0) {
-          randomEvent(); // Randomly chooses a baby action (can be nothing)
-        }
-      }
+    final CountDownTimer timer =
+        new CountDownTimer(60000, 1000) {
+          public void onTick(long millisUntilFinished) {
+            timeLeft = millisUntilFinished;
+            String timeLeft = "seconds remaining: " + millisUntilFinished / 1000;
+            timer_display.setText(timeLeft);
+            if ((millisUntilFinished / 1000) % 5 == 0) {
+              randomEvent(); // Randomly chooses a baby action (can be nothing)
+            }
+          }
 
-      public void onFinish() {
-        openSpeechGame();
-      }
-    };
+          public void onFinish() {
+            openSpeechGame();
+          }
+        };
     timer.start();
 
-    /* DELETE LATER */
+    BabyView babyView = new BabyView(this);
+    FrameLayout babyFrame = findViewById(R.id.babyFrame);
+    babyFrame.addView(babyView);
+
+    /** DELETE LATER */
     final Button next = findViewById(R.id.next);
     next.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                openSpeechGame();
-                timer.cancel();
-              }
-            });
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            openSpeechGame();
+            timer.cancel();
+          }
+        });
   }
 
   void randomEvent() {
@@ -75,7 +82,6 @@ public class BabyActivity extends AppCompatActivity {
     if (randomNum == 1) {
       startActivityForResult(new Intent(this, Shake.class), randomNum);
     }
-
     new CountDownTimer(5000, 1000) {
       @Override
       public void onTick(long millisUntilFinished) {}
@@ -93,6 +99,7 @@ public class BabyActivity extends AppCompatActivity {
   }
 
   public void openPauseMenu() {
+    onPause();
     Intent pauseMenuIntent = new Intent(this, PauseActivity.class);
     startActivityForResult(pauseMenuIntent, 1);
   }
@@ -105,7 +112,6 @@ public class BabyActivity extends AppCompatActivity {
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-
     // requestCode refers to the request code parameter of openPauseMenu's startActivityForResult
     // call
     if (requestCode == 1) {
