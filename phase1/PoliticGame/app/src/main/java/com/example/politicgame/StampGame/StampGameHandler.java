@@ -8,13 +8,16 @@ import java.util.Arrays;
 import java.util.List;
 
 /*
- * TODO: fix the index out of bound bug
- *  TODO: fix the over rated system
  *   TODO: Optimize the scoring system
  * */
-public class StampGameHandler {
+class StampGameHandler {
     private List<Word> verbs;
     private List<Word> nouns;
+
+    public List<Proposal> getPrompts() {
+        return prompts;
+    }
+
     private List<Proposal> prompts;
     private Proposal currentPrompt;
 
@@ -25,7 +28,7 @@ public class StampGameHandler {
 
     private void addWordToList(List<String> stringList, List<Word> wordList, String word) {
         int min = 1;
-        int max = 10;
+        int max = 1;
 
         switch (word) {
             case "posVerb":
@@ -117,8 +120,7 @@ public class StampGameHandler {
 
         //Negative nouns that are not amountable
         List<String> nounListNegativeNA = new ArrayList<String>(Arrays.asList(
-                "the premier of Ontario, Canada",
-                "the leader of North Korea",
+                "the leader of North Coreeah, who is planning a nuclear strike",
                 "Colin, a medical practitioner found to have cheated on his medical exams after a related illegal nose smuggling ring was busted",
                 "Kavin, a phantom thief who masterminded the theft all the laptop chargers, but not the laptops, at the University of Toronto last Fall"));
 
@@ -177,7 +179,7 @@ public class StampGameHandler {
         Integer currentScore = Integer.valueOf(oldRating.substring(0, oldRating.length() - 1));
         Integer minScore = 0;
         Integer maxScore = 100;
-        Integer updatedScore;
+        int updatedScore;
 
         Integer scoreChange = this.getCurrentPromptScore();
         if (!clickedYes) {
@@ -185,7 +187,6 @@ public class StampGameHandler {
         } else {
             updatedScore = currentScore + scoreChange;
         }
-
 
         if (currentScore >= 0 && currentScore <= 100) {
             if (updatedScore >= 0 && updatedScore <= 100) {
@@ -218,7 +219,8 @@ public class StampGameHandler {
         return currentPrompt.getCategory();
     }
 
-    public int getPromptsDone() {
-        return prompts.size();
-    }
+
+//    public int getPromptsDone() {
+//        return prompts.size();
+//    }
 }
