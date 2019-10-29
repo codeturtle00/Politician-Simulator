@@ -79,11 +79,23 @@ public class StampActivity extends AppCompatActivity {
     // TODO: try to change this into StampGameHandler
     private void changeScore(TextView rating, int scoreChange){
         String oldRating = rating.getText().toString();
-        Integer score = Integer.valueOf(oldRating.substring(0, oldRating.length() -1));
-        if (score != 0){
-            Integer newScore = score + scoreChange;
-            String newRating = newScore.toString() + '%';
-            rating.setText(newRating);
+        Integer currentScore = Integer.valueOf(oldRating.substring(0, oldRating.length() -1));
+        Integer updatedScore = currentScore + scoreChange;
+        Integer minScore = 0;
+        Integer maxScore = 100;
+
+        if (currentScore >= 0 && currentScore <= 100){
+            if (updatedScore >= 0 && updatedScore <= 100) {
+
+                String newRating = updatedScore.toString() + '%';
+                rating.setText(newRating);
+            } else if (updatedScore < 0) {
+                String newRating = minScore.toString() + '%';
+                rating.setText(newRating);
+            } else {
+                String newRating = maxScore.toString() + '%';
+                rating.setText(newRating);
+            }
         }
 
     }
