@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.example.politicgame.BabyGame.BabyActivity;
 import com.example.politicgame.Common.FileSavingService;
+import com.example.politicgame.User.UserManager;
+import com.example.politicgame.User.UserAccount;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,11 +67,13 @@ public class RegistrationActivity extends AppCompatActivity {
       } else {
         JSONObject userObject = new JSONObject();
         try {
-          userObject.put(nameString, passString);
+          userObject.put("UserName", nameString);
+          userObject.put("Password", passString);
         } catch (JSONException e) {
           e.printStackTrace();
         }
         fileSaving.appendJsonObject(userObject, FILE_NAME);
+        UserManager.loginUser = new UserAccount(nameString);
         String saved = "User" + nameString + " is registered successfully!";
         Toast.makeText(getApplicationContext(), saved, Toast.LENGTH_LONG).show();
       }
