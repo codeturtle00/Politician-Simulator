@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.example.politicgame.R;
 
 public class SpeechResult extends AppCompatActivity {
+
+    private SpeechAwardPoints rating = new SpeechAwardPoints(0); //to be changed later
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -38,5 +41,7 @@ public class SpeechResult extends AppCompatActivity {
         startActivity(backToSpeech);
     }
 
-
+    public SpeechAwardPoints getRating() {
+        return rating;
+    }
 }

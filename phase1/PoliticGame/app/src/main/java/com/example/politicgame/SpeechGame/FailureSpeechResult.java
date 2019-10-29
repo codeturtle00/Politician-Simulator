@@ -13,4 +13,6 @@ public class FailureSpeechResult extends SpeechResult {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_failure_speech_result);
     }
+
+
 }

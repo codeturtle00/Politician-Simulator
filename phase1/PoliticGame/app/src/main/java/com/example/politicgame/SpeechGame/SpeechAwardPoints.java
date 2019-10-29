@@ -1,15 +1,19 @@
 package com.example.politicgame.SpeechGame;
 
 public class SpeechAwardPoints {
-    private final int POINTSGIVEN = 1;
+    private final int POINTSGIVEN = 3;
     private int currentPoints;
-    public SpeechAwardPoints(){
-        currentPoints = 0;
+    public SpeechAwardPoints(int rating){
+        currentPoints = rating;
     }
+
     public void awardPoints(){
         currentPoints += POINTSGIVEN;
     }
 
+    public void losePoints() {
+        currentPoints -= POINTSGIVEN;
+    }
 
     public int getCurrentPoints() {
         return currentPoints;
