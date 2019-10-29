@@ -97,11 +97,11 @@
         android:layout_marginBottom="16dp"
         android:text="@string/stamp_game_rating_score"
         android:textColor="#00BCD4"
-        app:layout_constraintBottom_toTopOf="@+id/stamp_game_num_supporters"
+        app:layout_constraintBottom_toTopOf="@+id/stamp_game_proposal_left"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/stamp_game_num_supporters"
+        android:id="@+id/stamp_game_proposal_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

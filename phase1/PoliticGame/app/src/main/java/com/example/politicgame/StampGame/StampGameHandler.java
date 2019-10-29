@@ -9,6 +9,7 @@ import java.util.List;
 
 /*
  *   TODO: Optimize the scoring system
+ *    TODO: may need to move all the stringList to somewhere else
  * */
 class StampGameHandler {
     private List<Word> verbs;
@@ -116,7 +117,7 @@ class StampGameHandler {
      */
     private void addWordToList(List<String> stringList, List<Word> wordList, String word) {
         int min = 1;
-        int max = 5;
+        int max = 7;
 
         switch (word) {
             case "posVerb":
@@ -214,14 +215,24 @@ class StampGameHandler {
     }
 
     /**
+     * Return the integer representation of the text tv is representing
+     *
+     * @param tv the TextView object
+     * @return the integer representation of tv
+     */
+    private Integer intFromTextView(TextView tv){
+        String oldString = tv.getText().toString();
+        return Integer.valueOf(oldString.substring(0, oldString.length() - 1));
+    }
+
+    /**
      * Changed the rating depending on the button click
      *
-     * @param tv         the TextView object that displays rating
+     * @param rating         the TextView object that displays rating
      * @param clickedYes the boolean value expressing whether the user pressed yes or no
      */
-    void changeRating(TextView tv, boolean clickedYes) {
-        String oldRating = tv.getText().toString();
-        Integer currentScore = Integer.valueOf(oldRating.substring(0, oldRating.length() - 1));
+    void changeRating(TextView rating, boolean clickedYes) {
+        Integer currentScore = intFromTextView(rating);
         Integer minScore = 0;
         Integer maxScore = 100;
         int updatedScore;
@@ -235,11 +246,11 @@ class StampGameHandler {
 
         if (currentScore >= 0 && currentScore <= 100) {
             if (updatedScore >= 0 && updatedScore <= 100) {
-                updateRating(tv, updatedScore);
+                updateRating(rating, updatedScore);
             } else if (updatedScore < 0) {
-                updateRating(tv, minScore);
+                updateRating(rating, minScore);
             } else {
-                updateRating(tv, maxScore);
+                updateRating(rating, maxScore);
             }
         }
 
@@ -257,6 +268,26 @@ class StampGameHandler {
     }
 
 
+    /**
+     * updates the rating that is being displayed on screen
+     *
+     * @param rating    TextView object of the rating
+     * @param ratingInt the new value of the rating
+     */
+    private void updateProposal(TextView rating, Integer ratingInt) {
+        String newRating = ratingInt.toString();
+        rating.setText(newRating);
+    }
+
+    /**
+     * change the proposal number displayed to the number of proposals left in StampGameHandler
+     *
+     * @param proposalNum the minimum of {size of verbs, size of nouns};
+     */
+     void changeProposalNum(TextView proposalNum){
+        int currentProposalLeft = Math.min(verbs.size(), nouns.size());
+        updateProposal(proposalNum, currentProposalLeft);
+    }
 //    public int getPromptsDone() {
 //        return prompts.size();
 //    }
