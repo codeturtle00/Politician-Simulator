@@ -18,7 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
  * Explanation:
  *
  * (ConstraintLayout) type casts findViewByID
- * R.id.<id> is the ID of your layout. If you don't have one, insert android:id="@+id/ChoiceB"
+ * R.id.<id> is the ID of your layout. If you don't have one, insert android:id="@+id/<ur id name>"
  * to the top of your xml layout file. See Baby Game for example.
  * */
 
