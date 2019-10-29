@@ -24,10 +24,17 @@ public class BabyActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_baby);
 
+    // Embed BabyView into xml layout
+    setContentView(R.layout.activity_baby);
+    BabyView babyView = new BabyView(this);
+    FrameLayout babyFrame = findViewById(R.id.babyFrame);
+    babyFrame.addView(babyView);
+
+    // Timer
     final TextView timer_display = findViewById(R.id.timer_display);
 
+    //Score
     TextView score_display = findViewById(R.id.score_display);
     String score = happiness.toString() + "%";
     score_display.setText(score);
@@ -60,11 +67,9 @@ public class BabyActivity extends AppCompatActivity {
         };
     timer.start();
 
-    BabyView babyView = new BabyView(this);
-    FrameLayout babyFrame = findViewById(R.id.babyFrame);
-    babyFrame.addView(babyView);
 
-    /** DELETE LATER */
+
+    // Next Button (delete later)
     final Button next = findViewById(R.id.next);
     next.setOnClickListener(
         new View.OnClickListener() {
@@ -78,7 +83,7 @@ public class BabyActivity extends AppCompatActivity {
 
   void randomEvent() {
     Random rand = new Random();
-    final int randomNum = rand.nextInt((4 - 0) + 1) + 1;
+    final int randomNum = rand.nextInt((4) + 1) + 1;
     if (randomNum == 1) {
       startActivityForResult(new Intent(this, Shake.class), randomNum);
     }
