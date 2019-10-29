@@ -19,7 +19,7 @@ public class BabyView extends SurfaceView implements Runnable {
     isRunning = true;
     holder = getHolder();
     holder.addCallback(
-        new SurfaceHolder.Callback() {
+            new SurfaceHolder.Callback() {
 
           @Override
           public void surfaceDestroyed(SurfaceHolder holder) {}
@@ -46,6 +46,7 @@ public class BabyView extends SurfaceView implements Runnable {
     canvas.drawCircle(
         holder.getSurfaceFrame().width() / 2, holder.getSurfaceFrame().height() / 2, 400, baby);
     System.out.println("drew circle");
+    new Baby().draw(canvas, getResources());
   }
 
   public boolean onTouchEvent(MotionEvent event) {
