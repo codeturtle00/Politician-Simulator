@@ -2,9 +2,7 @@ package com.example.politicgame.StampGame;
 
 import android.widget.TextView;
 
-import com.example.politicgame.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,14 +18,14 @@ public class StampGameHandler {
     private List<Proposal> prompts;
     private Proposal currentPrompt;
 
-    public double getRandomDoubleBetweenRange(double min, double max) {
+    private double getRandomDoubleBetweenRange(double min, double max) {
         double x = (Math.random() * ((max - min) + 1)) + min;
         return x;
     }
 
     private void addWordToList(List<String> stringList, List<Word> wordList, String word) {
         int min = 1;
-        int max = 5;
+        int max = 10;
 
         switch (word) {
             case "posVerb":
@@ -69,7 +67,7 @@ public class StampGameHandler {
         }
     }
 
-    public StampGameHandler() {
+    StampGameHandler() {
         verbs = new ArrayList<Word>();
         nouns = new ArrayList<Word>();
         prompts = new ArrayList<Proposal>();
@@ -134,13 +132,23 @@ public class StampGameHandler {
         addWordToList(nounListNegativeYA, nouns, "negNounYA");
     }
 
+
+    private String pronoun = "sir";
+    private String emptyListMessage = "Sorry, we do not have a new proposal for you yet, ";
+    private Verb emptyAction = new Verb("come back later", 0);
+    private Noun emptyNoun = new Noun(" sir", 0, false);
+
+    private List<String> promptBeginList = new ArrayList<String>(Arrays.asList(
+            "Good afternoon " + pronoun + ", based on our campaign researchers' speculation, would you like to",
+            "This just in " + pronoun + ", based on the rumors from our excited supporters, is it true that you would",
+            "Greetings " + pronoun + ", based on the meeting result last week, are you going to",
+            "Nice to meet you " + pronoun + ". I am one of your many campaign assistants and was wondering if you would advocate to"));
+
+
     //Must be called first
     private void createPrompt() {
         //For when we have a male or female player
-        String pronoun = "sir";
-        String emptyListMessage = "Sorry, we do not have a new proposal for you yet, ";
-        Verb emptyAction = new Verb("come back later", 0);
-        Noun emptyNoun = new Noun(" sir", 0, false);
+
 
         int verbIndex = (int) (Math.random() * (verbs.size()));
         int nounIndex = (int) (Math.random() * (nouns.size()));
@@ -149,12 +157,6 @@ public class StampGameHandler {
             currentPrompt = new Proposal(emptyListMessage, emptyAction, emptyNoun);
 
         } else {
-            List<String> promptBeginList = new ArrayList<String>(Arrays.asList(
-                    "Good afternoon " + pronoun + ", our campaign researchers speculate that it may be in our best interests to declare that you would",
-                    "This just in " + pronoun + ", there are rumors that some of our more excited supporters have been advocating that you would",
-                    "I'm here for a briefing " + pronoun + ", there seems to be a growing support for campaign leaders who would",
-                    "Greetings " + pronoun + ", here to drop off a report about our supporters in the west. It seems that there are rumors that you would",
-                    "Nice to meet you " + pronoun + ". I am one of your many campaign assistants and was wondering if you would advocate to"));
 
             String promptBegin = promptBeginList.get((int) (Math.random() * (promptBeginList.size())));
 
@@ -183,7 +185,6 @@ public class StampGameHandler {
         } else {
             updatedScore = currentScore + scoreChange;
         }
-
 
 
         if (currentScore >= 0 && currentScore <= 100) {
