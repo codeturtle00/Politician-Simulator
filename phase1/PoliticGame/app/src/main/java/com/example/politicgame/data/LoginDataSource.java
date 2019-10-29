@@ -2,10 +2,12 @@ package com.example.politicgame.data;
 
 import android.content.Context;
 import com.example.politicgame.Common.FileSavingService;
-import com.example.politicgame.LoginUserManager;
-import com.example.politicgame.data.model.LoggedInUser;
+import com.example.politicgame.User.UserManager;
+import com.example.politicgame.User.UserAccount;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 /** Class that handles authentication w/ login credentials and retrieves user information. */
@@ -34,11 +36,20 @@ public class LoginDataSource {
     return false;
   }
 
-  public Result<LoggedInUser> login(String username, String password) {
+  public Result<UserAccount> login(String username, String password) {
     try {
       if (this.userAuthentication(username, password)) {
-        LoggedInUser user = new LoggedInUser(java.util.UUID.randomUUID().toString(), username);
-        LoginUserManager.loginUser = user;
+        UserAccount user = new UserAccount(username);
+        JSONArray userArray = this.fileSaving.readJsonFile(FILE_NAME);
+        JSONObject userObjects = new JSONObject();
+        for (int i= 0; i < userArray.length(); i ++ ){
+          JSONObject userObject = userArray.getJSONObject(i);
+          String key = userObject.keys().next();
+          if (key.equals(username)){
+            userObjects = userObject;
+          }
+        }
+        UserManager.loginUser = user;
         return new Result.Success<>(user);
       } else {
         return new Result.Error(new IOException("Error logging in"));

@@ -8,7 +8,7 @@ import android.util.Patterns;
 
 import com.example.politicgame.data.LoginRepository;
 import com.example.politicgame.data.Result;
-import com.example.politicgame.data.model.LoggedInUser;
+import com.example.politicgame.User.UserAccount;
 import com.example.politicgame.R;
 
 public class LoginViewModel extends ViewModel {
@@ -33,10 +33,10 @@ public class LoginViewModel extends ViewModel {
 
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(username, password);
+        Result<UserAccount> result = loginRepository.login(username, password);
 
         if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
+            UserAccount data = ((Result.Success<UserAccount>) result).getData();
             loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
         } else {
             loginResult.setValue(new LoginResult(R.string.login_failed));
