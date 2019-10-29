@@ -8,13 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.Random;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.politicgame.MainActivity;
-import com.example.politicgame.PauseActivity;
+import com.example.politicgame.Pause;
 import com.example.politicgame.R;
 import com.example.politicgame.SpeechGame.SpeechInstructionActivity;
+
+import java.util.Random;
 
 public class BabyActivity extends AppCompatActivity {
   // Happiness of the baby. Also the player's score.
@@ -24,23 +27,20 @@ public class BabyActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_baby);
 
+    // Embed BabyView into xml layout
+    setContentView(R.layout.activity_baby);
+    BabyView babyView = new BabyView(this);
+    FrameLayout babyFrame = findViewById(R.id.babyFrame);
+    babyFrame.addView(babyView);
+
+    // Timer
     final TextView timer_display = findViewById(R.id.timer_display);
 
+    // Score
     TextView score_display = findViewById(R.id.score_display);
     String score = happiness.toString() + "%";
     score_display.setText(score);
-
-    final Button pauseB = findViewById(R.id.pause);
-    pauseB.setOnClickListener(
-        new View.OnClickListener() {
-          public void onClick(View v) {
-            Log.i("Button", "The pause button has been clicked");
-            // The method below will pause the game and handle the following inputs
-            openPauseMenu();
-          }
-        });
 
     // Game lasts for 60 seconds.
     final CountDownTimer timer =
@@ -60,11 +60,7 @@ public class BabyActivity extends AppCompatActivity {
         };
     timer.start();
 
-    BabyView babyView = new BabyView(this);
-    FrameLayout babyFrame = findViewById(R.id.babyFrame);
-    babyFrame.addView(babyView);
-
-    /** DELETE LATER */
+    // Next Button (delete later)
     final Button next = findViewById(R.id.next);
     next.setOnClickListener(
         new View.OnClickListener() {
@@ -74,11 +70,14 @@ public class BabyActivity extends AppCompatActivity {
             timer.cancel();
           }
         });
+
+    // Generate Pause Button
+    new Pause((ConstraintLayout) findViewById(R.id.babyLayout), this);
   }
 
   void randomEvent() {
     Random rand = new Random();
-    final int randomNum = rand.nextInt((4 - 0) + 1) + 1;
+    final int randomNum = rand.nextInt((4) + 1) + 1;
     if (randomNum == 1) {
       startActivityForResult(new Intent(this, Shake.class), randomNum);
     }
@@ -96,12 +95,6 @@ public class BabyActivity extends AppCompatActivity {
   void openSpeechGame() {
     Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
     startActivity(switchSpeechIntent);
-  }
-
-  public void openPauseMenu() {
-    onPause();
-    Intent pauseMenuIntent = new Intent(this, PauseActivity.class);
-    startActivityForResult(pauseMenuIntent, 1);
   }
 
   public void openMainMenu() {
