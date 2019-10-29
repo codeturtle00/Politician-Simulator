@@ -8,64 +8,26 @@ import java.util.Arrays;
 import java.util.List;
 
 /*
- * TODO: fix the index out of bound bug
- *  TODO: fix the over rated system
  *   TODO: Optimize the scoring system
  * */
-public class StampGameHandler {
+class StampGameHandler {
     private List<Word> verbs;
     private List<Word> nouns;
+
     private List<Proposal> prompts;
     private Proposal currentPrompt;
 
-    private double getRandomDoubleBetweenRange(double min, double max) {
-        double x = (Math.random() * ((max - min) + 1)) + min;
-        return x;
-    }
+    private String pronoun = "sir";
+    private String emptyListMessage = "Sorry, we do not have a new proposal for you yet, ";
+    private Verb emptyAction = new Verb("come back later", 0);
+    private Noun emptyNoun = new Noun(" sir", 0, false);
 
-    private void addWordToList(List<String> stringList, List<Word> wordList, String word) {
-        int min = 1;
-        int max = 10;
+    private List<String> promptBeginList = new ArrayList<String>(Arrays.asList(
+            "Good afternoon " + pronoun + ", based on our campaign researchers' speculation, would you like to",
+            "This just in " + pronoun + ", based on the rumors from our excited supporters, is it true that you would",
+            "Greetings " + pronoun + ", based on the meeting result last week, are you going to",
+            "Nice to meet you " + pronoun + ". I am one of your many campaign assistants and was wondering if you would advocate to"));
 
-        switch (word) {
-            case "posVerb":
-                for (String item : stringList) {
-                    int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
-                    wordList.add(new Verb(item, posCategory));
-                }
-                break;
-            case "negVerb":
-                for (String item : stringList) {
-                    int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
-                    wordList.add(new Verb(item, -negCategory));
-                }
-                break;
-            case "negNounYA":
-                for (String item : stringList) {
-                    int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
-                    wordList.add(new Noun(item, -negCategory, true));
-                }
-                break;
-            case "negNounNA":
-                for (String item : stringList) {
-                    int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
-                    wordList.add(new Noun(item, -negCategory, false));
-                }
-                break;
-            case "posNounYA":
-                for (String item : stringList) {
-                    int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
-                    wordList.add(new Noun(item, posCategory, true));
-                }
-                break;
-            case "posNounNA":
-                for (String item : stringList) {
-                    int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
-                    wordList.add(new Noun(item, posCategory, false));
-                }
-                break;
-        }
-    }
 
     StampGameHandler() {
         verbs = new ArrayList<Word>();
@@ -117,8 +79,7 @@ public class StampGameHandler {
 
         //Negative nouns that are not amountable
         List<String> nounListNegativeNA = new ArrayList<String>(Arrays.asList(
-                "the premier of Ontario, Canada",
-                "the leader of North Korea",
+                "the leader of North Coreeah, who is planning a nuclear strike",
                 "Colin, a medical practitioner found to have cheated on his medical exams after a related illegal nose smuggling ring was busted",
                 "Kavin, a phantom thief who masterminded the theft all the laptop chargers, but not the laptops, at the University of Toronto last Fall"));
 
@@ -133,19 +94,73 @@ public class StampGameHandler {
     }
 
 
-    private String pronoun = "sir";
-    private String emptyListMessage = "Sorry, we do not have a new proposal for you yet, ";
-    private Verb emptyAction = new Verb("come back later", 0);
-    private Noun emptyNoun = new Noun(" sir", 0, false);
+    /**
+     * generate a double between(inclusive) double min and double max
+     *
+     * @param min the minimum double we can generate
+     * @param max the maximum doulbe we can generate
+     * @return a double between(inclusive) min and max
+     */
+    private double getRandomDoubleBetweenRange(double min, double max) {
+        double x = (Math.random() * ((max - min) + 1)) + min;
+        return x;
+    }
 
-    private List<String> promptBeginList = new ArrayList<String>(Arrays.asList(
-            "Good afternoon " + pronoun + ", based on our campaign researchers' speculation, would you like to",
-            "This just in " + pronoun + ", based on the rumors from our excited supporters, is it true that you would",
-            "Greetings " + pronoun + ", based on the meeting result last week, are you going to",
-            "Nice to meet you " + pronoun + ". I am one of your many campaign assistants and was wondering if you would advocate to"));
+    /**
+     * Make each word in stringList into a Word object and put it into wordList, the category of
+     * the stringList is specified by the String word
+     *
+     * @param stringList a list of strings
+     * @param wordList   the list of Word
+     * @param word       the category for all the strings that will be put into wordList
+     */
+    private void addWordToList(List<String> stringList, List<Word> wordList, String word) {
+        int min = 1;
+        int max = 5;
 
+        switch (word) {
+            case "posVerb":
+                for (String item : stringList) {
+                    int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Verb(item, posCategory));
+                }
+                break;
+            case "negVerb":
+                for (String item : stringList) {
+                    int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Verb(item, -negCategory));
+                }
+                break;
+            case "negNounYA":
+                for (String item : stringList) {
+                    int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Noun(item, -negCategory, true));
+                }
+                break;
+            case "negNounNA":
+                for (String item : stringList) {
+                    int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Noun(item, -negCategory, false));
+                }
+                break;
+            case "posNounYA":
+                for (String item : stringList) {
+                    int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Noun(item, posCategory, true));
+                }
+                break;
+            case "posNounNA":
+                for (String item : stringList) {
+                    int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
+                    wordList.add(new Noun(item, posCategory, false));
+                }
+                break;
+        }
+    }
 
-    //Must be called first
+    /**
+     * Generate a prompt, if the verbs or nouns are empty, we will generate a emptyPrompt
+     */
     private void createPrompt() {
         //For when we have a male or female player
 
@@ -171,39 +186,11 @@ public class StampGameHandler {
         }
     }
 
-    //change the rating depending on where it is yes or no button pushed
-    void changeRating(TextView tv, boolean clickedYes) {
-        String oldRating = tv.getText().toString();
-        Integer currentScore = Integer.valueOf(oldRating.substring(0, oldRating.length() - 1));
-        Integer minScore = 0;
-        Integer maxScore = 100;
-        Integer updatedScore;
-
-        Integer scoreChange = this.getCurrentPromptScore();
-        if (!clickedYes) {
-            updatedScore = currentScore - scoreChange;
-        } else {
-            updatedScore = currentScore + scoreChange;
-        }
-
-
-        if (currentScore >= 0 && currentScore <= 100) {
-            if (updatedScore >= 0 && updatedScore <= 100) {
-                updateRating(tv, updatedScore);
-            } else if (updatedScore < 0) {
-                updateRating(tv, minScore);
-            } else {
-                updateRating(tv, maxScore);
-            }
-        }
-
-    }
-
-    private void updateRating(TextView rating, Integer ratingInt) {
-        String newRating = ratingInt.toString() + '%';
-        rating.setText(newRating);
-    }
-
+    /**
+     * Change the npcPrompt to a new prompt
+     *
+     * @param npcPrompt the TextView object that displays npcPrompt
+     */
     void setPrompt(TextView npcPrompt) {
         this.createPrompt();
         String npcProposal = this.getCurrentPrompt().getString();
@@ -218,7 +205,59 @@ public class StampGameHandler {
         return currentPrompt.getCategory();
     }
 
-    public int getPromptsDone() {
-        return prompts.size();
+
+    /**
+     * @return the list of prompts in prompts
+     */
+    public List<Proposal> getPrompts() {
+        return prompts;
     }
+
+    /**
+     * Changed the rating depending on the button click
+     *
+     * @param tv         the TextView object that displays rating
+     * @param clickedYes the boolean value expressing whether the user pressed yes or no
+     */
+    void changeRating(TextView tv, boolean clickedYes) {
+        String oldRating = tv.getText().toString();
+        Integer currentScore = Integer.valueOf(oldRating.substring(0, oldRating.length() - 1));
+        Integer minScore = 0;
+        Integer maxScore = 100;
+        int updatedScore;
+
+        Integer scoreChange = this.getCurrentPromptScore();
+        if (!clickedYes) {
+            updatedScore = currentScore - scoreChange;
+        } else {
+            updatedScore = currentScore + scoreChange;
+        }
+
+        if (currentScore >= 0 && currentScore <= 100) {
+            if (updatedScore >= 0 && updatedScore <= 100) {
+                updateRating(tv, updatedScore);
+            } else if (updatedScore < 0) {
+                updateRating(tv, minScore);
+            } else {
+                updateRating(tv, maxScore);
+            }
+        }
+
+    }
+
+    /**
+     * updates the rating that is being displayed on screen
+     *
+     * @param rating    TextView object of the rating
+     * @param ratingInt the new value of the rating
+     */
+    private void updateRating(TextView rating, Integer ratingInt) {
+        String newRating = ratingInt.toString() + '%';
+        rating.setText(newRating);
+    }
+
+
+//    public int getPromptsDone() {
+//        return prompts.size();
+//    }
 }

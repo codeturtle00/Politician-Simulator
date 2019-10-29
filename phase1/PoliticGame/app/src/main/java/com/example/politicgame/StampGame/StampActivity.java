@@ -29,6 +29,7 @@ public class StampActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stamp);
         final TextView rating = findViewById(R.id.stamp_game_rating_score);
         final TextView promptDisplay = findViewById(R.id.npcPrompt);
+        final TextView supportersCount = findViewById(R.id.stamp_game_num_supporters);
 
 
         final Button button = findViewById(R.id.leaderBoard);
