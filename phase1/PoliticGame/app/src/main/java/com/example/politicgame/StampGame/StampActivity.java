@@ -76,11 +76,12 @@ public class StampActivity extends AppCompatActivity {
         setPrompt(gh);
     }
 
+    // TODO: try to change this into StampGameHandler
     private void changeScore(TextView rating, int scoreChange){
         String oldRating = rating.getText().toString();
         Integer score = Integer.valueOf(oldRating.substring(0, oldRating.length() -1));
         if (score != 0){
-            Integer newScore = score + scoreChange*5;
+            Integer newScore = score + scoreChange;
             String newRating = newScore.toString() + '%';
             rating.setText(newRating);
         }
