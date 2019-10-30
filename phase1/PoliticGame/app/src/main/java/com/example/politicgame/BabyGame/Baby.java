@@ -10,15 +10,21 @@ import com.example.politicgame.R;
 
 public class Baby {
 
+    private int x;
+    private int y;
     private Paint paint;
+    private Bitmap babyImg;
 
-    public Baby() {
+    public Baby(int x, int y, Resources resources) {
         paint = new Paint();
+        this.x = x;
+        this.y = y;
+
     }
 
     public void draw(Canvas canvas, Resources resources) {
-        Bitmap baby = BitmapFactory.decodeResource(resources, R.drawable.baby);
-        baby = Bitmap.createScaledBitmap(baby, 320, 640, false);
-        canvas.drawBitmap(baby, 0, 0, paint);
+        babyImg = BitmapFactory.decodeResource(resources, R.drawable.baby);
+        babyImg = Bitmap.createScaledBitmap(babyImg, 320,640, false);
+        canvas.drawBitmap(babyImg, this.x, this.y, paint);
     }
 }

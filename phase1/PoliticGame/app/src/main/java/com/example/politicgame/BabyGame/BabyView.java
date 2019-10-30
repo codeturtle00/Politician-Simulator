@@ -10,6 +10,8 @@ import android.view.SurfaceView;
 
 public class BabyView extends SurfaceView implements Runnable {
   private SurfaceHolder holder;
+  private int holderWidth;
+  private int holderHeight;
   private Canvas canvas;
   private boolean isRunning;
   private Thread thread;
@@ -18,6 +20,11 @@ public class BabyView extends SurfaceView implements Runnable {
     super(context);
     isRunning = true;
     holder = getHolder();
+
+    // Why isn't this working?
+    holderWidth = holder.getSurfaceFrame().width();
+    holderHeight = holder.getSurfaceFrame().height();
+
     holder.addCallback(
             new SurfaceHolder.Callback() {
 
@@ -30,6 +37,7 @@ public class BabyView extends SurfaceView implements Runnable {
             if (canvas != null) {
               draw(canvas);
               holder.unlockCanvasAndPost(canvas);
+
             }
           }
 
@@ -40,13 +48,19 @@ public class BabyView extends SurfaceView implements Runnable {
 
   public void draw(Canvas canvas) {
     super.draw(canvas);
+
+    //set background color
     canvas.drawColor(Color.rgb(0, 188, 212));
     Paint baby = new Paint();
     baby.setColor(Color.WHITE);
+
+    //example circle
     canvas.drawCircle(
         holder.getSurfaceFrame().width() / 2, holder.getSurfaceFrame().height() / 2, 400, baby);
     System.out.println("drew circle");
-    new Baby().draw(canvas, getResources());
+
+    //trying to draw baby in centre. pls help!
+    new Baby(holderWidth/2, holderHeight / 2, getResources()).draw(canvas,getResources());
   }
 
   public boolean onTouchEvent(MotionEvent event) {
