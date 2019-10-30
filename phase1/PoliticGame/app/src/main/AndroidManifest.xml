@@ -38,6 +38,7 @@
         </activity>
         <activity android:name=".PauseActivity" />
         <activity android:name=".SettingsActivity" />
+        <activity android:name=".SelectCharacterActivity"></activity>
     </application>
 
 </manifest>
