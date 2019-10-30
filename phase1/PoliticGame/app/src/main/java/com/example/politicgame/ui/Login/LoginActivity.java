@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.politicgame.BabyGame.BabyActivity;
+import com.example.politicgame.MainActivity;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.RegistrationActivity;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private void register(){
         Intent registerIntent = new Intent(this, RegistrationActivity.class);
         startActivity(registerIntent);
+        finish();
     }
 
     @Override
@@ -66,12 +68,16 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        setTitle("Login");
+
         this.loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory(this))
                 .get(LoginViewModel.class);
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        final Button backButton = findViewById(R.id.goBack);
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -148,6 +154,14 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         });
+
+        backButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        // Code here executes on main thread after user presses button
+                        BackToMenu();
+                    }
+                });
     }
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
@@ -155,7 +169,17 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(startIntent);
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
+
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    public void BackToMenu() {
+        /**
+         * Returns to main menu
+         */
+        Intent switchBabyIntent = new Intent(this, MainActivity.class);
+        startActivity(switchBabyIntent);
+        finish();
     }
 }

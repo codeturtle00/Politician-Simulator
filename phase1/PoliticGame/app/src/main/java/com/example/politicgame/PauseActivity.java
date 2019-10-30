@@ -27,6 +27,7 @@ public class PauseActivity extends AppCompatActivity {
 
         System.out.println("The current theme is blue: " + app.isThemeBlue());
 
+        //Set theme
         if (app.isThemeBlue()){
             setTheme(R.style.BlueTheme);
         } else {
@@ -36,8 +37,9 @@ public class PauseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pause);
 
-        setTitle("Pause Menu");
+        setTitle("Paused");
 
+        //Resume button
         final Button resumeB = findViewById(R.id.resume);
         resumeB.setOnClickListener(
                 new View.OnClickListener() {
@@ -46,7 +48,8 @@ public class PauseActivity extends AppCompatActivity {
                     }
                 });
 
-        final Button quitB = findViewById(R.id.quit);
+        //Quit to main menu button
+        final Button quitB = findViewById(R.id.goBack);
         quitB.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {

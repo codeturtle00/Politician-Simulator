@@ -32,6 +32,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
         System.out.println("The current theme is blue: " + app.isThemeBlue());
 
+        //Set theme
         if (app.isThemeBlue()){
             setTheme(R.style.BlueTheme);
         } else {
@@ -41,10 +42,13 @@ public class LeaderBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
 
+        setTitle("Leaderboard");
+
         this.fileSaving = new FileSavingService(this);
 
         updateBoard();
 
+        //Return to main menu button
         final Button button = findViewById(R.id.back);
         button.setOnClickListener(
                 new View.OnClickListener() {
@@ -56,11 +60,18 @@ public class LeaderBoardActivity extends AppCompatActivity {
     }
 
     public void BackToMenu() {
+        /**
+         * Returns to main menu
+         */
         Intent switchBabyIntent = new Intent(this, MainActivity.class);
         startActivity(switchBabyIntent);
+        finish();
     }
 
     public void updateBoard(){
+        /**
+         * Updates the leaderboard
+         */
         //The JSONArray will come from Jacky's API for reading JSON
         JSONObject charScores = getBoard();
 
@@ -121,6 +132,9 @@ public class LeaderBoardActivity extends AppCompatActivity {
     }
 
     public JSONObject getBoard(){
+        /**
+         * Retrieves the leaderboard information
+         */
 
         JSONArray jsonList = this.fileSaving.readJsonFile(FILE_NAME);
 
@@ -151,28 +165,5 @@ public class LeaderBoardActivity extends AppCompatActivity {
         }
 
         return boardList;
-
-
-        /**
-         *
-         *
-         * [
-         *  {
-         *   "user": [
-         *     "char" :
-         *      highscore: 0,
-         *      Level1: {},
-         *      Level2: {},
-         *      Level3: {}
-         *   ]
-         *  }
-         * ]
-         *
-         * JSONObject char = new JSONObject();
-         * char.put("highscore", 0);
-         * char.put("objectkey", objectvalue)
-         *
-         *
-         */
     }
 }

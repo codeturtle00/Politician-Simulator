@@ -40,6 +40,9 @@ public class StampActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp);
+
+        setTitle("The Stamp Game");
+
         final TextView rating = findViewById(R.id.stamp_game_rating_score);
         final TextView promptDisplay = findViewById(R.id.npcPrompt);
         final TextView proposalLeft = findViewById(R.id.stamp_game_proposal_left);
@@ -102,21 +105,25 @@ public class StampActivity extends AppCompatActivity {
     private void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
+        finish();
     }
 
     public void openStampLost() {
         Intent stampLostIntent = new Intent(this, StampActivityLost.class);
         startActivity(stampLostIntent);
+        finish();
     }
 
     public void openStampWon() {
         Intent stampWonIntent = new Intent(this, StampActivityWon.class);
         startActivity(stampWonIntent);
+        finish();
     }
 
     public void openMainMenu() {
         Intent mainMenuIntent = new Intent(this, MainActivity.class);
         startActivity(mainMenuIntent);
+        finish();
     }
 
 

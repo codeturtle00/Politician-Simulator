@@ -49,6 +49,8 @@ public class BabyActivity extends AppCompatActivity implements BabyDraw {
     FrameLayout babyFrame = findViewById(R.id.babyFrame);
     babyFrame.addView(babyView);
 
+    setTitle("The Baby Game");
+
     // Timer
     timer = findViewById(R.id.timerDisplay);
     String timeLeft = "Time Left: " + babyView.getTimeLeft().toString();

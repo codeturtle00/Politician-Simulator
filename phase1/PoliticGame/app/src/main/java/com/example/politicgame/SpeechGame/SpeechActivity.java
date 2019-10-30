@@ -56,6 +56,8 @@ public class SpeechActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_speech);
 
+    setTitle("The Speech Game");
+
     final Button pauseB = findViewById(R.id.pause);
     pauseB.setOnClickListener(
             new View.OnClickListener() {
@@ -179,12 +181,6 @@ public class SpeechActivity extends AppCompatActivity {
     }
   }
 
-  /* Switch to Next Game View**/
-  public void openStampGame() {
-    Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
-    startActivity(switchStampIntent);
-  }
-
   /**
    * This method is called when user click the compare button Compare the user input with the
    * correct answer If the user input matches the answer, add points and go to successful result
@@ -219,6 +215,14 @@ public class SpeechActivity extends AppCompatActivity {
   public void openMainMenu(){
     Intent mainMenuIntent = new Intent(this, MainActivity.class);
     startActivity(mainMenuIntent);
+    finish();
+  }
+
+
+  /* Switch to Next Game View**/
+  public void openStampGame() {
+    Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
+    startActivity(switchStampIntent);
     finish();
   }
 

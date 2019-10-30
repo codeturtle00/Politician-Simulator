@@ -12,7 +12,7 @@ public class PoliticianA extends Character {
 
       JSONObject statsObject = new JSONObject();
       // TODO: Specify what data to track in level1 by initializing statsObject
-        statsObject.put(detail.Rating.toString(), 2);
+        statsObject.put(detail.Rating.toString(), 0);
       detailObject.put(detail.LEVEL1.toString(), statsObject);
 
     } catch (JSONException e) {

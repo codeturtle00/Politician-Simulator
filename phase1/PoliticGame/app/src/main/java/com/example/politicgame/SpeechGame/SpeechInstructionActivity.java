@@ -29,6 +29,9 @@ public class SpeechInstructionActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech_instruction);
+
+        setTitle("The Speech Game Instructions");
+
         final Button button = findViewById(R.id.start_game);
         button.setOnClickListener(
                 new View.OnClickListener() {
@@ -43,5 +46,6 @@ public class SpeechInstructionActivity extends AppCompatActivity {
         Intent startSpeechIntent = new Intent(this, SpeechActivity.class);
         startSpeechIntent.putExtra("current rating", 0);
         startActivity(startSpeechIntent);
+        finish();
     }
 }

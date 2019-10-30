@@ -29,6 +29,8 @@ public class StampInstructionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp_instruction);
 
+        setTitle("The Stamp Game Instructions");
+
         final Button button = findViewById(R.id.start_game);
         button.setOnClickListener(
                 new View.OnClickListener() {
@@ -42,5 +44,6 @@ public class StampInstructionActivity extends AppCompatActivity {
     public void startStampGame() {
         Intent startStampIntent = new Intent(this, StampActivity.class);
         startActivity(startStampIntent);
+        finish();
     }
 }

@@ -30,6 +30,8 @@ public class StampActivityLost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp_lost);
 
+        setTitle("Oh no...");
+
         final Button button = findViewById(R.id.stamp_game_lost_leaderboard);
         button.setOnClickListener(
                 new View.OnClickListener() {
@@ -43,6 +45,7 @@ public class StampActivityLost extends AppCompatActivity {
     private void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
+        finish();
     }
 
 }
