@@ -51,16 +51,17 @@ public class BabyView extends SurfaceView implements Runnable {
 
     //set background color
     canvas.drawColor(Color.rgb(0, 188, 212));
-    Paint baby = new Paint();
-    baby.setColor(Color.WHITE);
+    Paint paint = new Paint();
+    paint.setColor(Color.WHITE);
 
     //example circle
     canvas.drawCircle(
-        holder.getSurfaceFrame().width() / 2, holder.getSurfaceFrame().height() / 2, 400, baby);
+        holder.getSurfaceFrame().width() / 2, holder.getSurfaceFrame().height() / 2, 400, paint);
     System.out.println("drew circle");
 
     //trying to draw baby in centre. pls help!
-    new Baby(holderWidth/2, holderHeight / 2, getResources()).draw(canvas,getResources());
+    Baby baby = new Baby(holderWidth/2, holderHeight / 2, getResources());
+    baby.draw(canvas);
   }
 
   public boolean onTouchEvent(MotionEvent event) {
