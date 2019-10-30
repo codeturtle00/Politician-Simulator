@@ -12,6 +12,8 @@ public class Baby {
 
     private int x;
     private int y;
+    private int width;
+    private int height;
     private Paint paint;
     private Bitmap babyImg;
 
@@ -22,9 +24,11 @@ public class Baby {
         babyImg = BitmapFactory.decodeResource(resources, R.drawable.baby);
         //width and height needs to be changed to dynamically scaled depending on holder width/height
         babyImg = Bitmap.createScaledBitmap(babyImg, 320,640, false);
+        this.width = babyImg.getWidth();
+        this.height = babyImg.getHeight();
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(babyImg, this.x, this.y, paint);
+        canvas.drawBitmap(babyImg, this.x - (width / 2), this.y - (height / 2), paint);
     }
 }
