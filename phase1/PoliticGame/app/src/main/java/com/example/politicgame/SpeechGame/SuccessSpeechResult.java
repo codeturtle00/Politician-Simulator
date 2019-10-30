@@ -13,8 +13,5 @@ public class SuccessSpeechResult extends SpeechResult{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success_speech_result);
     }
-    protected void onStart() {
-        getRating().awardPoints();
-        super.onStart();
-    }
+
 }

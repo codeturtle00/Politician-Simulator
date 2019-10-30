@@ -22,7 +22,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
  * to the top of your xml layout file. See Baby Game for example.
  * */
 
-public class Pause {
+public class PauseButton {
 
   /**
    * Adds Pause Button to view
@@ -30,7 +30,7 @@ public class Pause {
    * @param view View to add pause button to
    * @param activity Activity for context to create new Intent
    */
-  public Pause(ViewGroup view, Activity activity) {
+  public PauseButton(ViewGroup view, Activity activity) {
     view.addView(generateButton(activity));
   }
 

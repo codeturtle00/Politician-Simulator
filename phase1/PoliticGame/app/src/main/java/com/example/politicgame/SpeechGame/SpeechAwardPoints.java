@@ -2,25 +2,36 @@ package com.example.politicgame.SpeechGame;
 
 public class SpeechAwardPoints {
     private final int POINTSGIVEN = 3;
-    private int currentPoints;
-    public SpeechAwardPoints(int rating){
+    private static int currentPoints;
+    private static String feedback;
+    SpeechAwardPoints(int rating){
         currentPoints = rating;
+        feedback = "Your current rating is: " + currentPoints + "%";
     }
 
+    static int getCurrentPoints() {
+        return currentPoints;
+    }
 
-    public void awardPoints(){
-        if (currentPoints <= 100 - POINTSGIVEN)
+    static String getFeedback() {
+        return feedback;
+    }
+
+    void awardPoints(){
+        if (currentPoints <= 100 - POINTSGIVEN) {
             currentPoints += POINTSGIVEN;
+            feedback = "Your current rating is: " + currentPoints + "%";
+            System.out.println(currentPoints);
+        }
     }
 
-    public void losePoints() {
-        if (currentPoints >= POINTSGIVEN)
+    void losePoints() {
+        if (currentPoints >= POINTSGIVEN) {
             currentPoints -= POINTSGIVEN;
+            feedback = "Your current rating is: " + currentPoints + "%";
+        }
     }
 
-    public Integer getCurrentPoints() {
-        return new Integer(currentPoints);
-    }
 
 
 }

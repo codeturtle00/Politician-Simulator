@@ -12,8 +12,6 @@ import com.example.politicgame.R;
 
 public class SpeechResult extends AppCompatActivity {
 
-    private SpeechAwardPoints rating = new SpeechAwardPoints(0); //to be changed later
-
 
     @Override
     protected void onStart() {
@@ -21,9 +19,10 @@ public class SpeechResult extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(SpeechActivity.INPUT_MESSAGE);
         TextView textView = findViewById(R.id.userInput);
-        TextView ratingDisplay = findViewById(R.id.curRating);
         textView.setText(message);
-        String newRating = "Your current rating is: " + rating.getCurrentPoints().toString() + "%";
+
+        TextView ratingDisplay = findViewById(R.id.curRating);
+        String newRating = SpeechAwardPoints.getFeedback();
         ratingDisplay.setText(newRating);
         final Button confirm = findViewById(R.id.confirm);
         confirm.setOnClickListener(
@@ -42,10 +41,8 @@ public class SpeechResult extends AppCompatActivity {
 
     public void returnSpeech(){
         Intent backToSpeech = new Intent(this, SpeechActivity.class);
+        backToSpeech.putExtra("current rating", SpeechAwardPoints.getCurrentPoints());
         startActivity(backToSpeech);
     }
 
-    public SpeechAwardPoints getRating() {
-        return rating;
-    }
 }

@@ -31,8 +31,8 @@ public class SpeechActivity extends AppCompatActivity {
   private static final String TAG = "Speech Activity";
   public static final String INPUT_MESSAGE = "politicgame.speech.input";
   public static final String CORRECTION_MESSAGE = "politicgame.speech.result";
-  private final int POINTSGIVEN = 1;
   private String correct;
+  SpeechAwardPoints rating;
 
   private void setSpeech(SpeechGame speech) {
     this.speech = speech;
@@ -54,6 +54,7 @@ public class SpeechActivity extends AppCompatActivity {
                 openPauseMenu();
               }
             });
+
   }
 
   @Override
@@ -88,6 +89,8 @@ public class SpeechActivity extends AppCompatActivity {
         textViews[i].setText(result[i].substring(1).trim());
       }
     }
+    rating = new SpeechAwardPoints(getIntent().getIntExtra("current rating", 0));
+    System.out.println(SpeechAwardPoints.getFeedback());
   }
 
   private String randomSelect(Set<String> speechData) {
@@ -184,11 +187,14 @@ public class SpeechActivity extends AppCompatActivity {
       // TODO:Add points for the user
       successfulIntent.putExtra(INPUT_MESSAGE, userInput);
       startActivity(successfulIntent);
+      rating.awardPoints();
+      System.out.println(SpeechAwardPoints.getFeedback());
     } else {
       Intent failIntent = new Intent(this, FailureSpeechResult.class);
       // TODO: Keep point for the user
       failIntent.putExtra(INPUT_MESSAGE, userInput);
       startActivity(failIntent);
+      rating.losePoints();
     }
   }
 
