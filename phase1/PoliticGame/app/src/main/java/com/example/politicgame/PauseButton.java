@@ -49,10 +49,6 @@ public class PauseButton {
             ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     pauseButton.setLayoutParams(params);
 
-    // This doesn't do anything. Need help setting parameters
-      params.topMargin = 20;
-      params.leftMargin = 20;
-
     pauseButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
@@ -64,7 +60,6 @@ public class PauseButton {
 
     return pauseButton;
   }
-
 
 
   /** Function of Pause Button */
