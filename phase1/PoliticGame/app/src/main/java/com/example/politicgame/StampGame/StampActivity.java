@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.politicgame.LeaderBoardActivity;
-import com.example.politicgame.PauseActivity;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PauseButton;
 import com.example.politicgame.PoliticGameApp;
@@ -63,6 +62,14 @@ public class StampActivity extends AppCompatActivity {
                         gh.changeRating(rating, true);
                         gh.changeProposalNum(proposalLeft);
                         gh.setPrompt(promptDisplay);
+                        if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                            openStampLost();
+                            finish();
+                        } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                            openStampWon();
+                            finish();
+                        }
+
                     }
                 });
 
@@ -74,6 +81,13 @@ public class StampActivity extends AppCompatActivity {
                         gh.changeRating(rating, false);
                         gh.changeProposalNum(proposalLeft);
                         gh.setPrompt(promptDisplay);
+                        if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                            openStampLost();
+                            finish();
+                        } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                            openStampWon();
+                            finish();
+                        }
                     }
                 });
 
@@ -88,6 +102,16 @@ public class StampActivity extends AppCompatActivity {
     private void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
+    }
+
+    public void openStampLost() {
+        Intent stampLostIntent = new Intent(this, StampActivityLost.class);
+        startActivity(stampLostIntent);
+    }
+
+    public void openStampWon() {
+        Intent stampWonIntent = new Intent(this, StampActivityWon.class);
+        startActivity(stampWonIntent);
     }
 
     public void openMainMenu() {

@@ -9,7 +9,7 @@ import com.example.politicgame.R;
 public class Kiss extends Event {
 
 
-    Kiss(int x, int y, Resources res) {
+    Kiss(float x, float y, Resources res) {
         super(x, y, res);
         Bitmap lips = BitmapFactory.decodeResource(res, R.drawable.baby);
         // in the future, dynamically scale lips

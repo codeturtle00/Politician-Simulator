@@ -4,23 +4,26 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 public class BabyView extends SurfaceView implements Runnable {
+  private boolean isRunning;
+  private Integer timeLeft;
+  private EventManager eventManager;
+
   private SurfaceHolder holder;
   private int holderWidth;
   private int holderHeight;
   private Canvas canvas;
-  private boolean isRunning;
+
   private Thread thread;
 
   public BabyView(Context context) {
     super(context);
     isRunning = true;
+    eventManager = new EventManager(getX(), getY(), holderWidth, holderHeight, getResources());
     holder = getHolder();
-
     holder.addCallback(
         new SurfaceHolder.Callback() {
 
@@ -60,24 +63,33 @@ public class BabyView extends SurfaceView implements Runnable {
     baby.draw(canvas);
   }
 
+  Integer getTimeLeft() {
+    return 0;
+  }
+
   @Override
   public void run() {
-    while (isRunning) {
-      update();
-      draw(canvas);
-      sleep();
-    }
+//    for (int i = 61; i > 0; i--) {
+      if (isRunning) {
+        update();
+        eventManager.draw(canvas);
+        sleep();
+//        timeLeft = i;
+      }
+//    }
   }
 
   private void sleep() {
     try {
-      Thread.sleep(17);
+      Thread.sleep(1000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
   }
 
-  private void update() {}
+  private void update() {
+    eventManager.update(timeLeft);
+  }
 
   public void resume() {
     isRunning = true;

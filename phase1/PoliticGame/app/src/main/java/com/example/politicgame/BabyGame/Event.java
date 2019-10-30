@@ -6,36 +6,35 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 public abstract class Event {
-    private Paint paint;
-    private int x;
-    private int y;
-    private Resources res;
-    private Bitmap img;
+  private Paint paint;
+  private float x;
+  private float y;
+  private Resources res;
+  private Bitmap img;
 
-    Event(int x, int y, Resources res) {
-        this.x = x;
-        this.y = y;
-        this.res = res;
-        this.img = img;
-        this.paint = new Paint();
-    }
+  Event(float x, float y, Resources res) {
+    this.x = x;
+    this.y = y;
+    this.res = res;
+    this.img = img;
+    this.paint = new Paint();
+  }
 
-    public void draw(Canvas canvas) {
-        canvas.drawBitmap(img, x, y, paint);
-    }
+  public void draw(Canvas canvas) {
+    canvas.drawBitmap(img, x, y, paint);
+  }
 
-    protected void setImg(Bitmap img) {
-        this.img = img;
-    }
+  protected void setImg(Bitmap img) {
+    this.img = img;
+  }
 
-    public int getX() {
-        return x;
-    }
+  public float getX() {
+    return x;
+  }
 
-    public int getY() {
-        return y;
-    }
+  public float getY() {
+    return y;
+  }
 
-    abstract void update();
-
+  abstract void update();
 }
