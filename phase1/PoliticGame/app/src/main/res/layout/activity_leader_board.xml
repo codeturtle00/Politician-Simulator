@@ -5,6 +5,7 @@
     android:id="@+id/leaderBoardLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backColor"
     tools:context=".LeaderBoardActivity">
 
     <TextView
@@ -17,7 +18,7 @@
         android:layout_marginEnd="75dp"
         android:layout_marginRight="75dp"
         android:text="TextView"
-        android:textColor="#F44336"
+        android:textColor="?attr/textColor"
         android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="monospace"
@@ -35,7 +36,7 @@
         android:layout_marginEnd="75dp"
         android:layout_marginRight="75dp"
         android:text="TextView"
-        android:textColor="#F44336"
+        android:textColor="?attr/textColor"
         android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="monospace"
@@ -63,9 +64,8 @@
         android:layout_marginTop="130dp"
         android:layout_marginEnd="75dp"
         android:layout_marginRight="75dp"
-        android:background="#00BCD4"
         android:text="TextView"
-        android:textColor="#F44336"
+        android:textColor="?attr/textColor"
         android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="monospace"

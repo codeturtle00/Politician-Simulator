@@ -6,4 +6,6 @@
 
     <color name="backgroundBlue">#00BCD4</color>
     <color name="backgroundRed">#ff4d4d</color>
+
+    <color name="textWhite">#ffffff</color>
 </resources>

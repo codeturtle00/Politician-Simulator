@@ -1,6 +1,8 @@
 package com.example.politicgame;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,11 +19,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RegistrationActivity extends AppCompatActivity {
+  private PoliticGameApp app;
   private FileSavingService fileSaving;
   private static final String FILE_NAME = "userLogin.json";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    app = (PoliticGameApp) getApplication();
+
+    System.out.println("The current theme is blue: " + app.isThemeBlue());
+
+    if (app.isThemeBlue()){
+      setTheme(R.style.BlueTheme);
+    } else {
+      setTheme(R.style.RedTheme);
+    }
+
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_registration);
     final Button confirmation = findViewById(R.id.regitser);

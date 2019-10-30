@@ -21,13 +21,35 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
+
+    protected PoliticGameApp app;
     private final String FILE_NAME = "user_game_data.json";
+
+    protected void onStart() {
+        if (app.isThemeBlue()){
+            setTheme(R.style.BlueTheme);
+        } else {
+            setTheme(R.style.RedTheme);
+        }
+
+        super.onStart();
+        System.out.println("The current theme is blue: " + app.isThemeBlue());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        app = (PoliticGameApp) getApplication();
+
+        System.out.println("The current theme is blue: " + app.isThemeBlue());
+
+        if (app.isThemeBlue()){
+            setTheme(R.style.BlueTheme);
+        } else {
+            setTheme(R.style.RedTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         final Button playButton = findViewById(R.id.start);
         playButton.setOnClickListener(
@@ -122,20 +144,24 @@ public class MainActivity extends AppCompatActivity {
     public void openBabyGame() {
         Intent switchBabyIntent = new Intent(this, BabyActivity.class);
         startActivity(switchBabyIntent);
+        finish();
     }
 
     public void openLoginPage() {
         Intent loginPageIntent = new Intent(this, LoginActivity.class);
         startActivity(loginPageIntent);
+        finish();
     }
 
     public void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
+        finish();
     }
 
     public void openSettings() {
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
         startActivity(settingsIntent);
+        finish();
     }
 }

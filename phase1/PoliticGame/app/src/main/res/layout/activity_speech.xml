@@ -5,6 +5,7 @@
     android:id="@+id/speechLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backColor"
     tools:context=".SpeechGame.SpeechActivity">
 
     <TextView
@@ -101,7 +102,7 @@
         android:layout_width="267dp"
         android:layout_height="162dp"
         android:text="Prompt"
-        android:textColor="#F44336"
+        android:textColor="?attr/textColor"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
