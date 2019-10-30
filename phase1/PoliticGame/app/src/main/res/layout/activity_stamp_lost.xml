@@ -6,4 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".StampGame.StampActivityLost">
 
+    <ImageView
+        android:id="@+id/stamp_game_sad_face"
+        android:layout_width="233dp"
+        android:layout_height="266dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/sad_face_for_stamp_game"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/sad_face" />
+
+    <TextView
+        android:id="@+id/stamp_game_lost_messages"
+        android:layout_width="201dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/stamp_game_lost_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/stamp_game_lost_leaderboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stamp_game_lost_leaderboard"
+        app:layout_constraintBottom_toTopOf="@+id/stamp_game_sad_face"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stamp_game_lost_messages" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

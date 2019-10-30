@@ -73,7 +73,7 @@ public class StampActivity extends AppCompatActivity {
     }
 
 
-    public void openLeaderBoard() {
+    private void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
     }
