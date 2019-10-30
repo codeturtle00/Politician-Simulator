@@ -38,6 +38,11 @@ public class PauseButton {
   private ImageButton generateButton(final Activity activity) {
 
     ImageButton pauseButton = new ImageButton(activity);
+
+    // Sets the starting point of the button
+    pauseButton.setX(40);
+    pauseButton.setY(40);
+
     pauseButton.setImageResource(R.drawable.ic_pause_icon);
     ConstraintLayout.LayoutParams params =
         new ConstraintLayout.LayoutParams(
@@ -59,6 +64,8 @@ public class PauseButton {
 
     return pauseButton;
   }
+
+
 
   /** Function of Pause Button */
   private void openPauseMenu(Activity activity) {

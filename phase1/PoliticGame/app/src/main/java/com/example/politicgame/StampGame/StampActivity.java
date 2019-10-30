@@ -85,7 +85,7 @@ public class StampActivity extends AppCompatActivity {
     }
 
 
-    public void openLeaderBoard() {
+    private void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
     }
@@ -94,6 +94,7 @@ public class StampActivity extends AppCompatActivity {
         Intent mainMenuIntent = new Intent(this, MainActivity.class);
         startActivity(mainMenuIntent);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
