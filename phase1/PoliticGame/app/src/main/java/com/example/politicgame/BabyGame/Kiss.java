@@ -3,6 +3,8 @@ package com.example.politicgame.BabyGame;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.example.politicgame.R;
 
@@ -17,6 +19,11 @@ public class Kiss extends Event {
     }
 
     public void update() {
+
+    }
+
+    @Override
+    void handleTouch(View v, MotionEvent event) {
 
     }
 }

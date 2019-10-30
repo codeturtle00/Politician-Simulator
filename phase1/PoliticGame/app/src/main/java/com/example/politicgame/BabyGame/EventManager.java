@@ -40,19 +40,28 @@ public class EventManager implements View.OnTouchListener {
   }
 
   @Override
-  public boolean onTouch(View v, MotionEvent event) {
-    switch (event.getAction()) {
-      case MotionEvent.ACTION_DOWN:
-        initialX = event.getX();
-        initialY = event.getY();
+  public boolean onTouch(View v, MotionEvent touch) {
+    // check if touched within 2 coordinates of an event
+    for (Event event: events) {
+      if (Math.abs(event.getX()-touch.getX()) < 2 &
+              Math.abs(event.getY()-touch.getY()) < 2) {
+        event.handleTouch(v, touch);
         return true;
-      case MotionEvent.ACTION_MOVE:
-        finalX = event.getX();
-        finalY = event.getY();
-        return true;
-      default:
-        return false;
+      }
     }
+    return false;
+//    switch (event.getAction()) {
+//      case MotionEvent.ACTION_DOWN:
+//        initialX = event.getX();
+//        initialY = event.getY();
+//        return true;
+//      case MotionEvent.ACTION_MOVE:
+//        finalX = event.getX();
+//        finalY = event.getY();
+//        return true;
+//      default:
+//        return false;
+//    }
   }
 
   void update(int timeLeft) {

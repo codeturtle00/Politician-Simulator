@@ -4,6 +4,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.view.MotionEvent;
+import android.view.View;
 
 public abstract class Event {
   private Paint paint;
@@ -16,7 +18,6 @@ public abstract class Event {
     this.x = x;
     this.y = y;
     this.res = res;
-    this.img = img;
     this.paint = new Paint();
   }
 
@@ -37,4 +38,6 @@ public abstract class Event {
   }
 
   abstract void update();
+
+  abstract void handleTouch(View v, MotionEvent event);
 }
