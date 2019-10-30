@@ -17,10 +17,14 @@ import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.SpeechGame.SpeechInstructionActivity;
 
-public class BabyActivity extends AppCompatActivity {
+public class BabyActivity extends AppCompatActivity implements BabyDraw {
   // Happiness of the baby. Also the player's score.
+  private Integer happiness = 50;
+
+  private TextView scoreDisplay;
+  private TextView timer;
+
   protected PoliticGameApp app;
-  static Integer happiness = 50;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +43,21 @@ public class BabyActivity extends AppCompatActivity {
     // Embed BabyView into xml layout
     setContentView(R.layout.activity_baby);
     BabyView babyView = new BabyView(this);
+    babyView.setBabyDraw(this);
+    Thread thread = new Thread(babyView);
+    thread.start();
     FrameLayout babyFrame = findViewById(R.id.babyFrame);
     babyFrame.addView(babyView);
 
     // Timer
-    final TextView timer_display = findViewById(R.id.timer_display);
-    String timeLeft = babyView.getTimeLeft().toString() + "%";
-    timer_display.setText(timeLeft);
+    timer = findViewById(R.id.timerDisplay);
+    String timeLeft = "Time Left: " + babyView.getTimeLeft().toString();
+    timer.setText(timeLeft);
 
     // Score
-    TextView score_display = findViewById(R.id.score_display);
+    scoreDisplay = findViewById(R.id.scoreDisplay);
     String score = happiness.toString() + "%";
-    score_display.setText(score);
+    scoreDisplay.setText(score);
 
     // Next Button (delete later)
     final Button next = findViewById(R.id.next);
@@ -70,6 +77,12 @@ public class BabyActivity extends AppCompatActivity {
     Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
     startActivity(switchSpeechIntent);
     finish();
+  }
+
+  public void updateScore(int happinessChange) {
+    happiness += happinessChange;
+    String score = happiness.toString() + "%";
+    scoreDisplay.setText(score);
   }
 
   public void openMainMenu() {
