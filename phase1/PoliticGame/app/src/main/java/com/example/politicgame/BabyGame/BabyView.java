@@ -21,12 +21,8 @@ public class BabyView extends SurfaceView implements Runnable {
     isRunning = true;
     holder = getHolder();
 
-    // Why isn't this working?
-    holderWidth = holder.getSurfaceFrame().width();
-    holderHeight = holder.getSurfaceFrame().height();
-
     holder.addCallback(
-            new SurfaceHolder.Callback() {
+        new SurfaceHolder.Callback() {
 
           @Override
           public void surfaceDestroyed(SurfaceHolder holder) {}
@@ -34,10 +30,11 @@ public class BabyView extends SurfaceView implements Runnable {
           @Override
           public void surfaceCreated(SurfaceHolder holder) {
             canvas = holder.lockCanvas();
+            holderWidth = holder.getSurfaceFrame().width();
+            holderHeight = holder.getSurfaceFrame().height();
             if (canvas != null) {
               draw(canvas);
               holder.unlockCanvasAndPost(canvas);
-
             }
           }
 
@@ -49,25 +46,18 @@ public class BabyView extends SurfaceView implements Runnable {
   public void draw(Canvas canvas) {
     super.draw(canvas);
 
-    //set background color
+    // set background color
     canvas.drawColor(Color.rgb(0, 188, 212));
     Paint paint = new Paint();
     paint.setColor(Color.WHITE);
 
-    //example circle
-    canvas.drawCircle(
-        holder.getSurfaceFrame().width() / 2, holder.getSurfaceFrame().height() / 2, 400, paint);
+    // example circle
+    canvas.drawCircle(holderWidth / 2, holderHeight / 2, 400, paint);
     System.out.println("drew circle");
 
-    //trying to draw baby in centre. pls help!
-    Baby baby = new Baby(holderWidth/2, holderHeight / 2, getResources());
+    // trying to draw baby in centre. pls help!
+    Baby baby = new Baby(holderWidth / 2, holderHeight / 2, getResources());
     baby.draw(canvas);
-  }
-
-  public boolean onTouchEvent(MotionEvent event) {
-    float x = event.getX();
-    float y = event.getY();
-    return true;
   }
 
   @Override
