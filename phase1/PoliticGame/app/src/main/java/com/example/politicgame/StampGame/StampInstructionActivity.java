@@ -42,5 +42,6 @@ public class StampInstructionActivity extends AppCompatActivity {
     public void startStampGame() {
         Intent startStampIntent = new Intent(this, StampActivity.class);
         startActivity(startStampIntent);
+        finish();
     }
 }

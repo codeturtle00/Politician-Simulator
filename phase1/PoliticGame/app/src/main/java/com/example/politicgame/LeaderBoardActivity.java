@@ -151,28 +151,5 @@ public class LeaderBoardActivity extends AppCompatActivity {
         }
 
         return boardList;
-
-
-        /**
-         *
-         *
-         * [
-         *  {
-         *   "user": [
-         *     "char" :
-         *      highscore: 0,
-         *      Level1: {},
-         *      Level2: {},
-         *      Level3: {}
-         *   ]
-         *  }
-         * ]
-         *
-         * JSONObject char = new JSONObject();
-         * char.put("highscore", 0);
-         * char.put("objectkey", objectvalue)
-         *
-         *
-         */
     }
 }

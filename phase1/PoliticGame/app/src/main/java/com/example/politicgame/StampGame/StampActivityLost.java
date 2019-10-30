@@ -43,6 +43,7 @@ public class StampActivityLost extends AppCompatActivity {
     private void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
+        finish();
     }
 
 }

@@ -102,21 +102,25 @@ public class StampActivity extends AppCompatActivity {
     private void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
+        finish();
     }
 
     public void openStampLost() {
         Intent stampLostIntent = new Intent(this, StampActivityLost.class);
         startActivity(stampLostIntent);
+        finish();
     }
 
     public void openStampWon() {
         Intent stampWonIntent = new Intent(this, StampActivityWon.class);
         startActivity(stampWonIntent);
+        finish();
     }
 
     public void openMainMenu() {
         Intent mainMenuIntent = new Intent(this, MainActivity.class);
         startActivity(mainMenuIntent);
+        finish();
     }
 
 

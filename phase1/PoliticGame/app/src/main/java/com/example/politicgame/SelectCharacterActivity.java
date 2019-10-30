@@ -16,9 +16,21 @@ import com.example.politicgame.User.UserAccountManager;
 import org.json.JSONObject;
 
 public class SelectCharacterActivity extends AppCompatActivity {
+
+    private PoliticGameApp app;
     private UserAccountManager userManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        app = (PoliticGameApp) getApplication();
+
+        System.out.println("The current theme is blue: " + app.isThemeBlue());
+
+        if (app.isThemeBlue()){
+            setTheme(R.style.BlueTheme);
+        } else {
+            setTheme(R.style.RedTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_character);
     }

@@ -43,6 +43,7 @@ public class SpeechResult extends AppCompatActivity {
         Intent backToSpeech = new Intent(this, SpeechActivity.class);
         backToSpeech.putExtra("current rating", SpeechAwardPoints.getCurrentPoints());
         startActivity(backToSpeech);
+        finish();
     }
 
 }
