@@ -2,8 +2,10 @@ package com.example.politicgame;
 
 import android.bluetooth.BluetoothA2dp;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
@@ -17,25 +19,28 @@ import com.example.politicgame.Common.FileSavingService;
 
 
 public class SettingsActivity extends AppCompatActivity {
-    private FileSavingService fileSaving;
-    private ConstraintLayout settingsLayout;
+    protected PoliticGameApp app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        app = (PoliticGameApp) getApplication();
+
+        if (app.isThemeBlue()){
+            setTheme(R.style.BlueTheme);
+        } else {
+            setTheme(R.style.RedTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
-        this.fileSaving = new FileSavingService(this);
-
-        settingsLayout = (ConstraintLayout) findViewById(R.id.settingsLayout);
 
 
         final RadioButton radioBlue = findViewById(R.id.colorBlue);
         radioBlue.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        //Change current theme to blue
-                        //settingsLayout.setBackgroundColor(getResources().getColor(R.color.backgroundBlue));
+                        app.chooseBlueTheme(true);
+                        restart();
                     }
                 });
 
@@ -44,9 +49,29 @@ public class SettingsActivity extends AppCompatActivity {
         radioRed.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        // Code here executes on main thread after user presses button
-                        //settingsLayout.setBackgroundColor(getResources().getColor(R.color.backgroundRed));
+                        app.chooseBlueTheme(false);
+                        restart();
                     }
                 });
+
+        final Button quitButton = findViewById(R.id.quit);
+        quitButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        returnMainMenu();
+                    }
+                });
+    }
+
+    public void restart (){
+        Intent restart = new Intent(this, SettingsActivity.class);
+        startActivity(restart);
+        finish();
+    }
+
+    public void returnMainMenu (){
+        Intent returnMainMenu = new Intent(this, MainActivity.class);
+        startActivity(returnMainMenu);
+        finish();
     }
 }

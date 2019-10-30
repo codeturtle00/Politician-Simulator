@@ -13,10 +13,12 @@ import android.widget.TextView;
 import com.example.politicgame.LeaderBoardActivity;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PauseButton;
+import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 
 public class StampActivity extends AppCompatActivity {
 
+    private PoliticGameApp app;
     StampGameHandler gh = new StampGameHandler();
 
     @Override
@@ -26,6 +28,16 @@ public class StampActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        app = (PoliticGameApp) getApplication();
+
+        System.out.println("The current theme is blue: " + app.isThemeBlue());
+
+        if (app.isThemeBlue()){
+            setTheme(R.style.BlueTheme);
+        } else {
+            setTheme(R.style.RedTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp);
         final TextView rating = findViewById(R.id.stamp_game_rating_score);

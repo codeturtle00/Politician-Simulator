@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PauseActivity;
+import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.StampGame.StampInstructionActivity;
 import java.io.BufferedReader;
@@ -26,6 +27,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class SpeechActivity extends AppCompatActivity {
+  private PoliticGameApp app;
   private SpeechGame speech;
   private static final String FILE_NAME = "SpeechPrompts.txt";
   private static final String TAG = "Speech Activity";
@@ -41,6 +43,16 @@ public class SpeechActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    app = (PoliticGameApp) getApplication();
+
+    System.out.println("The current theme is blue: " + app.isThemeBlue());
+
+    if (app.isThemeBlue()){
+      setTheme(R.style.BlueTheme);
+    } else {
+      setTheme(R.style.RedTheme);
+    }
+
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_speech);
 
@@ -207,6 +219,7 @@ public class SpeechActivity extends AppCompatActivity {
   public void openMainMenu(){
     Intent mainMenuIntent = new Intent(this, MainActivity.class);
     startActivity(mainMenuIntent);
+    finish();
   }
 
   @Override

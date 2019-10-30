@@ -9,11 +9,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        android:theme="@style/BlueTheme"
+        android:name=".PoliticGameApp">
+
+        <activity android:name=".SpeechGame.SpeechInstructionActivity"></activity>
         <activity android:name=".StampGame.StampActivityWon"></activity>
         <activity android:name=".StampGame.StampActivityLost" />
-        <activity android:name=".SpeechGame.SpeechInstructionActivity" />
         <activity android:name=".SpeechGame.FailureSpeechResult" />
         <activity android:name=".SpeechGame.SuccessSpeechResult" />
         <activity android:name=".SpeechGame.SpeechResult" />
@@ -26,6 +28,7 @@
         <activity android:name=".BabyGame.BabyActivity" />
         <activity android:name=".ui.Login.LoginActivity" />
         <activity android:name=".RegistrationActivity" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
