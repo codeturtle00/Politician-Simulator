@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 public class PoliticGameApp extends Application {
 
     private boolean isBlue = true;
+    private String currentUser;
+    private String currentCharacter;
 
     public void onCreate(){
         super.onCreate();
@@ -23,4 +25,12 @@ public class PoliticGameApp extends Application {
     public boolean isThemeBlue (){
         return isBlue;
     }
+
+    public String getCurrentUser(){return currentUser;}
+
+    public void setCurrentUser(String newUser){this.currentUser = newUser;}
+
+    public String getCurrentCharacter(){return currentCharacter;}
+
+    public void getCurrentUser(String newCharacter){this.currentCharacter = newCharacter;}
 }

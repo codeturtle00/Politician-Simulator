@@ -90,6 +90,9 @@ public class RegistrationActivity extends AppCompatActivity {
         UserAccountManager.loginUser = new UserAccount(nameString, this);
         String saved = "User" + nameString + " is registered successfully!";
         Toast.makeText(getApplicationContext(), saved, Toast.LENGTH_LONG).show();
+
+        //Sets current user
+        app.setCurrentUser(nameString);
       }
     }
   }
