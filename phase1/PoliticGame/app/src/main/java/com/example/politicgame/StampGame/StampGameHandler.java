@@ -117,7 +117,7 @@ class StampGameHandler {
      */
     private void addWordToList(List<String> stringList, List<Word> wordList, String word) {
         int min = 1;
-        int max = 7;
+        int max = 5;
 
         switch (word) {
             case "posVerb":
