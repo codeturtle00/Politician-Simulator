@@ -2,7 +2,6 @@ package com.example.politicgame.BabyGame;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,11 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.politicgame.MainActivity;
-import com.example.politicgame.Pause;
+import com.example.politicgame.PauseButton;
 import com.example.politicgame.R;
 import com.example.politicgame.SpeechGame.SpeechInstructionActivity;
-
-import java.util.Random;
 
 public class BabyActivity extends AppCompatActivity {
   // Happiness of the baby. Also the player's score.
@@ -72,7 +69,7 @@ public class BabyActivity extends AppCompatActivity {
         });
 
     // Generate Pause Button
-    new Pause((ConstraintLayout) findViewById(R.id.babyLayout), this);
+    new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
   }
 
 //  void randomEvent() {
