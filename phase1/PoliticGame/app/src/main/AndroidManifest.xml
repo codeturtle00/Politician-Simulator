@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.politicgame">
 
     <application
@@ -8,7 +9,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".StampGame.StampActivityWon"></activity>
         <activity android:name=".StampGame.StampActivityLost" />
         <activity android:name=".SpeechGame.SpeechInstructionActivity" />
@@ -22,7 +24,6 @@
         <activity android:name=".StampGame.StampInstructionActivity" />
         <activity android:name=".SpeechGame.SpeechActivity" />
         <activity android:name=".BabyGame.BabyActivity" />
-        <activity android:name=".BabyGame.Shake" />
         <activity android:name=".ui.Login.LoginActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".MainActivity">
