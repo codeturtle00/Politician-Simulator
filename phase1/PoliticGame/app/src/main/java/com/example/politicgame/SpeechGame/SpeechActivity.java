@@ -1,6 +1,7 @@
 package com.example.politicgame.SpeechGame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PauseActivity;
+import com.example.politicgame.PauseButton;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.StampGame.StampInstructionActivity;
@@ -58,17 +60,17 @@ public class SpeechActivity extends AppCompatActivity {
 
     setTitle("The Speech Game");
 
-    final Button pauseB = findViewById(R.id.pause);
-    pauseB.setOnClickListener(
-            new View.OnClickListener() {
-              public void onClick(View v) {
-                Log.i("Button", "The pause button has been clicked");
-
-                //The method below will pause the game and handle the following inputs
-                openPauseMenu();
-              }
-            });
-
+//    final Button pauseB = findViewById(R.id.pause);
+//    pauseB.setOnClickListener(
+//            new View.OnClickListener() {
+//              public void onClick(View v) {
+//                Log.i("Button", "The pause button has been clicked");
+//
+//                //The method below will pause the game and handle the following inputs
+//                openPauseMenu();
+//              }
+//            });
+    new PauseButton((ConstraintLayout) findViewById(R.id.speechLayout), this);
   }
 
   @Override
