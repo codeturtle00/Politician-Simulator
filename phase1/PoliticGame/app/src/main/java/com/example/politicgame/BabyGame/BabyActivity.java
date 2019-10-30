@@ -13,15 +13,27 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PauseButton;
+import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.SpeechGame.SpeechInstructionActivity;
 
 public class BabyActivity extends AppCompatActivity {
   // Happiness of the baby. Also the player's score.
+  protected PoliticGameApp app;
   static Integer happiness = 50;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    app = (PoliticGameApp) getApplication();
+
+    System.out.println("The current theme is blue: " + app.isThemeBlue());
+
+    if (app.isThemeBlue()){
+      setTheme(R.style.BlueTheme);
+    } else {
+      setTheme(R.style.RedTheme);
+    }
+
     super.onCreate(savedInstanceState);
 
     // Embed BabyView into xml layout
@@ -57,11 +69,13 @@ public class BabyActivity extends AppCompatActivity {
   void openSpeechGame() {
     Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
     startActivity(switchSpeechIntent);
+    finish();
   }
 
   public void openMainMenu() {
     Intent mainMenuIntent = new Intent(this, MainActivity.class);
     startActivity(mainMenuIntent);
+    finish();
   }
 
   @Override
