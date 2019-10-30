@@ -1,6 +1,7 @@
 package com.example.politicgame.StampGame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.example.politicgame.LeaderBoardActivity;
 import com.example.politicgame.PauseActivity;
 import com.example.politicgame.MainActivity;
+import com.example.politicgame.PauseButton;
 import com.example.politicgame.R;
 
 public class StampActivity extends AppCompatActivity {
@@ -64,16 +66,7 @@ public class StampActivity extends AppCompatActivity {
                 });
 
 
-        final Button pauseB = findViewById(R.id.pause);
-        pauseB.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Log.i("Button", "The pause button has been clicked");
-
-                        //The method below will pause the game and handle the following inputs
-                        openPauseMenu();
-                    }
-                });
+        new PauseButton((ConstraintLayout) findViewById(R.id.stampLayout), this);
 
         gh.changeProposalNum(proposalLeft);
         gh.setPrompt(promptDisplay);
@@ -83,11 +76,6 @@ public class StampActivity extends AppCompatActivity {
     public void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
-    }
-
-    public void openPauseMenu() {
-        Intent pauseMenuIntent = new Intent(this, PauseActivity.class);
-        startActivityForResult(pauseMenuIntent, 1);
     }
 
     public void openMainMenu() {
