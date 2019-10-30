@@ -74,12 +74,12 @@ class BabyView extends SurfaceView implements Runnable {
   @Override
   public void run() {
     //    for (int i = 61; i > 0; i--) {
-//    if (isRunning) {
-      update();
-      eventManager.draw(canvas);
-      //        sleep();
-      //        timeLeft = i;
-//    }
+    //    if (isRunning) {
+    //    update();
+    //      eventManager.draw(canvas);
+    //        sleep();
+    //        timeLeft = i;
+    //    }
     //    }
   }
 
