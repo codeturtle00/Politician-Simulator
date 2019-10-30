@@ -40,6 +40,9 @@ public class StampActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp);
+
+        setTitle("The Stamp Game");
+
         final TextView rating = findViewById(R.id.stamp_game_rating_score);
         final TextView promptDisplay = findViewById(R.id.npcPrompt);
         final TextView proposalLeft = findViewById(R.id.stamp_game_proposal_left);

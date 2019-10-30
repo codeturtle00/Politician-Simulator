@@ -33,6 +33,8 @@ public class SelectCharacterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_character);
+
+        setTitle("Select Character");
     }
     public void setCharacterA(View view){
         PoliticianA pA = new PoliticianA();

@@ -42,6 +42,8 @@ public class BabyActivity extends AppCompatActivity {
     FrameLayout babyFrame = findViewById(R.id.babyFrame);
     babyFrame.addView(babyView);
 
+    setTitle("The Baby Game");
+
     // Timer
     final TextView timer_display = findViewById(R.id.timer_display);
     String timeLeft = babyView.getTimeLeft().toString() + "%";

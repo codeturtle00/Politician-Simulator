@@ -56,6 +56,8 @@ public class SpeechActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_speech);
 
+    setTitle("The Speech Game");
+
     final Button pauseB = findViewById(R.id.pause);
     pauseB.setOnClickListener(
             new View.OnClickListener() {

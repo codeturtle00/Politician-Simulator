@@ -24,6 +24,8 @@ public class SuccessSpeechResult extends SpeechResult{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success_speech_result);
+
+        setTitle("Good job!");
     }
 
 }

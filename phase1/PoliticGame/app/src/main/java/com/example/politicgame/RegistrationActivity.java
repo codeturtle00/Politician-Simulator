@@ -37,6 +37,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_registration);
+
+    setTitle("Registration");
+
     final Button confirmation = findViewById(R.id.regitser);
     confirmation.setOnClickListener(
         new View.OnClickListener() {
@@ -46,11 +49,29 @@ public class RegistrationActivity extends AppCompatActivity {
           }
         });
     this.fileSaving = new FileSavingService(this);
+
+    final Button backButton = findViewById(R.id.goBack);
+    backButton.setOnClickListener(
+            new View.OnClickListener() {
+              public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                BackToMenu();
+              }
+            });
   }
 
   public void  openCharacterSelection() {
     Intent switchCharIntent = new Intent(this, SelectCharacterActivity.class);
     startActivity(switchCharIntent);
+    finish();
+  }
+
+  public void BackToMenu() {
+    /**
+     * Returns to main menu
+     */
+    Intent switchBabyIntent = new Intent(this, MainActivity.class);
+    startActivity(switchBabyIntent);
     finish();
   }
 

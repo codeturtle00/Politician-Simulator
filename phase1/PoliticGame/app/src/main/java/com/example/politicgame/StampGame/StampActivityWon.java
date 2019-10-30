@@ -29,6 +29,8 @@ public class StampActivityWon extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp_won);
 
+        setTitle("Good job!");
+
         final Button button = findViewById(R.id.stamp_game_won_leaderboard);
         button.setOnClickListener(
                 new View.OnClickListener() {

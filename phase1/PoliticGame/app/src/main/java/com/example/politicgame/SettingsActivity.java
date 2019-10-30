@@ -34,6 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        setTitle("Settings");
 
         final RadioButton radioBlue = findViewById(R.id.colorBlue);
         radioBlue.setOnClickListener(
@@ -54,7 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                 });
 
-        final Button quitButton = findViewById(R.id.quit);
+        final Button quitButton = findViewById(R.id.goBack);
         quitButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {

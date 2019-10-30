@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private final String FILE_NAME = "user_game_data.json";
 
     protected void onStart() {
+        //If the theme is changed from the start menu then this will reflect that change
         if (app.isThemeBlue()){
             setTheme(R.style.BlueTheme);
         } else {
@@ -42,15 +43,19 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("The current theme is blue: " + app.isThemeBlue());
 
+        //Set theme
         if (app.isThemeBlue()){
             setTheme(R.style.BlueTheme);
         } else {
             setTheme(R.style.RedTheme);
         }
 
+        setTitle("Main Menu");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Play button, starts the game
         final Button playButton = findViewById(R.id.start);
         playButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -61,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
+        //Login button, starts the login process
         final Button loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -71,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
+        //Leaderboard button, opens the leaderboard
         final Button boardButton = findViewById(R.id.leaderBoard);
         boardButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -80,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+
+        //Settings button, opens the settings menu
         final Button settingButton = findViewById(R.id.settings);
         settingButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -143,24 +152,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openBabyGame() {
+        /**
+         * Starts the first game
+         */
         Intent switchBabyIntent = new Intent(this, BabyActivity.class);
         startActivity(switchBabyIntent);
         finish();
     }
 
     public void openLoginPage() {
+        /**
+         * Opens the login page
+         */
         Intent loginPageIntent = new Intent(this, LoginActivity.class);
         startActivity(loginPageIntent);
         finish();
     }
 
     public void openLeaderBoard() {
+        /**
+         * Opens the leaderboard screen
+         */
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
         finish();
     }
 
     public void openSettings() {
+        /**
+         * Open the settings menu
+         */
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
         startActivity(settingsIntent);
         finish();
