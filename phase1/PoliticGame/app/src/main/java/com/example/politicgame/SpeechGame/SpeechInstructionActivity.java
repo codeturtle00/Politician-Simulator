@@ -28,6 +28,7 @@ public class SpeechInstructionActivity extends AppCompatActivity {
 
     public void startSpeechGame() {
         Intent startSpeechIntent = new Intent(this, SpeechActivity.class);
+        startSpeechIntent.putExtra("current rating", 0);
         startActivity(startSpeechIntent);
     }
 }
