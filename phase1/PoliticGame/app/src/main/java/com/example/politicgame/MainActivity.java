@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Check if file exists
         if (!fileExists()) {
-            Log.i("File Status", "The file does not exist yet");
+            Log.i("File Status", "The file does not exist yet at " + getFilesDir() + "/" + FILE_NAME);
             createFile();
         }
     }
@@ -101,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
          * Checks if the file exists in the directory the game will be saved in
          */
 
-        return (new File(FILE_NAME)).exists();
+        Log.i("File Status", "Checking at " + getFilesDir() + "/" + FILE_NAME);
+        return (new File(getFilesDir() + "/" + FILE_NAME)).exists();
     }
 
     public void createFile(){
