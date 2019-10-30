@@ -25,10 +25,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.politicgame.BabyGame.BabyActivity;
+import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.RegistrationActivity;
 
 public class LoginActivity extends AppCompatActivity {
+    private PoliticGameApp app;
     private LoginViewModel loginViewModel;
     private void register(){
         Intent registerIntent = new Intent(this, RegistrationActivity.class);
@@ -52,6 +54,16 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        app = (PoliticGameApp) getApplication();
+
+        System.out.println("The current theme is blue: " + app.isThemeBlue());
+
+        if (app.isThemeBlue()){
+            setTheme(R.style.BlueTheme);
+        } else {
+            setTheme(R.style.RedTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         this.loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory(this))

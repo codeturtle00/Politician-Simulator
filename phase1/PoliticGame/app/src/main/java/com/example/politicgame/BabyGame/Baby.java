@@ -17,11 +17,11 @@ public class Baby {
     private Paint paint;
     private Bitmap babyImg;
 
-    public Baby(int x, int y, Resources resources) {
+    public Baby(int x, int y, Resources res) {
         paint = new Paint();
         this.x = x;
         this.y = y;
-        babyImg = BitmapFactory.decodeResource(resources, R.drawable.baby);
+        babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
         //width and height needs to be changed to dynamically scaled depending on holder width/height
         babyImg = Bitmap.createScaledBitmap(babyImg, 320,640, false);
         this.width = babyImg.getWidth();

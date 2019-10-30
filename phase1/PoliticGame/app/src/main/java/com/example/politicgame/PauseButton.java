@@ -12,7 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 /** Class for activities to add functional pause icon to their layouts
  *
  * If you want to add Pause button to your game, add this snippet to your activity's onCreate:
- * new Pause((ConstraintLayout) findViewByID(R.id.<id of your constraint layout>), this)
+ * new PauseButton((ConstraintLayout) findViewByID(R.id.<id of your constraint layout>), this)
  *
  *
  * Explanation:
@@ -38,6 +38,11 @@ public class PauseButton {
   private ImageButton generateButton(final Activity activity) {
 
     ImageButton pauseButton = new ImageButton(activity);
+
+    // Sets the starting point of the button
+    pauseButton.setX(40);
+    pauseButton.setY(40);
+
     pauseButton.setImageResource(R.drawable.ic_pause_icon);
     ConstraintLayout.LayoutParams params =
         new ConstraintLayout.LayoutParams(
@@ -59,6 +64,8 @@ public class PauseButton {
 
     return pauseButton;
   }
+
+
 
   /** Function of Pause Button */
   private void openPauseMenu(Activity activity) {

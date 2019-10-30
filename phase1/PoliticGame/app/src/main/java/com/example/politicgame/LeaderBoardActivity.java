@@ -22,11 +22,22 @@ import java.util.Iterator;
 
 public class LeaderBoardActivity extends AppCompatActivity {
 
+    private PoliticGameApp app;
     private final String FILE_NAME = "user_game_data.json";
     private FileSavingService fileSaving;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        app = (PoliticGameApp) getApplication();
+
+        System.out.println("The current theme is blue: " + app.isThemeBlue());
+
+        if (app.isThemeBlue()){
+            setTheme(R.style.BlueTheme);
+        } else {
+            setTheme(R.style.RedTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
 
@@ -140,5 +151,28 @@ public class LeaderBoardActivity extends AppCompatActivity {
         }
 
         return boardList;
+
+
+        /**
+         *
+         *
+         * [
+         *  {
+         *   "user": [
+         *     "char" :
+         *      highscore: 0,
+         *      Level1: {},
+         *      Level2: {},
+         *      Level3: {}
+         *   ]
+         *  }
+         * ]
+         *
+         * JSONObject char = new JSONObject();
+         * char.put("highscore", 0);
+         * char.put("objectkey", objectvalue)
+         *
+         *
+         */
     }
 }

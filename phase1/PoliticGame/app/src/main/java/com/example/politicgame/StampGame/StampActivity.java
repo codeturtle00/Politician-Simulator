@@ -1,6 +1,7 @@
 package com.example.politicgame.StampGame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +11,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.politicgame.LeaderBoardActivity;
-import com.example.politicgame.PauseActivity;
 import com.example.politicgame.MainActivity;
+import com.example.politicgame.PauseButton;
+import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 
 public class StampActivity extends AppCompatActivity {
 
+    private PoliticGameApp app;
     StampGameHandler gh = new StampGameHandler();
 
     @Override
@@ -25,6 +28,16 @@ public class StampActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        app = (PoliticGameApp) getApplication();
+
+        System.out.println("The current theme is blue: " + app.isThemeBlue());
+
+        if (app.isThemeBlue()){
+            setTheme(R.style.BlueTheme);
+        } else {
+            setTheme(R.style.RedTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stamp);
         final TextView rating = findViewById(R.id.stamp_game_rating_score);
@@ -49,6 +62,14 @@ public class StampActivity extends AppCompatActivity {
                         gh.changeRating(rating, true);
                         gh.changeProposalNum(proposalLeft);
                         gh.setPrompt(promptDisplay);
+                        if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                            openStampLost();
+                            finish();
+                        } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                            openStampWon();
+                            finish();
+                        }
+
                     }
                 });
 
@@ -60,40 +81,44 @@ public class StampActivity extends AppCompatActivity {
                         gh.changeRating(rating, false);
                         gh.changeProposalNum(proposalLeft);
                         gh.setPrompt(promptDisplay);
+                        if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                            openStampLost();
+                            finish();
+                        } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                            openStampWon();
+                            finish();
+                        }
                     }
                 });
 
 
-        final Button pauseB = findViewById(R.id.pause);
-        pauseB.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Log.i("Button", "The pause button has been clicked");
-
-                        //The method below will pause the game and handle the following inputs
-                        openPauseMenu();
-                    }
-                });
+        new PauseButton((ConstraintLayout) findViewById(R.id.stampLayout), this);
 
         gh.changeProposalNum(proposalLeft);
         gh.setPrompt(promptDisplay);
     }
 
 
-    public void openLeaderBoard() {
+    private void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivity(switchBoardIntent);
     }
 
-    public void openPauseMenu() {
-        Intent pauseMenuIntent = new Intent(this, PauseActivity.class);
-        startActivityForResult(pauseMenuIntent, 1);
+    public void openStampLost() {
+        Intent stampLostIntent = new Intent(this, StampActivityLost.class);
+        startActivity(stampLostIntent);
+    }
+
+    public void openStampWon() {
+        Intent stampWonIntent = new Intent(this, StampActivityWon.class);
+        startActivity(stampWonIntent);
     }
 
     public void openMainMenu() {
         Intent mainMenuIntent = new Intent(this, MainActivity.class);
         startActivity(mainMenuIntent);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

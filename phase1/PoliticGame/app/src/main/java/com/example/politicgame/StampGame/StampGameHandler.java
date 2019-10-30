@@ -19,9 +19,9 @@ class StampGameHandler {
     private Proposal currentPrompt;
 
     private String pronoun = "sir";
-    private String emptyListMessage = "Sorry, we do not have a new proposal for you yet, ";
-    private Verb emptyAction = new Verb("come back later", 0);
-    private Noun emptyNoun = new Noun(" sir", 0, false);
+    private String emptyListMessage = "";
+    private Verb emptyAction = new Verb("", 0);
+    private Noun emptyNoun = new Noun("", 0, false);
 
     private List<String> promptBeginList = new ArrayList<String>(Arrays.asList(
             "Good afternoon " + pronoun + ", based on our campaign researchers' speculation, would you like to",
@@ -220,7 +220,7 @@ class StampGameHandler {
      * @param tv the TextView object
      * @return the integer representation of tv
      */
-    private Integer intFromTextView(TextView tv){
+     Integer intFromTextView(TextView tv){
         String oldString = tv.getText().toString();
         return Integer.valueOf(oldString.substring(0, oldString.length() - 1));
     }
@@ -288,7 +288,9 @@ class StampGameHandler {
         int currentProposalLeft = Math.min(verbs.size(), nouns.size());
         updateProposal(proposalNum, currentProposalLeft);
     }
-//    public int getPromptsDone() {
-//        return prompts.size();
-//    }
+
+    int getPromptsSize(TextView proposalLeft) {
+        String oldString = proposalLeft.getText().toString();
+        return Integer.valueOf(oldString);
+    }
 }
