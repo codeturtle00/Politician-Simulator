@@ -1,5 +1,5 @@
 package com.example.politicgame.User;
 
-public class UserManager {
+public class UserAccountManager {
     public static UserAccount loginUser;
 }

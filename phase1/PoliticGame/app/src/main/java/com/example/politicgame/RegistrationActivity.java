@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.example.politicgame.BabyGame.BabyActivity;
 import com.example.politicgame.Common.FileSavingService;
-import com.example.politicgame.User.UserManager;
+import com.example.politicgame.User.UserAccountManager;
 import com.example.politicgame.User.UserAccount;
 
 import org.json.JSONArray;
@@ -42,15 +42,16 @@ public class RegistrationActivity extends AppCompatActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             // Code here executes on main thread after user presses button
-            openBabyGame();
+            openCharacterSelection();
           }
         });
     this.fileSaving = new FileSavingService(this);
   }
 
-  public void openBabyGame() {
-    Intent switchBabyIntent = new Intent(this, BabyActivity.class);
-    startActivity(switchBabyIntent);
+  public void  openCharacterSelection() {
+    Intent switchCharIntent = new Intent(this, SelectCharacterActivity.class);
+    startActivity(switchCharIntent);
+    finish();
   }
 
   private boolean isDuplicate(String username) {
@@ -86,7 +87,7 @@ public class RegistrationActivity extends AppCompatActivity {
           e.printStackTrace();
         }
         fileSaving.appendJsonObject(userObject, FILE_NAME);
-        UserManager.loginUser = new UserAccount(nameString);
+        UserAccountManager.loginUser = new UserAccount(nameString, this);
         String saved = "User" + nameString + " is registered successfully!";
         Toast.makeText(getApplicationContext(), saved, Toast.LENGTH_LONG).show();
       }

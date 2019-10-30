@@ -29,7 +29,7 @@ public class FileSavingService {
       String lines;
       int lineNum = 0;
       while ((lines = bufferedReader.readLine()) != null) {
-        textBuilder.append(lines.toString());
+        textBuilder.append(lines);
         lineNum = lineNum + 1;
       }
     } catch (FileNotFoundException e) {
@@ -104,7 +104,30 @@ public class FileSavingService {
     writeJson(fileName, oldArray);
   }
 
-  private void writeJson(String fileName, JSONArray jsonArray) {
+  public void replaceJsonObject(JSONObject jsonObject, String fileName) {
+    File rootDir = this.context.getFilesDir();
+    System.out.println("root directory is " + rootDir);
+    JSONArray jsonArray = this.readJsonFile(fileName);
+    String key = jsonObject.keys().next();
+    boolean found = false;
+    try {
+      for (int i = 0; i < jsonArray.length(); i++) {
+        if(jsonArray.getJSONObject(i).keys().next().equals(key)){
+          jsonArray.getJSONObject(i).put(key, jsonObject.get(key));
+          found = true;
+        }
+      }
+      if (!found){
+        this.appendJsonObject(jsonObject,fileName);
+      }
+      else{
+      this.writeJson(fileName,jsonArray);}
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+
+  }
+  public void writeJson(String fileName, JSONArray jsonArray) {
     File rootDir = this.context.getFilesDir();
     System.out.println("root directory is " + rootDir);
     FileOutputStream outputStream;
@@ -112,7 +135,7 @@ public class FileSavingService {
       outputStream = this.context.openFileOutput(fileName, Context.MODE_PRIVATE);
       outputStream.write(jsonArray.toString().getBytes());
       outputStream.close();
-      System.out.println("Successfully appending into a json file!!!");
+      System.out.println("Successfully writing into a json file!!!");
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } catch (IOException e) {
