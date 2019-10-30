@@ -83,6 +83,7 @@ public class StampActivity extends AppCompatActivity {
         startActivity(mainMenuIntent);
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
