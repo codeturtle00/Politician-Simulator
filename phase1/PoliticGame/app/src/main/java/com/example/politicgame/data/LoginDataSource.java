@@ -2,7 +2,7 @@ package com.example.politicgame.data;
 
 import android.content.Context;
 import com.example.politicgame.Common.FileSavingService;
-import com.example.politicgame.User.UserManager;
+import com.example.politicgame.User.UserAccountManager;
 import com.example.politicgame.User.UserAccount;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +39,7 @@ public class LoginDataSource {
   public Result<UserAccount> login(String username, String password) {
     try {
       if (this.userAuthentication(username, password)) {
-        UserAccount user = new UserAccount(username);
+        UserAccount user = new UserAccount(username,this.context);
         JSONArray userArray = this.fileSaving.readJsonFile(FILE_NAME);
         JSONObject userObjects = new JSONObject();
         for (int i= 0; i < userArray.length(); i ++ ){
@@ -49,7 +49,7 @@ public class LoginDataSource {
             userObjects = userObject;
           }
         }
-        UserManager.loginUser = user;
+        UserAccountManager.loginUser = user;
         return new Result.Success<>(user);
       } else {
         return new Result.Error(new IOException("Error logging in"));
