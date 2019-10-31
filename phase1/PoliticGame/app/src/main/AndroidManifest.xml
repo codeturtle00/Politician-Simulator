@@ -40,6 +40,7 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".SelectCharacterActivity"></activity>
         <activity android:name=".GameActivity" />
+        <activity android:name=".LoadCharacterActivity"/>
     </application>
 
 </manifest>
