@@ -1,17 +1,19 @@
 package com.example.politicgame.BabyGame;
 
 import android.os.CountDownTimer;
-import android.widget.TextView;
 
 class Timer {
 
     private long timeLeftInMillis;
-    private TextView timerView;
     private CountDownTimer timer;
 
-    Timer(final TextView timerView) {
-        this.timerView = timerView;
+    private BabyDraw babyDraw;
+    private BabyView babyView;
+
+    Timer(BabyDraw babyDraw, BabyView babyView) {
         timeLeftInMillis = 60000;
+        this.babyDraw = babyDraw;
+        this.babyView = babyView;
     }
 
     void pause() {
@@ -26,15 +28,20 @@ class Timer {
 
           public void onTick(long millisUntilFinished) {
             timeLeftInMillis = millisUntilFinished;
-            System.out.println((int) millisUntilFinished / 1000);
-            timerView.setText(
-                String.format(Integer.toString((int) millisUntilFinished / 1000)));
+            Integer timeLeft = (int) timeLeftInMillis / 1000;
+            babyView.randomEvent(timeLeft);
+            System.out.println(timeLeft);
+            babyDraw.updateTime(timeLeft.toString());
           }
 
           public void onFinish() {
-            timerView.setText("Time's Up!");
+            babyDraw.updateTime("Time's up!");
           }
         };
         timer.start();
+    }
+
+    long getTimeLeft() {
+        return timeLeftInMillis;
     }
 }

@@ -7,11 +7,7 @@ import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-class BabyView extends SurfaceView implements Runnable {
-
-  private boolean isRunning;
-
-  private Thread thread;
+class BabyView extends SurfaceView implements ViewUpdater {
 
   /**
    * The BabyDraw stored in this BabyView, using dependency injection to call methods in
@@ -40,7 +36,6 @@ class BabyView extends SurfaceView implements Runnable {
   BabyView(Context context) {
     super(context);
 
-    isRunning = true;
     // EventManager will manage the events for this game.
     eventManager = new EventManager(getResources(), this);
     setOnTouchListener(eventManager);
@@ -72,6 +67,7 @@ class BabyView extends SurfaceView implements Runnable {
    *
    * @param canvas the canvas which is drawn on.
    */
+  @Override
   public void draw(Canvas canvas) {
     super.draw(canvas);
 
@@ -99,8 +95,18 @@ class BabyView extends SurfaceView implements Runnable {
    *
    * @param happinessChange the amount to change happiness by
    */
-  public void update(int happinessChange) {
+  @Override
+  public void updateScore(int happinessChange) {
     babyDraw.updateScore(happinessChange);
+  }
+
+  @Override
+  public void updateEventAction(String eventAction) {
+    babyDraw.updateEventAction(eventAction);
+  }
+
+  void randomEvent(int timeLeft) {
+    eventManager.randomEvent(timeLeft);
   }
 
   /**
@@ -110,12 +116,5 @@ class BabyView extends SurfaceView implements Runnable {
    */
   void setBabyDraw(BabyDraw babyDraw) {
     this.babyDraw = babyDraw;
-  }
-
-  @Override
-  public void run() {
-    while (isRunning){
-
-    }
   }
 }
