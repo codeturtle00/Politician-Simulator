@@ -106,7 +106,6 @@ public class SpeechActivity extends AppCompatActivity {
       }
     }
     rating = new SpeechAwardPoints(getIntent().getIntExtra("current rating", 0));
-    System.out.println(SpeechAwardPoints.getFeedback());
   }
 
   private String randomSelect(Set<String> speechData) {
