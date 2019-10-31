@@ -87,7 +87,6 @@ class EventManager implements View.OnTouchListener {
       for (Event e : events) {
         update(e.update(v, initialX, initialY, finalX, finalY));
       }
-      update(0);
     }
     return true;
   }
