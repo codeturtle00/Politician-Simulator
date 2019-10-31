@@ -23,7 +23,7 @@ public class Baby {
     this.y = y;
     babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
     // width and height needs to be changed to dynamically scaled depending on holder width/height
-    babyImg = Bitmap.createScaledBitmap(babyImg, 320, 640, false);
+    babyImg = Bitmap.createScaledBitmap(babyImg, 640, 1280, false);
     this.width = babyImg.getWidth();
     this.height = babyImg.getHeight();
   }
