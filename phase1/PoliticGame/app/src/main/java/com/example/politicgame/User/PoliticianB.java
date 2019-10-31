@@ -3,7 +3,7 @@ package com.example.politicgame.User;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class PoliticianB extends Character {
+public class PoliticianB extends GameCharacter {
   private String name = "Boy";
   @Override
   protected JSONObject getJsonLevel1() {

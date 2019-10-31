@@ -4,7 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public abstract class Character {
+public abstract class GameCharacter {
   private String name = "Trump";
   enum detail {
     LEVEL1,

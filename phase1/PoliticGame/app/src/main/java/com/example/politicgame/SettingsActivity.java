@@ -37,6 +37,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         setTitle("Settings");
 
+        //Music player's current track
         final TextView currentTrack = findViewById(R.id.currentTrackText);
         currentTrack.setText("Track: " + app.getCurrentTrackNum());
 

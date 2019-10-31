@@ -60,7 +60,7 @@ public class PoliticGameApp extends Application {
 
     public String getCurrentCharacter(){return currentCharacter;}
 
-    public void getCurrentUser(String newCharacter){this.currentCharacter = newCharacter;}
+    public void setCurrentCharacter(String newCharacter){this.currentCharacter = newCharacter;}
 
 
 

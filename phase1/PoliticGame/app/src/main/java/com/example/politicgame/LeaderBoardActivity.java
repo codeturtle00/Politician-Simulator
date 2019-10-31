@@ -63,8 +63,8 @@ public class LeaderBoardActivity extends AppCompatActivity {
         /**
          * Returns to main menu
          */
-        Intent switchBabyIntent = new Intent(this, MainActivity.class);
-        startActivity(switchBabyIntent);
+        Intent switchMainIntent = new Intent(this, MainActivity.class);
+        startActivity(switchMainIntent);
         finish();
     }
 
@@ -116,15 +116,15 @@ public class LeaderBoardActivity extends AppCompatActivity {
             //The actual display of the leaderboard
             final TextView player1 = findViewById(R.id.player1);
             player1.setText("First\nUser: " + first.getJSONObject(first.keys().next()).getString("userName") +
-                    "\nCharacter: " + first.keys().next() + "\nScore: " + first.getJSONObject(first.keys().next()).getInt("score"));
+                    "\nGameCharacter: " + first.keys().next() + "\nScore: " + first.getJSONObject(first.keys().next()).getInt("score"));
 
             final TextView player2 = findViewById(R.id.player2);
             player2.setText("Second\nUser: " + second.getJSONObject(second.keys().next()).getString("userName") +
-                    "\nCharacter: " + second.keys().next() + "\nScore: " + second.getJSONObject(second.keys().next()).getInt("score"));
+                    "\nGameCharacter: " + second.keys().next() + "\nScore: " + second.getJSONObject(second.keys().next()).getInt("score"));
 
             final TextView player3 = findViewById(R.id.player3);
             player3.setText("Third\nUser: " + third.getJSONObject(third.keys().next()).getString("userName") +
-                    "\nCharacter: " + third.keys().next() + "\nScore: " + third.getJSONObject(third.keys().next()).getInt("score"));
+                    "\nGameCharacter: " + third.keys().next() + "\nScore: " + third.getJSONObject(third.keys().next()).getInt("score"));
 
         } catch (JSONException e) {
             e.printStackTrace();
