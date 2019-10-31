@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -35,6 +36,9 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         setTitle("Settings");
+
+        final TextView currentTrack = findViewById(R.id.currentTrackText);
+        currentTrack.setText("Track: " + app.getCurrentTrackNum());
 
         final RadioButton radioBlue = findViewById(R.id.colorBlue);
         radioBlue.setOnClickListener(
@@ -62,6 +66,39 @@ public class SettingsActivity extends AppCompatActivity {
                         returnMainMenu();
                     }
                 });
+
+
+
+        final Button changeMusicButton = findViewById(R.id.changeMusic);
+        changeMusicButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        changeMusic();
+                        currentTrack.setText("Track: " + app.getCurrentTrackNum());
+                    }
+                });
+
+
+        final Button toggleMusicButton = findViewById(R.id.toggleMusic);
+        toggleMusicButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        toggleMusic();
+                        if (!(app.isMusicOn())){
+                            currentTrack.setText("Paused");
+                        } else {
+                            currentTrack.setText("Track: " + app.getCurrentTrackNum());
+                        }
+                    }
+                });
+    }
+
+    public void changeMusic(){
+        app.switchMusic();
+    }
+
+    public void toggleMusic(){
+        app.toggleMusic();
     }
 
     public void restart (){
