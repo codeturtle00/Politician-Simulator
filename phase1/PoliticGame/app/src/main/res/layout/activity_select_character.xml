@@ -54,7 +54,7 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Insert name here"
         app:layout_constraintBottom_toTopOf="@+id/submit_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
