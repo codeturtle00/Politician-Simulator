@@ -19,7 +19,7 @@ class Kiss extends Event {
   }
 
   @Override
-  int update(View v, float initialX, float initialY, float finalX, float finalY) {
+  int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
       if (Math.abs(finalY - initialY) < 5 && Math.abs(finalX - initialX) < 5) {
         Log.d("Kiss", "Score increased");
         return 1;

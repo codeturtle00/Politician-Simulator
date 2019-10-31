@@ -30,7 +30,7 @@ abstract class Event {
    * @param finalY the Y coordinate of where the touch ended
    * @return value to change baby happiness by
    */
-  abstract int update(View v, float initialX, float initialY, float finalX, float finalY);
+  abstract int handleTouch(View v, float initialX, float initialY, float finalX, float finalY);
 
   Event(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     this.babyX = babyX;

@@ -86,7 +86,7 @@ class EventManager implements View.OnTouchListener {
   }
 
   /**
-   * Calls events when screen is touched to update the score.
+   * Calls events when screen is touched to handleTouch the score.
    *
    * @param v View that is being used
    * @param touch the touch to the screen
@@ -111,7 +111,7 @@ class EventManager implements View.OnTouchListener {
     // Only runs when finger is lifted off screen
     if (touch.getAction() == MotionEvent.ACTION_UP) {
       for (Event e : events) {
-        update(e.update(v, initialX, initialY, finalX, finalY));
+        update(e.handleTouch(v, initialX, initialY, finalX, finalY));
       }
     }
     return true;

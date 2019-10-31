@@ -36,7 +36,7 @@ class VerticalShake extends Event {
    * @return value to change baby happiness by
    */
   @Override
-  int update(View v, float initialX, float initialY, float finalX, float finalY) {
+  int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
     if (initialX > getX() && initialY > getY()) {
       if (Math.abs(finalX - initialX) < 50 && Math.abs(finalY - initialY) > 100) {
         Log.d("VerticalShake", "Score increased");
