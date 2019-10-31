@@ -34,6 +34,12 @@ public abstract class GameActivity extends AppCompatActivity {
         finish();
     }
 
+    public void openLeaderBoard() {
+        Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
+        startActivity(switchBoardIntent);
+        finish();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -8,15 +8,16 @@ import android.view.View;
 import android.widget.Button;
 
 
+import com.example.politicgame.GameActivity;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.LeaderBoardActivity;
 import com.example.politicgame.R;
 
-public class StampActivityLost extends AppCompatActivity {
+public class StampActivityLost extends GameActivity {
     protected PoliticGameApp app;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         app = (PoliticGameApp) getApplication();
 
         System.out.println("The current theme is blue: " + app.isThemeBlue());
@@ -42,10 +43,5 @@ public class StampActivityLost extends AppCompatActivity {
                 });
     }
 
-    private void openLeaderBoard() {
-        Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
-        startActivity(switchBoardIntent);
-        finish();
-    }
 
 }
