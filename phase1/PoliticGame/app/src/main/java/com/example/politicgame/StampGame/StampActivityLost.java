@@ -14,7 +14,6 @@ import com.example.politicgame.LeaderBoardActivity;
 import com.example.politicgame.R;
 
 public class StampActivityLost extends GameActivity {
-    protected PoliticGameApp app;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
