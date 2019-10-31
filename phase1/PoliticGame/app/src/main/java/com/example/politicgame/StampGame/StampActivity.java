@@ -19,7 +19,6 @@ import com.example.politicgame.R;
 
 public class StampActivity extends GameActivity {
 
-    private PoliticGameApp app;
     StampGameHandler gh = new StampGameHandler();
 
     @Override
