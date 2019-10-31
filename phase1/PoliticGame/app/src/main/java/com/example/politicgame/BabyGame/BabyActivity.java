@@ -30,8 +30,6 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     setContentView(R.layout.activity_baby);
     BabyView babyView = new BabyView(this);
     babyView.setBabyDraw(this);
-    Thread thread = new Thread(babyView);
-    thread.start();
     FrameLayout babyFrame = findViewById(R.id.babyFrame);
     babyFrame.addView(babyView);
 
