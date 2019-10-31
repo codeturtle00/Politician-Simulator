@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.politicgame.BabyGame.BabyActivity;
@@ -103,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
             Log.i("File Status", "The file does not exist yet at " + getFilesDir() + "/" + FILE_NAME);
             createFile();
         }
+
+        ImageView trumpIMG = findViewById(R.id.trump);
+        Animation animated_trump = AnimationUtils.loadAnimation(this, R.anim.animated_trump);
+        trumpIMG.startAnimation(animated_trump);
     }
 
     public boolean fileExists(){

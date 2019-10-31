@@ -2,41 +2,27 @@ package com.example.politicgame.BabyGame;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.politicgame.MainActivity;
+import com.example.politicgame.GameActivity;
 import com.example.politicgame.PauseButton;
-import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.SpeechGame.SpeechInstructionActivity;
 
-public class BabyActivity extends AppCompatActivity implements BabyDraw {
+public class BabyActivity extends GameActivity implements BabyDraw {
   // Happiness of the baby. Also the player's score.
   private Integer happiness = 50;
 
   private TextView scoreDisplay;
-  private TextView timer;
-
-  protected PoliticGameApp app;
+  private Timer timer;
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    app = (PoliticGameApp) getApplication();
-
-    System.out.println("The current theme is blue: " + app.isThemeBlue());
-
-    if (app.isThemeBlue()){
-      setTheme(R.style.BlueTheme);
-    } else {
-      setTheme(R.style.RedTheme);
-    }
+  public void onCreate(Bundle savedInstanceState) {
 
     super.onCreate(savedInstanceState);
 
@@ -44,17 +30,10 @@ public class BabyActivity extends AppCompatActivity implements BabyDraw {
     setContentView(R.layout.activity_baby);
     BabyView babyView = new BabyView(this);
     babyView.setBabyDraw(this);
-    Thread thread = new Thread(babyView);
-    thread.start();
     FrameLayout babyFrame = findViewById(R.id.babyFrame);
     babyFrame.addView(babyView);
 
     setTitle("The Baby Game");
-
-    // Timer
-    timer = findViewById(R.id.timerDisplay);
-    String timeLeft = "Time Left: " + babyView.getTimeLeft().toString();
-    timer.setText(timeLeft);
 
     // Score
     scoreDisplay = findViewById(R.id.scoreDisplay);
@@ -73,6 +52,22 @@ public class BabyActivity extends AppCompatActivity implements BabyDraw {
 
     // Generate Pause Button
     new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
+
+    // Start Timer
+    TextView timerView = findViewById(R.id.timerDisplay);
+    timer = new Timer(timerView);
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    timer.pause();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    timer.resume();
   }
 
   void openSpeechGame() {
@@ -85,32 +80,5 @@ public class BabyActivity extends AppCompatActivity implements BabyDraw {
     happiness += happinessChange;
     String score = happiness.toString() + "%";
     scoreDisplay.setText(score);
-  }
-
-  public void openMainMenu() {
-    Intent mainMenuIntent = new Intent(this, MainActivity.class);
-    startActivity(mainMenuIntent);
-    finish();
-  }
-
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    // requestCode refers to the request code parameter of openPauseMenu's startActivityForResult
-    // call
-    if (requestCode == 1) {
-      if (resultCode == RESULT_OK) {
-        int userInput = data.getIntExtra("result", 0);
-
-        if (userInput == 1) {
-          Log.i("Pause Result", "User has decided to resume play");
-        } else if (userInput == 2) {
-          Log.i("Pause Result", "User has decided to quit the game");
-          openMainMenu();
-        }
-      } else {
-        Log.i("Result Code", "Result code is " + resultCode);
-      }
-    }
   }
 }
