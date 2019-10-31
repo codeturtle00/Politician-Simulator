@@ -68,13 +68,13 @@ class EventManager implements View.OnTouchListener {
       if (randomNum == 1) {
         events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction(
-            "The baby needs to be cradled! Swipe horizontally in any direction.");
+            "The baby needs to be cradled! Swipe horizontally at any location.");
         Log.d("EventManager", "HorizontalShake started");
         System.out.println("Horizontal Event Set!");
       } else if (randomNum == 2) {
         events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction(
-            "The baby needs to be cradled! Swipe vertically in any direction.");
+            "The baby needs to be cradled! Swipe vertically at any location.");
         System.out.println("Vertical Event Set!");
         Log.d("EventManager", "VerticalShake started");
       } else if (randomNum == 3) {
