@@ -2,19 +2,15 @@ package com.example.politicgame.BabyGame;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.MainActivity;
 import com.example.politicgame.PauseButton;
-import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.SpeechGame.SpeechInstructionActivity;
 
@@ -23,12 +19,10 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   private Integer happiness = 50;
 
   private TextView scoreDisplay;
-  private TextView timer;
-
+  private Timer timer;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
-
 
     super.onCreate(savedInstanceState);
 
@@ -42,11 +36,6 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     babyFrame.addView(babyView);
 
     setTitle("The Baby Game");
-
-    // Timer
-    timer = findViewById(R.id.timerDisplay);
-    String timeLeft = "Time Left: " + babyView.getTimeLeft().toString();
-    timer.setText(timeLeft);
 
     // Score
     scoreDisplay = findViewById(R.id.scoreDisplay);
@@ -65,6 +54,22 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     // Generate Pause Button
     new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
+
+    // Start Timer
+    TextView timerView = findViewById(R.id.timerDisplay);
+    timer = new Timer(timerView);
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    timer.pause();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    timer.resume();
   }
 
   void openSpeechGame() {

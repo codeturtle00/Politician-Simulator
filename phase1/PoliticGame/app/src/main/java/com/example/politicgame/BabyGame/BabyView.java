@@ -4,12 +4,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.CountDownTimer;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 class BabyView extends SurfaceView implements Runnable {
   private boolean isRunning;
-  private Integer timeLeft;
   private BabyDraw babyDraw;
   private EventManager eventManager;
 
@@ -65,10 +65,6 @@ class BabyView extends SurfaceView implements Runnable {
     // Set the baby's coordinates in the eventManager.
     eventManager.setBabyX(holderWidth / 2);
     eventManager.setBabyY(holderHeight / 2);
-  }
-
-  Integer getTimeLeft() {
-    return 0;
   }
 
   @Override
