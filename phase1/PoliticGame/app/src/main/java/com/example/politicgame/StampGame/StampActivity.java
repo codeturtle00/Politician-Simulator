@@ -67,10 +67,12 @@ public class StampActivity extends AppCompatActivity {
                         gh.setPrompt(promptDisplay);
                         if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 80 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampLost();
-                            finish();
+                            //        finish();
+
                         } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 80 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampWon();
-                            finish();
+                            //        finish();
+
                         }
 
                     }
@@ -86,10 +88,12 @@ public class StampActivity extends AppCompatActivity {
                         gh.setPrompt(promptDisplay);
                         if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 80 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampLost();
-                            finish();
+                            //        finish();
+
                         } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 80 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampWon();
-                            finish();
+                            //        finish();
+
                         }
                     }
                 });
