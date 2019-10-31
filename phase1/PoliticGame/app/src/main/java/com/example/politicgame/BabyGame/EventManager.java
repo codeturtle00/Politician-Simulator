@@ -79,7 +79,7 @@ class EventManager implements View.OnTouchListener {
         Log.d("EventManager", "VerticalShake started");
       } else if (randomNum == 3) {
         events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
-        viewUpdater.updateEventAction("The kiss event has not been implemented yet.");
+        viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
         Log.d("EventManager", "Kiss started");
       }
     }
