@@ -2,6 +2,7 @@ package com.example.politicgame.BabyGame;
 
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 
 import com.example.politicgame.R;
@@ -19,7 +20,12 @@ class Kiss extends Event {
 
   @Override
   int update(View v, float initialX, float initialY, float finalX, float finalY) {
-    return 0; // Implement this class
+      if (Math.abs(finalY - initialY) < 5 && Math.abs(finalX - initialX) < 5) {
+        Log.d("Kiss", "Score increased");
+        return 1;
+      }
+    Log.d("Kiss", "Score decreased");
+    return -1;
   }
 
   @Override
