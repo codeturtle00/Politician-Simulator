@@ -39,15 +39,7 @@ public class RegistrationActivity extends AppCompatActivity {
     setContentView(R.layout.activity_registration);
 
     setTitle("Registration");
-
-    final Button confirmation = findViewById(R.id.regitser);
-    confirmation.setOnClickListener(
-        new View.OnClickListener() {
-          public void onClick(View v) {
-            // Code here executes on main thread after user presses button
-            openCharacterSelection();
-          }
-        });
+    
     this.fileSaving = new FileSavingService(this);
 
     final Button backButton = findViewById(R.id.goBack);
@@ -91,6 +83,8 @@ public class RegistrationActivity extends AppCompatActivity {
   }
 
   public void saveUserToDb(View view) {
+    Boolean saveSuccess = false;
+
     final EditText usernameText = findViewById(R.id.username);
     final EditText passwordText = findViewById(R.id.password);
     String nameString = usernameText.getText().toString();
@@ -101,6 +95,7 @@ public class RegistrationActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), duplicate, Toast.LENGTH_LONG).show();
       } else {
         JSONObject userObject = new JSONObject();
+        saveSuccess = true;
         try {
           userObject.put("UserName", nameString);
           userObject.put("Password", passString);
@@ -114,6 +109,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
         //Sets current user
         app.setCurrentUser(nameString);
+
+        if (saveSuccess){
+          openCharacterSelection();
+        }
       }
     }
   }

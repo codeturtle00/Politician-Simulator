@@ -10,15 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.politicgame.GameActivity;
 import com.example.politicgame.LeaderBoardActivity;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PauseButton;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 
-public class StampActivity extends AppCompatActivity {
+public class StampActivity extends GameActivity {
 
-    private PoliticGameApp app;
     StampGameHandler gh = new StampGameHandler();
 
     @Override
@@ -27,12 +27,12 @@ public class StampActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         app = (PoliticGameApp) getApplication();
 
         System.out.println("The current theme is blue: " + app.isThemeBlue());
 
-        if (app.isThemeBlue()){
+        if (app.isThemeBlue()) {
             setTheme(R.style.BlueTheme);
         } else {
             setTheme(R.style.RedTheme);
@@ -48,14 +48,14 @@ public class StampActivity extends AppCompatActivity {
         final TextView proposalLeft = findViewById(R.id.stamp_game_proposal_left);
 
 
-        final Button button = findViewById(R.id.leaderBoard);
-        button.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        // Code here executes on main thread after user presses button
-                        openLeaderBoard();
-                    }
-                });
+//        final Button button = findViewById(R.id.leaderBoard);
+//        button.setOnClickListener(
+//                new View.OnClickListener() {
+//                    public void onClick(View v) {
+//                        // Code here executes on main thread after user presses button
+//                        openLeaderBoard();
+//                    }
+//                });
 
         final Button button2 = findViewById(R.id.stamp_game_yes);
         button2.setOnClickListener(
@@ -67,10 +67,12 @@ public class StampActivity extends AppCompatActivity {
                         gh.setPrompt(promptDisplay);
                         if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 80 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampLost();
-                            finish();
+                            //        finish();
+
                         } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 80 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampWon();
-                            finish();
+                            //        finish();
+
                         }
 
                     }
@@ -86,10 +88,12 @@ public class StampActivity extends AppCompatActivity {
                         gh.setPrompt(promptDisplay);
                         if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 80 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampLost();
-                            finish();
+                            //        finish();
+
                         } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 80 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampWon();
-                            finish();
+                            //        finish();
+
                         }
                     }
                 });
@@ -102,11 +106,7 @@ public class StampActivity extends AppCompatActivity {
     }
 
 
-    private void openLeaderBoard() {
-        Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
-        startActivity(switchBoardIntent);
-        finish();
-    }
+
 
     public void openStampLost() {
         Intent stampLostIntent = new Intent(this, StampActivityLost.class);
@@ -120,31 +120,4 @@ public class StampActivity extends AppCompatActivity {
         finish();
     }
 
-    public void openMainMenu() {
-        Intent mainMenuIntent = new Intent(this, MainActivity.class);
-        startActivity(mainMenuIntent);
-        finish();
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        //requestCode refers to the request code parameter of openPauseMenu's startActivityForResult call
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                int userInput = data.getIntExtra("result", 0);
-
-                if (userInput == 1) {
-                    Log.i("Pause Result", "User has decided to resume play");
-                } else if (userInput == 2) {
-                    Log.i("Pause Result", "User has decided to quit the game");
-                    openMainMenu();
-                }
-            } else {
-                Log.i("Result Code", "Result code is " + resultCode);
-            }
-        }
-    }
 }
