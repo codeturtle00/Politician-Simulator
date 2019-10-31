@@ -7,7 +7,12 @@ import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-class BabyView extends SurfaceView implements ViewUpdater {
+class BabyView extends SurfaceView implements Runnable {
+
+  private boolean isRunning;
+
+  private Thread thread;
+
   /**
    * The BabyDraw stored in this BabyView, using dependency injection to call methods in
    * BabyActivity.
@@ -35,6 +40,7 @@ class BabyView extends SurfaceView implements ViewUpdater {
   BabyView(Context context) {
     super(context);
 
+    isRunning = true;
     // EventManager will manage the events for this game.
     eventManager = new EventManager(getResources(), this);
     setOnTouchListener(eventManager);
@@ -88,15 +94,6 @@ class BabyView extends SurfaceView implements ViewUpdater {
   }
 
   /**
-   * Returns the time left in the game.
-   *
-   * @return time left in game
-   */
-  Integer getTimeLeft() {
-    return 0;
-  }
-
-  /**
    * Updates BabyDraw rather than directly updating BabyActivity to prevent dependency on
    * BabyActivity.
    *
@@ -113,5 +110,12 @@ class BabyView extends SurfaceView implements ViewUpdater {
    */
   void setBabyDraw(BabyDraw babyDraw) {
     this.babyDraw = babyDraw;
+  }
+
+  @Override
+  public void run() {
+    while (isRunning){
+
+    }
   }
 }

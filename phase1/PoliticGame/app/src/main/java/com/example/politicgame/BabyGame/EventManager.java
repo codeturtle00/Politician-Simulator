@@ -17,7 +17,7 @@ class EventManager implements View.OnTouchListener {
   private Resources babyResources;
 
   /** ViewUpdater object managed by this EventManager */
-  private ViewUpdater viewUpdater;
+  private BabyView view;
 
   /** X coordinate of the baby */
   // DOESN'T WORK YET
@@ -41,16 +41,15 @@ class EventManager implements View.OnTouchListener {
 
   /**
    * Initializes a new EventManager which manages screen touches and events.
-   *
-   * @param babyResources resources needed to draw the baby
-   * @param viewUpdater ViewUpdater this EventManager updates.
+   *  @param babyResources resources needed to draw the baby
+   * @param view ViewUpdater this EventManager updates.
    */
-  EventManager(Resources babyResources, ViewUpdater viewUpdater) {
+  EventManager(Resources babyResources, BabyView view) {
     events = new ArrayList<>();
     this.babyResources = babyResources;
-    this.viewUpdater = viewUpdater;
+    this.view = view;
 
-    events.add(new HorizontalShake(this.babyX, this.babyY, this.babyResources));
+//    events.add(new HorizontalShake(this.babyX, this.babyY, this.babyResources));
   }
 
   /** Randomly generates an event. */
@@ -97,7 +96,7 @@ class EventManager implements View.OnTouchListener {
    * @param happinessChange the amount to change happiness by
    */
   void update(int happinessChange) {
-    viewUpdater.update(happinessChange);
+    view.update(happinessChange);
   }
 
   // NOT USED YET

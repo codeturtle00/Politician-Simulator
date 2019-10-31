@@ -5,17 +5,10 @@ import android.util.Log;
 import android.view.View;
 
 class HorizontalShake extends Event {
-
-  /**
-   * Creates this HorizontalShake event.
-   *
-   * @param x the X coordinate of the baby
-   * @param y the Y coordinate of the baby
-   * @param res the resources to draw the baby
-   */
-  HorizontalShake(float x, float y, Resources res) {
-    super(x, y, res);
+  HorizontalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
+    super(babyX, babyY, babyWidth, babyHeight, res);
   }
+
 
   /**
    * Returns positive or negative change in happiness based on touch inputs
@@ -37,5 +30,15 @@ class HorizontalShake extends Event {
     }
     Log.d("HorizontalShake", "Score decreased");
     return -1;
+  }
+
+  @Override
+  int determineXCoordinate() {
+    return 0;
+  }
+
+  @Override
+  int determineYCoordinate() {
+    return 0;
   }
 }
