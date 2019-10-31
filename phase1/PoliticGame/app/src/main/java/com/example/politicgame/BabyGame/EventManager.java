@@ -111,7 +111,7 @@ class EventManager implements View.OnTouchListener {
     // Only runs when finger is lifted off screen
     if (touch.getAction() == MotionEvent.ACTION_UP) {
       for (Event e : events) {
-        update(e.handleTouch(v, initialX, initialY, finalX, finalY));
+        updateScore(e.handleTouch(v, initialX, initialY, finalX, finalY));
       }
     }
     return true;
@@ -122,7 +122,7 @@ class EventManager implements View.OnTouchListener {
    *
    * @param happinessChange the amount to change happiness by
    */
-  private void update(int happinessChange) {
+  private void updateScore(int happinessChange) {
     viewUpdater.updateScore(happinessChange);
   }
 
