@@ -17,15 +17,23 @@ class EventManager implements View.OnTouchListener {
   private Resources babyResources;
 
   /** ViewUpdater object managed by this EventManager */
-  private BabyView view;
+  private ViewUpdater viewUpdater;
 
   /** X coordinate of the baby */
   // DOESN'T WORK YET
-  private float babyX;
+  private int babyX;
 
   /** Y coordinate of the baby */
   // DOESN'T WORK YET
-  private float babyY;
+  private int babyY;
+
+  /** Width of the baby */
+  // DOESN'T WORK YET
+  private int babyWidth = 0;
+
+  /** Height of the baby */
+  // DOESN'T WORK YET
+  private int babyHeight = 0;
 
   /** X coordinate when screen is touched */
   private float initialX;
@@ -41,21 +49,40 @@ class EventManager implements View.OnTouchListener {
 
   /**
    * Initializes a new EventManager which manages screen touches and events.
-   *  @param babyResources resources needed to draw the baby
-   * @param view ViewUpdater this EventManager updates.
+   *
+   * @param babyResources resources needed to draw the baby
+   * @param viewUpdater ViewUpdater this EventManager updates.
    */
-  EventManager(Resources babyResources, BabyView view) {
+  EventManager(Resources babyResources, ViewUpdater viewUpdater) {
     events = new ArrayList<>();
     this.babyResources = babyResources;
-    this.view = view;
-
-//    events.add(new HorizontalShake(this.babyX, this.babyY, this.babyResources));
+    this.viewUpdater = viewUpdater;
   }
 
   /** Randomly generates an event. */
-  void randomEvent() {
-    Random rand = new Random();
-    final int randomNum = rand.nextInt((4) + 1) + 1;
+  void randomEvent(int timeLeft) {
+    if (timeLeft % 3 == 0) {
+      events.clear();
+      Random rand = new Random();
+      final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
+      if (randomNum == 1) {
+        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
+        viewUpdater.updateEventAction(
+            "The baby needs to be cradled! Swipe horizontally at any location.");
+        Log.d("EventManager", "HorizontalShake started");
+        System.out.println("Horizontal Event Set!");
+      } else if (randomNum == 2) {
+        events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
+        viewUpdater.updateEventAction(
+            "The baby needs to be cradled! Swipe vertically at any location.");
+        System.out.println("Vertical Event Set!");
+        Log.d("EventManager", "VerticalShake started");
+      } else if (randomNum == 3) {
+        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
+        viewUpdater.updateEventAction("The kiss event has not been implemented yet.");
+        Log.d("EventManager", "Kiss started");
+      }
+    }
   }
 
   /**
@@ -86,7 +113,6 @@ class EventManager implements View.OnTouchListener {
       for (Event e : events) {
         update(e.update(v, initialX, initialY, finalX, finalY));
       }
-      update(0);
     }
     return true;
   }
@@ -96,8 +122,8 @@ class EventManager implements View.OnTouchListener {
    *
    * @param happinessChange the amount to change happiness by
    */
-  void update(int happinessChange) {
-    view.update(happinessChange);
+  private void update(int happinessChange) {
+    viewUpdater.updateScore(happinessChange);
   }
 
   // NOT USED YET
@@ -112,7 +138,7 @@ class EventManager implements View.OnTouchListener {
    *
    * @param babyX X coordinate of the baby
    */
-  void setBabyX(float babyX) {
+  void setBabyX(int babyX) {
     this.babyX = babyX;
   }
 
@@ -121,7 +147,7 @@ class EventManager implements View.OnTouchListener {
    *
    * @param babyY Y coordinate of the baby
    */
-  void setBabyY(float babyY) {
+  void setBabyY(int babyY) {
     this.babyY = babyY;
   }
 }

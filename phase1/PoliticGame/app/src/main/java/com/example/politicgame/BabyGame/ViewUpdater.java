@@ -12,5 +12,7 @@ interface ViewUpdater {
    *
    * @param happinessChange the amount to change happiness by
    */
-  void update(int happinessChange);
+  void updateScore(int happinessChange);
+
+  void updateEventAction(String eventAction);
 }

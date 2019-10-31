@@ -35,4 +35,6 @@
     <string name="stamp_game_happy_face">happy face</string>
     <string name="stamp_game_lost_message">Unfortunately, you have dropped out of the election due to your underwhelming performance during this stage.</string>
     <string name="sad_face_for_stamp_game">sad face for stamp game</string>
+    <string name="logged_in_activity_create_char">Create Character</string>
+    <string name="logged_in_activity_select_char">Select Character</string>
 </resources>

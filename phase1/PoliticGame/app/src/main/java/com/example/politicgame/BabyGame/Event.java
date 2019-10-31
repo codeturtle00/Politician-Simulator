@@ -6,9 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 
-/**
- * A superclass of every event in this game.
- */
+/** A superclass of every event in this game. */
 abstract class Event {
   protected final int babyHeight;
   protected final int babyWidth;
@@ -24,6 +22,7 @@ abstract class Event {
 
   /**
    * Updates the score based on touch input values.
+   *
    * @param v the View being used
    * @param initialX the X coordinate of the initial touch
    * @param initialY the Y coordinate of the initial touch
@@ -40,7 +39,6 @@ abstract class Event {
     this.babyHeight = babyHeight;
     this.res = res;
     this.paint = new Paint();
-
   }
 
   abstract int determineXCoordinate();

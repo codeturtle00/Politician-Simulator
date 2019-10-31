@@ -1,14 +1,28 @@
 package com.example.politicgame.BabyGame;
 
 import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.View;
 
+import com.example.politicgame.R;
+
 class HorizontalShake extends Event {
+  /**
+   * Creates this HorizontalShake event.
+   *
+   * @param babyX the X coordinate of the baby
+   * @param babyY the Y coordinate of the baby
+   * @param babyWidth the width of the baby
+   * @param babyHeight the height of the baby
+   * @param res the resources to draw the baby
+   */
   HorizontalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     super(babyX, babyY, babyWidth, babyHeight, res);
+    setX(determineXCoordinate());
+    setY(determineYCoordinate());
+    setImg(BitmapFactory.decodeResource(res, R.drawable.kisslips));
   }
-
 
   /**
    * Returns positive or negative change in happiness based on touch inputs

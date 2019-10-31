@@ -19,6 +19,10 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   private Integer happiness = 50;
 
   private TextView scoreDisplay;
+  private TextView eventActionText;
+  private TextView timerDisplay;
+
+  private BabyView babyView;
   private Timer timer;
 
   @Override
@@ -28,8 +32,9 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     // Embed BabyView into xml layout
     setContentView(R.layout.activity_baby);
-    BabyView babyView = new BabyView(this);
+    babyView = new BabyView(this);
     babyView.setBabyDraw(this);
+
     FrameLayout babyFrame = findViewById(R.id.babyFrame);
     babyFrame.addView(babyView);
 
@@ -39,6 +44,13 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     scoreDisplay = findViewById(R.id.scoreDisplay);
     String score = happiness.toString() + "%";
     scoreDisplay.setText(score);
+
+    // Event Action
+    eventActionText = findViewById(R.id.eventActionText);
+
+    // Timer View
+    timerDisplay = findViewById(R.id.timerDisplay);
+    timer = new Timer(this, babyView);
 
     // Next Button (delete later)
     final Button next = findViewById(R.id.next);
@@ -52,10 +64,6 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     // Generate Pause Button
     new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
-
-    // Start Timer
-    TextView timerView = findViewById(R.id.timerDisplay);
-    timer = new Timer(timerView);
   }
 
   @Override
@@ -76,9 +84,20 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     finish();
   }
 
+  @Override
   public void updateScore(int happinessChange) {
     happiness += happinessChange;
     String score = happiness.toString() + "%";
     scoreDisplay.setText(score);
+  }
+
+  @Override
+  public void updateTime(String time) {
+    timerDisplay.setText(time);
+  }
+
+  public void updateEventAction(String eventAction) {
+    eventActionText.setText(eventAction);
+    System.out.println("Event action set!");
   }
 }

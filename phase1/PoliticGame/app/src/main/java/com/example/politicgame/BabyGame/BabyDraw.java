@@ -13,4 +13,8 @@ interface BabyDraw {
    * @param happinessChange the amount to change happiness by
    */
   void updateScore(int happinessChange);
+
+  void updateEventAction(String eventAction);
+
+  void updateTime(String time);
 }

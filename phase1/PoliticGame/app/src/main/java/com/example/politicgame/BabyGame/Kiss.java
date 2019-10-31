@@ -10,7 +10,6 @@ import java.util.Random;
 
 class Kiss extends Event {
 
-
   Kiss(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     super(babyX, babyY, babyWidth, babyHeight, res);
     setX(determineXCoordinate());
@@ -25,13 +24,15 @@ class Kiss extends Event {
 
   @Override
   int determineXCoordinate() {
-    Random r = new Random();
-    return babyX + r.nextInt(babyWidth);
+//    Random r = new Random();
+//    return babyX + r.nextInt(babyWidth);
+    return 0;
   }
 
   @Override
   int determineYCoordinate() {
-    Random r = new Random();
-    return babyY + r.nextInt(babyHeight/2);
+//    Random r = new Random();
+//    return babyY + r.nextInt(babyHeight / 2);
+    return 0;
   }
 }

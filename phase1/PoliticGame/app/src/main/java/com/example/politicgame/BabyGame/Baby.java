@@ -10,25 +10,25 @@ import com.example.politicgame.R;
 
 public class Baby {
 
-    private int x;
-    private int y;
-    private int width;
-    private int height;
-    private Paint paint;
-    private Bitmap babyImg;
+  private float x;
+  private float y;
+  private int width;
+  private int height;
+  private Paint paint;
+  private Bitmap babyImg;
 
-    public Baby(int x, int y, Resources res) {
-        paint = new Paint();
-        this.x = x;
-        this.y = y;
-        babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
-        //width and height needs to be changed to dynamically scaled depending on holder width/height
-        babyImg = Bitmap.createScaledBitmap(babyImg, 320,640, false);
-        this.width = babyImg.getWidth();
-        this.height = babyImg.getHeight();
-    }
+  public Baby(int x, int y, Resources res) {
+    paint = new Paint();
+    this.x = x;
+    this.y = y;
+    babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
+    // width and height needs to be changed to dynamically scaled depending on holder width/height
+    babyImg = Bitmap.createScaledBitmap(babyImg, 320, 640, false);
+    this.width = babyImg.getWidth();
+    this.height = babyImg.getHeight();
+  }
 
-    public void draw(Canvas canvas) {
-        canvas.drawBitmap(babyImg, this.x - (width / 2), this.y - (height / 2), paint);
-    }
+  public void draw(Canvas canvas) {
+    canvas.drawBitmap(babyImg, this.x - (width / 2), this.y - (height / 2), paint);
+  }
 }
