@@ -49,7 +49,7 @@ class EventManager implements View.OnTouchListener {
     this.babyResources = babyResources;
     this.view = view;
 
-    events.add(new HorizontalShake(this.babyX, this.babyY, this.babyResources));
+//    events.add(new HorizontalShake(this.babyX, this.babyY, this.babyResources));
   }
 
   /** Randomly generates an event. */
