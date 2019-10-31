@@ -7,26 +7,26 @@ import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-public class BabyView extends SurfaceView implements Runnable {
+class BabyView extends SurfaceView implements Runnable {
   private boolean isRunning;
   private Integer timeLeft;
+  private BabyDraw babyDraw;
   private EventManager eventManager;
 
-  private SurfaceHolder holder;
   private int holderWidth;
   private int holderHeight;
   private Canvas canvas;
 
   private Thread thread;
 
-  public BabyView(Context context) {
+  BabyView(Context context) {
     super(context);
     isRunning = true;
-    eventManager = new EventManager(getX(), getY(), holderWidth, holderHeight, getResources());
-    holder = getHolder();
+    eventManager = new EventManager(getResources());
+    setOnTouchListener(eventManager);
+    SurfaceHolder holder = getHolder();
     holder.addCallback(
         new SurfaceHolder.Callback() {
-
           @Override
           public void surfaceDestroyed(SurfaceHolder holder) {}
 
@@ -49,18 +49,22 @@ public class BabyView extends SurfaceView implements Runnable {
   public void draw(Canvas canvas) {
     super.draw(canvas);
 
-    // set background color
+    // Set background color.
     canvas.drawColor(Color.rgb(0, 188, 212));
     Paint paint = new Paint();
     paint.setColor(Color.WHITE);
 
-    // example circle
+    // Example circle.
     canvas.drawCircle(holderWidth / 2, holderHeight / 2, 400, paint);
     System.out.println("drew circle");
 
-    // trying to draw baby in centre. pls help!
+    // Draws baby in the center.
     Baby baby = new Baby(holderWidth / 2, holderHeight / 2, getResources());
     baby.draw(canvas);
+
+    // Set the baby's coordinates in the eventManager.
+    eventManager.setBabyX(holderWidth / 2);
+    eventManager.setBabyY(holderHeight / 2);
   }
 
   Integer getTimeLeft() {
@@ -69,14 +73,14 @@ public class BabyView extends SurfaceView implements Runnable {
 
   @Override
   public void run() {
-//    for (int i = 61; i > 0; i--) {
-      if (isRunning) {
-        update();
-        eventManager.draw(canvas);
-        sleep();
-//        timeLeft = i;
-      }
-//    }
+    //    for (int i = 61; i > 0; i--) {
+    //    if (isRunning) {
+    //    update();
+    //      eventManager.draw(canvas);
+    //        sleep();
+    //        timeLeft = i;
+    //    }
+    //    }
   }
 
   private void sleep() {
@@ -88,7 +92,7 @@ public class BabyView extends SurfaceView implements Runnable {
   }
 
   private void update() {
-    eventManager.update(timeLeft);
+    babyDraw.updateScore(eventManager.update(0));
   }
 
   public void resume() {
@@ -104,5 +108,9 @@ public class BabyView extends SurfaceView implements Runnable {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
+  }
+
+  void setBabyDraw(BabyDraw babyDraw) {
+    this.babyDraw = babyDraw;
   }
 }
