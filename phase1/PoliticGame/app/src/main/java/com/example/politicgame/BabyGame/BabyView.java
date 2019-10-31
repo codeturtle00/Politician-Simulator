@@ -7,23 +7,38 @@ import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-class BabyView extends SurfaceView implements Runnable {
-  private boolean isRunning;
-  private Integer timeLeft;
+class BabyView extends SurfaceView implements ViewUpdater {
+  /**
+   * The BabyDraw stored in this BabyView, using dependency injection to call methods in
+   * BabyActivity.
+   */
   private BabyDraw babyDraw;
+
+  /** The EventManager stored in this BabyView. */
   private EventManager eventManager;
 
+  /** Holder width. */
   private int holderWidth;
+
+  /** Holder Height */
   private int holderHeight;
+
+  /** Canvas which is being drawn on */
   private Canvas canvas;
 
-  private Thread thread;
-
+  /**
+   * Creates the BabyView object which tells BabyActivity what animations to draw, scores to update,
+   * times to update, and instructions to display.
+   *
+   * @param context the surface context
+   */
   BabyView(Context context) {
     super(context);
-    isRunning = true;
-    eventManager = new EventManager(getResources());
+
+    // EventManager will manage the events for this game.
+    eventManager = new EventManager(getResources(), this);
     setOnTouchListener(eventManager);
+
     SurfaceHolder holder = getHolder();
     holder.addCallback(
         new SurfaceHolder.Callback() {
@@ -46,6 +61,11 @@ class BabyView extends SurfaceView implements Runnable {
         });
   }
 
+  /**
+   * Draws the initial state of the activity on a canvas.
+   *
+   * @param canvas the canvas which is drawn on.
+   */
   public void draw(Canvas canvas) {
     super.draw(canvas);
 
@@ -67,49 +87,30 @@ class BabyView extends SurfaceView implements Runnable {
     eventManager.setBabyY(holderHeight / 2);
   }
 
+  /**
+   * Returns the time left in the game.
+   *
+   * @return time left in game
+   */
   Integer getTimeLeft() {
     return 0;
   }
 
-  @Override
-  public void run() {
-    //    for (int i = 61; i > 0; i--) {
-    //    if (isRunning) {
-    //    update();
-    //      eventManager.draw(canvas);
-    //        sleep();
-    //        timeLeft = i;
-    //    }
-    //    }
+  /**
+   * Updates BabyDraw rather than directly updating BabyActivity to prevent dependency on
+   * BabyActivity.
+   *
+   * @param happinessChange the amount to change happiness by
+   */
+  public void update(int happinessChange) {
+    babyDraw.updateScore(happinessChange);
   }
 
-  private void sleep() {
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-  }
-
-  private void update() {
-    babyDraw.updateScore(eventManager.update(0));
-  }
-
-  public void resume() {
-    isRunning = true;
-    thread = new Thread(this);
-    thread.start();
-  }
-
-  public void pause() {
-    try {
-      isRunning = false;
-      thread.join();
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-  }
-
+  /**
+   * Sets the BabyDraw for this BabyView.
+   *
+   * @param babyDraw the BabyDraw
+   */
   void setBabyDraw(BabyDraw babyDraw) {
     this.babyDraw = babyDraw;
   }

@@ -11,15 +11,10 @@ class Kiss extends Event {
 
   Kiss(float x, float y, Resources res) {
     super(x, y, res);
-    Bitmap lips = BitmapFactory.decodeResource(res, R.drawable.baby);
-    // in the future, dynamically scale lips
-    setImg(lips);
-  }
-
-  public int update() {
-    return getDeltaScore();
   }
 
   @Override
-  void handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {}
+  int update(View v, float initialX, float initialY, float finalX, float finalY) {
+    return 0; // Implement this class
+  }
 }

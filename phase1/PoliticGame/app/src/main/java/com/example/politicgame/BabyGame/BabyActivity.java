@@ -32,7 +32,7 @@ public class BabyActivity extends AppCompatActivity implements BabyDraw {
 
     System.out.println("The current theme is blue: " + app.isThemeBlue());
 
-    if (app.isThemeBlue()){
+    if (app.isThemeBlue()) {
       setTheme(R.style.BlueTheme);
     } else {
       setTheme(R.style.RedTheme);
@@ -44,8 +44,10 @@ public class BabyActivity extends AppCompatActivity implements BabyDraw {
     setContentView(R.layout.activity_baby);
     BabyView babyView = new BabyView(this);
     babyView.setBabyDraw(this);
-    Thread thread = new Thread(babyView);
-    thread.start();
+    CountDown countDown = new CountDown(babyView, 0);
+    new Thread(countDown).start();
+    //    Thread thread = new Thread(babyView);
+    //    thread.start();
     FrameLayout babyFrame = findViewById(R.id.babyFrame);
     babyFrame.addView(babyView);
 
@@ -84,6 +86,7 @@ public class BabyActivity extends AppCompatActivity implements BabyDraw {
   public void updateScore(int happinessChange) {
     happiness += happinessChange;
     String score = happiness.toString() + "%";
+    System.out.println(score);
     scoreDisplay.setText(score);
   }
 
