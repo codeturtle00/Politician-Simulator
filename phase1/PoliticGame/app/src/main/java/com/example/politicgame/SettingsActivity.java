@@ -100,6 +100,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void restart (){
         Intent restart = new Intent(this, SettingsActivity.class);
+        restart.putExtra("SESSION_ID", lastActivity);
         startActivity(restart);
         finish();
     }
