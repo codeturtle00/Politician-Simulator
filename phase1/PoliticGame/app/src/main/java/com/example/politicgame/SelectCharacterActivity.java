@@ -93,8 +93,11 @@ public class SelectCharacterActivity extends AppCompatActivity {
 
     public void characterSet(String name){
         selectedCharacter.setName(name);
-        this.userManager.loginUser.setCharArray(selectedCharacter.getJsonCharacter());
-        this.userManager.loginUser.saveToDb();
+        UserAccount user = app.getCurrentUser();
+        user.setCharArray(selectedCharacter.getJsonCharacter());
+        System.out.println("Saved!!!");
+        user.saveToDb();
+        //this.userManager.loginUser.saveToDb();
 
         //Sets current characters' name
         app.setCurrentCharacter(name);
