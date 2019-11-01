@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.GamesActivity.BabyGame.BabyActivity;
+import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstruction;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
@@ -152,7 +152,7 @@ public class LoadCharacterActivity extends GameActivity {
         if(currCharacter != 0 && cellLoaded[currCharacter - 1]){
             app.setCurrentCharacter(cellNames[currCharacter - 1]);
 
-            Intent babyGameIntent = new Intent (this, BabyActivity.class);
+            Intent babyGameIntent = new Intent (this, BabyGameInstruction.class);
             startActivity(babyGameIntent);
         }
     }

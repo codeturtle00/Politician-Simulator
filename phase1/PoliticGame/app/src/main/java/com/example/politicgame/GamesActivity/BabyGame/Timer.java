@@ -11,7 +11,7 @@ class Timer {
   private BabyView babyView;
 
   Timer(BabyDraw babyDraw, BabyView babyView) {
-    timeLeftInMillis = 60000;
+    timeLeftInMillis = 30000;
     this.babyDraw = babyDraw;
     this.babyView = babyView;
   }
@@ -46,9 +46,5 @@ class Timer {
           }
         };
     timer.start();
-  }
-
-  long getTimeLeft() {
-    return timeLeftInMillis;
   }
 }

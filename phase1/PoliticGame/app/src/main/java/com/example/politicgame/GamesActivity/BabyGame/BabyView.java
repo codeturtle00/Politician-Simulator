@@ -72,7 +72,7 @@ class BabyView extends SurfaceView implements ViewUpdater {
     super.draw(canvas);
 
     // Set background color.
-    canvas.drawColor(Color.rgb(0, 188, 212));
+    canvas.drawColor(Color.TRANSPARENT);
     Paint paint = new Paint();
     paint.setColor(Color.WHITE);
 

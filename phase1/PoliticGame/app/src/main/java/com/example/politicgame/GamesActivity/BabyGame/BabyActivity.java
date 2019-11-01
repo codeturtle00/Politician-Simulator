@@ -18,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.politicgame.Character.UserAccount;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.PauseButton;
+import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.GamesActivity.SpeechGame.SpeechInstructionActivity;
 
@@ -36,12 +37,14 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   private TextView timerDisplay;
 
   private BabyView babyView;
+  private PoliticGameApp app;
   private Timer timer;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
 
     super.onCreate(savedInstanceState);
+    app = (PoliticGameApp) getApplication();
 
     if(isGameComplete(LEVEL_NAME)){
       openSpeechGame();
@@ -137,6 +140,9 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     TextView score = gameOutroDialog.findViewById(R.id.score);
     score.setText(String.format("Your score is %d", happiness));
     ImageButton nextButton = gameOutroDialog.findViewById(R.id.next);
+
+    UserAccount user = app.getCurrentUser();
+
     nextButton.setOnClickListener(
             new View.OnClickListener() {
               public void onClick(View v) {

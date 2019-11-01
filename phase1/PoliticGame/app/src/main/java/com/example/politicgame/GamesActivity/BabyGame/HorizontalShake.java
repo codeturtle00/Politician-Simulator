@@ -39,7 +39,7 @@ class HorizontalShake extends Event {
     if (initialX > getX() && initialY > getY()) {
       if (Math.abs(finalY - initialY) < 100 && Math.abs(finalX - initialX) > 100) {
         Log.d("HorizontalShake", "Score increased");
-        return 10;
+        return 5;
       }
     }
     Log.d("HorizontalShake", "Score decreased");
