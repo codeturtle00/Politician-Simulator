@@ -36,6 +36,12 @@ public class UserAccount {
     this.charArray = charObject;
   }
 
+  public JSONArray getCharArray(){return this.charArray;}
+
+  public String getDisplayName() {
+    return displayName;
+  }
+
   public void deleteCharByName(String charName){
     try{
       for(int i = 0; i < charArray.length(); i++){
@@ -43,6 +49,28 @@ public class UserAccount {
         String currName = currentChar.keys().next();
         if (currName.equals(charName)){
           charArray.remove(i);
+        }
+
+      }
+    } catch (JSONException e){
+      e.printStackTrace();
+    }
+  }
+
+  public void resetLevels(String charName){
+    try{
+      for(int i = 0; i < charArray.length(); i++){
+        JSONObject currentChar = charArray.getJSONObject(i);
+        String currName = currentChar.keys().next();
+        if (currName.equals(charName)){
+          JSONObject characterInfo = currentChar.getJSONObject(charName);
+
+          JSONObject level1 = characterInfo.getJSONObject("LEVEL1");
+          level1 = new JSONObject().put("rating", level1.getInt("rating"));
+          JSONObject level2 = characterInfo.getJSONObject("LEVEL2");
+          level2 = new JSONObject().put("rating", level2.getInt("rating"));
+          JSONObject level3 = characterInfo.getJSONObject("LEVEL3");
+          level3 = new JSONObject().put("rating", level3.getInt("rating"));
         }
 
       }
@@ -67,10 +95,19 @@ public class UserAccount {
     return new JSONObject();
   }
 
-  public JSONArray getCharArray(){return this.charArray;}
+  public void addScore(String charName, int score){
+    try{
+      for(int i = 0; i < charArray.length(); i++){
+        JSONObject currentChar = charArray.getJSONObject(i);
+        String currName = currentChar.keys().next();
+        if (currName.equals(charName)){
+          currentChar.getJSONObject(charName).getJSONArray("SCORE").put(score);
+        }
+      }
+    } catch (JSONException e){
+      e.printStackTrace();
+    }
 
-  public String getDisplayName() {
-    return displayName;
   }
 
   @Override
