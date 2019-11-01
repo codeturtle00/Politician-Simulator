@@ -7,22 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-<<<<<<< HEAD:phase1/PoliticGame/app/src/main/java/com/example/politicgame/UserActivity/LoginActivity/LoadCharacterActivity.java
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
-=======
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.politicgame.Common.FileSavingService;
-import com.example.politicgame.User.UserAccount;
+import com.example.politicgame.Character.UserAccount;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
->>>>>>> af75400ed92afdf7a6b26a964324d9ae7731f988:phase1/PoliticGame/app/src/main/java/com/example/politicgame/LoadCharacterActivity.java
 
 import java.util.Iterator;
 
