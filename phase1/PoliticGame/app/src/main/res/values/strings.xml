@@ -24,7 +24,6 @@
     <string name="prompt_email">Email or UserName</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in_short"> Sign In</string>
-    <string name="action_sign_in"> Sign In</string>
     <string name="invalid_password">Invalid Password</string>
     <string name="invalid_username">Invalid Password</string>
     <string name="login_failed">Invalid Password</string>
@@ -37,4 +36,9 @@
     <string name="sad_face_for_stamp_game">sad face for stamp game</string>
     <string name="logged_in_activity_create_char">Create Character</string>
     <string name="logged_in_activity_select_char">Select Character</string>
+    <string name="action_sign_in">Sign In</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="resume">Resume</string>
+    <string name="pause_menu_image">pause_menu_image</string>
+    <string name="load_screen">change character</string>
 </resources>

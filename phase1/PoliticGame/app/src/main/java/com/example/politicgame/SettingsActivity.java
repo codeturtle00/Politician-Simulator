@@ -1,12 +1,7 @@
 package com.example.politicgame;
 
-import android.bluetooth.BluetoothA2dp;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,13 +9,11 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.example.politicgame.Common.FileSavingService;
 
 
 public class SettingsActivity extends AppCompatActivity {
     protected PoliticGameApp app;
+    private String lastActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +29,8 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         setTitle("Settings");
+
+        lastActivity = getIntent().getStringExtra("SESSION_ID");
 
         //Music player's current track
         final TextView currentTrack = findViewById(R.id.currentTrackText);
@@ -60,7 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                 });
 
-        final Button quitButton = findViewById(R.id.goBack);
+        final Button quitButton = findViewById(R.id.sign_out);
         quitButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -109,8 +104,13 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void returnMainMenu (){
-        Intent returnMainMenu = new Intent(this, MainActivity.class);
-        startActivity(returnMainMenu);
+        if (lastActivity.equals("main")){
+            Intent restartIntent = new Intent(this, MainActivity.class);
+            startActivity(restartIntent);
+        } else {
+            Intent restartIntent = new Intent(this, LoggedInActivity.class);
+            startActivity(restartIntent);
+        }
         finish();
     }
 }

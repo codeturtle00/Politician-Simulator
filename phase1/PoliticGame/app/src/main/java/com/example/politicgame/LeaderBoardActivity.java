@@ -63,8 +63,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
         /**
          * Returns to main menu
          */
-        Intent switchMainIntent = new Intent(this, MainActivity.class);
-        startActivity(switchMainIntent);
         finish();
     }
 

@@ -105,8 +105,8 @@ class BabyView extends SurfaceView implements ViewUpdater {
     babyDraw.updateEventAction(eventAction);
   }
 
-  void randomEvent(int timeLeft) {
-    eventManager.randomEvent(timeLeft);
+  void randomEvent() {
+    eventManager.randomEvent();
   }
 
   /**
