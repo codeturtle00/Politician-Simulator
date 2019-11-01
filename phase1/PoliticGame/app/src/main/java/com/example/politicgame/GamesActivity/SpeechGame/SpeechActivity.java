@@ -60,16 +60,6 @@ public class SpeechActivity extends AppCompatActivity {
 
     setTitle("The Speech Game");
 
-//    final Button pauseB = findViewById(R.id.pause);
-//    pauseB.setOnClickListener(
-//            new View.OnClickListener() {
-//              public void onClick(View v) {
-//                Log.i("Button", "The pause button has been clicked");
-//
-//                //The method below will pause the game and handle the following inputs
-//                openPauseMenu();
-//              }
-//            });
     new PauseButton((ConstraintLayout) findViewById(R.id.speechLayout), this);
   }
 
@@ -153,7 +143,10 @@ public class SpeechActivity extends AppCompatActivity {
       e.printStackTrace();
     }
   }
-  /* Set the prompt and choices into speech attribute*/
+
+  /**
+   * Reads the file stored to get info for prompt and choices
+   */
   private void readFile() {
     try {
       FileInputStream fileInputStream = openFileInput(FILE_NAME);
@@ -188,30 +181,23 @@ public class SpeechActivity extends AppCompatActivity {
    * page If the user input does not match the answer,keep the point and go to fail result page
    */
   public void compare(View view) {
-    EditText editText = (EditText) findViewById(R.id.answer);
+    EditText editText = findViewById(R.id.answer);
     String userInput = editText.getText().toString();
     boolean matches = userInput.toLowerCase().equals(this.correct.toLowerCase());
     if (matches) {
       Intent successfulIntent = new Intent(this, SuccessSpeechResult.class);
-      // TODO:Add points for the user
       successfulIntent.putExtra(INPUT_MESSAGE, userInput);
       startActivity(successfulIntent);
       rating.awardPoints();
       System.out.println(SpeechAwardPoints.getFeedback());
     } else {
       Intent failIntent = new Intent(this, FailureSpeechResult.class);
-      // TODO: Keep point for the user
       failIntent.putExtra(INPUT_MESSAGE, userInput);
       startActivity(failIntent);
       rating.losePoints();
     }
   }
 
-
-  public void openPauseMenu(){
-    Intent pauseMenuIntent = new Intent(this, PauseActivity.class);
-    startActivityForResult(pauseMenuIntent, 1);
-  }
 
   public void openMainMenu(){
     Intent mainMenuIntent = new Intent(this, MainActivity.class);
@@ -220,7 +206,9 @@ public class SpeechActivity extends AppCompatActivity {
   }
 
 
-  /* Switch to Next Game View**/
+  /**
+   *  Switch to Next Game View
+   *  **/
   public void openStampGame() {
     Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
     startActivity(switchStampIntent);

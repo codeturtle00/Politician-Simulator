@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.politicgame.GamesActivity.StampGame.StampInstructionActivity;
 import com.example.politicgame.R;
 
 public class SpeechResult extends AppCompatActivity {
@@ -31,6 +32,14 @@ public class SpeechResult extends AppCompatActivity {
                         returnSpeech();
                     }
                 });
+
+        final Button button = findViewById(R.id.speechNext);
+        button.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        openStampGame();
+                    }
+                });
     }
 
     @Override
@@ -43,6 +52,12 @@ public class SpeechResult extends AppCompatActivity {
         Intent backToSpeech = new Intent(this, SpeechActivity.class);
         backToSpeech.putExtra("current rating", SpeechAwardPoints.getCurrentPoints());
         startActivity(backToSpeech);
+        finish();
+    }
+
+    public void openStampGame() {
+        Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
+        startActivity(switchStampIntent);
         finish();
     }
 
