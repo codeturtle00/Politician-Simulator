@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,13 +15,20 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.politicgame.Character.UserAccount;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.PauseButton;
 import com.example.politicgame.R;
 import com.example.politicgame.GamesActivity.SpeechGame.SpeechInstructionActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class BabyActivity extends GameActivity implements BabyDraw {
   // Happiness of the baby. Also the player's score.
+  private final String LEVEL_NAME = "LEVEL1";
+
   private Integer happiness = 50;
 
   private TextView scoreDisplay;
@@ -101,7 +109,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
             new View.OnClickListener() {
               public void onClick(View v) {
                 gameOverDialog.dismiss();
-                openMainMenu();
+                openLoggedIn();
               }
             });
     gameOverDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -122,6 +130,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
             new View.OnClickListener() {
               public void onClick(View v) {
                 gameOutroDialog.dismiss();
+                saveGame(happiness, LEVEL_NAME);
                 openSpeechGame();
               }
             });

@@ -27,7 +27,7 @@
     <string name="invalid_password">Invalid Password</string>
     <string name="invalid_username">Invalid Password</string>
     <string name="login_failed">Invalid Password</string>
-    <string name="welcome">welcome</string>
+    <string name="welcome">welcome </string>
     <string name="speechRating">Your current rating: 0%</string>
     <string name="StampGameWon">Congratulations! You have made reasonable choices with the given proposals. Your charisma made you successfully be elected.</string>
     <string name="stamp_game_lost_leaderboard">Leaderboard</string>
