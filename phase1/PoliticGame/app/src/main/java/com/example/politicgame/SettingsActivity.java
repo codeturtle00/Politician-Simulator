@@ -104,7 +104,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void returnMainMenu (){
-        if (lastActivity == "main"){
+        if (lastActivity.equals("main")){
             Intent restartIntent = new Intent(this, MainActivity.class);
             startActivity(restartIntent);
         } else {
