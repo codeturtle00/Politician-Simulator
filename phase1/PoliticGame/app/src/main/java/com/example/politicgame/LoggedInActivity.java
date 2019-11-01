@@ -52,7 +52,7 @@ public class LoggedInActivity extends GameActivity {
 
 
         //Leaderboard button, opens the leaderboard
-        final Button boardButton = findViewById(R.id.leaderBoard);
+        final Button boardButton = findViewById(R.id.leader_board_logged);
         boardButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
