@@ -30,7 +30,7 @@ public class SelectCharacterActivity extends GameActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        app = (PoliticGameApp) getApplication();git
+        app = (PoliticGameApp) getApplication();
         setContentView(R.layout.activity_select_character);
 
         setTitle("Select Game Character");
