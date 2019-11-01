@@ -189,7 +189,7 @@ public class MainActivity extends GameActivity {
          * Open the settings menu
          */
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
-        settingsIntent.putExtra("EXTRA_SESSION_ID", "main");
+        settingsIntent.putExtra("SESSION_ID", "main");
         startActivity(settingsIntent);
         finish();
     }
