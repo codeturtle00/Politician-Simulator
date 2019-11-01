@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -41,6 +42,8 @@ class BabyView extends SurfaceView implements ViewUpdater {
     setOnTouchListener(eventManager);
 
     SurfaceHolder holder = getHolder();
+    setZOrderOnTop(true);
+    holder.setFormat(PixelFormat.TRANSPARENT);
     holder.addCallback(
         new SurfaceHolder.Callback() {
           @Override
@@ -71,8 +74,6 @@ class BabyView extends SurfaceView implements ViewUpdater {
   public void draw(Canvas canvas) {
     super.draw(canvas);
 
-    // Set background color.
-    canvas.drawColor(Color.rgb(0, 188, 212));
     Paint paint = new Paint();
     paint.setColor(Color.WHITE);
 
