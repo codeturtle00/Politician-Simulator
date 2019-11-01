@@ -10,7 +10,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.politicgame.GamesActivity.BabyGame.BabyActivity;
 import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstruction;
 import com.example.politicgame.UserActivity.LoginActivity.LoginActivity;
 
@@ -24,7 +23,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends GameActivity {
-    private final String FILE_NAME = "user_game_data.json";
 
     protected void onStart() {
         //If the theme is changed from the start menu then this will reflect that change
@@ -56,16 +54,6 @@ public class MainActivity extends GameActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //Play button, starts the game
-        final Button playButton = findViewById(R.id.start);
-        playButton.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        // Code here executes on main thread after user presses button
-                        openBabyGame();
-                    }
-                });
 
 
         //Login button, starts the login process
@@ -100,47 +88,10 @@ public class MainActivity extends GameActivity {
                     }
                 });
 
-        //Check if file exists
-        if (!fileExists()) {
-            Log.i("File Status", "The file does not exist yet at " + getFilesDir() + "/" + FILE_NAME);
-            createFile();
-        }
 
         ImageView trumpIMG = findViewById(R.id.trump);
         Animation animated_trump = AnimationUtils.loadAnimation(this, R.anim.animated_trump);
         trumpIMG.startAnimation(animated_trump);
-    }
-
-    public boolean fileExists(){
-        /**
-         * Checks if the file exists in the directory the game will be saved in
-         */
-
-        Log.i("File Status", "Checking at " + getFilesDir() + "/" + FILE_NAME);
-        return (new File(getFilesDir() + "/" + FILE_NAME)).exists();
-    }
-
-    public void createFile(){
-        /**
-         * Creates the file in the device which we will use to store user data and other persistent
-         * game info.
-         */
-
-        try {
-            FileOutputStream outputStream = openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
-            JSONArray fileStructure = new JSONArray();
-            JSONObject fillerUsers = generateEmptyLeaderBoard();
-
-            fileStructure.put(fillerUsers);
-
-            outputStream.write(fileStructure.toString().getBytes());
-            outputStream.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public JSONObject generateEmptyLeaderBoard(){

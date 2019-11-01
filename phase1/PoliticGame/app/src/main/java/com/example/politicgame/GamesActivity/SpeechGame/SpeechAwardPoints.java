@@ -1,7 +1,7 @@
 package com.example.politicgame.GamesActivity.SpeechGame;
 
 public class SpeechAwardPoints {
-    private final int POINTSGIVEN = 3;
+    private final int POINTSGIVEN = 10; //determines how many points are won/lost
     private static int currentPoints;
     private static String feedback;
     SpeechAwardPoints(int rating){

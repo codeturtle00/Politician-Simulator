@@ -8,10 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.politicgame.GameActivity;
+import com.example.politicgame.GamesActivity.StampGame.StampInstructionActivity;
 import com.example.politicgame.R;
 
-public class SpeechResult extends AppCompatActivity {
+public class SpeechResult extends GameActivity {
 
+    private final String LEVEL_NAME = "LEVEL2";
 
     @Override
     protected void onStart() {
@@ -31,10 +34,19 @@ public class SpeechResult extends AppCompatActivity {
                         returnSpeech();
                     }
                 });
+
+        final Button next = findViewById(R.id.speechNext);
+        next.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        openStampGame();
+                    }
+                });
+
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech_result);
     }
@@ -43,6 +55,13 @@ public class SpeechResult extends AppCompatActivity {
         Intent backToSpeech = new Intent(this, SpeechActivity.class);
         backToSpeech.putExtra("current rating", SpeechAwardPoints.getCurrentPoints());
         startActivity(backToSpeech);
+        finish();
+    }
+
+    public void openStampGame() {
+        Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
+        saveGame(SpeechAwardPoints.getCurrentPoints(), LEVEL_NAME);
+        startActivity(switchStampIntent);
         finish();
     }
 

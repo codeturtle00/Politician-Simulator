@@ -30,15 +30,6 @@ public class LoggedInActivity extends GameActivity {
         });
 
 
-        //Play button, starts the game, ONLY HERE FOR TESTING TODO REMOVE THIS
-        final Button playButton = findViewById(R.id.start);
-        playButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openBabyGame();
-            }
-        });
-
-
         //Leaderboard button, opens the leaderboard
         final Button boardButton = findViewById(R.id.leader_board_logged);
         boardButton.setOnClickListener(
@@ -57,6 +48,16 @@ public class LoggedInActivity extends GameActivity {
                     public void onClick(View v) {
                         // Code here executes on main thread after user presses button
                         openSettings();
+                    }
+                });
+
+        //Settings button, opens the settings menu
+        final Button signOutButton = findViewById(R.id.logged_in_sign_out);
+        signOutButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        // Code here executes on main thread after user presses button
+                        openMainMenu();
                     }
                 });
 

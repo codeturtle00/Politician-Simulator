@@ -1,5 +1,6 @@
 package com.example.politicgame.GamesActivity.StampGame;
 
+import android.util.Log;
 import android.widget.TextView;
 
 
@@ -14,6 +15,8 @@ import java.util.List;
 class StampGameHandler {
     private List<Word> verbs;
     private List<Word> nouns;
+
+    private int currentScore;
 
     private List<Proposal> prompts;
     private Proposal currentPrompt;
@@ -223,6 +226,14 @@ class StampGameHandler {
         return Integer.valueOf(oldString.substring(0, oldString.length() - 1));
     }
 
+    public void setCurrentScore(int newScore) {
+        currentScore = newScore;
+    }
+
+    public int getCurrentScore() {
+        return currentScore;
+    }
+
     /**
      * Changed the rating depending on the button click
      *
@@ -251,7 +262,6 @@ class StampGameHandler {
                 updateRating(rating, maxScore);
             }
         }
-
     }
 
     /**
@@ -263,6 +273,8 @@ class StampGameHandler {
     private void updateRating(TextView rating, Integer ratingInt) {
         String newRating = ratingInt.toString() + '%';
         rating.setText(newRating);
+        setCurrentScore(ratingInt);
+        Log.i("Stamp Score", ((Integer)getCurrentScore()).toString());
     }
 
 

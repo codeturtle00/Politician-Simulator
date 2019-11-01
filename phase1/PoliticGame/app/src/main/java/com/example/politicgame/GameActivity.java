@@ -6,6 +6,13 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.politicgame.Character.UserAccount;
+import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * GameActivity includes code every minigame activity should have.
  * To implement into a minigame's activity, extend GameActivity instead of AppCompatActivity.
@@ -34,10 +41,22 @@ public abstract class GameActivity extends AppCompatActivity {
         finish();
     }
 
+    public void openLoggedIn() {
+        Intent loggedIntent = new Intent(this, LoggedInActivity.class);
+        startActivity(loggedIntent);
+        finish();
+    }
+
+    public void openSummary() {
+        Intent summaryIntent = new Intent(this, SummaryActivity.class);
+        startActivity(summaryIntent);
+        finish();
+    }
+
+
     public void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
-        startActivity(switchBoardIntent);
-        finish();
+        startActivityForResult(switchBoardIntent, 2);
     }
 
     @Override
@@ -59,5 +78,61 @@ public abstract class GameActivity extends AppCompatActivity {
                 Log.i("Result Code", "Result code is " + resultCode);
             }
         }
+    }
+
+    public void saveGame(int score, String levelName){
+        UserAccount currentUser = app.getCurrentUser();
+        String currentCharacterName = app.getCurrentCharacter();
+
+        JSONArray charArray = currentUser.getCharArray();
+
+        Log.i("Get existing characters",charArray.toString());
+
+        try{
+            int i;
+            for(i = 0; i < charArray.length(); i++){
+                JSONObject charObject = charArray.getJSONObject(i);
+                String charName = charObject.keys().next();
+
+                if(charName.equals(currentCharacterName)){
+                    JSONObject levelObj = charObject.getJSONObject(charName).getJSONObject(levelName);
+                    levelObj.put("score", score);
+                    levelObj.put("complete", true);
+                }
+            }
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        currentUser.saveToDb();
+    }
+
+
+    public boolean isGameComplete(String levelName){
+        UserAccount currentUser = app.getCurrentUser();
+        String currentCharacterName = app.getCurrentCharacter();
+
+        JSONArray charArray = currentUser.getCharArray();
+
+        Log.i("Get existing characters",charArray.toString());
+
+        boolean isComplete = false;
+
+        try{
+            int i;
+            for(i = 0; i < charArray.length(); i++){
+                JSONObject charObject = charArray.getJSONObject(i);
+                String charName = charObject.keys().next();
+
+                if(charName.equals(currentCharacterName)){
+                    JSONObject levelObj = charObject.getJSONObject(charName).getJSONObject(levelName);
+                    isComplete = levelObj.getBoolean("complete");
+                }
+            }
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        return isComplete;
     }
 }

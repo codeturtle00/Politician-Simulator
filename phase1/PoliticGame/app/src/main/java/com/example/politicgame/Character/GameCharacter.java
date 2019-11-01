@@ -1,5 +1,6 @@
 package com.example.politicgame.Character;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,8 +23,8 @@ public abstract class GameCharacter {
   protected JSONObject getJsonScore() {
     JSONObject detailObject = new JSONObject();
     try {
-      JSONObject statsObject = new JSONObject();
-      detailObject.put(detail.SCORE.toString(), statsObject);
+      JSONArray statsArray = new JSONArray();
+      detailObject.put(detail.SCORE.toString(), statsArray);
 
     } catch (JSONException e) {
       e.printStackTrace();

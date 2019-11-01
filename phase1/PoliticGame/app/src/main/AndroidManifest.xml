@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/BlueTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".SummaryActivity"></activity>
         <activity android:name=".UserActivity.LoginActivity.LoggedInActivity" />
         <activity android:name=".GamesActivity.SpeechGame.SpeechInstructionActivity" />
         <activity android:name=".GamesActivity.StampGame.StampActivityWon" />
@@ -40,7 +41,7 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".UserActivity.RegisterActivity.SelectCharacterActivity" />
         <activity android:name=".GameActivity" />
-        <activity android:name=".UserActivity.LoginActivity.LoadCharacterActivity"/>
+        <activity android:name=".UserActivity.LoginActivity.LoadCharacterActivity" />
     </application>
 
 </manifest>

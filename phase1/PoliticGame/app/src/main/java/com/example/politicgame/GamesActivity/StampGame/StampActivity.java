@@ -15,6 +15,7 @@ import com.example.politicgame.R;
 
 public class StampActivity extends GameActivity {
 
+    final private String LEVEL_NAME = "LEVEL3";
     StampGameHandler gh = new StampGameHandler();
 
     @Override
@@ -104,12 +105,14 @@ public class StampActivity extends GameActivity {
 
     public void openStampLost() {
         Intent stampLostIntent = new Intent(this, StampActivityLost.class);
+        saveGame(gh.getCurrentScore(), LEVEL_NAME);
         startActivity(stampLostIntent);
         finish();
     }
 
     public void openStampWon() {
         Intent stampWonIntent = new Intent(this, StampActivityWon.class);
+        saveGame(gh.getCurrentScore(), LEVEL_NAME);
         startActivity(stampWonIntent);
         finish();
     }

@@ -6,7 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backColor"
-    tools:context="@string/speech_successful_instruction">
+    tools:context=".GamesActivity.SpeechGame.SpeechResult">
+
+    <Button
+        android:id="@+id/speechNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="163dp"
+        android:layout_marginLeft="163dp"
+        android:layout_marginBottom="69dp"
+        android:text="@string/next_game"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -15,6 +26,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="40dp"
+        android:textColor="?attr/textColor"
         android:text="@string/speech_successful_instruction"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +40,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="160dp"
         android:layout_marginRight="160dp"
+        android:textColor="?attr/textColor"
         android:text="userInput"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +67,7 @@
         android:layout_marginEnd="105dp"
         android:layout_marginRight="105dp"
         android:layout_marginBottom="268dp"
+        android:textColor="?attr/textColor"
         android:text="@string/speechRating"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
