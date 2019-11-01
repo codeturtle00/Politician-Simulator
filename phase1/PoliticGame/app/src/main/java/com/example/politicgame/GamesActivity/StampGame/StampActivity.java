@@ -62,11 +62,11 @@ public class StampActivity extends GameActivity {
                         gh.changeRating(rating, true);
                         gh.changeProposalNum(proposalLeft);
                         gh.setPrompt(promptDisplay);
-                        if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                        if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 50 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampLost();
                             //        finish();
 
-                        } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                        } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 50 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampWon();
                             //        finish();
 
@@ -83,11 +83,11 @@ public class StampActivity extends GameActivity {
                         gh.changeRating(rating, false);
                         gh.changeProposalNum(proposalLeft);
                         gh.setPrompt(promptDisplay);
-                        if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                        if (gh.intFromTextView(rating) == 0 || (gh.intFromTextView(rating) < 50 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampLost();
                             //        finish();
 
-                        } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 80 && gh.getPromptsSize(proposalLeft) == 0)) {
+                        } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 50 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampWon();
                             //        finish();
 

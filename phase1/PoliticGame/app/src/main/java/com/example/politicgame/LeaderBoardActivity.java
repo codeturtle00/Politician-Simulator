@@ -18,27 +18,17 @@ import org.json.JSONObject;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
-public class LeaderBoardActivity extends AppCompatActivity {
+public class LeaderBoardActivity extends GameActivity {
 
     private PoliticGameApp app;
-    private final String FILE_NAME = "user_game_data.json";
+    private final String FILE_NAME = "user.json";
     private FileSavingService fileSaving;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        app = (PoliticGameApp) getApplication();
-
-        System.out.println("The current theme is blue: " + app.isThemeBlue());
-
-        //Set theme
-        if (app.isThemeBlue()){
-            setTheme(R.style.BlueTheme);
-        } else {
-            setTheme(R.style.RedTheme);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
 
@@ -71,42 +61,39 @@ public class LeaderBoardActivity extends AppCompatActivity {
          * Updates the leaderboard
          */
         //The JSONArray will come from Jacky's API for reading JSON
-        JSONObject charScores = getBoard();
+        JSONArray charScores = getBoard();
 
         JSONObject first = new JSONObject();
         JSONObject second = new JSONObject();
         JSONObject third = new JSONObject();
         try{
-            Iterator<String> fillThree = charScores.keys();
             first.put("filler", new JSONObject().put("score", 0));
             second.put("filler", new JSONObject().put("score", 0));
             third.put("filler", new JSONObject().put("score", 0));
 
-            Iterator<String> charNames = charScores.keys();
 
-            String charName;
-            int charScoreNum;
 
-            while (charNames.hasNext()){
-                charName = charNames.next();
-                charScoreNum = charScores.getJSONObject(charName).getInt("score");
+            for(int i = 0; i < charScores.length(); i++){
+                JSONObject charInfo = charScores.getJSONObject(i);
+                String charName = charInfo.keys().next();
+                int charScoreNum = charInfo.getJSONObject(charName).getInt("score");
 
                 Log.i("First", first.toString());
                 Log.i("Second", second.toString());
                 Log.i("Third", third.toString());
-                Log.i("charScores(name)", charScores.getJSONObject(charName).toString());
+                Log.i("charScores(name)", charInfo.toString());
 
                 if (charScoreNum > first.getJSONObject((first.keys().next())).getInt("score")){
                     third = second;
                     second = first;
-                    first = new JSONObject().put(charName,charScores.getJSONObject(charName));
+                    first = new JSONObject().put(charName,charInfo.getJSONObject(charName));
                 }
                 else if (charScoreNum > second.getJSONObject((second.keys().next())).getInt("score")){
                     third = second;
-                    second = new JSONObject().put(charName,charScores.getJSONObject(charName));
+                    second = new JSONObject().put(charName,charInfo.getJSONObject(charName));
                 }
                 else if (charScoreNum > third.getJSONObject((third.keys().next())).getInt("score")){
-                    third = new JSONObject().put(charName,charScores.getJSONObject(charName));
+                    third = new JSONObject().put(charName,charInfo.getJSONObject(charName));
                 }
             }
 
@@ -129,14 +116,14 @@ public class LeaderBoardActivity extends AppCompatActivity {
         }
     }
 
-    public JSONObject getBoard(){
+    public JSONArray getBoard(){
         /**
          * Retrieves the leaderboard information
          */
 
         JSONArray jsonList = this.fileSaving.readJsonFile(FILE_NAME);
 
-        JSONObject boardList = new JSONObject();
+        JSONArray boardList = new JSONArray();
 
         try {
         // A JSON files containing the User, their characters and their scores
@@ -144,23 +131,34 @@ public class LeaderBoardActivity extends AppCompatActivity {
                 Iterator<String> userKeys = jsonList.getJSONObject(i).keys();
                 while (userKeys.hasNext()) {
                     String userKey = userKeys.next();//String version of the userName
+                    JSONArray charArray = jsonList.getJSONObject(i).getJSONArray(userKey);
 
-                    JSONObject userInfo = jsonList.getJSONObject(i).getJSONObject(userKey);
-                    Iterator<String> charKeys = userInfo.keys();
-                    while (charKeys.hasNext()){
-                        String charKey = charKeys.next();
+                    for (int j = 0; j < charArray.length(); j++){
+                        JSONObject currentCharacter = charArray.getJSONObject(j);
+                        String charName = currentCharacter.keys().next();
 
-                        JSONObject charScore = new JSONObject();
-                        charScore.put("userName", userKey);
-                        charScore.put("score", userInfo.getJSONObject(charKey).getInt("highScore"));
+                        JSONArray scores = currentCharacter.getJSONObject(charName).getJSONArray("SCORE");
 
-                        boardList.put(charKey, charScore);
+                        for (int k = 0; k < scores.length(); k++){
+                            JSONObject charScore = new JSONObject();
+                            JSONObject charInfo = new JSONObject();
+
+                            charInfo.put("userName", userKey);
+                            charInfo.put("score", scores.getInt(k));
+                            charScore.put(charName, charInfo);
+
+                            Log.i("Character Score", charScore.toString());
+
+                            boardList.put(charScore);
+                        }
                     }
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        Log.i("Character Scores", boardList.toString());
 
         return boardList;
     }

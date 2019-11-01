@@ -9,21 +9,6 @@
     android:background="@drawable/back_ground"
     tools:context=".GamesActivity.StampGame.StampActivity">
 
-    <Button
-        android:id="@+id/leaderBoard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/view_leader_board"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="116dp"
@@ -132,15 +117,13 @@
         android:layout_width="358dp"
         android:layout_height="243dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:text="@string/NPC_Prompt"
         android:textSize="18sp"
         app:fontFamily="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaderBoard" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

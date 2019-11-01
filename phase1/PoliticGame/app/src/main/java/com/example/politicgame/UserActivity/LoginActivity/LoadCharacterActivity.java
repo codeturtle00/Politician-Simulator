@@ -157,23 +157,6 @@ public class LoadCharacterActivity extends GameActivity {
         }
     }
 
-    private void createNewCharacter(){
-        Intent createNewCharacterIntent = new Intent(this, SelectCharacterActivity.class);
-        startActivity(createNewCharacterIntent);
-        finish();
-    }
-
-
-    private void deleteCharacter (String charName){
-        userAcc.deleteCharByName(charName);
-        userAcc.saveToDb();
-
-        Intent restartIntent = new Intent(this, LoadCharacterActivity.class);
-        startActivity(restartIntent);
-        finish();
-    }
-
-
     private void populateCharacterCells(){
         JSONObject charCell = getExistingCharacters();
 
@@ -236,5 +219,22 @@ public class LoadCharacterActivity extends GameActivity {
     private void toLoggedInMenu() {
         Intent selectIntent = new Intent(this, LoggedInActivity.class);
         startActivity(selectIntent);
+        finish();
+    }
+
+    private void createNewCharacter(){
+        Intent createNewCharacterIntent = new Intent(this, SelectCharacterActivity.class);
+        startActivity(createNewCharacterIntent);
+        finish();
+    }
+
+
+    private void deleteCharacter (String charName){
+        userAcc.deleteCharByName(charName);
+        userAcc.saveToDb();
+
+        Intent restartIntent = new Intent(this, LoadCharacterActivity.class);
+        startActivity(restartIntent);
+        finish();
     }
 }
