@@ -23,6 +23,9 @@ class Timer {
     }
   }
 
+  /**
+   * Resumes timer with however much time the player had left before
+   */
   void resume() {
     System.out.println("resuming with time " + timeLeftInMillis);
     timer =

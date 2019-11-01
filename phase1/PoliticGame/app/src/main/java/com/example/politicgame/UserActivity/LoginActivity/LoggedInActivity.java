@@ -20,6 +20,7 @@ public class LoggedInActivity extends GameActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
+        setTitle("Logged in");
 
         //Select Characters button
         final Button selectCharactersButton = findViewById(R.id.logged_in_activity_select_char);

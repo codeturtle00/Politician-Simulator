@@ -117,7 +117,7 @@ public class SelectCharacterActivity extends GameActivity {
     app.setCurrentCharacter(name);
 
     startGame();
-  }
+    }
 
   /** Start the game */
   public void startGame() {
