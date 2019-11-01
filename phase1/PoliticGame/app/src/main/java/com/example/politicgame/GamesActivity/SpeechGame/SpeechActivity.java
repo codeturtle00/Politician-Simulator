@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.politicgame.GameActivity;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PauseActivity;
 import com.example.politicgame.PauseButton;
@@ -28,7 +29,8 @@ import java.io.InputStreamReader;
 import java.util.Random;
 import java.util.Set;
 
-public class SpeechActivity extends AppCompatActivity {
+public class SpeechActivity extends GameActivity {
+  private final String LEVEL_NAME = "LEVEL2";
   private PoliticGameApp app;
   private SpeechGame speech;
   private static final String FILE_NAME = "SpeechPrompts.txt";
@@ -44,7 +46,13 @@ public class SpeechActivity extends AppCompatActivity {
   }
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    if(isGameComplete(LEVEL_NAME)){
+      openStampGame();
+    }
+
     app = (PoliticGameApp) getApplication();
 
     System.out.println("The current theme is blue: " + app.isThemeBlue());

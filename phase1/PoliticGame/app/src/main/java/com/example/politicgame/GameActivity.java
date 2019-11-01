@@ -106,4 +106,33 @@ public abstract class GameActivity extends AppCompatActivity {
 
         currentUser.saveToDb();
     }
+
+
+    public boolean isGameComplete(String levelName){
+        UserAccount currentUser = app.getCurrentUser();
+        String currentCharacterName = app.getCurrentCharacter();
+
+        JSONArray charArray = currentUser.getCharArray();
+
+        Log.i("Get existing characters",charArray.toString());
+
+        boolean isComplete = false;
+
+        try{
+            int i;
+            for(i = 0; i < charArray.length(); i++){
+                JSONObject charObject = charArray.getJSONObject(i);
+                String charName = charObject.keys().next();
+
+                if(charName.equals(currentCharacterName)){
+                    JSONObject levelObj = charObject.getJSONObject(charName).getJSONObject(levelName);
+                    isComplete = levelObj.getBoolean("complete");
+                }
+            }
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        return isComplete;
+    }
 }
