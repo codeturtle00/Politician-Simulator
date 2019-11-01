@@ -1,12 +1,36 @@
 package com.example.politicgame.GamesActivity.StampGame;
 
+/**
+ * A Proposal consisting of Verb and Noun
+ * <p>
+ * The proposal will either have a negative category(score) or positive one. We multiply
+ * the category of the verb and noun in the proposal together to get the score because
+ * a negative action on a positive thing is overall negative (vise versa), and when we do
+ * positive actions on a positive noun the proposal is still positive (vise versa).
+ */
 public class Proposal {
+    /**
+     * The String value of the Prompt, which consists of the value of Verb and Noun
+     */
     private String prompt;
+
+    /**
+     * The verb in this Proposal
+     */
     private Verb action;
+
+    /**
+     * The Noun in this Proposal
+     */
     private Noun item;
+
+    /**
+     * The category of this proposal, by this we mean the points we will get if the politician were
+     * to accept this proposal. This is the value of Verb.category * Noun.category
+     */
     private int category;
 
-    public Proposal(String prompt, Verb action, Noun item) {
+    Proposal(String prompt, Verb action, Noun item) {
         this.prompt = prompt;
         this.action = action;
         this.item = item;
@@ -19,7 +43,7 @@ public class Proposal {
     }
 
 
-    public Proposal(String prompt, Verb action, Noun item, int amount) {
+    Proposal(String prompt, Verb action, Noun item, int amount) {
         this.prompt = prompt;
         this.action = action;
         this.item = item;
@@ -35,7 +59,7 @@ public class Proposal {
         return prompt;
     }
 
-    public int getCategory() {
+    int getCategory() {
         return category;
     }
 }
