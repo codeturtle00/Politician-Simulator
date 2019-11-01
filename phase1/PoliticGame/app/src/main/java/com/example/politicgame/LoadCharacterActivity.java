@@ -44,6 +44,9 @@ public class LoadCharacterActivity extends GameActivity {
 
         final TextView charButton1 = findViewById(R.id.character_1);
         final TextView charButton2 = findViewById(R.id.character_2);
+        final Button deleteButton1 = findViewById(R.id.delete_1);
+        final Button deleteButton2 = findViewById(R.id.delete_2);
+        final Button startButton = findViewById(R.id.start_button);
 
         charButton1.setOnClickListener(
                 new View.OnClickListener() {
@@ -64,6 +67,28 @@ public class LoadCharacterActivity extends GameActivity {
                         charButton1.setBackground(null);
                     }
                 });
+
+        deleteButton1.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+
+                    }
+                });
+
+        deleteButton2.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+
+                    }
+                });
+
+        startButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+
+                    }
+                });
     }
+
 
 }
