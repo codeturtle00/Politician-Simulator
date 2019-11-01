@@ -14,6 +14,7 @@ import com.example.politicgame.Character.UserAccount;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
+import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,9 +54,9 @@ public class RegistrationActivity extends AppCompatActivity {
             });
   }
 
-  public void  openCharacterSelection() {
-    Intent switchCharIntent = new Intent(this, SelectCharacterActivity.class);
-    startActivity(switchCharIntent);
+  public void  openLoggedInScreen() {
+    Intent loggedIntent = new Intent(this, LoggedInActivity.class);
+    startActivity(loggedIntent);
     finish();
   }
 
@@ -110,7 +111,7 @@ public class RegistrationActivity extends AppCompatActivity {
         //Sets current user
         if (saveSuccess){
           app.setCurrentUser(loginUser);
-          openCharacterSelection();
+          openLoggedInScreen();
         }
       }
     }

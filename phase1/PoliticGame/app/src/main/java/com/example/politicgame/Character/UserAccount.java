@@ -28,8 +28,27 @@ public class UserAccount {
     this.displayName = displayName;
   }
 
-  public void setCharArray(JSONObject charObject) {
+  public void addCharArray(JSONObject charObject) {
     this.charArray.put(charObject);
+  }
+
+  public void setCharArray(JSONArray charObject) {
+    this.charArray = charObject;
+  }
+
+  public void deleteCharByName(String charName){
+    try{
+      for(int i = 0; i < charArray.length(); i++){
+        JSONObject currentChar = charArray.getJSONObject(i);
+        String currName = currentChar.keys().next();
+        if (currName.equals(charName)){
+          charArray.remove(i);
+        }
+
+      }
+    } catch (JSONException e){
+      e.printStackTrace();
+    }
   }
 
   public JSONArray getCharArray(){return this.charArray;}

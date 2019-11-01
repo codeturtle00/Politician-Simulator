@@ -23,14 +23,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.politicgame.Character.UserAccount;
+import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.UserActivity.RegisterActivity.RegistrationActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 public class LoginActivity extends AppCompatActivity {
   private PoliticGameApp app;
   private LoginViewModel loginViewModel;
+  private FileSavingService fileSaving;
+  final private String FILE_NAME = "user.json";
 
   private void register() {
     Intent registerIntent = new Intent(this, RegistrationActivity.class);
@@ -68,6 +75,8 @@ public class LoginActivity extends AppCompatActivity {
     setContentView(R.layout.activity_login);
 
     setTitle("Login");
+
+      this.fileSaving = new FileSavingService(this);
 
     this.loginViewModel =
         ViewModelProviders.of(this, new LoginViewModelFactory(this)).get(LoginViewModel.class);
@@ -171,7 +180,27 @@ public class LoginActivity extends AppCompatActivity {
   }
 
   private void updateUiWithUser(LoggedInUserView model) {
-    String welcome = getString(R.string.welcome) + model.getDisplayName();
+    //Log in succeeds, creates new UserAccount object, sets it with character and then sets it as the current user
+      String name = model.getDisplayName();
+
+      UserAccount loginUser = new UserAccount(name, this);
+
+      JSONArray jsonFile = fileSaving.readJsonFile(FILE_NAME);
+
+      try {
+      for (int i = 0; i < jsonFile.length(); i++){
+          String userFileName = jsonFile.getJSONObject(i).keys().next();
+          if (userFileName.equals(name)){
+              loginUser.setCharArray(jsonFile.getJSONObject(i).getJSONArray(name));
+          }
+      }
+      } catch (JSONException e) {
+          e.printStackTrace();
+      }
+
+      app.setCurrentUser(loginUser);
+
+    String welcome = getString(R.string.welcome) + name;
     Intent startIntent = new Intent(this, LoggedInActivity.class);
     startActivity(startIntent);
     Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
