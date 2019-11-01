@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class LeaderBoardActivity extends AppCompatActivity {
+public class LeaderBoardActivity extends GameActivity {
 
     private PoliticGameApp app;
     private final String FILE_NAME = "user.json";
@@ -29,17 +29,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        app = (PoliticGameApp) getApplication();
-
-        System.out.println("The current theme is blue: " + app.isThemeBlue());
-
-        //Set theme
-        if (app.isThemeBlue()){
-            setTheme(R.style.BlueTheme);
-        } else {
-            setTheme(R.style.RedTheme);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
 

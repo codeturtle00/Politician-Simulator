@@ -51,27 +51,58 @@ public class PoliticGameApp extends Application {
   }
 
   // Methods for theme selection
+
+  /**
+   * Choose the new theme
+   *
+   * @param isBlue Choose if the current theme is blue
+   */
   public void chooseBlueTheme(boolean isBlue) {
     this.isBlue = isBlue;
     System.out.println("The current theme is blue: " + isBlue);
   }
 
+  /**
+   * Returns if the current theme is blue or not
+   *
+   * @return Is the theme blue?
+   */
   public boolean isThemeBlue() {
     return isBlue;
   }
 
+  /**
+   * Returns the current UserAccount instance
+   *
+   * @return The current UserAccount instance
+   */
   public UserAccount getCurrentUser() {
     return currentUser;
   }
 
+  /**
+   * Sets current UserAccount
+   *
+   * @param newUser The new UserAccount to set
+   */
   public void setCurrentUser(UserAccount newUser) {
     this.currentUser = newUser;
   }
 
+  /**
+   * Returns the current character name
+   *
+   * @return The current character name
+   */
   public String getCurrentCharacter() {
     return currentCharacter;
   }
 
+  /**
+   * Sets the current character name
+   *
+   * @param newCharacter The name of the current character
+   */
   public void setCurrentCharacter(String newCharacter) {
     this.currentCharacter = newCharacter;
   }

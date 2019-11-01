@@ -20,7 +20,6 @@ public class UserAccount {
   private static final String FILE_NAME = "user.json";
   private String displayName;
   private JSONArray charArray = new JSONArray();
-  private JSONObject currentChar;
   private Context context;
 
   public UserAccount(String displayName, Context context) {
@@ -29,20 +28,49 @@ public class UserAccount {
     this.displayName = displayName;
   }
 
+  /**
+   * Adds charObject to charArray
+   *
+   * @param charObject  The object added to charArray, it should contain level info and score
+   */
   public void addCharArray(JSONObject charObject) {
     this.charArray.put(charObject);
   }
 
+  /**
+   * Sets charArray to charObject
+   *
+   * @param charObject  A JSONArray that will replace the old charArray
+   */
   public void setCharArray(JSONArray charObject) {
     this.charArray = charObject;
   }
 
+
+  /**
+   * Returns charArray
+   *
+   * @return the JSONArray of the users characters
+   */
   public JSONArray getCharArray(){return this.charArray;}
 
+
+  /**
+   * Returns the display name of the current user
+   *
+   * @return User name of the currently logged in user
+   */
   public String getDisplayName() {
     return displayName;
   }
 
+
+  /**
+   * Deleted character from charArray by finding their name. Note that this method requires at least
+   * a minSdkVersion of 19 in order to use JSONArray.remove()
+   *
+   * @param charName  The name of the character
+   */
   public void deleteCharByName(String charName){
     try{
       for(int i = 0; i < charArray.length(); i++){
@@ -58,6 +86,12 @@ public class UserAccount {
     }
   }
 
+
+  /**
+   * Reset the level information of the character given
+   *
+   * @param charName  The character name who will have their information erased
+   */
   public void resetLevels(String charName){
     try{
       for(int i = 0; i < charArray.length(); i++){
@@ -90,6 +124,13 @@ public class UserAccount {
     }
   }
 
+
+  /**
+   * Returns the JSONObject with the charName key in charArray
+   *
+   * @param charName  The name of the character who's information we want to retrieve
+   * @return The JSONObject of the character
+   */
   public JSONObject getCharByName(String charName){
     try{
       for(int i = 0; i < charArray.length(); i++){
@@ -106,6 +147,13 @@ public class UserAccount {
     return new JSONObject();
   }
 
+
+  /**
+   * Adds the score of a new playthrough to the characters' score history
+   *
+   * @param charName  The name of the character who's score we are updating
+   * @param score     The new score to be added to the JSONArray
+   */
   public void addScore(String charName, int score){
     try{
       for(int i = 0; i < charArray.length(); i++){
@@ -121,6 +169,11 @@ public class UserAccount {
 
   }
 
+  /**
+   * Returns the String version of charArray
+   *
+   * @return  A String version of the charArray
+   */
   @Override
   @NonNull
   public String toString(){
@@ -130,6 +183,11 @@ public class UserAccount {
     return newString.toString();
   }
 
+
+  /**
+   * Saves the current version of charArray to user.json and will create the file if it does not
+   * already exist
+   */
   public void saveToDb(){System.out.println();
     if (new File(context.getFilesDir() +"/" + FILE_NAME).exists()){
     try{

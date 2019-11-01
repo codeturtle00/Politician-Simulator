@@ -9,27 +9,14 @@ import android.widget.Button;
 
 import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
-public class PauseActivity extends AppCompatActivity {
+public class PauseActivity extends GameActivity{
 
     private final int DEFAULT_CODE = 0;
     private final int RESUME_CODE = 1;
     private final int QUIT_CODE = 2;
 
-    private PoliticGameApp app;
 
     protected void onCreate(Bundle savedInstanceState) {
-
-        app = (PoliticGameApp) getApplication();
-
-        System.out.println("The current theme is blue: " + app.isThemeBlue());
-
-        //Set theme
-        if (app.isThemeBlue()){
-            setTheme(R.style.BlueTheme);
-        } else {
-            setTheme(R.style.RedTheme);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pause);
 

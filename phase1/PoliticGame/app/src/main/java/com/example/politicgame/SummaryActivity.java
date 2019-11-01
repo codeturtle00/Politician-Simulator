@@ -22,7 +22,7 @@ public class SummaryActivity extends GameActivity {
     private TextView totalResult;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
 
@@ -43,6 +43,9 @@ public class SummaryActivity extends GameActivity {
                 });
     }
 
+    /**
+     * Fills all the TextViews with the results of each level
+     */
     public void fillInfoCell(){
         String charName = app.getCurrentCharacter();
 
