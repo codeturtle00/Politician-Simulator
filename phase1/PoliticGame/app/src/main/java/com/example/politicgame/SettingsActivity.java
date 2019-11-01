@@ -2,13 +2,14 @@ package com.example.politicgame;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
 
 public class SettingsActivity extends AppCompatActivity {
