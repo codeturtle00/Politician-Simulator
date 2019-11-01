@@ -1,5 +1,6 @@
 package com.example.politicgame;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +28,7 @@ public class LoadCharacterActivity extends GameActivity {
         System.out.println("The current theme is blue: " + app.isThemeBlue());
 
         //Set theme
-        if (app.isThemeBlue()){
+        if (app.isThemeBlue()) {
             setTheme(R.style.BlueTheme);
         } else {
             setTheme(R.style.RedTheme);
@@ -47,6 +48,7 @@ public class LoadCharacterActivity extends GameActivity {
         final Button deleteButton1 = findViewById(R.id.delete_1);
         final Button deleteButton2 = findViewById(R.id.delete_2);
         final Button startButton = findViewById(R.id.start_button);
+        final TextView backButton = findViewById(R.id.load_character_back);
 
         charButton1.setOnClickListener(
                 new View.OnClickListener() {
@@ -88,7 +90,17 @@ public class LoadCharacterActivity extends GameActivity {
 
                     }
                 });
+
+        backButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        toLoggedInMenu();
+                    }
+                });
     }
 
-
+    private void toLoggedInMenu() {
+        Intent selectIntent = new Intent(this, LoggedInActivity.class);
+        startActivity(selectIntent);
+    }
 }
