@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.politicgame.Common.FileSavingService;
-import com.example.politicgame.User.UserAccountManager;
 import com.example.politicgame.User.UserAccount;
 
 import org.json.JSONArray;
@@ -102,13 +101,11 @@ public class RegistrationActivity extends AppCompatActivity {
           e.printStackTrace();
         }
         fileSaving.appendJsonObject(userObject, FILE_NAME);
-        UserAccountManager.loginUser = new UserAccount(nameString, this);
+        UserAccount loginUser = new UserAccount(nameString, this);
         String saved = "User" + nameString + " is registered successfully!";
         Toast.makeText(getApplicationContext(), saved, Toast.LENGTH_LONG).show();
-
         //Sets current user
-        //app.setCurrentUser(nameString);
-
+        app.setCurrentUser(loginUser);
         if (saveSuccess){
           openCharacterSelection();
         }
