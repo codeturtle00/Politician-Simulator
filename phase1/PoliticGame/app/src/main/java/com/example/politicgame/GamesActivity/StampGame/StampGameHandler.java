@@ -8,23 +8,55 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/*
- *   TODO: Optimize the scoring system
- *    TODO: may need to move all the stringList to somewhere else
- * */
+/**
+ * The Game handler for Stamp Game
+ * It is in charge of updating the score and storing the score for the stamp game that is going on
+ */
 class StampGameHandler {
+    /**
+     * The list of verbs being used in game handler to construct Prompts
+     */
     private List<Word> verbs;
+
+    /**
+     * The list of nouns being used in game handler to construct Prompts
+     */
     private List<Word> nouns;
 
+    /**
+     * The current score of the user, it is being displayed by TextView as well
+     */
     private int currentScore;
 
+    /**
+     * The list of Prompts (ie. Proposals) that has been given to the user
+     */
     private List<Proposal> prompts;
+
+    /**
+     * The current Prompt being given to the user
+     */
     private Proposal currentPrompt;
 
+    /**
+     * The pronoun used to call the user, we will modify this in Phase 2 where depending on the
+     * character chosen by the user, the pronoun will be changed
+     */
     private String pronoun = "sir";
+
+    /**
+     * The verb used for when we run out of prompts
+     */
     private Verb emptyAction = new Verb("", 0);
+
+    /**
+     * The Noun used for when we run out of prompts
+     */
     private Noun emptyNoun = new Noun("", 0, false);
 
+    /**
+     * The list of Strings we use to form the beginning of a proposal
+     */
     private List<String> promptBeginList = new ArrayList<>(Arrays.asList(
             "Good afternoon " + pronoun + ", based on our campaign researchers' speculation, would you like to",
             "This just in " + pronoun + ", based on the rumors from our excited supporters, is it true that you would",
@@ -32,6 +64,12 @@ class StampGameHandler {
             "Nice to meet you " + pronoun + ". I am one of your many campaign assistants and was wondering if you would advocate to"));
 
 
+    /**
+     * The constructor for the game handler
+     * <p>
+     * We construct one prompt when we instantiate the stampGameHandler, and we replace the
+     * currentPrompt whenever the updateRating() method is called.
+     */
     StampGameHandler() {
         verbs = new ArrayList<>();
         nouns = new ArrayList<>();
@@ -161,7 +199,7 @@ class StampGameHandler {
     }
 
     /**
-     * Generate a prompt, if the verbs or nouns are empty, we will generate a emptyPrompt
+     * Generate a prompt, if the verbs or nouns are empty, we will generate an emptyPrompt
      */
     private void createPrompt() {
         //For when we have a male or female player
@@ -226,11 +264,11 @@ class StampGameHandler {
         return Integer.valueOf(oldString.substring(0, oldString.length() - 1));
     }
 
-    public void setCurrentScore(int newScore) {
+    private void setCurrentScore(int newScore) {
         currentScore = newScore;
     }
 
-    public int getCurrentScore() {
+    int getCurrentScore() {
         return currentScore;
     }
 
@@ -274,23 +312,23 @@ class StampGameHandler {
         String newRating = ratingInt.toString() + '%';
         rating.setText(newRating);
         setCurrentScore(ratingInt);
-        Log.i("Stamp Score", ((Integer)getCurrentScore()).toString());
+        Log.i("Stamp Score", ((Integer) getCurrentScore()).toString());
     }
 
 
     /**
-     * updates the rating that is being displayed on screen
+     * updates the number of proposals left that is being displayed on screen
      *
-     * @param rating    TextView object of the rating
-     * @param ratingInt the new value of the rating
+     * @param proposal     TextView object of the proposal
+     * @param proposalLeft the integer value of the number of proposal left to be given to the user
      */
-    private void updateProposal(TextView rating, Integer ratingInt) {
-        String newRating = ratingInt.toString();
-        rating.setText(newRating);
+    private void updateProposal(TextView proposal, Integer proposalLeft) {
+        String proposalLeftString = proposalLeft.toString();
+        proposal.setText(proposalLeftString);
     }
 
     /**
-     * change the proposal number displayed to the number of proposals left in StampGameHandler
+     * change the proposal number displayed to the number of proposals left
      *
      * @param proposalNum the minimum of {size of verbs, size of nouns};
      */

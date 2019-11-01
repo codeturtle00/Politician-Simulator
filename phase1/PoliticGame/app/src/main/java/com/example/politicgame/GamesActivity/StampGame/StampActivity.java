@@ -40,20 +40,19 @@ public class StampActivity extends GameActivity {
 
         setTitle("The Stamp Game");
 
+        /*
+          The Three TextView on screen that shows one's rating, the proposal, and number of
+          proposal left
+         */
         final TextView rating = findViewById(R.id.stamp_game_rating_score);
         final TextView promptDisplay = findViewById(R.id.npcPrompt);
         final TextView proposalLeft = findViewById(R.id.stamp_game_proposal_left);
 
 
-//        final Button button = findViewById(R.id.leaderBoard);
-//        button.setOnClickListener(
-//                new View.OnClickListener() {
-//                    public void onClick(View v) {
-//                        // Code here executes on main thread after user presses button
-//                        openLeaderBoard();
-//                    }
-//                });
-
+        /*
+        The yes button on screen, added corresponding methods so the score and prompt will change
+        Upon clicking the yes button.
+        */
         final Button button2 = findViewById(R.id.stamp_game_yes);
         button2.setOnClickListener(
                 new View.OnClickListener() {
@@ -75,6 +74,10 @@ public class StampActivity extends GameActivity {
                     }
                 });
 
+        /*
+        The no button on screen, added corresponding methods so the score and prompt will change
+        Upon clicking the no button.
+        */
         final Button button3 = findViewById(R.id.stamp_game_no);
         button3.setOnClickListener(
                 new View.OnClickListener() {
@@ -90,6 +93,7 @@ public class StampActivity extends GameActivity {
                         } else if (gh.intFromTextView(rating) == 100 || (gh.intFromTextView(rating) >= 50 && gh.getPromptsSize(proposalLeft) == 0)) {
                             openStampWon();
                             //        finish();
+
 
                         }
                     }
