@@ -35,13 +35,14 @@ public class SpeechResult extends GameActivity {
                     }
                 });
 
-        final Button button = findViewById(R.id.speechNext);
-        button.setOnClickListener(
+        final Button next = findViewById(R.id.speechNext);
+        next.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         openStampGame();
                     }
                 });
+
     }
 
     @Override
@@ -52,6 +53,7 @@ public class SpeechResult extends GameActivity {
 
     public void returnSpeech(){
         Intent backToSpeech = new Intent(this, SpeechActivity.class);
+        backToSpeech.putExtra("current rating", SpeechAwardPoints.getCurrentPoints());
         startActivity(backToSpeech);
         finish();
     }
