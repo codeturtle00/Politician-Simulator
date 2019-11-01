@@ -87,7 +87,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     finish();
   }
 
-  void gameOver() {
+  public void gameOver() {
     onPause();
     final Dialog gameOverDialog = new Dialog(this);
     gameOverDialog.setContentView(R.layout.game_over);
@@ -117,10 +117,12 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     happiness += happinessChange;
     String score = happiness.toString() + "%";
     scoreDisplay.setText(score);
+    if (happiness <= 0) gameOver();
   }
 
   @Override
   public void updateTime(String time) {
+    if (time.equals("Time's Up!")) gameOver();
     timerDisplay.setText(time);
   }
 
