@@ -37,7 +37,7 @@ class HorizontalShake extends Event {
   @Override
   int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
     if (initialX > getX() && initialY > getY()) {
-      if (Math.abs(finalY - initialY) < 50 && Math.abs(finalX - initialX) > 100) {
+      if (Math.abs(finalY - initialY) < 100 && Math.abs(finalX - initialX) > 100) {
         Log.d("HorizontalShake", "Score increased");
         return 10;
       }
