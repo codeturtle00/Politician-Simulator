@@ -141,8 +141,6 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     score.setText(String.format("Your score is %d", happiness));
     ImageButton nextButton = gameOutroDialog.findViewById(R.id.next);
 
-    UserAccount user = app.getCurrentUser();
-
     nextButton.setOnClickListener(
             new View.OnClickListener() {
               public void onClick(View v) {
