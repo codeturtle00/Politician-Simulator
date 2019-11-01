@@ -24,9 +24,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
-
-    protected PoliticGameApp app;
+public class MainActivity extends GameActivity {
     private final String FILE_NAME = "user_game_data.json";
 
     protected void onStart() {
@@ -41,19 +39,20 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("The current theme is blue: " + app.isThemeBlue());
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        app = (PoliticGameApp) getApplication();
-
-        System.out.println("The current theme is blue: " + app.isThemeBlue());
-
-        //Set theme
+    protected void onResume() {
+        //If the theme is changed from the start menu then this will reflect that change
         if (app.isThemeBlue()){
             setTheme(R.style.BlueTheme);
         } else {
             setTheme(R.style.RedTheme);
         }
 
+        super.onResume();
+        System.out.println("The current theme is blue: " + app.isThemeBlue());
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         setTitle("Main Menu");
 
         super.onCreate(savedInstanceState);
@@ -190,6 +189,8 @@ public class MainActivity extends AppCompatActivity {
          * Open the settings menu
          */
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
-        startActivityForResult(settingsIntent, 3);
+        settingsIntent.putExtra("EXTRA_SESSION_ID", "main");
+        startActivity(settingsIntent);
+        finish();
     }
 }

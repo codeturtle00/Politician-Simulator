@@ -2,6 +2,7 @@ package com.example.politicgame;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsActivity extends AppCompatActivity {
     protected PoliticGameApp app;
+    private String lastActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         setTitle("Settings");
+
+        lastActivity = getIntent().getStringExtra("EXTRA_SESSION_ID");
 
         //Music player's current track
         final TextView currentTrack = findViewById(R.id.currentTrackText);
@@ -100,6 +104,13 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void returnMainMenu (){
+        if (lastActivity == "main"){
+            Intent restartIntent = new Intent(this, MainActivity.class);
+            startActivity(restartIntent);
+        } else {
+            Intent restartIntent = new Intent(this, LoggedInActivity.class);
+            startActivity(restartIntent);
+        }
         finish();
     }
 }

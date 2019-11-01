@@ -106,6 +106,8 @@ public class LoggedInActivity extends GameActivity {
          * Open the settings menu
          */
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
-        startActivityForResult(settingsIntent, 3);
+        settingsIntent.putExtra("EXTRA_SESSION_ID", "loggedIn");
+        startActivity(settingsIntent);
+        finish();
     }
 }
