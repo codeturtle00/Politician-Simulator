@@ -1,6 +1,9 @@
 package com.example.politicgame.BabyGame;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.MainActivity;
 import com.example.politicgame.PauseButton;
 import com.example.politicgame.R;
 import com.example.politicgame.SpeechGame.SpeechInstructionActivity;
@@ -69,7 +73,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   @Override
   protected void onPause() {
     super.onPause();
-    timer.pause();
+      timer.pause();
   }
 
   @Override
@@ -81,6 +85,31 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   void openSpeechGame() {
     Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
     startActivity(switchSpeechIntent);
+    finish();
+  }
+
+  void gameOver() {
+    onPause();
+    final Dialog gameOverDialog = new Dialog(this);
+    gameOverDialog.setContentView(R.layout.game_over);
+    Button quitB = gameOverDialog.findViewById(R.id.goBack);
+    quitB.setOnClickListener(
+            new View.OnClickListener() {
+              public void onClick(View v) {
+                gameOverDialog.dismiss();
+                openMainMenu();
+              }
+            });
+    gameOverDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    gameOverDialog.show();
+  }
+
+
+  private void returnRequest(int requestCode){
+    Intent resultIntent = new Intent();
+    resultIntent.putExtra("result", requestCode);
+
+    setResult(RESULT_OK, resultIntent);
     finish();
   }
 
