@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,15 +16,20 @@ import org.json.JSONObject;
 
 public class SummaryActivity extends GameActivity {
 
-    final private TextView level1Result = findViewById(R.id.level_1_stats);
-    final private TextView level2Result = findViewById(R.id.level_2_stats);
-    final private TextView level3Result = findViewById(R.id.level_3_stats);
-    final private TextView totalResult = findViewById(R.id.total_stats);
+    private TextView level1Result;
+    private TextView level2Result;
+    private TextView level3Result;
+    private TextView totalResult;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
+
+        level1Result = findViewById(R.id.level_1_stats);
+        level2Result = findViewById(R.id.level_2_stats);
+        level3Result = findViewById(R.id.level_3_stats);
+        totalResult = findViewById(R.id.total_stats);
 
         fillInfoCell();
 
@@ -38,16 +44,20 @@ public class SummaryActivity extends GameActivity {
     }
 
     public void fillInfoCell(){
+        String charName = app.getCurrentCharacter();
+
         UserAccount currentUser = app.getCurrentUser();
-        JSONObject charInfo = currentUser.getCharByName(app.getCurrentCharacter());
+        JSONObject charInfo = currentUser.getCharByName(charName);
         JSONObject level1;
         JSONObject level2;
         JSONObject level3;
 
+        Log.i("Current Character Stats", charInfo.toString());
+
         try{
-            level1 = charInfo.getJSONObject("LEVEL1");
-            level2 = charInfo.getJSONObject("LEVEL2");
-            level3 = charInfo.getJSONObject("LEVEL3");
+            level1 = charInfo.getJSONObject(charName).getJSONObject("LEVEL1");
+            level2 = charInfo.getJSONObject(charName).getJSONObject("LEVEL2");
+            level3 = charInfo.getJSONObject(charName).getJSONObject("LEVEL3");
 
             int score1 = level1.getInt("score");
             int score2 = level2.getInt("score");
@@ -61,8 +71,8 @@ public class SummaryActivity extends GameActivity {
 
             totalResult.setText("Total score: " + totalScore);
 
-            currentUser.addScore(app.getCurrentCharacter(), totalScore);
-            currentUser.resetLevels(app.getCurrentCharacter());
+            currentUser.addScore(charName, totalScore);
+            currentUser.resetLevels(charName);
             currentUser.saveToDb();
 
         } catch (JSONException e){
