@@ -71,6 +71,10 @@ public class LoggedInActivity extends GameActivity {
                         openSettings();
                     }
                 });
+
+        ImageView trumpIMG = findViewById(R.id.trump);
+        Animation animated_trump = AnimationUtils.loadAnimation(this, R.anim.animated_trump);
+        trumpIMG.startAnimation(animated_trump);
     }
 
     public void openLoadCharacter () {
@@ -102,7 +106,6 @@ public class LoggedInActivity extends GameActivity {
          * Open the settings menu
          */
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
-        startActivity(settingsIntent);
-        finish();
+        startActivityForResult(settingsIntent, 3);
     }
 }

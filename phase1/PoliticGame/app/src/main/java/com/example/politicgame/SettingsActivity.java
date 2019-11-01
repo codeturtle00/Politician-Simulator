@@ -109,8 +109,6 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void returnMainMenu (){
-        Intent returnMainMenu = new Intent(this, MainActivity.class);
-        startActivity(returnMainMenu);
         finish();
     }
 }

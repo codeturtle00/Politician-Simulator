@@ -190,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
          * Open the settings menu
          */
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
-        startActivity(settingsIntent);
-        finish();
+        startActivityForResult(settingsIntent, 3);
     }
 }

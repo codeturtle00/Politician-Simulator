@@ -18,6 +18,7 @@ public class LoadCharacterActivity extends GameActivity {
     protected PoliticGameApp app;
     private final String FILE_NAME = "user_game_data.json";
     private Drawable highlight;
+    private int currCharacter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class LoadCharacterActivity extends GameActivity {
 
         setTitle("Load Your Character");
 
+        currCharacter = 0;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_character);
 
@@ -45,6 +48,8 @@ public class LoadCharacterActivity extends GameActivity {
         charButton1.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
+                        currCharacter = 1;
+
                         charButton1.setBackground(highlight);
                         charButton2.setBackground(null);
                     }
@@ -53,6 +58,8 @@ public class LoadCharacterActivity extends GameActivity {
         charButton2.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
+                        currCharacter = 2;
+
                         charButton2.setBackground(highlight);
                         charButton1.setBackground(null);
                     }
