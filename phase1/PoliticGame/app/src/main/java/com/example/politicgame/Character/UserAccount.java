@@ -1,6 +1,7 @@
 package com.example.politicgame.Character;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -66,11 +67,21 @@ public class UserAccount {
           JSONObject characterInfo = currentChar.getJSONObject(charName);
 
           JSONObject level1 = characterInfo.getJSONObject("LEVEL1");
-          level1 = new JSONObject().put("rating", level1.getInt("rating"));
+          Log.i("Level 1", level1.toString());
+          level1.remove("score");
+          level1.put("complete", false);
+
           JSONObject level2 = characterInfo.getJSONObject("LEVEL2");
-          level2 = new JSONObject().put("rating", level2.getInt("rating"));
+          Log.i("Level 2", level2.toString());
+          level2.remove("score");
+          level2.put("complete", false);
+
           JSONObject level3 = characterInfo.getJSONObject("LEVEL3");
-          level3 = new JSONObject().put("rating", level3.getInt("rating"));
+          Log.i("Level 3", level3.toString());
+          level3.remove("score");
+          level3.put("complete", false);
+
+          Log.i("Character Info", characterInfo.toString());
         }
 
       }
