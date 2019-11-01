@@ -60,7 +60,7 @@ public class LoggedInActivity extends GameActivity {
                     }
                 });
 
-        ImageView trumpIMG = findViewById(R.id.trump);
+        ImageView trumpIMG = findViewById(R.id.bush);
         Animation animated_trump = AnimationUtils.loadAnimation(this, R.anim.animated_trump);
         trumpIMG.startAnimation(animated_trump);
     }
