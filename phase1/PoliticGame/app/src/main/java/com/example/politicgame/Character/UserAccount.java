@@ -51,6 +51,22 @@ public class UserAccount {
     }
   }
 
+  public JSONObject getCharByName(String charName){
+    try{
+      for(int i = 0; i < charArray.length(); i++){
+        JSONObject currentChar = charArray.getJSONObject(i);
+        String currName = currentChar.keys().next();
+        if (currName.equals(charName)){
+          return currentChar;
+        }
+      }
+    } catch (JSONException e){
+      e.printStackTrace();
+    }
+
+    return new JSONObject();
+  }
+
   public JSONArray getCharArray(){return this.charArray;}
 
   public String getDisplayName() {

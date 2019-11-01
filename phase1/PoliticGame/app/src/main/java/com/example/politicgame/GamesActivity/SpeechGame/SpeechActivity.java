@@ -63,7 +63,6 @@ public class SpeechActivity extends GameActivity {
       setTheme(R.style.RedTheme);
     }
 
-    super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_speech);
 
     setTitle("The Speech Game");
