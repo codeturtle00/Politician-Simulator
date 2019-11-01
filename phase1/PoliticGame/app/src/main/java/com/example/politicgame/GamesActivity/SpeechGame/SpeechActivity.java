@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.politicgame.GameActivity;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PauseActivity;
 import com.example.politicgame.PauseButton;
@@ -20,23 +21,16 @@ import com.example.politicgame.GamesActivity.StampGame.StampInstructionActivity;
 
 import java.util.ArrayList;
 
-public class SpeechActivity extends AppCompatActivity {
-    private PoliticGameApp app;
+public class SpeechActivity extends GameActivity {
     private static final String TAG = "Speech Activity";
     public static final String INPUT_MESSAGE = "politicgame.speech.input";
     public static final String CORRECTION_MESSAGE = "politicgame.speech.result";
+    private final String LEVEL_NAME = "LEVEL2";
     private String correct;
     SpeechAwardPoints rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        app = (PoliticGameApp) getApplication();
-        if (app.isThemeBlue()) {
-            setTheme(R.style.BlueTheme);
-        } else {
-            setTheme(R.style.RedTheme);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech);
         String displayPrompt = app.getSpeechView().loadPrompt();
@@ -83,6 +77,10 @@ public class SpeechActivity extends AppCompatActivity {
         String userInput = editText.getText().toString();
         boolean matches = userInput.toLowerCase().equals(this.correct.toLowerCase());
         boolean exit = app.getSpeechView().isExitPoint();
+
+        if(exit){
+            saveGame(SpeechAwardPoints.getCurrentPoints(), LEVEL_NAME);
+        }
 
         if (matches) {
             Intent successfulIntent = new Intent(this, SuccessSpeechResult.class);
