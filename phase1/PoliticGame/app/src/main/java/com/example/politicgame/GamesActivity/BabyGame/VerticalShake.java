@@ -40,11 +40,11 @@ class VerticalShake extends Event {
     if (initialX > getX() && initialY > getY()) {
       if (Math.abs(finalX - initialX) < 50 && Math.abs(finalY - initialY) > 100) {
         Log.d("VerticalShake", "Score increased");
-        return 1;
+        return 10;
       }
     }
     Log.d("VerticalShake", "Score decreased");
-    return -1;
+    return -10;
   }
 
   @Override
