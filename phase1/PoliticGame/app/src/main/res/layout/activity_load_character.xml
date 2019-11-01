@@ -8,7 +8,7 @@
     android:background="?attr/backColor">
 
     <Button
-        android:id="@+id/delete_2"
+        android:id="@+id/toggle_exist_2"
         android:layout_width="36dp"
         android:layout_height="158dp"
         android:text="Button"
@@ -81,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/load_character_subtitle" />
 
     <Button
-        android:id="@+id/delete_1"
+        android:id="@+id/toggle_exist_1"
         android:layout_width="36dp"
         android:layout_height="158dp"
         android:text="Button"

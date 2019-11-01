@@ -102,8 +102,6 @@ public class StampActivity extends GameActivity {
     }
 
 
-
-
     public void openStampLost() {
         Intent stampLostIntent = new Intent(this, StampActivityLost.class);
         startActivity(stampLostIntent);

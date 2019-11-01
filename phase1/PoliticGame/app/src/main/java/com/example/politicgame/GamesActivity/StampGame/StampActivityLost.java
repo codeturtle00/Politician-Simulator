@@ -17,7 +17,7 @@ public class StampActivityLost extends GameActivity {
 
         System.out.println("The current theme is blue: " + app.isThemeBlue());
 
-        if (app.isThemeBlue()){
+        if (app.isThemeBlue()) {
             setTheme(R.style.BlueTheme);
         } else {
             setTheme(R.style.RedTheme);
