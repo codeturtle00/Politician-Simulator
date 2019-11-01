@@ -2,6 +2,7 @@ package com.example.politicgame.UserActivity.RegisterActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -32,7 +33,7 @@ public class RegistrationActivity extends GameActivity {
     setContentView(R.layout.activity_registration);
 
     setTitle("Registration");
-    
+    app = (PoliticGameApp) getApplication();
     this.fileSaving = new FileSavingService(this);
 
     final Button backButton = findViewById(R.id.sign_out);

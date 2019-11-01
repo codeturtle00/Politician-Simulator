@@ -4,7 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PoliticianB extends GameCharacter {
-  private String name = "Boy";
+  private int charId = 2;
   @Override
   protected JSONObject getJsonLevel1() {
     JSONObject detailObject = new JSONObject();
@@ -50,5 +50,17 @@ public class PoliticianB extends GameCharacter {
       e.printStackTrace();
     }
     return detailObject;
+  }
+
+  @Override
+  public JSONObject getJsonCharacter() {
+    JSONObject politic = super.getJsonCharacter();
+    try{
+      politic.getJSONObject(getName()).put(detail.charId.toString(),this.charId);
+    }
+    catch (JSONException e){
+      e.printStackTrace();
+    }
+    return politic;
   }
 }
