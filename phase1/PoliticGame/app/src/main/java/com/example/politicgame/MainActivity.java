@@ -56,16 +56,6 @@ public class MainActivity extends GameActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Play button, starts the game
-        final Button playButton = findViewById(R.id.start);
-        playButton.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        // Code here executes on main thread after user presses button
-                        openBabyGame();
-                    }
-                });
-
 
         //Login button, starts the login process
         final Button loginButton = findViewById(R.id.login);

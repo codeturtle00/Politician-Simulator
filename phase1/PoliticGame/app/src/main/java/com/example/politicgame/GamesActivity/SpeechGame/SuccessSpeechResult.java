@@ -9,7 +9,7 @@ public class SuccessSpeechResult extends SpeechResult{
     private PoliticGameApp app;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         app = (PoliticGameApp) getApplication();
 
         System.out.println("The current theme is blue: " + app.isThemeBlue());
