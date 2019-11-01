@@ -11,7 +11,8 @@ public abstract class GameCharacter {
     LEVEL2,
     LEVEL3,
     SCORE,
-    Rating
+    Rating,
+    charId
   }
 
   protected abstract JSONObject getJsonLevel1();
@@ -32,6 +33,11 @@ public abstract class GameCharacter {
     return detailObject;
   }
 
+  /**
+   * "LEVEL1":{}...
+   *
+   * "LEVEL1":{"complete":false}
+   */
   public JSONObject getJsonCharacter() {
     JSONObject charObject = new JSONObject();
     try {
@@ -54,5 +60,6 @@ public abstract class GameCharacter {
   public void setName(String name) {
     this.name = name;
   }
+
 
 }
