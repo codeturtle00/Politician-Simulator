@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -91,6 +92,8 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     onPause();
     final Dialog gameOverDialog = new Dialog(this);
     gameOverDialog.setContentView(R.layout.game_over);
+    gameOverDialog.setCancelable(false);
+    gameOverDialog.setCanceledOnTouchOutside(false);
     Button quitB = gameOverDialog.findViewById(R.id.goBack);
     quitB.setOnClickListener(
             new View.OnClickListener() {
@@ -103,17 +106,38 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     gameOverDialog.show();
   }
 
+  public void gameOutro() {
+    onPause();
+    final Dialog gameOutroDialog = new Dialog(this);
+    gameOutroDialog.setContentView(R.layout.baby_outro);
+    gameOutroDialog.setCancelable(false);
+    gameOutroDialog.setCanceledOnTouchOutside(false);
+    TextView score = gameOutroDialog.findViewById(R.id.score);
+    score.setText(String.format("Your score is %d", happiness));
+    ImageButton nextButton = gameOutroDialog.findViewById(R.id.next);
+    nextButton.setOnClickListener(
+            new View.OnClickListener() {
+              public void onClick(View v) {
+                gameOutroDialog.dismiss();
+                openSpeechGame();
+              }
+            });
+    gameOutroDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    gameOutroDialog.show();
+  }
+
   @Override
   public void updateScore(int happinessChange) {
     happiness += happinessChange;
     String score = happiness.toString() + "%";
     scoreDisplay.setText(score);
     if (happiness <= 0) gameOver();
+    if (happiness >= 100) gameOutro();
   }
 
   @Override
-  public void updateTime(String time) {
-    if (time.equals("Time's Up!")) gameOver();
+  public void updateTime(String time, boolean outOfTime) {
+    if (outOfTime) gameOutro();
     timerDisplay.setText(time);
   }
 
