@@ -108,6 +108,8 @@ public class PoliticGameApp extends Application {
   }
 
   // Methods for music selection
+
+  /** Switch the current track */
   public void switchMusic() {
     if (currentTrack < TRACK_ARRAY.length - 1) {
       currentTrack++;
@@ -122,24 +124,37 @@ public class PoliticGameApp extends Application {
     startMusic();
   }
 
+  /**
+   * Returns the current track number
+   *
+   * @return The current track number
+   */
   public int getCurrentTrackNum() {
     return currentTrack + 1;
   }
 
+  /**
+   * Returns if music is on or not
+   *
+   * @return Is the music on right now?
+   */
   public boolean isMusicOn() {
     return musicOn;
   }
 
+  /** Starts the music player */
   public void startMusic() {
     musicPlayer.start();
     musicOn = true;
   }
 
+  /** Pauses the music player */
   public void pauseMusic() {
     musicPlayer.pause();
     musicOn = false;
   }
 
+  /** Toggles the music player */
   public void toggleMusic() {
     if (musicOn) {
       pauseMusic();

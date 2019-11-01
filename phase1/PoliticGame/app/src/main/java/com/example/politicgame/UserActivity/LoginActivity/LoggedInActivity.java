@@ -66,34 +66,28 @@ public class LoggedInActivity extends GameActivity {
         trumpIMG.startAnimation(animated_trump);
     }
 
+
+    /**
+     * Opens the load character screen
+     */
     public void openLoadCharacter () {
         Intent loadCharacters = new Intent(this, LoadCharacterActivity.class);
         startActivity(loadCharacters);
         finish();
     }
 
-    public void openBabyGame() {
-        /**
-         * Starts the first game
-         */
-        Intent switchBabyIntent = new Intent(this, BabyActivity.class);
-        startActivity(switchBabyIntent);
-        finish();
-    }
-
-
+    /**
+     * Opens the leaderboard screen
+     */
     public void openLeaderBoard() {
-        /**
-         * Opens the leaderboard screen
-         */
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivityForResult(switchBoardIntent, 2);
     }
 
+    /**
+     * Open the settings menu
+     */
     public void openSettings() {
-        /**
-         * Open the settings menu
-         */
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
         settingsIntent.putExtra("SESSION_ID", "loggedIn");
         startActivity(settingsIntent);
