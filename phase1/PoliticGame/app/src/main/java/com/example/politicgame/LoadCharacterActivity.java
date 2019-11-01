@@ -13,11 +13,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.politicgame.Common.FileSavingService;
+import com.example.politicgame.User.UserAccount;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 public class LoadCharacterActivity extends GameActivity {
     protected PoliticGameApp app;
-    private final String FILE_NAME = "user_game_data.json";
+    private final String FILE_NAME = "user.json";
+    private FileSavingService fileSaving;
     private Drawable highlight;
     private int currCharacter;
 
@@ -43,10 +49,12 @@ public class LoadCharacterActivity extends GameActivity {
 
         highlight = getResources().getDrawable(R.drawable.highlight);
 
+        this.fileSaving = new FileSavingService(this);
+
         final TextView charButton1 = findViewById(R.id.character_1);
         final TextView charButton2 = findViewById(R.id.character_2);
-        final Button deleteButton1 = findViewById(R.id.delete_1);
-        final Button deleteButton2 = findViewById(R.id.delete_2);
+        final Button toggleExistButton1 = findViewById(R.id.toggle_exist_1);
+        final Button toggleExistButton2 = findViewById(R.id.toggle_exist_2);
         final Button startButton = findViewById(R.id.start_button);
         final TextView backButton = findViewById(R.id.load_character_back);
 
@@ -70,14 +78,14 @@ public class LoadCharacterActivity extends GameActivity {
                     }
                 });
 
-        deleteButton1.setOnClickListener(
+        toggleExistButton1.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
 
                     }
                 });
 
-        deleteButton2.setOnClickListener(
+        toggleExistButton2.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
 
@@ -102,5 +110,13 @@ public class LoadCharacterActivity extends GameActivity {
     private void toLoggedInMenu() {
         Intent selectIntent = new Intent(this, LoggedInActivity.class);
         startActivity(selectIntent);
+    }
+
+    private JSONObject getExistingCharacters(){
+        UserAccount userAcc = app.getCurrentUser();
+
+        //JSONArray charArray = userAcc.
+
+        return new JSONObject();
     }
 }

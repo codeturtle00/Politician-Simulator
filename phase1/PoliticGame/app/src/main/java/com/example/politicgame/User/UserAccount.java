@@ -33,6 +33,8 @@ public class UserAccount {
     this.charArray.put(charObject);
   }
 
+  public JSONArray getCharArray(){return this.charArray;}
+
   public String getDisplayName() {
     return displayName;
   }
