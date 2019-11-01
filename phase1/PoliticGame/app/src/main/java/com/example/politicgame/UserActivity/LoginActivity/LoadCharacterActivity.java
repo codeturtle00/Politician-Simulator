@@ -29,12 +29,6 @@ public class LoadCharacterActivity extends GameActivity {
     private FileSavingService fileSaving;
     private Drawable highlight;
     private int currCharacter;
-    final TextView charButton1 = findViewById(R.id.character_1);
-    final TextView charButton2 = findViewById(R.id.character_2);
-    final Button toggleExistButton1 = findViewById(R.id.toggle_exist_1);
-    final Button toggleExistButton2 = findViewById(R.id.toggle_exist_2);
-    final Button startButton = findViewById(R.id.start_button);
-    final TextView backButton = findViewById(R.id.load_character_back);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +53,13 @@ public class LoadCharacterActivity extends GameActivity {
         highlight = getResources().getDrawable(R.drawable.highlight);
 
         populateCharacterCells();
+
+        final TextView charButton1 = findViewById(R.id.character_1);
+        final TextView charButton2 = findViewById(R.id.character_2);
+        final Button toggleExistButton1 = findViewById(R.id.toggle_exist_1);
+        final Button toggleExistButton2 = findViewById(R.id.toggle_exist_2);
+        final Button startButton = findViewById(R.id.start_button);
+        final TextView backButton = findViewById(R.id.load_character_back);
 
         charButton1.setOnClickListener(
                 new View.OnClickListener() {
@@ -118,14 +119,14 @@ public class LoadCharacterActivity extends GameActivity {
 
         Iterator<String> keys = charCell.keys();
         String currKey;
-        String msg;
+        String [] msg = new String [2];
         while(keys.hasNext()){
-            msg = "";
+            msg[currCell] = "";
             currKey = keys.next();
 
-            msg += "Character Name: " + currKey + ".";
-            msg += "Character Name: " + currKey + ".";
+            msg[currCell] += "Character Name: " + currKey + ".";
         }
+
     }
 
     private JSONObject getExistingCharacters(){
