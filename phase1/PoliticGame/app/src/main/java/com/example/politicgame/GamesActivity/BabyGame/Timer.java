@@ -17,8 +17,10 @@ class Timer {
   }
 
   void pause() {
-    timer.cancel();
-    timer = null;
+    if (timer != null) {
+      timer.cancel();
+      timer = null;
+    }
   }
 
   void resume() {
@@ -33,11 +35,11 @@ class Timer {
               babyView.randomEvent(timeLeft);
             }
             System.out.println(timeLeft);
-            babyDraw.updateTime(timeLeft.toString());
+            babyDraw.updateTime(timeLeft.toString(), false);
           }
 
           public void onFinish() {
-            babyDraw.updateTime("Time's up!");
+            babyDraw.updateTime("Time's up!", true);
           }
         };
     timer.start();
