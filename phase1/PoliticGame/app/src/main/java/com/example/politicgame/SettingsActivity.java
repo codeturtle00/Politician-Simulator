@@ -30,7 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         setTitle("Settings");
 
-        lastActivity = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        lastActivity = getIntent().getStringExtra("SESSION_ID");
 
         //Music player's current track
         final TextView currentTrack = findViewById(R.id.currentTrackText);
