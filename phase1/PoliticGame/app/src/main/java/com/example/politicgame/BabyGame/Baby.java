@@ -30,5 +30,6 @@ public class Baby {
 
   public void draw(Canvas canvas) {
     canvas.drawBitmap(babyImg, this.x - (width / 2), this.y - (height / 2), paint);
+    System.out.println("Drew baby");
   }
 }
