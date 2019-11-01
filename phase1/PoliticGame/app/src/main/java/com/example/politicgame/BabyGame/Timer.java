@@ -30,7 +30,7 @@ class Timer {
             timeLeftInMillis = millisUntilFinished;
             Integer timeLeft = (int) timeLeftInMillis / 1000;
             if (timeLeft % 3 == 0) {
-              babyView.randomEvent(timeLeft);
+              babyView.randomEvent();
             }
             System.out.println(timeLeft);
             babyDraw.updateTime(timeLeft.toString());
