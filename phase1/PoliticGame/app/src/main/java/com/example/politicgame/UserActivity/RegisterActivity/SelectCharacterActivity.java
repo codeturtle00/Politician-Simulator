@@ -22,7 +22,6 @@ import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
 public class SelectCharacterActivity extends GameActivity {
 
-  private PoliticGameApp app;
   private int currCharacter;
   private GameCharacter selectedCharacter;
   private Drawable highlight;
