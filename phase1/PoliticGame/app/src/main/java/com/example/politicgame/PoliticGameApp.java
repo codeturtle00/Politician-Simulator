@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
 
-import com.example.politicgame.User.UserAccount;
+import com.example.politicgame.Character.UserAccount;
 
 public class PoliticGameApp extends Application {
 
