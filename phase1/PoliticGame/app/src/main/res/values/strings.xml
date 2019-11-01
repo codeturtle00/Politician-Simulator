@@ -37,4 +37,8 @@
     <string name="logged_in_activity_create_char">Create Character</string>
     <string name="logged_in_activity_select_char">Select Character</string>
     <string name="action_sign_in">Sign In</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="resume">Resume</string>
+    <string name="pause_menu_image">pause_menu_image</string>
+    <string name="load_screen">change character</string>
 </resources>
