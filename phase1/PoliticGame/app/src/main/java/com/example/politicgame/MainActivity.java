@@ -10,7 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.politicgame.GamesActivity.BabyGame.BabyActivity;
+import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstruction;
 import com.example.politicgame.UserActivity.LoginActivity.LoginActivity;
 
 import org.json.JSONArray;
@@ -160,7 +160,7 @@ public class MainActivity extends GameActivity {
         /**
          * Starts the first game
          */
-        Intent switchBabyIntent = new Intent(this, BabyActivity.class);
+        Intent switchBabyIntent = new Intent(this, BabyGameInstruction.class);
         startActivity(switchBabyIntent);
         finish();
     }
