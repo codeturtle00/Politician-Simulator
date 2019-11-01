@@ -32,7 +32,7 @@
     <string name="welcome">welcome </string>
     <string name="speechRating">Your current rating: 0%</string>
     <string name="StampGameWon">Congratulations! You have made reasonable choices with the given proposals. Your charisma made you successfully be elected.</string>
-    <string name="stamp_game_lost_leaderboard">Leaderboard</string>
+    <string name="stamp_game_lost_leaderboard">Game Summary</string>
     <string name="stamp_game_happy_face">happy face</string>
     <string name="stamp_game_lost_message">Unfortunately, you have dropped out of the election due to your underwhelming performance during this stage.</string>
     <string name="sad_face_for_stamp_game">sad face for stamp game</string>
@@ -43,4 +43,6 @@
     <string name="resume">Resume</string>
     <string name="pause_menu_image">pause_menu_image</string>
     <string name="load_screen">change character</string>
+    <string name="summary">this is the summary for all 3 game scores</string>
+    <string name="summary_main_menu">main menu</string>
 </resources>

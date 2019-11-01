@@ -47,6 +47,12 @@ public abstract class GameActivity extends AppCompatActivity {
         finish();
     }
 
+    public void openSummary() {
+        Intent summaryIntent = new Intent(this, SummaryActivity.class);
+        startActivity(summaryIntent);
+        finish();
+    }
+
 
     public void openLeaderBoard() {
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
