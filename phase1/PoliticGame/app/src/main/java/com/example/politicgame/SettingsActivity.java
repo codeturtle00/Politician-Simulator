@@ -1,22 +1,13 @@
 package com.example.politicgame;
 
-import android.bluetooth.BluetoothA2dp;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.text.Layout;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.example.politicgame.Common.FileSavingService;
 
 
 public class SettingsActivity extends AppCompatActivity {
@@ -60,7 +51,7 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                 });
 
-        final Button quitButton = findViewById(R.id.goBack);
+        final Button quitButton = findViewById(R.id.sign_out);
         quitButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {

@@ -2,16 +2,10 @@ package com.example.politicgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
-import com.example.politicgame.LeaderBoardActivity;
-import com.example.politicgame.R;
 
 public class PauseActivity extends AppCompatActivity {
 
@@ -49,7 +43,7 @@ public class PauseActivity extends AppCompatActivity {
                 });
 
         //Quit to main menu button
-        final Button quitB = findViewById(R.id.goBack);
+        final Button quitB = findViewById(R.id.sign_out);
         quitB.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -57,6 +51,20 @@ public class PauseActivity extends AppCompatActivity {
                     }
                 });
 
+        //Quit to logged in menu button
+        final Button loggedInB = findViewById(R.id.pause_menu_load_screen);
+        loggedInB.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        openLoggedInActivity();
+                    }
+                });
+
+    }
+
+    private void openLoggedInActivity(){
+        Intent LoggedInActivityIntent = new Intent(this, LoggedInActivity.class);
+        startActivity(LoggedInActivityIntent);
     }
 
 

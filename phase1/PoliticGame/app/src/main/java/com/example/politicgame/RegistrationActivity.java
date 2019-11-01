@@ -2,14 +2,13 @@ package com.example.politicgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.politicgame.BabyGame.BabyActivity;
+
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.User.UserAccountManager;
 import com.example.politicgame.User.UserAccount;
@@ -42,7 +41,7 @@ public class RegistrationActivity extends AppCompatActivity {
     
     this.fileSaving = new FileSavingService(this);
 
-    final Button backButton = findViewById(R.id.goBack);
+    final Button backButton = findViewById(R.id.sign_out);
     backButton.setOnClickListener(
             new View.OnClickListener() {
               public void onClick(View v) {
