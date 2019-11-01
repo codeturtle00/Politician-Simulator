@@ -2,6 +2,7 @@ package com.example.politicgame.GamesActivity.SpeechGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import com.example.politicgame.PauseButton;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.GamesActivity.StampGame.StampInstructionActivity;
+
 import java.util.ArrayList;
 
 public class SpeechActivity extends AppCompatActivity {
@@ -29,7 +31,7 @@ public class SpeechActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         app = (PoliticGameApp) getApplication();
-        if (app.isThemeBlue()){
+        if (app.isThemeBlue()) {
             setTheme(R.style.BlueTheme);
         } else {
             setTheme(R.style.RedTheme);
@@ -37,10 +39,10 @@ public class SpeechActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech);
-        String displayPrompt =  app.getSpeechView().loadPrompt();
-        String answer =  app.getSpeechView().loadAnswer();
+        String displayPrompt = app.getSpeechView().loadPrompt();
+        String answer = app.getSpeechView().loadAnswer();
         this.correct = answer;
-        ArrayList<String> choice =  app.getSpeechView().loadChoice();
+        ArrayList<String> choice = app.getSpeechView().loadChoice();
         // A button that will switch to next page if user clicks
         final Button button = findViewById(R.id.speechNext);
         button.setOnClickListener(
@@ -63,16 +65,6 @@ public class SpeechActivity extends AppCompatActivity {
         rating = new SpeechAwardPoints(getIntent().getIntExtra("current rating", 0));
         setTitle("The Speech Game");
 
-//    final Button pauseB = findViewById(R.id.pause);
-//    pauseB.setOnClickListener(
-//            new View.OnClickListener() {
-//              public void onClick(View v) {
-//                Log.i("Button", "The pause button has been clicked");
-//
-//                //The method below will pause the game and handle the following inputs
-//                openPauseMenu();
-//              }
-//            });
         new PauseButton((ConstraintLayout) findViewById(R.id.speechLayout), this);
     }
 
@@ -94,29 +86,25 @@ public class SpeechActivity extends AppCompatActivity {
 
         if (matches) {
             Intent successfulIntent = new Intent(this, SuccessSpeechResult.class);
-            // TODO:Add points for the user
             successfulIntent.putExtra(INPUT_MESSAGE, userInput);
+            successfulIntent.putExtra("visible", exit);
             startActivity(successfulIntent);
             rating.awardPoints();
-            System.out.println(SpeechAwardPoints.getFeedback());
-            finish();
         } else {
             Intent failIntent = new Intent(this, FailureSpeechResult.class);
-            // TODO: Keep point for the user
             failIntent.putExtra(INPUT_MESSAGE, userInput);
+            failIntent.putExtra("visible", exit);
             startActivity(failIntent);
             rating.losePoints();
-            finish();
         }
     }
 
-
-    public void openPauseMenu(){
+    public void openPauseMenu() {
         Intent pauseMenuIntent = new Intent(this, PauseActivity.class);
         startActivityForResult(pauseMenuIntent, 1);
     }
 
-    public void openMainMenu(){
+    public void openMainMenu() {
         Intent mainMenuIntent = new Intent(this, MainActivity.class);
         startActivity(mainMenuIntent);
         finish();
@@ -131,25 +119,21 @@ public class SpeechActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         //requestCode refers to the request code parameter of openPauseMenu's startActivityForResult call
         if (requestCode == 1) {
-            if (resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
                 int userInput = data.getIntExtra("result", 0);
 
-                if (userInput == 1){
+                if (userInput == 1) {
                     Log.i("Pause Result", "User has decided to resume play");
-                }
-
-                else if (userInput == 2){
+                } else if (userInput == 2) {
                     Log.i("Pause Result", "User has decided to quit the game");
                     openMainMenu();
                 }
-            }
-
-            else {
+            } else {
                 Log.i("Result Code", "Result code is " + resultCode);
             }
         }

@@ -95,12 +95,19 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     timer.resume();
   }
 
+  /**
+   * Opens the next level
+   */
   void openSpeechGame() {
     Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
     startActivity(switchSpeechIntent);
     finish();
   }
 
+
+  /**
+   * Displays a screen telling the player if they won or lost the game
+   */
   public void gameOver() {
     onPause();
     final Dialog gameOverDialog = new Dialog(this);

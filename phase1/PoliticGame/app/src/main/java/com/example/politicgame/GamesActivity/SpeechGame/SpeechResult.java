@@ -15,6 +15,7 @@ import com.example.politicgame.R;
 public class SpeechResult extends GameActivity {
 
     private final String LEVEL_NAME = "LEVEL2";
+    private int num_prompts;
 
     @Override
     protected void onStart() {
@@ -23,6 +24,8 @@ public class SpeechResult extends GameActivity {
         String message = intent.getStringExtra(SpeechActivity.INPUT_MESSAGE);
         TextView textView = findViewById(R.id.userInput);
         textView.setText(message);
+
+        num_prompts = getIntent().getIntExtra("prompt", 1);
 
         TextView ratingDisplay = findViewById(R.id.curRating);
         String newRating = SpeechAwardPoints.getFeedback();
@@ -42,6 +45,10 @@ public class SpeechResult extends GameActivity {
                         openStampGame();
                     }
                 });
+        if(getIntent().getBooleanExtra("visible", false)){
+            next.setVisibility(View.VISIBLE);
+            confirm.setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -54,6 +61,7 @@ public class SpeechResult extends GameActivity {
     public void returnSpeech(){
         Intent backToSpeech = new Intent(this, SpeechActivity.class);
         backToSpeech.putExtra("current rating", SpeechAwardPoints.getCurrentPoints());
+        backToSpeech.putExtra("num prompts", num_prompts);
         startActivity(backToSpeech);
         finish();
     }
