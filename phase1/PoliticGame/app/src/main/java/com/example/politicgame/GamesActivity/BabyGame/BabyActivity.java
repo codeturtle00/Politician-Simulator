@@ -103,6 +103,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
    */
   void openSpeechGame() {
     Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
+    saveGame(happiness, LEVEL_NAME);
     startActivity(switchSpeechIntent);
     finish();
   }
@@ -147,7 +148,6 @@ public class BabyActivity extends GameActivity implements BabyDraw {
             new View.OnClickListener() {
               public void onClick(View v) {
                 gameOutroDialog.dismiss();
-                saveGame(happiness, LEVEL_NAME);
                 openSpeechGame();
               }
             });
