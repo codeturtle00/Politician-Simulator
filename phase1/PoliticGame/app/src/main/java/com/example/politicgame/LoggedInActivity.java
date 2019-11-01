@@ -52,14 +52,14 @@ public class LoggedInActivity extends GameActivity {
 
 
         //Leaderboard button, opens the leaderboard
-        final Button boardButton = findViewById(R.id.leaderBoard);
-        boardButton.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        // Code here executes on main thread after user presses button
-                        openLeaderBoard();
-                    }
-                });
+//        final Button boardButton = findViewById(R.id.leaderBoard);
+//        boardButton.setOnClickListener(
+//                new View.OnClickListener() {
+//                    public void onClick(View v) {
+//                        // Code here executes on main thread after user presses button
+//                        openLeaderBoard();
+//                    }
+//                });
 
 
         //Settings button, opens the settings menu
