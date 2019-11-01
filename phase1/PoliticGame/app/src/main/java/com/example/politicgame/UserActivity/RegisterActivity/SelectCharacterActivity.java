@@ -97,6 +97,7 @@ public class SelectCharacterActivity extends GameActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         openLoggedIn();
+                        app.getCurrentUser().setCurrentCharacter(selectedCharacter);
                     }
                 });
     }

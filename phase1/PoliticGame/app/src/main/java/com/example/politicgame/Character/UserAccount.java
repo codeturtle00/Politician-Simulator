@@ -22,10 +22,21 @@ public class UserAccount {
   private JSONArray charArray = new JSONArray();
   private Context context;
 
+  public void setCurrentCharacter(GameCharacter currentCharacter) {
+    this.currentCharacter = currentCharacter;
+  }
+
+  public GameCharacter getCurrentCharacter() {
+    return currentCharacter;
+  }
+
+  private GameCharacter currentCharacter;
+
   public UserAccount(String displayName, Context context) {
     this.context = context;
     this.fileSaving = new FileSavingService(context);
     this.displayName = displayName;
+
   }
 
   /**
@@ -40,10 +51,10 @@ public class UserAccount {
   /**
    * Sets charArray to charObject
    *
-   * @param charObject  A JSONArray that will replace the old charArray
+   * @param charArray A JSONArray that will replace the old charArray
    */
-  public void setCharArray(JSONArray charObject) {
-    this.charArray = charObject;
+  public void setCharArray(JSONArray charArray) {
+    this.charArray = charArray;
   }
 
 

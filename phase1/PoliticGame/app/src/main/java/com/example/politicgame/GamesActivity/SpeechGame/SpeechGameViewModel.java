@@ -19,6 +19,9 @@ public class SpeechGameViewModel extends ViewModel {
     if (this.speechRepo.getPrompt().size() > 0) {
       displayPrompt = this.speechRepo.getPrompt().get(0);
       this.getSpeechRepo().getPrompt().remove(displayPrompt);
+      if(this.speechRepo.getPrompt().size() ==1){
+          exitPoint = true;
+      }
     } else {
       exitPoint = true;
     }
@@ -34,6 +37,9 @@ public class SpeechGameViewModel extends ViewModel {
     if (this.speechRepo.getAnswer().size() > 0) {
       displayAnswer = this.speechRepo.getAnswer().get(0);
       this.getSpeechRepo().getAnswer().remove(displayAnswer);
+        if(this.speechRepo.getPrompt().size() ==1){
+            exitPoint = true;
+        }
     } else {
       exitPoint = true;
     }
@@ -45,6 +51,9 @@ public class SpeechGameViewModel extends ViewModel {
     if (this.speechRepo.getChoice().size() > 0) {
       displayChoice = this.speechRepo.getChoice().get(0);
       this.getSpeechRepo().getChoice().remove(displayChoice);
+        if(this.speechRepo.getPrompt().size() ==1){
+            exitPoint = true;
+        }
     } else {
       exitPoint = true;
       displayChoice.add("");
@@ -60,7 +69,7 @@ public class SpeechGameViewModel extends ViewModel {
   }
 
   private Context context;
-  private int roundNum = 3;
+  private int roundNum = 4;
 
   public void loadQuestions() {
     this.speechRepo.loadQuestions(roundNum);

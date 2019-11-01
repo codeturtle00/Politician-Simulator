@@ -39,7 +39,7 @@ public class SpeechRepository {
   }
 
   public void loadQuestions(int numRange) {
-    List<Integer> numRanges = randomSelection(Math.min(numRange, speechResource.getDataBaseNum()));
+    List<Integer> numRanges = randomSelection(Math.min(numRange, speechResource.getDataBaseNum()-1));
     for (int i : numRanges) {
       prompt.add(this.speechResource.getPrompt().get(i));
       choice.add(this.speechResource.getChoice().get(i));
