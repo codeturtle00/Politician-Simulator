@@ -94,27 +94,50 @@ public class MainActivity extends GameActivity {
         trumpIMG.startAnimation(animated_trump);
     }
 
-    /**
-     * Opens the login page
-     */
+    public JSONObject generateEmptyLeaderBoard(){
+        JSONObject leaderBoard = new JSONObject();
+
+        try{
+            leaderBoard.put("Kullen", new JSONObject().put("Kullen the Kreeper", (new JSONObject()).put("highScore", 40)));
+            leaderBoard.put("Yitan", new JSONObject().put("Yitan the Titan", (new JSONObject()).put("highScore", 30)));
+            leaderBoard.put("Toe-knee", new JSONObject().put("Toe-knee the shoe-in", (new JSONObject()).put("highScore", 10)));
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        return leaderBoard;
+    }
+
+    public void openBabyGame() {
+        /**
+         * Starts the first game
+         */
+        Intent switchBabyIntent = new Intent(this, BabyGameInstruction.class);
+        startActivity(switchBabyIntent);
+        finish();
+    }
+
     public void openLoginPage() {
+        /**
+         * Opens the login page
+         */
         Intent loginPageIntent = new Intent(this, LoginActivity.class);
         startActivity(loginPageIntent);
         finish();
     }
 
-    /**
-     * Opens the leaderboard screen
-     */
     public void openLeaderBoard() {
+        /**
+         * Opens the leaderboard screen
+         */
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
         startActivityForResult(switchBoardIntent, 2);
     }
 
-    /**
-     * Open the settings menu
-     */
     public void openSettings() {
+        /**
+         * Open the settings menu
+         */
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
         settingsIntent.putExtra("SESSION_ID", "main");
         startActivity(settingsIntent);

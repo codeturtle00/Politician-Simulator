@@ -15,13 +15,11 @@ import com.example.politicgame.Character.PoliticianA;
 import com.example.politicgame.Character.PoliticianB;
 import com.example.politicgame.Character.UserAccount;
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.GamesActivity.BabyGame.BabyActivity;
+import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstruction;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
 public class SelectCharacterActivity extends GameActivity {
-
   private int currCharacter;
   private GameCharacter selectedCharacter;
   private Drawable highlight;
@@ -100,11 +98,6 @@ public class SelectCharacterActivity extends GameActivity {
         });
   }
 
-  /**
-   * Set current character and save to the database
-   *
-   * @param name The name of the new character
-   */
   public void characterSet(String name) {
     selectedCharacter.setName(name);
     UserAccount user = app.getCurrentUser();
@@ -116,11 +109,10 @@ public class SelectCharacterActivity extends GameActivity {
     app.setCurrentCharacter(name);
 
     startGame();
-    }
+  }
 
-  /** Start the game */
   public void startGame() {
-    Intent startGameIntent = new Intent(this, BabyActivity.class);
+    Intent startGameIntent = new Intent(this, BabyGameInstruction.class);
     startActivity(startGameIntent);
     finish();
   }

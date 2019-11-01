@@ -161,7 +161,10 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   @Override
   public void updateTime(String time, boolean outOfTime) {
     if (outOfTime) gameOutro();
-    timerDisplay.setText(time);
+    else {
+      timerDisplay.setText(time);
+      updateScore(-1);
+    }
   }
 
   public void updateEventAction(String eventAction) {

@@ -110,8 +110,12 @@ class EventManager implements View.OnTouchListener {
     }
     // Only runs when finger is lifted off screen
     if (touch.getAction() == MotionEvent.ACTION_UP) {
-      for (Event e : events) {
-        updateScore(e.handleTouch(v, initialX, initialY, finalX, finalY));
+      Random r = new Random();
+      for (Event event : events) {
+        int scoreChange = event.handleTouch(v, initialX, initialY, finalX, finalY);
+        //randomize scoreChange between 0.5x to 1.5x
+        scoreChange *= (0.5 + r.nextFloat());
+        updateScore(scoreChange);
       }
     }
     return true;

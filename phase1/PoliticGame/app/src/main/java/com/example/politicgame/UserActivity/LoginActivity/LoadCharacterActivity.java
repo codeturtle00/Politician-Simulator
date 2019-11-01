@@ -76,19 +76,14 @@ public class LoadCharacterActivity extends GameActivity {
 
         Log.i("onCreate","Before we populate cells");
 
-
-        //Populates the character cells
         populateCharacterCells();
 
-        //If first cell has an existing character, set the button to reflect that
         if (cellLoaded[0]){
             toggleExistButton1.setText("Delete");
         } else {
             toggleExistButton1.setText("New");
         }
 
-
-        //If second cell has an existing character, set the button to reflect that
         if (cellLoaded[1]){
             toggleExistButton2.setText("Delete");
         } else {
@@ -153,15 +148,22 @@ public class LoadCharacterActivity extends GameActivity {
     }
 
 
-    /**
-     * Populate the character cells with existing characters
-     */
+    private void startGame(){
+        if(currCharacter != 0 && cellLoaded[currCharacter - 1]){
+            app.setCurrentCharacter(cellNames[currCharacter - 1]);
+
+            Intent babyGameIntent = new Intent (this, BabyActivity.class);
+            startActivity(babyGameIntent);
+        }
+    }
+
     private void populateCharacterCells(){
         JSONObject charCell = getExistingCharacters();
 
         Log.i("Read charCell","THE JSON OUTPUT IS HERE");
         Log.i("Read charCell", charCell.toString());
 
+        Boolean [] load = new Boolean [] {false, false};
         int currCell = 0;
 
         Iterator<String> keys = charCell.keys();
@@ -177,26 +179,23 @@ public class LoadCharacterActivity extends GameActivity {
             currCell++;
         }
 
-        if (currCell == 2){ //If there are already two existing characters
+        if (currCell == 2){
             charButton1.setText(msg[0]);
             cellLoaded[0] = true;
             charButton2.setText(msg[1]);
             cellLoaded[1] = true;
-        } else if (currCell == 1){ //If there is only one existing character
+        } else if (currCell == 1){
             charButton1.setText(msg[0]);
             cellLoaded[0] = true;
             charButton2.setText("Press button to create character");
-        } else { //If there are no pre-existing characters
+        } else {
             charButton1.setText("Press button to create character");
             charButton2.setText("Press button to create character");
         }
+
+
     }
 
-    /**
-     * Check the file if therea re existing characters for the user
-     *
-     * @return  A JSONObject containing existing characters
-     */
     private JSONObject getExistingCharacters(){
         JSONArray charArray = userAcc.getCharArray();
         JSONObject returnChar = new JSONObject();
@@ -217,43 +216,20 @@ public class LoadCharacterActivity extends GameActivity {
         return returnChar;
     }
 
-    /**
-     * Start the game
-     */
-    private void startGame(){
-        if(currCharacter != 0 && cellLoaded[currCharacter - 1]){
-            app.setCurrentCharacter(cellNames[currCharacter - 1]);
-
-            Intent babyGameIntent = new Intent (this, BabyActivity.class);
-            startActivity(babyGameIntent);
-        }
-    }
-
-    /**
-     * Go to the logged in menu
-     */
     private void toLoggedInMenu() {
         Intent selectIntent = new Intent(this, LoggedInActivity.class);
         startActivity(selectIntent);
         finish();
     }
 
-    /**
-     * Go to the create new character screen
-     */
     private void createNewCharacter(){
         Intent createNewCharacterIntent = new Intent(this, SelectCharacterActivity.class);
         startActivity(createNewCharacterIntent);
         finish();
     }
 
-    /**
-     * Delete a character
-     *
-     * @param charName  The name of the character to be deleted
-     */
+
     private void deleteCharacter (String charName){
-        //Deletes the character from userAcc.charArray and then saves to the DB
         userAcc.deleteCharByName(charName);
         userAcc.saveToDb();
 

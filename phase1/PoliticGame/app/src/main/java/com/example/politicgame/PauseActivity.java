@@ -51,22 +51,12 @@ public class PauseActivity extends GameActivity{
 
     }
 
-
-    /**
-     * Open LoggedInActivity
-     */
     private void openLoggedInActivity(){
         Intent LoggedInActivityIntent = new Intent(this, LoggedInActivity.class);
         startActivity(LoggedInActivityIntent);
-        finish();
     }
 
 
-    /**
-     * Return to the previous menu
-     *
-     * @param requestCode
-     */
     private void returnRequest(int requestCode){
         Intent resultIntent = new Intent();
         resultIntent.putExtra("result", requestCode);
