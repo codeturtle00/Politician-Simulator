@@ -51,6 +51,16 @@ public class LoggedInActivity extends GameActivity {
                     }
                 });
 
+        //Settings button, opens the settings menu
+        final Button signOutButton = findViewById(R.id.logged_in_sign_out);
+        signOutButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        // Code here executes on main thread after user presses button
+                        openMainMenu();
+                    }
+                });
+
         ImageView trumpIMG = findViewById(R.id.bush);
         Animation animated_trump = AnimationUtils.loadAnimation(this, R.anim.animated_trump);
         trumpIMG.startAnimation(animated_trump);
