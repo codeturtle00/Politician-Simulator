@@ -103,15 +103,6 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     gameOverDialog.show();
   }
 
-
-  private void returnRequest(int requestCode){
-    Intent resultIntent = new Intent();
-    resultIntent.putExtra("result", requestCode);
-
-    setResult(RESULT_OK, resultIntent);
-    finish();
-  }
-
   @Override
   public void updateScore(int happinessChange) {
     happiness += happinessChange;
