@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.politicgame.BabyGame.BabyActivity;
+import com.example.politicgame.LoggedInActivity;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
@@ -109,9 +110,6 @@ public class LoginActivity extends AppCompatActivity {
                     updateUiWithUser(loginResult.getSuccess());
                 }
                 setResult(Activity.RESULT_OK);
-
-                //Complete and destroy login activity once successful
-                finish();
             }
         });
 
@@ -165,13 +163,21 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
-        Intent startIntent = new Intent(this, BabyActivity.class);
+        Intent startIntent = new Intent(this, LoggedInActivity.class);
         startActivity(startIntent);
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+        finish();
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+        final EditText passwordEditText = findViewById(R.id.password);
+        passwordEditText.setText("");
+        final EditText usernameEditText = findViewById(R.id.username);
+        usernameEditText.setText("");
+//        Intent startRegister = new Intent(this, RegistrationActivity.class);
+//        startActivity(startRegister);
+//        finish();
     }
 
     public void BackToMenu() {
