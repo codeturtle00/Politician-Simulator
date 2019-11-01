@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.politicgame.GamesActivity.BabyGame.BabyActivity;
-import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstructions;
+import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstruction;
 import com.example.politicgame.UserActivity.LoginActivity.LoginActivity;
 
 import org.json.JSONArray;
@@ -161,7 +161,7 @@ public class MainActivity extends GameActivity {
         /**
          * Starts the first game
          */
-        Intent switchBabyIntent = new Intent(this, BabyGameInstructions.class);
+        Intent switchBabyIntent = new Intent(this, BabyGameInstruction.class);
         startActivity(switchBabyIntent);
         finish();
     }
