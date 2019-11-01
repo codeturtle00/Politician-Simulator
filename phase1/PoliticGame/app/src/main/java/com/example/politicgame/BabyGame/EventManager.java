@@ -60,28 +60,26 @@ class EventManager implements View.OnTouchListener {
   }
 
   /** Randomly generates an event. */
-  void randomEvent(int timeLeft) {
-    if (timeLeft % 3 == 0) {
-      events.clear();
-      Random rand = new Random();
-      final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
-      if (randomNum == 1) {
-        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
-        viewUpdater.updateEventAction(
-            "The baby needs to be cradled! Swipe horizontally at any location.");
-        Log.d("EventManager", "HorizontalShake started");
-        System.out.println("Horizontal Event Set!");
-      } else if (randomNum == 2) {
-        events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
-        viewUpdater.updateEventAction(
-            "The baby needs to be cradled! Swipe vertically at any location.");
-        System.out.println("Vertical Event Set!");
-        Log.d("EventManager", "VerticalShake started");
-      } else if (randomNum == 3) {
-        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
-        viewUpdater.updateEventAction("The kiss event has not been implemented yet.");
-        Log.d("EventManager", "Kiss started");
-      }
+  void randomEvent() {
+    events.clear();
+    Random rand = new Random();
+    final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
+    if (randomNum == 1) {
+      events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
+      viewUpdater.updateEventAction(
+          "The baby needs to be cradled! Swipe horizontally at any location.");
+      Log.d("EventManager", "HorizontalShake started");
+      System.out.println("Horizontal Event Set!");
+    } else if (randomNum == 2) {
+      events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
+      viewUpdater.updateEventAction(
+          "The baby needs to be cradled! Swipe vertically at any location.");
+      System.out.println("Vertical Event Set!");
+      Log.d("EventManager", "VerticalShake started");
+    } else if (randomNum == 3) {
+      events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
+      viewUpdater.updateEventAction("The kiss event has not been implemented yet.");
+      Log.d("EventManager", "Kiss started");
     }
   }
 
@@ -110,8 +108,9 @@ class EventManager implements View.OnTouchListener {
     }
     // Only runs when finger is lifted off screen
     if (touch.getAction() == MotionEvent.ACTION_UP) {
-      for (Event e : events) {
-        update(e.update(v, initialX, initialY, finalX, finalY));
+      ArrayList eventsCopy = new ArrayList<>(events);
+      for (Object e : eventsCopy) {
+        update(((Event) e).update(v, initialX, initialY, finalX, finalY));
       }
     }
     return true;
