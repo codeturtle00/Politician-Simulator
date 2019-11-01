@@ -41,15 +41,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/trump"
+        android:id="@+id/bush"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:contentDescription="trump"
+        android:contentDescription="bush"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/animetrump" />
+        app:srcCompat="@drawable/bush" />
 
     <Button
         android:id="@+id/logged_in_activity_select_char"
