@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.PoliticGameApp;
-import com.example.politicgame.User.UserAccountManager;
 import com.example.politicgame.User.UserAccount;
 import org.json.JSONArray;
 import org.json.JSONException;

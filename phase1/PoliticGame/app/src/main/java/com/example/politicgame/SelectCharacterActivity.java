@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.UserManager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,14 +15,10 @@ import com.example.politicgame.User.GameCharacter;
 import com.example.politicgame.User.PoliticianA;
 import com.example.politicgame.User.PoliticianB;
 import com.example.politicgame.User.UserAccount;
-import com.example.politicgame.User.UserAccountManager;
-
-import org.json.JSONObject;
 
 public class SelectCharacterActivity extends AppCompatActivity {
 
     private PoliticGameApp app;
-    private UserAccountManager userManager;
     private int currCharacter;
     private GameCharacter selectedCharacter;
     private Drawable highlight;
@@ -102,12 +96,12 @@ public class SelectCharacterActivity extends AppCompatActivity {
         //Sets current characters' name
         app.setCurrentCharacter(name);
 
-        startBabyGame();
+        startLogin();
     }
 
-  public void startBabyGame() {
-      Intent switchBabyIntent = new Intent(this, BabyActivity.class);
-      startActivity(switchBabyIntent);
+  public void startLogin() {
+      Intent switchLogin = new Intent(this, LoggedInActivity.class);
+      startActivity(switchLogin );
       finish();
   }
 }
