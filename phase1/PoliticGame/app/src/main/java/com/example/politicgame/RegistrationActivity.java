@@ -105,8 +105,8 @@ public class RegistrationActivity extends AppCompatActivity {
         String saved = "User" + nameString + " is registered successfully!";
         Toast.makeText(getApplicationContext(), saved, Toast.LENGTH_LONG).show();
         //Sets current user
-        app.setCurrentUser(loginUser);
         if (saveSuccess){
+          app.setCurrentUser(loginUser);
           openCharacterSelection();
         }
       }

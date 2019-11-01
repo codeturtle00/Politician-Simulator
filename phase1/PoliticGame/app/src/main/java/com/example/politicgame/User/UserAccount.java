@@ -20,7 +20,7 @@ public class UserAccount {
   private static final String FILE_NAME = "user.json";
   private String displayName;
   private JSONArray charArray = new JSONArray();
-  private JSONObject currenChar;
+  private JSONObject currentChar;
   private Context context;
 
   public UserAccount(String displayName, Context context) {

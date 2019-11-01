@@ -17,8 +17,11 @@ import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.User.UserAccount;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
+
+import java.util.Iterator;
 
 public class LoadCharacterActivity extends GameActivity {
     protected PoliticGameApp app;
@@ -26,6 +29,12 @@ public class LoadCharacterActivity extends GameActivity {
     private FileSavingService fileSaving;
     private Drawable highlight;
     private int currCharacter;
+    final TextView charButton1 = findViewById(R.id.character_1);
+    final TextView charButton2 = findViewById(R.id.character_2);
+    final Button toggleExistButton1 = findViewById(R.id.toggle_exist_1);
+    final Button toggleExistButton2 = findViewById(R.id.toggle_exist_2);
+    final Button startButton = findViewById(R.id.start_button);
+    final TextView backButton = findViewById(R.id.load_character_back);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,14 +58,7 @@ public class LoadCharacterActivity extends GameActivity {
 
         highlight = getResources().getDrawable(R.drawable.highlight);
 
-        this.fileSaving = new FileSavingService(this);
-
-        final TextView charButton1 = findViewById(R.id.character_1);
-        final TextView charButton2 = findViewById(R.id.character_2);
-        final Button toggleExistButton1 = findViewById(R.id.toggle_exist_1);
-        final Button toggleExistButton2 = findViewById(R.id.toggle_exist_2);
-        final Button startButton = findViewById(R.id.start_button);
-        final TextView backButton = findViewById(R.id.load_character_back);
+        populateCharacterCells();
 
         charButton1.setOnClickListener(
                 new View.OnClickListener() {
@@ -107,16 +109,46 @@ public class LoadCharacterActivity extends GameActivity {
                 });
     }
 
-    private void toLoggedInMenu() {
-        Intent selectIntent = new Intent(this, LoggedInActivity.class);
-        startActivity(selectIntent);
+
+    private void populateCharacterCells(){
+        JSONObject charCell = getExistingCharacters();
+
+        Boolean [] load = new Boolean [] {false, false};
+        int currCell = 0;
+
+        Iterator<String> keys = charCell.keys();
+        String currKey;
+        String msg;
+        while(keys.hasNext()){
+            msg = "";
+            currKey = keys.next();
+
+            msg += "Character Name: " + currKey + ".";
+            msg += "Character Name: " + currKey + ".";
+        }
     }
 
     private JSONObject getExistingCharacters(){
         UserAccount userAcc = app.getCurrentUser();
+        JSONArray charArray = userAcc.getCharArray();
+        JSONObject returnChar = new JSONObject();
 
-        //JSONArray charArray = userAcc.
+        try{
+            int i;
+            for(i = 0; i < charArray.length(); i++){
+                JSONObject charObject = charArray.getJSONObject(i);
+                String charName = charObject.keys().next();
+                returnChar.put(charName, charObject.get(charName));
+            }
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
 
-        return new JSONObject();
+        return returnChar;
+    }
+
+    private void toLoggedInMenu() {
+        Intent selectIntent = new Intent(this, LoggedInActivity.class);
+        startActivity(selectIntent);
     }
 }
