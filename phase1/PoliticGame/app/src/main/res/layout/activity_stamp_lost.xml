@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backColor"
-    tools:context=".StampGame.StampActivityLost">
+    tools:context=".GamesActivity.StampGame.StampActivityLost">
 
     <ImageView
         android:id="@+id/stamp_game_sad_face"

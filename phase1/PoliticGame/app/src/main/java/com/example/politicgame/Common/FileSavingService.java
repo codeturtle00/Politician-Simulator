@@ -13,13 +13,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/** This is an API for file reading and writing
+ * All file saving and reading should be done by this API
+ * You can view it as a thin layer to get access to database(json,txt)*/
 public class FileSavingService {
   private Context context;
-
   public FileSavingService(Context context) {
     this.context = context;
   }
-
+/** This reads a txt file given the fileName, returning the string read in the file*/
   public String readStringFile(String fileName) {
     StringBuilder textBuilder = new StringBuilder();
     try {
@@ -39,16 +41,14 @@ public class FileSavingService {
     }
     return textBuilder.toString();
   }
-
+/** This is writing a txt File given the fileName and the string to be saved into the txt*/
   public void writeStringFile(String textToSave, String fileName) {
     FileOutputStream outputStream;
     File rootDir = this.context.getFilesDir();
-    System.out.println("root directory is " + rootDir);
     try {
       outputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
       outputStream.write(textToSave.getBytes());
       outputStream.close();
-      System.out.println("Successfully write a txt file!!!");
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } catch (IOException e) {
@@ -56,22 +56,22 @@ public class FileSavingService {
     }
   }
 
+  /** This is appending a txt File given the fileName and the string to be saved into the txt*/
   public void appendStringFile(String textToSave, String fileName) {
     FileOutputStream outputStream;
     File rootDir = this.context.getFilesDir();
-    System.out.println("root directory is " + rootDir);
     String oldString = this.readStringFile(fileName);
     StringBuilder savedText = new StringBuilder(oldString);
     savedText.append(textToSave);
     this.writeStringFile(savedText.toString(),fileName);
   }
 
+  /** This is reading a json file given the fileName,returning a json array*/
   public JSONArray readJsonFile(String fileName) {
     String jsonString;
     JSONArray jsonArray = new JSONArray();
     try {
       FileInputStream fileInputStream = this.context.openFileInput(fileName);
-      System.out.println("File is empty?" + fileInputStream.toString());
       int size = fileInputStream.available();
       byte[] buffer = new byte[size];
       fileInputStream.read(buffer);
@@ -85,7 +85,7 @@ public class FileSavingService {
     }
     return jsonArray;
   }
-
+  /** This is appending a json array given the fileName*/
   public void appendJsonArray(JSONArray jsonArray, String fileName) {
     JSONArray oldArray = this.readJsonFile(fileName);
     try {
@@ -98,15 +98,17 @@ public class FileSavingService {
     writeJson(fileName, oldArray);
   }
 
+  /** This is appending a json object given the fileName*/
   public void appendJsonObject(JSONObject jsonObject, String fileName) {
     JSONArray oldArray = this.readJsonFile(fileName);
     oldArray.put(jsonObject);
     writeJson(fileName, oldArray);
   }
 
+  /** This is replacing a json object given the fileName, if the json object is not
+   * found in the json file , then append the json object into the json file*/
   public void replaceJsonObject(JSONObject jsonObject, String fileName) {
     File rootDir = this.context.getFilesDir();
-    System.out.println("root directory is " + rootDir);
     JSONArray jsonArray = this.readJsonFile(fileName);
     String key = jsonObject.keys().next();
     boolean found = false;
@@ -127,15 +129,15 @@ public class FileSavingService {
     }
 
   }
+
+  /** This is writing a json file given a fileName and jsonArray*/
   public void writeJson(String fileName, JSONArray jsonArray) {
     File rootDir = this.context.getFilesDir();
-    System.out.println("root directory is " + rootDir);
     FileOutputStream outputStream;
     try {
       outputStream = this.context.openFileOutput(fileName, Context.MODE_PRIVATE);
       outputStream.write(jsonArray.toString().getBytes());
       outputStream.close();
-      System.out.println("Successfully writing into a json file!!!");
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } catch (IOException e) {

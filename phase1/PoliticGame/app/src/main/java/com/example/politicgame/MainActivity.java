@@ -10,10 +10,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.politicgame.BabyGame.BabyActivity;
-import com.example.politicgame.ui.Login.LoginActivity;
+import com.example.politicgame.GamesActivity.BabyGame.BabyActivity;
+import com.example.politicgame.UserActivity.LoginActivity.LoginActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
