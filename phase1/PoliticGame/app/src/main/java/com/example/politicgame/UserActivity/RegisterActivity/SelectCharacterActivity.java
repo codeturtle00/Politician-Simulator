@@ -15,10 +15,9 @@ import com.example.politicgame.Character.PoliticianA;
 import com.example.politicgame.Character.PoliticianB;
 import com.example.politicgame.Character.UserAccount;
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.GamesActivity.BabyGame.BabyActivity;
+import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstruction;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
 public class SelectCharacterActivity extends GameActivity {
 
@@ -115,7 +114,7 @@ public class SelectCharacterActivity extends GameActivity {
     }
 
   public void startGame() {
-      Intent startGameIntent = new Intent(this, BabyActivity.class);
+      Intent startGameIntent = new Intent(this, BabyGameInstruction.class);
       startActivity(startGameIntent);
       finish();
   }
