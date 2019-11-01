@@ -22,7 +22,7 @@ public abstract class GameActivity extends AppCompatActivity {
     protected PoliticGameApp app;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = (PoliticGameApp) getApplication();
 

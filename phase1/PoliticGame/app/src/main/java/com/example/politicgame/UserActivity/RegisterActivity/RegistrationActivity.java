@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.Character.UserAccount;
+import com.example.politicgame.GameActivity;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
@@ -20,23 +21,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class RegistrationActivity extends GameActivity {
   private PoliticGameApp app;
   private FileSavingService fileSaving;
   private static final String FILE_NAME = "userLogin.json";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    app = (PoliticGameApp) getApplication();
-
-    System.out.println("The current theme is blue: " + app.isThemeBlue());
-
-    if (app.isThemeBlue()){
-      setTheme(R.style.BlueTheme);
-    } else {
-      setTheme(R.style.RedTheme);
-    }
-
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_registration);
 

@@ -49,7 +49,7 @@ public class MainActivity extends GameActivity {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         setTitle("Main Menu");
 
         super.onCreate(savedInstanceState);

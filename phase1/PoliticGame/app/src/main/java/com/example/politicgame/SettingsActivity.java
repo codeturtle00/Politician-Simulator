@@ -12,20 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
 
-public class SettingsActivity extends AppCompatActivity {
-    protected PoliticGameApp app;
+public class SettingsActivity extends GameActivity {
     private String lastActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        app = (PoliticGameApp) getApplication();
-
-        if (app.isThemeBlue()){
-            setTheme(R.style.BlueTheme);
-        } else {
-            setTheme(R.style.RedTheme);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
@@ -90,14 +81,23 @@ public class SettingsActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Changes the song to the next track
+     */
     public void changeMusic(){
         app.switchMusic();
     }
 
+    /**
+     * Turns the music off or on based on its previous status
+     */
     public void toggleMusic(){
         app.toggleMusic();
     }
 
+    /**
+     * Restarts the activity to reflect theme changes
+     */
     public void restart (){
         Intent restart = new Intent(this, SettingsActivity.class);
         restart.putExtra("SESSION_ID", lastActivity);
@@ -105,6 +105,10 @@ public class SettingsActivity extends AppCompatActivity {
         finish();
     }
 
+
+    /**
+     * Return to the previous menu
+     */
     public void returnMainMenu (){
         if (lastActivity.equals("main")){
             Intent restartIntent = new Intent(this, MainActivity.class);

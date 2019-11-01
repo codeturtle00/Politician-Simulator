@@ -14,12 +14,13 @@ import com.example.politicgame.Character.GameCharacter;
 import com.example.politicgame.Character.PoliticianA;
 import com.example.politicgame.Character.PoliticianB;
 import com.example.politicgame.Character.UserAccount;
+import com.example.politicgame.GameActivity;
 import com.example.politicgame.GamesActivity.BabyGame.BabyActivity;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
-public class SelectCharacterActivity extends AppCompatActivity {
+public class SelectCharacterActivity extends GameActivity {
 
     private PoliticGameApp app;
     private int currCharacter;
@@ -28,20 +29,10 @@ public class SelectCharacterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        app = (PoliticGameApp) getApplication();
-
-        System.out.println("The current theme is blue: " + app.isThemeBlue());
-
-        if (app.isThemeBlue()){
-            setTheme(R.style.BlueTheme);
-        } else {
-            setTheme(R.style.RedTheme);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_character);
 
-        setTitle("Select GameCharacter");
+        setTitle("Select Game Character");
 
         currCharacter = 0;
         highlight = getResources().getDrawable(R.drawable.highlight);
@@ -50,6 +41,9 @@ public class SelectCharacterActivity extends AppCompatActivity {
         final ImageView charBButton = findViewById(R.id.imageButton2);
         final TextView inputName = findViewById(R.id.name_input);
         final Button submitName = findViewById(R.id.submit_name);
+        final Button backButton = findViewById(R.id.backButton);
+        final TextView error_name = findViewById(R.id.error_name);
+        final TextView error_select = findViewById(R.id.error_character);
 
         //Character A is selected
         charAButton.setOnClickListener(
@@ -83,9 +77,27 @@ public class SelectCharacterActivity extends AppCompatActivity {
                         if (currCharacter != 0 && !name.equals(null) && !name.equals("")){
                             characterSet(name);
                         }
+
+                        if (currCharacter == 0){
+                            error_select.setText("Please select a character");
+                        } else {
+                            error_select.setText("");
+                        }
+
+                        if (name.equals("")){
+                            error_name.setText("Enter a character name");
+                        } else {
+                            error_name.setText("");
+                        }
                     }
                 });
 
+        backButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        openLoggedIn();
+                    }
+                });
     }
 
     public void characterSet(String name){
@@ -94,7 +106,6 @@ public class SelectCharacterActivity extends AppCompatActivity {
         user.addCharArray(selectedCharacter.getJsonCharacter());
         System.out.println("Saved!!!");
         user.saveToDb();
-        //this.userManager.loginUser.saveToDb();
 
         //Sets current characters' name
         app.setCurrentCharacter(name);

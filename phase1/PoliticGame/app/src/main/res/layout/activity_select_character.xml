@@ -11,29 +11,26 @@
         android:id="@+id/imageButton"
         android:layout_width="134dp"
         android:layout_height="249dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginLeft="46dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/name_input"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/select_character_text"
-        app:srcCompat="@drawable/trump" />
+        app:srcCompat="@drawable/trump"
+        android:contentDescription="First politician picture"/>
 
     <ImageView
         android:id="@+id/imageButton2"
         android:layout_width="143dp"
         android:layout_height="241dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="46dp"
-        android:layout_marginRight="46dp"
-        android:layout_marginBottom="96dp"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/name_input"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_character_text"
-        app:srcCompat="@drawable/helmet_guy" />
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toTopOf="@+id/imageButton"
+        app:srcCompat="@drawable/helmet_guy"
+        android:contentDescription="Second politician picture"/>
 
     <TextView
         android:id="@+id/select_character_text"
@@ -64,7 +61,7 @@
         android:id="@+id/submit_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="152dp"
+        android:layout_marginBottom="56dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,12 +72,13 @@
         android:id="@+id/error_character"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:textColor="#F44336"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_character_text" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
 
     <TextView
         android:id="@+id/error_name"
@@ -92,4 +90,12 @@
         app:layout_constraintBottom_toTopOf="@+id/name_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="back"
+        tools:layout_editor_absoluteX="13dp"
+        tools:layout_editor_absoluteY="11dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
