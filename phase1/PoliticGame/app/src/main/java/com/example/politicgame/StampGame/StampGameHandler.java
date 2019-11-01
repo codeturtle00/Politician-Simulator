@@ -19,11 +19,10 @@ class StampGameHandler {
     private Proposal currentPrompt;
 
     private String pronoun = "sir";
-    private String emptyListMessage = "";
     private Verb emptyAction = new Verb("", 0);
     private Noun emptyNoun = new Noun("", 0, false);
 
-    private List<String> promptBeginList = new ArrayList<String>(Arrays.asList(
+    private List<String> promptBeginList = new ArrayList<>(Arrays.asList(
             "Good afternoon " + pronoun + ", based on our campaign researchers' speculation, would you like to",
             "This just in " + pronoun + ", based on the rumors from our excited supporters, is it true that you would",
             "Greetings " + pronoun + ", based on the meeting result last week, are you going to",
@@ -31,12 +30,12 @@ class StampGameHandler {
 
 
     StampGameHandler() {
-        verbs = new ArrayList<Word>();
-        nouns = new ArrayList<Word>();
-        prompts = new ArrayList<Proposal>();
+        verbs = new ArrayList<>();
+        nouns = new ArrayList<>();
+        prompts = new ArrayList<>();
 
         //Positive verbs that has a positive effect on the object
-        List<String> verbListPositive = new ArrayList<String>(Arrays.asList(
+        List<String> verbListPositive = new ArrayList<>(Arrays.asList(
                 "campaign with the best interests of",
                 "send aid to",
                 "donate money to charities that work with",
@@ -46,7 +45,7 @@ class StampGameHandler {
 
 
         //Positive verbs that has a negative effect on the object
-        List<String> verbListNegative = new ArrayList<String>(Arrays.asList(
+        List<String> verbListNegative = new ArrayList<>(Arrays.asList(
                 "send a police squad to detain and imprison",
                 "punch the daylights out of",
                 "launch nukes against",
@@ -59,7 +58,7 @@ class StampGameHandler {
 
 
         //Positive nouns that are not amountable
-        List<String> nounListPositiveNA = new ArrayList<String>(Arrays.asList(
+        List<String> nounListPositiveNA = new ArrayList<>(Arrays.asList(
                 "Gandhi, a recently popular peace advocate who campaigns in India",
                 "the popular late-night TV show host John Olive Oil",
                 "Bill Rye, a once popular figure in science who recently published a paper on the benefits of foot rubs",
@@ -70,7 +69,7 @@ class StampGameHandler {
 
 
         //Positive nouns that are amountable
-        List<String> nounListPositiveYA = new ArrayList<String>(Arrays.asList(
+        List<String> nounListPositiveYA = new ArrayList<>(Arrays.asList(
                 "puppies, specifically the ones at the Downtown Toronto Dog Shelter",
                 "Boundless Peacocks, the very last of their species",
                 "sad computer science students at the University of Toronto"));
@@ -79,7 +78,7 @@ class StampGameHandler {
 
 
         //Negative nouns that are not amountable
-        List<String> nounListNegativeNA = new ArrayList<String>(Arrays.asList(
+        List<String> nounListNegativeNA = new ArrayList<>(Arrays.asList(
                 "the leader of North Coreeah, who is planning a nuclear strike",
                 "Colin, a medical practitioner found to have cheated on his medical exams after a related illegal nose smuggling ring was busted",
                 "Kavin, a phantom thief who masterminded the theft all the laptop chargers, but not the laptops, at the University of Toronto last Fall"));
@@ -88,7 +87,7 @@ class StampGameHandler {
 
 
         //Negative nouns that are amountable
-        List<String> nounListNegativeYA = new ArrayList<String>(Arrays.asList(
+        List<String> nounListNegativeYA = new ArrayList<>(Arrays.asList(
                 "seal clubbers"));
 
         addWordToList(nounListNegativeYA, nouns, "negNounYA");
@@ -103,8 +102,7 @@ class StampGameHandler {
      * @return a double between(inclusive) min and max
      */
     private double getRandomDoubleBetweenRange(double min, double max) {
-        double x = (Math.random() * ((max - min) + 1)) + min;
-        return x;
+        return (Math.random() * ((max - min) + 1)) + min;
     }
 
     /**
@@ -170,7 +168,7 @@ class StampGameHandler {
         int nounIndex = (int) (Math.random() * (nouns.size()));
 
         if (verbs.isEmpty() || nouns.isEmpty()) {
-            currentPrompt = new Proposal(emptyListMessage, emptyAction, emptyNoun);
+            currentPrompt = new Proposal("", emptyAction, emptyNoun);
 
         } else {
 
@@ -220,7 +218,7 @@ class StampGameHandler {
      * @param tv the TextView object
      * @return the integer representation of tv
      */
-     Integer intFromTextView(TextView tv){
+    Integer intFromTextView(TextView tv) {
         String oldString = tv.getText().toString();
         return Integer.valueOf(oldString.substring(0, oldString.length() - 1));
     }
@@ -228,7 +226,7 @@ class StampGameHandler {
     /**
      * Changed the rating depending on the button click
      *
-     * @param rating         the TextView object that displays rating
+     * @param rating     the TextView object that displays rating
      * @param clickedYes the boolean value expressing whether the user pressed yes or no
      */
     void changeRating(TextView rating, boolean clickedYes) {
@@ -284,7 +282,7 @@ class StampGameHandler {
      *
      * @param proposalNum the minimum of {size of verbs, size of nouns};
      */
-     void changeProposalNum(TextView proposalNum){
+    void changeProposalNum(TextView proposalNum) {
         int currentProposalLeft = Math.min(verbs.size(), nouns.size());
         updateProposal(proposalNum, currentProposalLeft);
     }

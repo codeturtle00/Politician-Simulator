@@ -6,7 +6,7 @@ public class Proposal {
     private Noun item;
     private int category;
 
-    public Proposal(String prompt, Verb action, Noun item){
+    public Proposal(String prompt, Verb action, Noun item) {
         this.prompt = prompt;
         this.action = action;
         this.item = item;
@@ -19,7 +19,7 @@ public class Proposal {
     }
 
 
-    public Proposal(String prompt, Verb action, Noun item, int amount){
+    public Proposal(String prompt, Verb action, Noun item, int amount) {
         this.prompt = prompt;
         this.action = action;
         this.item = item;
@@ -31,7 +31,11 @@ public class Proposal {
         this.prompt = this.prompt + " " + this.action.getString() + " the " + amount + " " + this.item.getString();
     }
 
-    public String getString(){return prompt;}
+    public String getString() {
+        return prompt;
+    }
 
-    public int getCategory(){return category;}
+    public int getCategory() {
+        return category;
+    }
 }
