@@ -182,8 +182,7 @@ public class MainActivity extends AppCompatActivity {
          * Opens the leaderboard screen
          */
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
-        startActivity(switchBoardIntent);
-        finish();
+        startActivityForResult(switchBoardIntent, 2);
     }
 
     public void openSettings() {

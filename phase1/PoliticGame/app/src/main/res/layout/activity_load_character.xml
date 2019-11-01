@@ -7,9 +7,17 @@
     android:layout_height="match_parent"
     android:background="?attr/backColor">
 
+    <Button
+        android:id="@+id/delete_2"
+        android:layout_width="36dp"
+        android:layout_height="158dp"
+        android:text="Button"
+        app:layout_constraintStart_toEndOf="@+id/character_2"
+        app:layout_constraintTop_toTopOf="@+id/character_2" />
+
     <TextView
         android:id="@+id/character_2"
-        android:layout_width="236dp"
+        android:layout_width="200dp"
         android:layout_height="158dp"
         android:layout_marginStart="19dp"
         android:layout_marginLeft="19dp"
@@ -18,7 +26,7 @@
         android:layout_marginRight="17dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/character_1" />
 
@@ -59,7 +67,7 @@
 
     <TextView
         android:id="@+id/character_1"
-        android:layout_width="236dp"
+        android:layout_width="200dp"
         android:layout_height="158dp"
         android:layout_marginStart="19dp"
         android:layout_marginLeft="19dp"
@@ -68,7 +76,16 @@
         android:layout_marginRight="17dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/load_character_subtitle" />
+
+    <Button
+        android:id="@+id/delete_1"
+        android:layout_width="36dp"
+        android:layout_height="158dp"
+        android:text="Button"
+        app:layout_constraintStart_toEndOf="@+id/character_1"
+        app:layout_constraintTop_toTopOf="@+id/character_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

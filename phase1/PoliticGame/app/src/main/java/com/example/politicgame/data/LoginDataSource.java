@@ -1,7 +1,9 @@
 package com.example.politicgame.data;
 
+import android.app.Activity;
 import android.content.Context;
 import com.example.politicgame.Common.FileSavingService;
+import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.User.UserAccountManager;
 import com.example.politicgame.User.UserAccount;
 import org.json.JSONArray;
@@ -15,10 +17,13 @@ public class LoginDataSource {
   private Context context;
   private FileSavingService fileSaving;
   private static final String FILE_NAME = "userLogin.json";
+  private PoliticGameApp app;
 
   public LoginDataSource(Context context) {
     this.context = context;
     this.fileSaving = new FileSavingService(context);
+    Activity loginActivity = (Activity)context;
+    this.app = (PoliticGameApp)loginActivity.getApplication();
   }
 
   private boolean userAuthentication(String username, String password) {
@@ -49,7 +54,8 @@ public class LoginDataSource {
             userObjects = userObject;
           }
         }
-        UserAccountManager.loginUser = user;
+        app.setCurrentUser(user);
+        System.out.println(app.getCurrentUser().toString());
         return new Result.Success<>(user);
       } else {
         return new Result.Error(new IOException("Error logging in"));
