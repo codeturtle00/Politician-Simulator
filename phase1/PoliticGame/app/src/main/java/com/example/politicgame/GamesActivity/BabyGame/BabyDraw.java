@@ -16,5 +16,5 @@ interface BabyDraw {
 
   void updateEventAction(String eventAction);
 
-  void updateTime(String time);
+  void updateTime(String time, boolean b);
 }
