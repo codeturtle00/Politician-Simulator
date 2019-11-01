@@ -25,7 +25,11 @@ public class SpeechGameViewModel extends ViewModel {
     return displayPrompt;
   }
 
-  public String loadAnswer() {
+    public boolean isExitPoint() {
+        return exitPoint;
+    }
+
+    public String loadAnswer() {
     String displayAnswer = new String();
     if (this.speechRepo.getAnswer().size() > 0) {
       displayAnswer = this.speechRepo.getAnswer().get(0);

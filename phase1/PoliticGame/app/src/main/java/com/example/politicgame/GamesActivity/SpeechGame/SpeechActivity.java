@@ -90,6 +90,7 @@ public class SpeechActivity extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.answer);
         String userInput = editText.getText().toString();
         boolean matches = userInput.toLowerCase().equals(this.correct.toLowerCase());
+        boolean exit = app.getSpeechView().isExitPoint();
 
         if (matches) {
             Intent successfulIntent = new Intent(this, SuccessSpeechResult.class);
