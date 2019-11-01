@@ -15,17 +15,15 @@ import com.example.politicgame.Character.PoliticianA;
 import com.example.politicgame.Character.PoliticianB;
 import com.example.politicgame.Character.UserAccount;
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.GamesActivity.BabyGame.BabyActivity;
+import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstruction;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
 public class SelectCharacterActivity extends GameActivity {
-
-    private PoliticGameApp app;
-    private int currCharacter;
-    private GameCharacter selectedCharacter;
-    private Drawable highlight;
+  private int currCharacter;
+  private GameCharacter selectedCharacter;
+  private Drawable highlight;
+  private PoliticGameApp app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,16 +106,18 @@ public class SelectCharacterActivity extends GameActivity {
         user.addCharArray(selectedCharacter.getJsonCharacter());
         System.out.println("Saved!!!");
         user.saveToDb();
-
         //Sets current characters' name
         app.setCurrentCharacter(name);
 
         startGame();
     }
 
+
+
+
   public void startGame() {
-      Intent startGameIntent = new Intent(this, BabyActivity.class);
-      startActivity(startGameIntent);
-      finish();
+    Intent startGameIntent = new Intent(this, BabyGameInstruction.class);
+    startActivity(startGameIntent);
+    finish();
   }
 }

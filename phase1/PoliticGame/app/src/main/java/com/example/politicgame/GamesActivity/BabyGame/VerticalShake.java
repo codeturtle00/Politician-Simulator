@@ -38,9 +38,9 @@ class VerticalShake extends Event {
   @Override
   int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
     if (initialX > getX() && initialY > getY()) {
-      if (Math.abs(finalX - initialX) < 50 && Math.abs(finalY - initialY) > 100) {
+      if (Math.abs(finalX - initialX) < 100 && Math.abs(finalY - initialY) > 100) {
         Log.d("VerticalShake", "Score increased");
-        return 10;
+        return 5;
       }
     }
     Log.d("VerticalShake", "Score decreased");
