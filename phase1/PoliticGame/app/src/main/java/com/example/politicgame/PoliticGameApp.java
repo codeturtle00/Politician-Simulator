@@ -23,8 +23,8 @@ public class PoliticGameApp extends Application {
 
     //Song selections
     private final int TRACK_ONE = R.raw.pokemon_remix;
-    private final int TRACK_TWO = R.raw.senko_op;
-    private final int TRACK_THREE = R.raw.senko_ed;
+    private final int TRACK_TWO = R.raw.megalovania;
+    private final int TRACK_THREE = R.raw.sov_techno;
 
     //The music player will iterate over these songs as we change music
     private final int [] TRACK_ARRAY = new int[] {TRACK_ONE, TRACK_TWO, TRACK_THREE};
