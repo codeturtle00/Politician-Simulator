@@ -2,6 +2,8 @@ package com.example.politicgame.User;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.example.politicgame.Common.FileSavingService;
 
 import org.json.JSONArray;
@@ -33,6 +35,15 @@ public class UserAccount {
 
   public String getDisplayName() {
     return displayName;
+  }
+
+  @Override
+  @NonNull
+  public String toString(){
+    StringBuilder newString = new StringBuilder();
+    newString.append(this.displayName + "/n");
+    newString.append(charArray.toString());
+    return newString.toString();
   }
 
   public void saveToDb(){System.out.println();

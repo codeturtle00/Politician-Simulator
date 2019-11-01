@@ -5,13 +5,15 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
 
+import com.example.politicgame.User.UserAccount;
+
 public class PoliticGameApp extends Application {
 
     //Thematic selection
     private boolean isBlue = true;
 
 
-    private String currentUser;
+    private UserAccount currentUser;
     private String currentCharacter;
 
     //Music player settings
@@ -55,9 +57,9 @@ public class PoliticGameApp extends Application {
 
 
 
-    public String getCurrentUser(){return currentUser;}
+    public UserAccount getCurrentUser(){return currentUser;}
 
-    public void setCurrentUser(String newUser){this.currentUser = newUser;}
+    public void setCurrentUser(UserAccount newUser){this.currentUser = newUser;}
 
     public String getCurrentCharacter(){return currentCharacter;}
 
