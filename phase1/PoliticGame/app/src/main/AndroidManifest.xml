@@ -26,6 +26,7 @@
         <activity android:name=".GamesActivity.StampGame.StampInstructionActivity" />
         <activity android:name=".GamesActivity.SpeechGame.SpeechActivity" />
         <activity android:name=".GamesActivity.BabyGame.BabyActivity" />
+        <activity android:name=".GamesActivity.BabyGame.BabyGameInstructions" />
         <activity android:name=".UserActivity.LoginActivity.LoginActivity" />
         <activity android:name=".UserActivity.RegisterActivity.RegistrationActivity" />
         <activity android:name=".MainActivity">
