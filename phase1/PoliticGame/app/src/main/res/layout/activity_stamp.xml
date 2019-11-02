@@ -9,7 +9,7 @@
     tools:context=".GamesActivity.StampGame.StampActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/stamp_game_character_image"
         android:layout_width="116dp"
         android:layout_height="202dp"
         android:layout_marginStart="16dp"
