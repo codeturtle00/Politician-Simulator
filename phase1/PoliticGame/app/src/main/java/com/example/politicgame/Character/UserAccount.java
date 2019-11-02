@@ -39,6 +39,19 @@ public class UserAccount {
 
   }
 
+  public int getCharId(String charName){
+    try{
+    for (int i = 0; i < charArray.length(); i++){
+      JSONObject charInfo = charArray.getJSONObject(i);
+      String currName = charInfo.keys().next();
+
+    }
+    } catch (JSONException e){
+      e.printStackTrace();
+    }
+    return 1;
+  }
+
   /**
    * Adds charObject to charArray
    *

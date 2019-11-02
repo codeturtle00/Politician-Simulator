@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
+import com.example.politicgame.Character.UserAccount;
 
 public class PauseActivity extends GameActivity{
 
@@ -21,6 +22,11 @@ public class PauseActivity extends GameActivity{
         setContentView(R.layout.activity_pause);
 
         setTitle("Paused");
+
+        UserAccount currUser = app.getCurrentUser();
+
+
+
 
         //Resume button
         final Button resumeB = findViewById(R.id.resume);
