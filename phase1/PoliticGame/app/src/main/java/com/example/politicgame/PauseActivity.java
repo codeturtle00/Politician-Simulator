@@ -29,14 +29,14 @@ public class PauseActivity extends GameActivity {
     final ImageView pauseImage = findViewById(R.id.pause_menu_image);
 
     if (charId == 1) {
-      pauseImage.setImageResource(R.drawable.trump);
-      pauseImage.setBackgroundResource(R.drawable.trump);
+      pauseImage.setImageResource(R.drawable.jake);
+//      pauseImage.setBackgroundResource(R.drawable.jake);
     } else if (charId == 2) {
       pauseImage.setImageResource(R.drawable.helmet_guy);
-      pauseImage.setBackgroundResource(R.drawable.helmet_guy);
+//      pauseImage.setBackgroundResource(R.drawable.helmet_guy);
     } else {
       pauseImage.setImageResource(R.drawable.pause_filler);
-      pauseImage.setBackgroundResource(R.drawable.pause_filler);
+//      pauseImage.setBackgroundResource(R.drawable.pause_filler);
     }
 
     // Resume button
