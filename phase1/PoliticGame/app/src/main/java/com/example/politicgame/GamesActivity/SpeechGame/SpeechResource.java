@@ -65,7 +65,7 @@ public class SpeechResource {
     this.helpSetChoice("immigration", "poverty", "internet", "security");
     this.helpSetChoice("voting", "education", "taxes", "medication");
     this.helpSetChoice("diversity", "religion", "healthcare", "economy");
-    this.helpSetChoice("*energy", "corporations", "agriculture", "voting");
+    this.helpSetChoice("energy", "corporations", "agriculture", "voting");
     this.helpSetChoice("trade", "military", "education", "healthcare");
     this.helpSetChoice("security", "corporations", "immigration", "poverty");
     this.helpSetChoice("pension", "internet", "military", "diversity");
