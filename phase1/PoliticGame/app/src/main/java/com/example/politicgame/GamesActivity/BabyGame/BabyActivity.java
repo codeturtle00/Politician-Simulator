@@ -69,14 +69,14 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     timer = new Timer(this, babyView);
 
     // Next Button (delete later)
-    final Button next = findViewById(R.id.next);
-    next.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            openSpeechGame();
-          }
-        });
+//    final Button next = findViewById(R.id.next);
+//    next.setOnClickListener(
+//        new View.OnClickListener() {
+//          @Override
+//          public void onClick(View v) {
+//            openSpeechGame();
+//          }
+//        });
 
     // Generate Pause Button
     new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
@@ -158,11 +158,21 @@ public class BabyActivity extends GameActivity implements BabyDraw {
    */
   @Override
   public void updateScore(int happinessChange) {
-    happiness += happinessChange;
-    String score = happiness.toString() + "%";
+    if (happiness + happinessChange > 100) {
+      happiness = 100;
+    } else if (happiness + happinessChange < 0) {
+      happiness = 0;
+    } else {
+      happiness += happinessChange;
+    }
+    String score = "Score: " + happiness.toString() + "%";
     scoreDisplay.setText(score);
-    if (happiness <= 0) gameOver();
-    if (happiness >= 100) gameOutro();
+    if (happiness == 0) {
+      gameOver();
+    }
+    if (happiness == 100) {
+      gameOutro();
+    }
   }
 
   /**
@@ -175,7 +185,8 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   public void updateTime(String time, boolean outOfTime) {
     if (outOfTime) gameOutro();
     else {
-      timerDisplay.setText(time);
+      String timeLeft = "Time remaining: " + time;
+      timerDisplay.setText(timeLeft);
       updateScore(-1);
     }
   }
