@@ -45,11 +45,15 @@ public class UserAccount {
       JSONObject charInfo = charArray.getJSONObject(i);
       String currName = charInfo.keys().next();
 
+      if (currName.equals(charName)){
+        return charInfo.getJSONObject(charName).getInt("charId");
+      }
     }
     } catch (JSONException e){
       e.printStackTrace();
     }
-    return 1;
+
+    return 0;
   }
 
   /**
