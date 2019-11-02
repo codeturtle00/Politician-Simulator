@@ -6,24 +6,21 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.GamesActivity.SpeechGame.SpeechInstructionActivity;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 
 public class BabyGameInstruction extends GameActivity {
+  private final String LEVEL_NAME = "LEVEL1";
   private PoliticGameApp app;
 
   public void onCreate(Bundle savedInstanceState) {
-    app = (PoliticGameApp) getApplication();
+    super.onCreate(savedInstanceState);
 
-    System.out.println("The current theme is blue: " + app.isThemeBlue());
-
-    if (app.isThemeBlue()) {
-      setTheme(R.style.BlueTheme);
-    } else {
-      setTheme(R.style.RedTheme);
+    if(isGameComplete(LEVEL_NAME)){
+      openSpeechGame();
     }
 
-    super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_baby_instruction);
 
     setTitle("The Baby Game Instructions");
@@ -41,6 +38,15 @@ public class BabyGameInstruction extends GameActivity {
   void startBabyGame() {
     Intent startBabyGame = new Intent(this, BabyActivity.class);
     startActivity(startBabyGame);
+    finish();
+  }
+
+  /**
+   * Opens the next level
+   */
+  void openSpeechGame() {
+    Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
+    startActivity(switchSpeechIntent);
     finish();
   }
 }
