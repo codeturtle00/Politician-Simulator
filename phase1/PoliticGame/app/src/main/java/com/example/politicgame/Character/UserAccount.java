@@ -41,11 +41,16 @@ public class UserAccount {
       for (int i = 0; i < charArray.length(); i++) {
         JSONObject charInfo = charArray.getJSONObject(i);
         String currName = charInfo.keys().next();
+
+        if (currName.equals(charName)) {
+          return charInfo.getJSONObject(charName).getInt("charId");
+        }
       }
     } catch (JSONException e) {
       e.printStackTrace();
     }
-    return 1;
+
+    return 0;
   }
 
   /**

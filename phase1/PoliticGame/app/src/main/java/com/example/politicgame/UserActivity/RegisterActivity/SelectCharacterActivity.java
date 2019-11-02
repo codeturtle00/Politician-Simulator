@@ -19,6 +19,9 @@ import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstruction;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SelectCharacterActivity extends GameActivity {
   private int currCharacter;
   private GameCharacter selectedCharacter;
@@ -103,7 +106,21 @@ public class SelectCharacterActivity extends GameActivity {
     public void characterSet(String name){
         selectedCharacter.setName(name);
         UserAccount user = app.getCurrentUser();
-        user.addCharArray(selectedCharacter.getJsonCharacter());
+
+        JSONObject newChar = selectedCharacter.getJsonCharacter();
+        String charName = newChar.keys().next();
+
+        try{
+            JSONObject charInfo = newChar.getJSONObject(charName);
+            charInfo.getJSONObject("LEVEL1").put("complete", false);
+            charInfo.getJSONObject("LEVEL2").put("complete", false);
+            charInfo.getJSONObject("LEVEL3").put("complete", false);
+
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        user.addCharArray(newChar);
         System.out.println("Saved!!!");
         user.saveToDb();
         //Sets current characters' name
