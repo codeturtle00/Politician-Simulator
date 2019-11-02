@@ -14,7 +14,18 @@ interface BabyDraw {
    */
   void updateScore(int happinessChange);
 
+  /**
+   * Updates event action in BabyActivity.
+   *
+   * @param eventAction the new event to perform
+   */
   void updateEventAction(String eventAction);
 
-  void updateTime(String time, boolean b);
+  /**
+   * Updates the remaining time.
+   *
+   * @param time the remaining time
+   * @param outOfTime whether the time is up or not
+   */
+  void updateTime(String time, boolean outOfTime);
 }

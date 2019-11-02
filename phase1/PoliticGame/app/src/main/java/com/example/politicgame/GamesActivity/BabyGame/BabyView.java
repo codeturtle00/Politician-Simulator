@@ -101,13 +101,19 @@ class BabyView extends SurfaceView implements ViewUpdater {
     babyDraw.updateScore(happinessChange);
   }
 
+  /**
+   * Updates the event action to be performed.
+   *
+   * @param eventAction the action to be performed
+   */
   @Override
   public void updateEventAction(String eventAction) {
     babyDraw.updateEventAction(eventAction);
   }
 
-  void randomEvent(int timeLeft) {
-    eventManager.randomEvent(timeLeft);
+  /** Creates a new Event. */
+  void randomEvent() {
+    eventManager.randomEvent();
   }
 
   /**

@@ -10,41 +10,41 @@ import java.util.ArrayList;
 import java.util.Random;
 
 class EventManager implements View.OnTouchListener {
-  /** List of all events currently going on */
+  /** List of all events currently going on. */
   private ArrayList<Event> events;
 
-  /** Resources for the baby */
+  /** Resources for the baby. */
   private Resources babyResources;
 
-  /** ViewUpdater object managed by this EventManager */
+  /** ViewUpdater object managed by this EventManager. */
   private ViewUpdater viewUpdater;
 
-  /** X coordinate of the baby */
+  /** X coordinate of the baby. */
   // DOESN'T WORK YET
   private int babyX;
 
-  /** Y coordinate of the baby */
+  /** Y coordinate of the baby. */
   // DOESN'T WORK YET
   private int babyY;
 
-  /** Width of the baby */
+  /** Width of the baby. */
   // DOESN'T WORK YET
   private int babyWidth = 0;
 
-  /** Height of the baby */
+  /** Height of the baby. */
   // DOESN'T WORK YET
   private int babyHeight = 0;
 
-  /** X coordinate when screen is touched */
+  /** X coordinate when screen is touched. */
   private float initialX;
 
-  /** Y coordinate when screen is touched */
+  /** Y coordinate when screen is touched. */
   private float initialY;
 
-  /** X coordinate of where the touch ends; eg. end of a swipe */
+  /** X coordinate of where the touch ends; eg. end of a swipe. */
   private float finalX;
 
-  /** Y coordinate of where the touch ends; eg. end of a swipe */
+  /** Y coordinate of where the touch ends; eg. end of a swipe. */
   private float finalY;
 
   /**
@@ -60,28 +60,25 @@ class EventManager implements View.OnTouchListener {
   }
 
   /** Randomly generates an event. */
-  void randomEvent(int timeLeft) {
-    if (timeLeft % 3 == 0) {
-      events.clear();
-      Random rand = new Random();
-      final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
-      if (randomNum == 1) {
-        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
-        viewUpdater.updateEventAction(
-            "The baby needs to be cradled! Swipe horizontally at any location.");
-        Log.d("EventManager", "HorizontalShake started");
-        System.out.println("Horizontal Event Set!");
-      } else if (randomNum == 2) {
-        events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
-        viewUpdater.updateEventAction(
-            "The baby needs to be cradled! Swipe vertically at any location.");
-        System.out.println("Vertical Event Set!");
-        Log.d("EventManager", "VerticalShake started");
-      } else if (randomNum == 3) {
-        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
-        viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
-        Log.d("EventManager", "Kiss started");
-      }
+  void randomEvent() {
+    events.clear();
+    Random rand = new Random();
+    final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
+
+    if (randomNum == 1) {
+      events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
+      viewUpdater.updateEventAction(
+          "The baby needs to be cradled! Swipe horizontally at any location.");
+      Log.d("EventManager", "HorizontalShake started");
+    } else if (randomNum == 2) {
+      events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
+      viewUpdater.updateEventAction(
+          "The baby needs to be cradled! Swipe vertically at any location.");
+      Log.d("EventManager", "VerticalShake started");
+    } else if (randomNum == 3) {
+      events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
+      viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
+      Log.d("EventManager", "Kiss started");
     }
   }
 
@@ -113,7 +110,7 @@ class EventManager implements View.OnTouchListener {
       Random r = new Random();
       for (Event event : events) {
         int scoreChange = event.handleTouch(v, initialX, initialY, finalX, finalY);
-        //randomize scoreChange between 0.5x to 1.5x
+        // randomize scoreChange between 0.5x to 1.5x
         scoreChange *= (0.5 + r.nextFloat());
         updateScore(scoreChange);
       }

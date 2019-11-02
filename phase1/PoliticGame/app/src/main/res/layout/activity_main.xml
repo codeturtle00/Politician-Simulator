@@ -62,9 +62,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:contentDescription="trump"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/animetrump" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,31 +10,30 @@ import com.example.politicgame.R;
 
 public class StampActivityWon extends GameActivity {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        app = (PoliticGameApp) getApplication();
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    app = (PoliticGameApp) getApplication();
 
-        System.out.println("The current theme is blue: " + app.isThemeBlue());
+    System.out.println("The current theme is blue: " + app.isThemeBlue());
 
-        if (app.isThemeBlue()) {
-            setTheme(R.style.BlueTheme);
-        } else {
-            setTheme(R.style.RedTheme);
-        }
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stamp_won);
-
-        setTitle("Good job!");
-
-        final Button button = findViewById(R.id.stamp_game_won_leaderboard);
-        button.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        // Code here executes on main thread after user presses button
-                        openSummary();
-                    }
-                });
+    if (app.isThemeBlue()) {
+      setTheme(R.style.BlueTheme);
+    } else {
+      setTheme(R.style.RedTheme);
     }
 
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_stamp_won);
+
+    setTitle("Good job!");
+
+    final Button button = findViewById(R.id.stamp_game_won_leaderboard);
+    button.setOnClickListener(
+        new View.OnClickListener() {
+          public void onClick(View v) {
+            // Code here executes on main thread after user presses button
+            openSummary();
+          }
+        });
+  }
 }
