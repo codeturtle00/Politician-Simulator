@@ -43,7 +43,7 @@ class HorizontalShake extends Event {
       }
     }
     Log.d("HorizontalShake", "Score decreased");
-    return -10;
+    return -5;
   }
 
   @Override

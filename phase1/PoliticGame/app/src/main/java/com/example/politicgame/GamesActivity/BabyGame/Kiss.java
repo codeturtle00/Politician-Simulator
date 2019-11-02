@@ -20,7 +20,7 @@ class Kiss extends Event {
   int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
       if (Math.abs(finalY - initialY) < 5 && Math.abs(finalX - initialX) < 5) {
         Log.d("Kiss", "Score increased");
-        return 1;
+        return 3;
       }
     Log.d("Kiss", "Score decreased");
     return -5;

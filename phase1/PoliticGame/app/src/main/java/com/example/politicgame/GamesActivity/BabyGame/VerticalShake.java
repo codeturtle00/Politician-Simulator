@@ -44,7 +44,7 @@ class VerticalShake extends Event {
       }
     }
     Log.d("VerticalShake", "Score decreased");
-    return -10;
+    return -5;
   }
 
   @Override
