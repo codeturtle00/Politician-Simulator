@@ -13,14 +13,14 @@ import org.json.JSONObject;
 
 import java.io.File;
 
-/** Data class that captures user information for logged in users
- * retrieved from LoginRepository */
+/** Data class that captures user information for logged in users retrieved from LoginRepository. */
 public class UserAccount {
   private FileSavingService fileSaving;
   private static final String FILE_NAME = "user.json";
   private String displayName;
   private JSONArray charArray = new JSONArray();
   private Context context;
+  private GameCharacter currentCharacter;
 
   public void setCurrentCharacter(GameCharacter currentCharacter) {
     this.currentCharacter = currentCharacter;
@@ -30,26 +30,23 @@ public class UserAccount {
     return currentCharacter;
   }
 
-  private GameCharacter currentCharacter;
-
   public UserAccount(String displayName, Context context) {
     this.context = context;
     this.fileSaving = new FileSavingService(context);
     this.displayName = displayName;
-
   }
 
-  public int getCharId(String charName){
-    try{
-    for (int i = 0; i < charArray.length(); i++){
-      JSONObject charInfo = charArray.getJSONObject(i);
-      String currName = charInfo.keys().next();
+  public int getCharId(String charName) {
+    try {
+      for (int i = 0; i < charArray.length(); i++) {
+        JSONObject charInfo = charArray.getJSONObject(i);
+        String currName = charInfo.keys().next();
 
-      if (currName.equals(charName)){
-        return charInfo.getJSONObject(charName).getInt("charId");
+        if (currName.equals(charName)) {
+          return charInfo.getJSONObject(charName).getInt("charId");
+        }
       }
-    }
-    } catch (JSONException e){
+    } catch (JSONException e) {
       e.printStackTrace();
     }
 
@@ -57,16 +54,16 @@ public class UserAccount {
   }
 
   /**
-   * Adds charObject to charArray
+   * Adds charObject to charArray.
    *
-   * @param charObject  The object added to charArray, it should contain level info and score
+   * @param charObject The object added to charArray, it should contain level info and score
    */
   public void addCharArray(JSONObject charObject) {
     this.charArray.put(charObject);
   }
 
   /**
-   * Sets charArray to charObject
+   * Sets charArray to charObject.
    *
    * @param charArray A JSONArray that will replace the old charArray
    */
@@ -74,17 +71,17 @@ public class UserAccount {
     this.charArray = charArray;
   }
 
-
   /**
    * Returns charArray
    *
    * @return the JSONArray of the users characters
    */
-  public JSONArray getCharArray(){return this.charArray;}
-
+  public JSONArray getCharArray() {
+    return this.charArray;
+  }
 
   /**
-   * Returns the display name of the current user
+   * Returns the display name of the current user.
    *
    * @return User name of the currently logged in user
    */
@@ -92,40 +89,37 @@ public class UserAccount {
     return displayName;
   }
 
-
   /**
    * Deleted character from charArray by finding their name. Note that this method requires at least
    * a minSdkVersion of 19 in order to use JSONArray.remove()
    *
-   * @param charName  The name of the character
+   * @param charName The name of the character
    */
-  public void deleteCharByName(String charName){
-    try{
-      for(int i = 0; i < charArray.length(); i++){
+  public void deleteCharByName(String charName) {
+    try {
+      for (int i = 0; i < charArray.length(); i++) {
         JSONObject currentChar = charArray.getJSONObject(i);
         String currName = currentChar.keys().next();
-        if (currName.equals(charName)){
+        if (currName.equals(charName)) {
           charArray.remove(i);
         }
-
       }
-    } catch (JSONException e){
+    } catch (JSONException e) {
       e.printStackTrace();
     }
   }
 
-
   /**
-   * Reset the level information of the character given
+   * Reset the level information of the character given.
    *
-   * @param charName  The character name who will have their information erased
+   * @param charName The character name who will have their information erased
    */
-  public void resetLevels(String charName){
-    try{
-      for(int i = 0; i < charArray.length(); i++){
+  public void resetLevels(String charName) {
+    try {
+      for (int i = 0; i < charArray.length(); i++) {
         JSONObject currentChar = charArray.getJSONObject(i);
         String currName = currentChar.keys().next();
-        if (currName.equals(charName)){
+        if (currName.equals(charName)) {
           JSONObject characterInfo = currentChar.getJSONObject(charName);
 
           JSONObject level1 = characterInfo.getJSONObject("LEVEL1");
@@ -145,102 +139,96 @@ public class UserAccount {
 
           Log.i("Character Info", characterInfo.toString());
         }
-
       }
-    } catch (JSONException e){
+    } catch (JSONException e) {
       e.printStackTrace();
     }
   }
 
-
   /**
-   * Returns the JSONObject with the charName key in charArray
+   * Returns the JSONObject with the charName key in charArray.
    *
-   * @param charName  The name of the character who's information we want to retrieve
+   * @param charName The name of the character who's information we want to retrieve
    * @return The JSONObject of the character
    */
-  public JSONObject getCharByName(String charName){
-    try{
-      for(int i = 0; i < charArray.length(); i++){
+  public JSONObject getCharByName(String charName) {
+    try {
+      for (int i = 0; i < charArray.length(); i++) {
         JSONObject currentChar = charArray.getJSONObject(i);
         String currName = currentChar.keys().next();
-        if (currName.equals(charName)){
+        if (currName.equals(charName)) {
           return currentChar;
         }
       }
-    } catch (JSONException e){
+    } catch (JSONException e) {
       e.printStackTrace();
     }
 
     return new JSONObject();
   }
 
-
   /**
-   * Adds the score of a new playthrough to the characters' score history
+   * Adds the score of a new playthrough to the characters' score history.
    *
-   * @param charName  The name of the character who's score we are updating
-   * @param score     The new score to be added to the JSONArray
+   * @param charName The name of the character who's score we are updating
+   * @param score The new score to be added to the JSONArray
    */
-  public void addScore(String charName, int score){
-    try{
-      for(int i = 0; i < charArray.length(); i++){
+  public void addScore(String charName, int score) {
+    try {
+      for (int i = 0; i < charArray.length(); i++) {
         JSONObject currentChar = charArray.getJSONObject(i);
         String currName = currentChar.keys().next();
-        if (currName.equals(charName)){
+        if (currName.equals(charName)) {
           currentChar.getJSONObject(charName).getJSONArray("SCORE").put(score);
         }
       }
-    } catch (JSONException e){
+    } catch (JSONException e) {
       e.printStackTrace();
     }
-
   }
 
   /**
-   * Returns the String version of charArray
+   * Returns the String version of charArray.
    *
-   * @return  A String version of the charArray
+   * @return A String version of the charArray
    */
   @Override
   @NonNull
-  public String toString(){
+  public String toString() {
     StringBuilder newString = new StringBuilder();
     newString.append(this.displayName + "/n");
     newString.append(charArray.toString());
     return newString.toString();
   }
 
-
   /**
    * Saves the current version of charArray to user.json and will create the file if it does not
-   * already exist
+   * already exist.
    */
-  public void saveToDb(){System.out.println();
-    if (new File(context.getFilesDir() +"/" + FILE_NAME).exists()){
-    try{
-    JSONObject userObject = new JSONObject();
-    userObject.put(this.displayName, this.charArray);
-    System.out.println("APPEND");
-    System.out.println(userObject.toString());
-    this.fileSaving.replaceJsonObject(userObject, FILE_NAME);
-    }
-    catch(Exception e){
-      e.printStackTrace();}
-    }
-    else{
-      try{
-      JSONObject userObject = new JSONObject();
-      JSONArray userArray = new JSONArray();
-      userObject.put(this.displayName, this.charArray);
-      userArray.put(userObject);
-      System.out.println(userArray.toString());
-      System.out.println("Write");
-      this.fileSaving.writeJson(FILE_NAME,userArray);
+  public void saveToDb() {
+    System.out.println();
+    if (new File(context.getFilesDir() + "/" + FILE_NAME).exists()) {
+      try {
+        JSONObject userObject = new JSONObject();
+        userObject.put(this.displayName, this.charArray);
+        System.out.println("APPEND");
+        System.out.println(userObject.toString());
+        this.fileSaving.replaceJsonObject(userObject, FILE_NAME);
+      } catch (Exception e) {
+        e.printStackTrace();
       }
-      catch (JSONException t){
+    } else {
+      try {
+        JSONObject userObject = new JSONObject();
+        JSONArray userArray = new JSONArray();
+        userObject.put(this.displayName, this.charArray);
+        userArray.put(userObject);
+        System.out.println(userArray.toString());
+        System.out.println("Write");
+        this.fileSaving.writeJson(FILE_NAME, userArray);
+      } catch (JSONException t) {
         t.printStackTrace();
       }
     }
   }
-  }
+}
