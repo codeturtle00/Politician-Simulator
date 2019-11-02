@@ -8,16 +8,32 @@ import android.view.View;
 
 /** A superclass of every event in this game. */
 abstract class Event {
-  protected final int babyHeight;
-  protected final int babyWidth;
-  protected final int babyY;
-  protected final int babyX;
 
+  /** The Baby's X coordinate. */
+  private final int babyX;
+
+  /** The Baby's Y coordinate. */
+  private final int babyY;
+
+  /** The Baby's width. */
+  private final int babyWidth;
+
+  /** The Baby's height. */
+  private final int babyHeight;
+
+  /** The X coordinate to create the event. */    // Hasn't been used yet
   private float x;
+
+  /** The Y coordinate to create the event. */    // Hasn't been used yet
   private float y;
+
+  /** The paint to draw this event. */             // Hasn't been used yet
   private Paint paint;
 
+  /** This event's image. */                       // Hasn't been used yet
   private Bitmap img;
+
+  /** The resources to draw the image. */          // Hasn't been used yet
   private Resources res;
 
   /**
@@ -32,6 +48,14 @@ abstract class Event {
    */
   abstract int handleTouch(View v, float initialX, float initialY, float finalX, float finalY);
 
+  /**
+   * Creates this Event object.
+   * @param babyX the X coordinate of the Baby
+   * @param babyY the Y coordinate of the Baby
+   * @param babyWidth the width of the Baby
+   * @param babyHeight the height of the Baby
+   * @param res the resources used
+   */
   Event(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     this.babyX = babyX;
     this.babyY = babyY;

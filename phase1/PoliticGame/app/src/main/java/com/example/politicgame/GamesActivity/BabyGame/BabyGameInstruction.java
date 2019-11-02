@@ -6,15 +6,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
 
 public class BabyGameInstruction extends GameActivity {
-  private PoliticGameApp app;
 
   public void onCreate(Bundle savedInstanceState) {
-    app = (PoliticGameApp) getApplication();
-
     System.out.println("The current theme is blue: " + app.isThemeBlue());
 
     if (app.isThemeBlue()) {
@@ -28,6 +24,7 @@ public class BabyGameInstruction extends GameActivity {
 
     setTitle("The Baby Game Instructions");
 
+    // Start game button
     final Button button = findViewById(R.id.start_game);
     button.setOnClickListener(
         new View.OnClickListener() {
@@ -38,6 +35,7 @@ public class BabyGameInstruction extends GameActivity {
         });
   }
 
+  /** Starts the baby game */
   void startBabyGame() {
     Intent startBabyGame = new Intent(this, BabyActivity.class);
     startActivity(startBabyGame);

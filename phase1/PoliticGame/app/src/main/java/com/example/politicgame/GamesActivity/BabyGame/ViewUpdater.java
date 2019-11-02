@@ -14,5 +14,10 @@ interface ViewUpdater {
    */
   void updateScore(int happinessChange);
 
+  /**
+   * Updates event action.
+   *
+   * @param eventAction the action to be performed
+   */
   void updateEventAction(String eventAction);
 }

@@ -47,11 +47,13 @@ class VerticalShake extends Event {
     return -5;
   }
 
+  // Not used yet
   @Override
   int determineXCoordinate() {
     return 0;
   }
 
+  // Not used yet
   @Override
   int determineYCoordinate() {
     return 0;

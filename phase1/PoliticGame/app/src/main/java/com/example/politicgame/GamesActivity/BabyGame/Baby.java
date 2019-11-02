@@ -8,16 +8,33 @@ import android.graphics.Paint;
 
 import com.example.politicgame.R;
 
-public class Baby {
-
+class Baby {
+  /** This Baby's X coordinate. */
   private float x;
+
+  /** This Baby's Y coordinate. */
   private float y;
+
+  /** This Baby's width. */
   private int width;
+
+  /** This Baby's height. */
   private int height;
+
+  /** This Baby's paint. */
   private Paint paint;
+
+  /** The image to draw. */
   private Bitmap babyImg;
 
-  public Baby(int x, int y, Resources res) {
+  /**
+   * Creates a new Baby object.
+   *
+   * @param x the X coordinate of the Baby
+   * @param y the Y coordinate of the Baby
+   * @param res the resources used to draw this Baby
+   */
+  Baby(int x, int y, Resources res) {
     paint = new Paint();
     this.x = x;
     this.y = y;
@@ -28,7 +45,12 @@ public class Baby {
     this.height = babyImg.getHeight();
   }
 
-  public void draw(Canvas canvas) {
+  /**
+   * Draws this Baby object.
+   *
+   * @param canvas the canvas to draw the Baby on
+   */
+  void draw(Canvas canvas) {
     canvas.drawBitmap(babyImg, this.x - (width / 2), this.y - (height / 2), paint);
     System.out.println("Drew baby");
   }

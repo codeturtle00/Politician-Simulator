@@ -25,7 +25,7 @@ class HorizontalShake extends Event {
   }
 
   /**
-   * Returns positive or negative change in happiness based on touch inputs
+   * Returns positive or negative change in happiness based on touch inputs.
    *
    * @param v the View being used
    * @param initialX the X coordinate of the initial touch
@@ -46,11 +46,13 @@ class HorizontalShake extends Event {
     return -5;
   }
 
+  // Not used yet
   @Override
   int determineXCoordinate() {
     return 0;
   }
 
+  // Not used yet
   @Override
   int determineYCoordinate() {
     return 0;
