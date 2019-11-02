@@ -20,6 +20,7 @@ public class SummaryActivity extends GameActivity {
   private TextView level2Result;
   private TextView level3Result;
   private TextView totalResult;
+  private TextView finalText;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class SummaryActivity extends GameActivity {
     level2Result = findViewById(R.id.level_2_stats);
     level3Result = findViewById(R.id.level_3_stats);
     totalResult = findViewById(R.id.total_stats);
+    finalText = findViewById(R.id.end_text);
 
     fillInfoCell();
 
@@ -75,6 +77,12 @@ public class SummaryActivity extends GameActivity {
       currentUser.addScore(charName, totalScore);
       currentUser.resetLevels(charName);
       currentUser.saveToDb();
+
+      if (totalScore >= 200) {
+        finalText.setText("Congratulations, you have won the election. With " + totalScore + " points, you have beaten out your candidates.");
+      } else {
+        finalText.setText("Unfortunately, you have not gained enough support. With " + totalScore + " points, you need at least " + (200 - totalScore) + " more points to win. Try again next time!");
+      }
 
     } catch (JSONException e) {
       e.printStackTrace();
