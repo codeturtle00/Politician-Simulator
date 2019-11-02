@@ -113,7 +113,7 @@ public class StampActivity extends GameActivity {
     final ImageView pauseImage = findViewById(R.id.stamp_game_character_image);
 
     if (charId == 1) {
-      pauseImage.setImageResource(R.drawable.trump);
+      pauseImage.setImageResource(R.drawable.jake);
     } else if (charId == 2) {
       pauseImage.setImageResource(R.drawable.helmet_guy);
     } else {
