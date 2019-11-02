@@ -37,14 +37,8 @@ public class SpeechActivity extends GameActivity {
         String answer = app.getSpeechView().loadAnswer();
         this.correct = answer;
         ArrayList<String> choice = app.getSpeechView().loadChoice();
-        // A button that will switch to next page if user clicks
-        final Button button = findViewById(R.id.speechNext);
-        button.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        openStampGame();
-                    }
-                });
+
+
         // TextView for prompt and choices
         TextView prompt = findViewById(R.id.prompt);
         prompt.setText(displayPrompt);
@@ -88,12 +82,14 @@ public class SpeechActivity extends GameActivity {
             successfulIntent.putExtra("visible", exit);
             startActivity(successfulIntent);
             rating.awardPoints();
+            finish();
         } else {
             Intent failIntent = new Intent(this, FailureSpeechResult.class);
             failIntent.putExtra(INPUT_MESSAGE, userInput);
             failIntent.putExtra("visible", exit);
             startActivity(failIntent);
             rating.losePoints();
+            finish();
         }
     }
 

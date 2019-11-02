@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -62,6 +63,9 @@ public class SpeechResult extends GameActivity {
         Intent backToSpeech = new Intent(this, SpeechActivity.class);
         backToSpeech.putExtra("current rating", SpeechAwardPoints.getCurrentPoints());
         backToSpeech.putExtra("num prompts", num_prompts);
+
+        Log.i("Current iteration", ((Integer)num_prompts).toString());
+
         startActivity(backToSpeech);
         finish();
     }
