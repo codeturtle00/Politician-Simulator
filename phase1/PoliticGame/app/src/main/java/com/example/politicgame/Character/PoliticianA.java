@@ -6,6 +6,7 @@ import org.json.JSONObject;
 public class PoliticianA extends GameCharacter {
   private int charId = 1;
 
+  /** Gets the JSON data for level 1. */
   @Override
   protected JSONObject getJsonLevel1() {
     JSONObject detailObject = new JSONObject();
@@ -22,6 +23,7 @@ public class PoliticianA extends GameCharacter {
     return detailObject;
   }
 
+  /** Gets the JSON data for level 2. */
   @Override
   protected JSONObject getJsonLevel2() {
     JSONObject detailObject = new JSONObject();
@@ -38,6 +40,7 @@ public class PoliticianA extends GameCharacter {
     return detailObject;
   }
 
+  /** Gets the JSON data for level 3. */
   @Override
   protected JSONObject getJsonLevel3() {
     JSONObject detailObject = new JSONObject();
