@@ -28,6 +28,7 @@ import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.PoliticGameApp;
 import com.example.politicgame.R;
+import com.example.politicgame.UserActivity.FormState;
 import com.example.politicgame.UserActivity.RegisterActivity.RegistrationActivity;
 
 import org.json.JSONArray;
@@ -48,8 +49,6 @@ public class LoginActivity extends AppCompatActivity {
   @Override
   protected void onStart() {
     super.onStart();
-    final EditText usernameEditText = findViewById(R.id.username);
-    final EditText passwordEditText = findViewById(R.id.password);
     final Button registration = findViewById(R.id.signup);
     registration.setOnClickListener(
         new View.OnClickListener() {
@@ -90,9 +89,9 @@ public class LoginActivity extends AppCompatActivity {
         .getLoginFormState()
         .observe(
             this,
-            new Observer<LoginFormState>() {
+            new Observer<FormState>() {
               @Override
-              public void onChanged(@Nullable LoginFormState loginFormState) {
+              public void onChanged(@Nullable FormState loginFormState) {
                 if (loginFormState == null) {
                   return;
                 }

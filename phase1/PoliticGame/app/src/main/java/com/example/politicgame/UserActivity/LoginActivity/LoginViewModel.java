@@ -2,18 +2,16 @@ package com.example.politicgame.UserActivity.LoginActivity;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
-import android.util.Patterns;
-
+import com.example.politicgame.UserActivity.FormState;
+import com.example.politicgame.UserActivity.UserViewModel;
 import com.example.politicgame.UserData.LoginRepository;
 import com.example.politicgame.UserData.Result;
 import com.example.politicgame.Character.UserAccount;
 import com.example.politicgame.R;
 
-public class LoginViewModel extends ViewModel {
+public class LoginViewModel extends UserViewModel {
 
-  private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
+  private MutableLiveData<FormState> loginFormState = new MutableLiveData<>();
   private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
   private LoginRepository loginRepository;
 
@@ -25,7 +23,7 @@ public class LoginViewModel extends ViewModel {
     this.loginRepository = loginRepository;
   }
 
-  LiveData<LoginFormState> getLoginFormState() {
+  LiveData<FormState> getLoginFormState() {
     return loginFormState;
   }
 
@@ -47,28 +45,11 @@ public class LoginViewModel extends ViewModel {
 
   public void loginDataChanged(String username, String password) {
     if (!isUserNameValid(username)) {
-      loginFormState.setValue(new LoginFormState(R.string.invalid_username, null));
+      loginFormState.setValue(new FormState(R.string.invalid_username, null));
     } else if (!isPasswordValid(password)) {
-      loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
+      loginFormState.setValue(new FormState(null, R.string.invalid_password));
     } else {
-      loginFormState.setValue(new LoginFormState(true));
+      loginFormState.setValue(new FormState(true));
     }
-  }
-
-  // A placeholder username validation check
-  private boolean isUserNameValid(String username) {
-    if (username == null) {
-      return false;
-    }
-    if (username.contains("@")) {
-      return Patterns.EMAIL_ADDRESS.matcher(username).matches();
-    } else {
-      return !username.trim().isEmpty();
-    }
-  }
-
-  // A placeholder password validation check
-  private boolean isPasswordValid(String password) {
-    return password != null && password.trim().length() > 5;
   }
 }
