@@ -31,13 +31,13 @@ public class PauseActivity extends GameActivity{
 
         if (charId == 1){
             pauseImage.setImageResource(R.drawable.trump);
-            pauseImage.setBackgroundResource(R.drawable.trump);
+            //pauseImage.setBackgroundResource(R.drawable.trump);
         } else if (charId == 2) {
             pauseImage.setImageResource(R.drawable.helmet_guy);
-            pauseImage.setBackgroundResource(R.drawable.helmet_guy);
+            //pauseImage.setBackgroundResource(R.drawable.helmet_guy);
         } else {
             pauseImage.setImageResource(R.drawable.pause_filler);
-            pauseImage.setBackgroundResource(R.drawable.pause_filler);
+            //pauseImage.setBackgroundResource(R.drawable.pause_filler);
         }
 
 

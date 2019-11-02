@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.politicgame.GameActivity;
@@ -24,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class LoadCharacterActivity extends GameActivity {
@@ -32,12 +34,16 @@ public class LoadCharacterActivity extends GameActivity {
     private FileSavingService fileSaving;
     private Drawable highlight;
     private int currCharacter;
+
+    //Buttons and Textviews for navigating the screen
     private TextView charButton1;
     private TextView charButton2;
     private Button toggleExistButton1;
     private Button toggleExistButton2;
     private Button startButton;
     private TextView backButton;
+
+    //Variables that help measure the state of the loading cells
     private Boolean [] cellLoaded;
     private String [] cellNames;
     private UserAccount userAcc;
@@ -169,14 +175,36 @@ public class LoadCharacterActivity extends GameActivity {
         Iterator<String> keys = charCell.keys();
         String currKey;
         String [] msg = new String [2];
+
+        try{
         while(keys.hasNext()){
             msg[currCell] = "";
             currKey = keys.next();
 
-            msg[currCell] += "Character Name: " + currKey + ".";
+            msg[currCell] += "Character Name: " + currKey + ".\n";
+
+            JSONArray electionResults = charCell.getJSONObject(currKey).getJSONArray("SCORE");
+
+            msg[currCell] += "Completed elections: " + electionResults.length() + ".\n";
+
+
+            int electionsWon = 0;
+            for (int i = 0; i < electionResults.length(); i++){
+                if(electionResults.getInt(i) > 200){
+                    electionsWon += 1;
+                }
+            }
+
+            msg[currCell] += "Elections won: " + electionsWon + ".";
+
+
+
             cellNames[currCell] = currKey;
 
             currCell++;
+        }
+        }catch(JSONException e){
+            e.printStackTrace();
         }
 
         if (currCell == 2){
