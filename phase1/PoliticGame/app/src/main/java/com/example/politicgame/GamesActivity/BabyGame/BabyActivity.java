@@ -46,10 +46,6 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    if (isGameComplete(LEVEL_NAME)) {
-      openSpeechGame();
-    }
-
     // Embed BabyView into xml layout
     setContentView(R.layout.activity_baby);
     BabyView babyView = new BabyView(this);
