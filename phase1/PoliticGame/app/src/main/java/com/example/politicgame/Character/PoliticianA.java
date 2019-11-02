@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 public class PoliticianA extends GameCharacter {
   private int charId = 1;
+
   @Override
   protected JSONObject getJsonLevel1() {
     JSONObject detailObject = new JSONObject();
@@ -12,7 +13,7 @@ public class PoliticianA extends GameCharacter {
 
       JSONObject statsObject = new JSONObject();
       // TODO: Specify what data to track in level1 by initializing statsObject
-        statsObject.put(detail.Rating.toString(), 0);
+      statsObject.put(detail.Rating.toString(), 0);
       detailObject.put(detail.LEVEL1.toString(), statsObject);
 
     } catch (JSONException e) {
@@ -28,7 +29,7 @@ public class PoliticianA extends GameCharacter {
 
       JSONObject statsObject = new JSONObject();
       // TODO: Specify what data to track in level2 by initializing statsObject
-        statsObject.put(detail.Rating.toString(), 0);
+      statsObject.put(detail.Rating.toString(), 0);
       detailObject.put(detail.LEVEL2.toString(), statsObject);
 
     } catch (JSONException e) {
@@ -55,10 +56,9 @@ public class PoliticianA extends GameCharacter {
   @Override
   public JSONObject getJsonCharacter() {
     JSONObject politic = super.getJsonCharacter();
-    try{
-    politic.getJSONObject(getName()).put(detail.charId.toString(),this.charId);
-    }
-    catch (JSONException e){
+    try {
+      politic.getJSONObject(getName()).put(detail.charId.toString(), this.charId);
+    } catch (JSONException e) {
       e.printStackTrace();
     }
     return politic;

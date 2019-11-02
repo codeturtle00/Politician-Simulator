@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 public abstract class GameCharacter {
   private String name = "Trump";
+
   enum detail {
     LEVEL1,
     LEVEL2,
@@ -36,16 +37,16 @@ public abstract class GameCharacter {
   /**
    * "LEVEL1":{}...
    *
-   * "LEVEL1":{"complete":false}
+   * <p>"LEVEL1":{"complete":false}
    */
   public JSONObject getJsonCharacter() {
     JSONObject charObject = new JSONObject();
     try {
       JSONObject detailObject = new JSONObject();
-      detailObject.put(detail.LEVEL1.toString(),getJsonLevel1().get(detail.LEVEL1.toString()));
-      detailObject.put(detail.LEVEL2.toString(),getJsonLevel2().get(detail.LEVEL2.toString()));
-      detailObject.put(detail.LEVEL3.toString(),getJsonLevel3().get(detail.LEVEL3.toString()));
-      detailObject.put(detail.SCORE.toString(),getJsonScore().get(detail.SCORE.toString()));
+      detailObject.put(detail.LEVEL1.toString(), getJsonLevel1().get(detail.LEVEL1.toString()));
+      detailObject.put(detail.LEVEL2.toString(), getJsonLevel2().get(detail.LEVEL2.toString()));
+      detailObject.put(detail.LEVEL3.toString(), getJsonLevel3().get(detail.LEVEL3.toString()));
+      detailObject.put(detail.SCORE.toString(), getJsonScore().get(detail.SCORE.toString()));
       charObject.put(getName(), detailObject);
     } catch (JSONException e) {
       e.printStackTrace();
@@ -60,6 +61,4 @@ public abstract class GameCharacter {
   public void setName(String name) {
     this.name = name;
   }
-
-
 }
