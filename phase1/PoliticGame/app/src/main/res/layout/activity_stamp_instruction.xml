@@ -19,6 +19,7 @@
         android:layout_marginRight="169dp"
         android:text="@string/the_stamping_game"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="?attr/textColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,6 +35,7 @@
         android:layout_marginRight="171dp"
         android:text="@string/stamp_instruction_body"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="?attr/textColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
