@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.PoliticGameApp;
+import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 
 public class StampActivityLost extends GameActivity {

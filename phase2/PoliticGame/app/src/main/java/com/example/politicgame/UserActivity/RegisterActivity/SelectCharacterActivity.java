@@ -1,7 +1,5 @@
 package com.example.politicgame.UserActivity.RegisterActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -16,7 +14,7 @@ import com.example.politicgame.Character.PoliticianB;
 import com.example.politicgame.Character.UserAccount;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstruction;
-import com.example.politicgame.PoliticGameApp;
+import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 
 import org.json.JSONException;

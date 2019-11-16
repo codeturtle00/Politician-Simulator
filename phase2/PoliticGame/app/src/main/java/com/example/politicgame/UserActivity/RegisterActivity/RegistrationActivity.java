@@ -14,7 +14,7 @@ import android.widget.EditText;
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.MainActivity;
-import com.example.politicgame.PoliticGameApp;
+import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.UserActivity.FormState;
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.politicgame.Character.UserAccount;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.PauseButton;
-import com.example.politicgame.PoliticGameApp;
+import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 
 public class StampActivity extends GameActivity {

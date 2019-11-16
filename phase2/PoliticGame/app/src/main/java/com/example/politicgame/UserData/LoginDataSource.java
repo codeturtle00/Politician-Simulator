@@ -3,7 +3,7 @@ package com.example.politicgame.UserData;
 import android.app.Activity;
 import android.content.Context;
 import com.example.politicgame.Common.FileSavingService;
-import com.example.politicgame.PoliticGameApp;
+import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Character.UserAccount;
 import org.json.JSONArray;
 import org.json.JSONException;

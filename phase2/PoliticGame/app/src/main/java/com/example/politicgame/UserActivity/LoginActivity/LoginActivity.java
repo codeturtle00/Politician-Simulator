@@ -26,7 +26,7 @@ import android.widget.Toast;
 import com.example.politicgame.Character.UserAccount;
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.MainActivity;
-import com.example.politicgame.PoliticGameApp;
+import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.UserActivity.FormState;
 import com.example.politicgame.UserActivity.RegisterActivity.RegistrationActivity;

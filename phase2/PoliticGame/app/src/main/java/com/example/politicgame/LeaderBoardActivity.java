@@ -1,24 +1,18 @@
 package com.example.politicgame;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Common.FileSavingService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class LeaderBoardActivity extends GameActivity {

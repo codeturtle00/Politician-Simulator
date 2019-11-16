@@ -6,15 +6,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstruction;
-import com.example.politicgame.PoliticGameApp;
+import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.Character.UserAccount;
@@ -23,9 +20,7 @@ import com.example.politicgame.UserActivity.RegisterActivity.SelectCharacterActi
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class LoadCharacterActivity extends GameActivity {

@@ -2,7 +2,7 @@ package com.example.politicgame.GamesActivity.SpeechGame;
 
 import android.os.Bundle;
 
-import com.example.politicgame.PoliticGameApp;
+import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 
 public class FailureSpeechResult extends SpeechResult {

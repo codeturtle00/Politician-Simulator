@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Character.UserAccount;
 import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
