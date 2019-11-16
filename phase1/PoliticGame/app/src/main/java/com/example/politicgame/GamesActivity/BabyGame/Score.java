@@ -17,7 +17,7 @@ public class Score {
     /**
      * Update score and returns new score
      */
-    int updateScore(int happinessChange) {
+    void updateScore(int happinessChange) {
 
         if (happiness + happinessChange > 100) {
             happiness = 100;
@@ -30,7 +30,9 @@ public class Score {
         // temp show score text. Will add a happiness meter gfx
         String scoreBoxText = "Happiness: " + happiness + "%";
         scoreBox.setText(scoreBoxText);
+    }
 
+    public int getHappiness() {
         return happiness;
     }
 }

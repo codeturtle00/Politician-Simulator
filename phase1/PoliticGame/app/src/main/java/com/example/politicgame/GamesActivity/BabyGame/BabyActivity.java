@@ -27,9 +27,6 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   /** This game's level. */
   private final String LEVEL_NAME = "LEVEL1";
 
-  /** Happiness of the baby. Also the player's score. */
-  private Integer happiness = 50;
-
   /** The TextView used to display the action to be performed. */
   private TextView eventActionText;
 
@@ -37,6 +34,8 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   private TextView timerDisplay;
 
   private Score score;
+
+  private int happiness;
 
   /** The game's timer. */
   private Timer timer;
@@ -145,11 +144,12 @@ public class BabyActivity extends GameActivity implements BabyDraw {
    */
   @Override
   public void updateScore(int happinessChange) {
-    int newScore = score.updateScore(happinessChange);
-    if (newScore == 0) {
+    score.updateScore(happinessChange);
+    happiness = score.getHappiness();
+    if (happiness == 0) {
       gameOver();
     }
-    else if (newScore == 100) {
+    else if (happiness == 100) {
       gameOutro();
     }
   }

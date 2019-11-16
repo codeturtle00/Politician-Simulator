@@ -27,7 +27,7 @@ class Timer {
     this.babyView = babyView;
   }
 
-  /** Pauses timer. */
+  /** Cancels current timer object */
   void pause() {
     if (timer != null) {
       timer.cancel();
