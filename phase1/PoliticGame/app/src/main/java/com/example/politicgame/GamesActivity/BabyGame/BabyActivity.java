@@ -30,14 +30,13 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   /** Happiness of the baby. Also the player's score. */
   private Integer happiness = 50;
 
-  /** The TextView used to display the score. */
-  private TextView scoreDisplay;
-
   /** The TextView used to display the action to be performed. */
   private TextView eventActionText;
 
   /** The TextView used to display the remaining time. */
   private TextView timerDisplay;
+
+  private Score score;
 
   /** The game's timer. */
   private Timer timer;
@@ -56,10 +55,8 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     setTitle("The Baby Game");
 
-    // Score
-    scoreDisplay = findViewById(R.id.scoreDisplay);
-    String score = happiness.toString() + "%";
-    scoreDisplay.setText(score);
+    // Initialize Score
+    score = new Score((TextView) findViewById(R.id.scoreDisplay), 50);
 
     // Event Action
     eventActionText = findViewById(R.id.eventActionText);
@@ -67,16 +64,6 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     // Timer View
     timerDisplay = findViewById(R.id.timerDisplay);
     timer = new Timer(this, babyView);
-
-    // Next Button (delete later)
-//    final Button next = findViewById(R.id.next);
-//    next.setOnClickListener(
-//        new View.OnClickListener() {
-//          @Override
-//          public void onClick(View v) {
-//            openSpeechGame();
-//          }
-//        });
 
     // Generate Pause Button
     new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
@@ -158,19 +145,11 @@ public class BabyActivity extends GameActivity implements BabyDraw {
    */
   @Override
   public void updateScore(int happinessChange) {
-    if (happiness + happinessChange > 100) {
-      happiness = 100;
-    } else if (happiness + happinessChange < 0) {
-      happiness = 0;
-    } else {
-      happiness += happinessChange;
-    }
-    String score = "Score: " + happiness.toString() + "%";
-    scoreDisplay.setText(score);
-    if (happiness == 0) {
+    int newScore = score.updateScore(happinessChange);
+    if (newScore == 0) {
       gameOver();
     }
-    if (happiness == 100) {
+    else if (newScore == 100) {
       gameOutro();
     }
   }
