@@ -1,15 +1,12 @@
 package com.example.politicgame;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.os.UserHandle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.politicgame.Character.UserAccount;
+import com.example.politicgame.Character.UserTools.UserAccount;
 
 import org.json.JSONException;
 import org.json.JSONObject;

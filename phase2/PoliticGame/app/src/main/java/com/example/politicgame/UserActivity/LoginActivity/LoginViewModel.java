@@ -6,7 +6,7 @@ import com.example.politicgame.UserActivity.FormState;
 import com.example.politicgame.UserActivity.UserViewModel;
 import com.example.politicgame.UserData.LoginRepository;
 import com.example.politicgame.UserData.Result;
-import com.example.politicgame.Character.UserAccount;
+import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.R;
 
 public class LoginViewModel extends UserViewModel {

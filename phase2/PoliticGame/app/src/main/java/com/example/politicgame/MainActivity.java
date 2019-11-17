@@ -1,26 +1,19 @@
 package com.example.politicgame;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.politicgame.GamesActivity.BabyGame.BabyGameInstruction;
+import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
+import com.example.politicgame.Leaderboard.LeaderBoardActivity;
 import com.example.politicgame.UserActivity.LoginActivity.LoginActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class MainActivity extends GameActivity {
 
@@ -88,33 +81,6 @@ public class MainActivity extends GameActivity {
     ImageView trumpIMG = findViewById(R.id.trump);
     Animation animated_trump = AnimationUtils.loadAnimation(this, R.anim.animated_trump);
     trumpIMG.startAnimation(animated_trump);
-  }
-
-  public JSONObject generateEmptyLeaderBoard() {
-    JSONObject leaderBoard = new JSONObject();
-
-    try {
-      leaderBoard.put(
-          "Kullen",
-          new JSONObject().put("Kullen the Kreeper", (new JSONObject()).put("highScore", 40)));
-      leaderBoard.put(
-          "Yitan",
-          new JSONObject().put("Yitan the Titan", (new JSONObject()).put("highScore", 30)));
-      leaderBoard.put(
-          "Toe-knee",
-          new JSONObject().put("Toe-knee the shoe-in", (new JSONObject()).put("highScore", 10)));
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
-
-    return leaderBoard;
-  }
-
-  public void openBabyGame() {
-    /** Starts the first game */
-    Intent switchBabyIntent = new Intent(this, BabyGameInstruction.class);
-    startActivity(switchBabyIntent);
-    finish();
   }
 
   public void openLoginPage() {

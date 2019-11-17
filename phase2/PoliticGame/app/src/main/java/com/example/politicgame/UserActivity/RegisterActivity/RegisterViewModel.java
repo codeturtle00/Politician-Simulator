@@ -8,7 +8,7 @@ import android.widget.Toast;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.politicgame.Character.UserAccount;
+import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;

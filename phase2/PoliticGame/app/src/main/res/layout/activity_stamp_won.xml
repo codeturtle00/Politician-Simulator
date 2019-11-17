@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backColor"
-    tools:context=".GamesActivity.StampGame.StampActivityWon">
+    tools:context=".Games.StampGame.StampActivityWon">
 
     <ImageView
         android:id="@+id/stamp_game_happy_face"

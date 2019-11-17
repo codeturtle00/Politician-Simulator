@@ -1,13 +1,7 @@
 package com.example.politicgame.Application;
 
-import android.app.Application;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.media.PlaybackParams;
-import android.preference.PreferenceManager;
 
-import com.example.politicgame.Character.UserAccount;
-import com.example.politicgame.GamesActivity.SpeechGame.SpeechGameViewModel;
 import com.example.politicgame.R;
 
 public class MusicPlayer {

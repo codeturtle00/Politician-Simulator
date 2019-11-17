@@ -1,14 +1,9 @@
 package com.example.politicgame.Application;
 
 import android.app.Application;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.media.MediaPlayer;
-import android.preference.PreferenceManager;
 
-import com.example.politicgame.Character.UserAccount;
-import com.example.politicgame.GamesActivity.SpeechGame.SpeechGameViewModel;
-import com.example.politicgame.R;
+import com.example.politicgame.Character.UserTools.UserAccount;
+import com.example.politicgame.Games.SpeechGame.SpeechGameViewModel;
 
 public class PoliticGameApp extends Application {
   // Current Account
@@ -26,6 +21,7 @@ public class PoliticGameApp extends Application {
   }
   private SpeechGameViewModel speechView = new SpeechGameViewModel();
 
+
   public void onCreate() {
     super.onCreate();
 
@@ -37,6 +33,8 @@ public class PoliticGameApp extends Application {
 
     speechView.loadQuestions();
   }
+
+
 
   // Methods for tracking current user
 

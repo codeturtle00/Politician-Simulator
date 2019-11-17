@@ -1,6 +1,6 @@
 package com.example.politicgame.UserData;
 
-import com.example.politicgame.Character.UserAccount;
+import com.example.politicgame.Character.UserTools.UserAccount;
 
 /**
  * Class that requests authentication and user information from the remote data source and

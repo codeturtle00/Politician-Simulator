@@ -23,7 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.politicgame.Character.UserAccount;
+import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.Application.PoliticGameApp;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backColor"
-    tools:context=".UserActivity.RegisterActivity.SelectCharacterActivity">
+    tools:context=".LoadCharacter.SelectCharacterActivity">
 
     <ImageView
         android:id="@+id/imageButton"

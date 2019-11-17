@@ -14,20 +14,20 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".SummaryActivity"></activity>
         <activity android:name=".UserActivity.LoginActivity.LoggedInActivity" />
-        <activity android:name=".GamesActivity.SpeechGame.SpeechInstructionActivity" />
-        <activity android:name=".GamesActivity.StampGame.StampActivityWon" />
-        <activity android:name=".GamesActivity.StampGame.StampActivityLost" />
-        <activity android:name=".GamesActivity.SpeechGame.FailureSpeechResult" />
-        <activity android:name=".GamesActivity.SpeechGame.SuccessSpeechResult" />
-        <activity android:name=".GamesActivity.SpeechGame.SpeechResult" />
+        <activity android:name=".Games.SpeechGame.SpeechInstructionActivity" />
+        <activity android:name=".Games.StampGame.StampActivityWon" />
+        <activity android:name=".Games.StampGame.StampActivityLost" />
+        <activity android:name=".Games.SpeechGame.FailureSpeechResult" />
+        <activity android:name=".Games.SpeechGame.SuccessSpeechResult" />
+        <activity android:name=".Games.SpeechGame.SpeechResult" />
         <activity
-            android:name=".LeaderBoardActivity"
+            android:name=".Leaderboard.LeaderBoardActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".GamesActivity.StampGame.StampActivity" />
-        <activity android:name=".GamesActivity.StampGame.StampInstructionActivity" />
-        <activity android:name=".GamesActivity.SpeechGame.SpeechActivity" />
-        <activity android:name=".GamesActivity.BabyGame.BabyActivity" />
-        <activity android:name=".GamesActivity.BabyGame.BabyGameInstruction" />
+        <activity android:name=".Games.StampGame.StampActivity" />
+        <activity android:name=".Games.StampGame.StampInstructionActivity" />
+        <activity android:name=".Games.SpeechGame.SpeechActivity" />
+        <activity android:name=".Games.BabyGame.BabyActivity" />
+        <activity android:name=".Games.BabyGame.BabyGameInstruction" />
         <activity android:name=".UserActivity.LoginActivity.LoginActivity" />
         <activity android:name=".UserActivity.RegisterActivity.RegistrationActivity" />
         <activity android:name=".MainActivity">
@@ -37,11 +37,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PauseActivity" />
+        <activity android:name=".Pausing.PauseActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".UserActivity.RegisterActivity.SelectCharacterActivity" />
+        <activity android:name=".LoadCharacter.SelectCharacterActivity" />
         <activity android:name=".GameActivity" />
-        <activity android:name=".UserActivity.LoginActivity.LoadCharacterActivity" />
+        <activity android:name=".LoadCharacter.LoadCharacterActivity" />
     </application>
 
 </manifest>
