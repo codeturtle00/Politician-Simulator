@@ -12,19 +12,12 @@ class Timer {
   /** This Timer's BabyDraw. */
   private BabyDraw babyDraw;
 
-  /** This Timer's BabyView. */
-  private BabyView babyView;
-
   /**
    * Creates a new timer.
-   *
-   * @param babyDraw this Timer's BabyDraw
-   * @param babyView this Timer's BabyView
    */
-  Timer(BabyDraw babyDraw, BabyView babyView) {
+  Timer(BabyDraw babyDraw) {
     timeLeftInMillis = 30000;
     this.babyDraw = babyDraw;
-    this.babyView = babyView;
   }
 
   /** Cancels current timer object */

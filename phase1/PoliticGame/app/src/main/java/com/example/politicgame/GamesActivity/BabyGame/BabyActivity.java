@@ -65,7 +65,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     // Timer View
     timerDisplay = findViewById(R.id.timerDisplay);
-    timer = new Timer(this, babyView);
+    timer = new Timer(this);
 
     // Generate Pause Button
     new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
