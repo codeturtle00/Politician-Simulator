@@ -9,8 +9,6 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static java.lang.Thread.sleep;
-
 class EventManager implements View.OnTouchListener {
   /** List of all events currently going on. */
   private ArrayList<Event> events;

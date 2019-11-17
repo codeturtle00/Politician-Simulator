@@ -15,13 +15,9 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.GamesActivity.SpeechGame.SpeechInstructionActivity;
 import com.example.politicgame.PauseButton;
 import com.example.politicgame.R;
-import com.example.politicgame.GamesActivity.SpeechGame.SpeechInstructionActivity;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class BabyActivity extends GameActivity implements BabyDraw {
   /** This game's level. */
@@ -153,8 +149,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     happiness = score.getHappiness();
     if (happiness == 0) {
       gameOver();
-    }
-    else if (happiness == 100) {
+    } else if (happiness == 100) {
       gameOutro();
     }
   }
@@ -181,14 +176,15 @@ public class BabyActivity extends GameActivity implements BabyDraw {
    * @param eventAction the action to perform
    */
   public void updateEventAction(final String eventAction) {
-   System.out.println("we hav arrived");
-    runOnUiThread(new Runnable() {
+    System.out.println("we hav arrived");
+    runOnUiThread(
+        new Runnable() {
 
-      @Override
-      public void run() {
-        eventActionText.setText(eventAction);
-      }
-    });
+          @Override
+          public void run() {
+            eventActionText.setText(eventAction);
+          }
+        });
     System.out.println("Event action set!");
   }
 }

@@ -12,9 +12,7 @@ class Timer {
   /** This Timer's BabyDraw. */
   private BabyDraw babyDraw;
 
-  /**
-   * Creates a new timer.
-   */
+  /** Creates a new timer. */
   Timer(BabyDraw babyDraw) {
     timeLeftInMillis = 30000;
     this.babyDraw = babyDraw;

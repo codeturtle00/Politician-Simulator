@@ -136,6 +136,5 @@ class BabyView extends SurfaceView implements ViewUpdater {
 
   public void resume() {
     if (eventsGenerator != null) eventsGenerator.setRunning(true);
-
   }
 }
