@@ -21,35 +21,29 @@ abstract class Event {
   /** The Baby's height. */
   private final int babyHeight;
 
-  /** The X coordinate to create the event. */    // Hasn't been used yet
+  /** The X coordinate to create the event. */
+  // Hasn't been used yet
   private float x;
 
-  /** The Y coordinate to create the event. */    // Hasn't been used yet
+  /** The Y coordinate to create the event. */
+  // Hasn't been used yet
   private float y;
 
-  /** The paint to draw this event. */             // Hasn't been used yet
+  /** The paint to draw this event. */
+  // Hasn't been used yet
   private Paint paint;
 
-  /** This event's image. */                       // Hasn't been used yet
+  /** This event's image. */
+  // Hasn't been used yet
   private Bitmap img;
 
-  /** The resources to draw the image. */          // Hasn't been used yet
+  /** The resources to draw the image. */
+  // Hasn't been used yet
   private Resources res;
 
   /**
-   * Updates the score based on touch input values.
-   *
-   * @param v the View being used
-   * @param initialX the X coordinate of the initial touch
-   * @param initialY the Y coordinate of the initial touch
-   * @param finalX the X coordinate of where the touch ended
-   * @param finalY the Y coordinate of where the touch ended
-   * @return value to change baby happiness by
-   */
-  abstract int handleTouch(View v, float initialX, float initialY, float finalX, float finalY);
-
-  /**
    * Creates this Event object.
+   *
    * @param babyX the X coordinate of the Baby
    * @param babyY the Y coordinate of the Baby
    * @param babyWidth the width of the Baby
@@ -65,6 +59,18 @@ abstract class Event {
     this.paint = new Paint();
   }
 
+  /**
+   * Updates the score based on touch input values.
+   *
+   * @param v the View being used
+   * @param initialX the X coordinate of the initial touch
+   * @param initialY the Y coordinate of the initial touch
+   * @param finalX the X coordinate of where the touch ended
+   * @param finalY the Y coordinate of where the touch ended
+   * @return value to change baby happiness by
+   */
+  abstract int handleTouch(View v, float initialX, float initialY, float finalX, float finalY);
+
   abstract int determineXCoordinate();
 
   abstract int determineYCoordinate();
@@ -73,20 +79,20 @@ abstract class Event {
     canvas.drawBitmap(img, x, y, paint);
   }
 
-  public void setX(float x) {
-    this.x = x;
-  }
-
-  public void setY(float y) {
-    this.y = y;
-  }
-
   float getX() {
     return x;
   }
 
+  public void setX(float x) {
+    this.x = x;
+  }
+
   float getY() {
     return y;
+  }
+
+  public void setY(float y) {
+    this.y = y;
   }
 
   void setImg(Bitmap img) {
