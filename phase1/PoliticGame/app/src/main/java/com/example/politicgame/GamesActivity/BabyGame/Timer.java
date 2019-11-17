@@ -44,9 +44,6 @@ class Timer {
           public void onTick(long millisUntilFinished) {
             timeLeftInMillis = millisUntilFinished;
             Integer timeLeft = (int) timeLeftInMillis / 1000;
-            if (timeLeft % 3 == 0) {
-              babyView.randomEvent();
-            }
             System.out.println(timeLeft);
             babyDraw.updateTime(timeLeft.toString(), false);
           }

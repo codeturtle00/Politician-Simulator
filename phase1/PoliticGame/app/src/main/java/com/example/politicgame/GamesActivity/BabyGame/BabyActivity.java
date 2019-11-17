@@ -33,6 +33,8 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   /** The TextView used to display the remaining time. */
   private TextView timerDisplay;
 
+  private BabyView babyView;
+
   private Score score;
 
   private int happiness;
@@ -46,7 +48,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     // Embed BabyView into xml layout
     setContentView(R.layout.activity_baby);
-    BabyView babyView = new BabyView(this);
+    babyView = new BabyView(this);
     babyView.setBabyDraw(this);
 
     FrameLayout babyFrame = findViewById(R.id.babyFrame);
@@ -59,6 +61,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     // Event Action
     eventActionText = findViewById(R.id.eventActionText);
+    eventActionText.setText("test");
 
     // Timer View
     timerDisplay = findViewById(R.id.timerDisplay);
@@ -73,6 +76,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   protected void onPause() {
     super.onPause();
     timer.pause();
+    babyView.pause();
   }
 
   /** Resumes game. */
@@ -80,6 +84,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   protected void onResume() {
     super.onResume();
     timer.resume();
+    babyView.resume();
   }
 
   /** Opens the next level. */
@@ -175,8 +180,15 @@ public class BabyActivity extends GameActivity implements BabyDraw {
    *
    * @param eventAction the action to perform
    */
-  public void updateEventAction(String eventAction) {
-    eventActionText.setText(eventAction);
+  public void updateEventAction(final String eventAction) {
+   System.out.println("we hav arrived");
+    runOnUiThread(new Runnable() {
+
+      @Override
+      public void run() {
+        eventActionText.setText(eventAction);
+      }
+    });
     System.out.println("Event action set!");
   }
 }

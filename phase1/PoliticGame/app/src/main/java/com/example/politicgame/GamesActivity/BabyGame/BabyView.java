@@ -28,6 +28,8 @@ class BabyView extends SurfaceView implements ViewUpdater {
   /** Canvas which is being drawn on */
   private Canvas canvas;
 
+  private EventsGenerator eventsGenerator;
+
   /**
    * Creates the BabyView object which tells BabyActivity what animations to draw, scores to update,
    * times to update, and instructions to display.
@@ -40,6 +42,8 @@ class BabyView extends SurfaceView implements ViewUpdater {
     // EventManager will manage the events for this game.
     eventManager = new EventManager(getResources(), this);
     setOnTouchListener(eventManager);
+
+    this.babyDraw = (BabyDraw) context;
 
     SurfaceHolder holder = getHolder();
     setZOrderOnTop(true);
@@ -57,6 +61,10 @@ class BabyView extends SurfaceView implements ViewUpdater {
             if (canvas != null) {
               draw(canvas);
               holder.unlockCanvasAndPost(canvas);
+              // Create EventsGenerator
+              eventsGenerator = new EventsGenerator(eventManager);
+              Thread thread = new Thread(eventsGenerator);
+              thread.start();
             }
           }
 
@@ -108,12 +116,9 @@ class BabyView extends SurfaceView implements ViewUpdater {
    */
   @Override
   public void updateEventAction(String eventAction) {
+    System.out.println("arrived in babyView with string" + eventAction);
+    System.out.println(babyDraw);
     babyDraw.updateEventAction(eventAction);
-  }
-
-  /** Creates a new Event. */
-  void randomEvent() {
-    eventManager.randomEvent();
   }
 
   /**
@@ -123,5 +128,14 @@ class BabyView extends SurfaceView implements ViewUpdater {
    */
   void setBabyDraw(BabyDraw babyDraw) {
     this.babyDraw = babyDraw;
+  }
+
+  void pause() {
+    if (eventsGenerator != null) eventsGenerator.setRunning(false);
+  }
+
+  public void resume() {
+    if (eventsGenerator != null) eventsGenerator.setRunning(true);
+
   }
 }
