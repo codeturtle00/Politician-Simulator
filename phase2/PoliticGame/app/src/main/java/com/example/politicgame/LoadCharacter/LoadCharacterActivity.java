@@ -65,30 +65,42 @@ public class LoadCharacterActivity extends GameActivity {
 
     Log.i("onCreate", "Before we populate cells");
 
-    //populateCharacterCells();
+
+    // Fills cells with proper information from the user
     populateCells();
 
 
+    /**
+     * Cell 1
+     */
     charButton[0].setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
             currCharacter = 1;
 
+            //Highlight the cell
             charButton[0].setBackground(highlight);
             charButton[1].setBackground(null);
           }
         });
 
+    /**
+     * Cell 2
+     */
     charButton[1].setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
             currCharacter = 2;
 
+            //Highlight the cell
             charButton[1].setBackground(highlight);
             charButton[0].setBackground(null);
           }
         });
 
+    /**
+     * New Character/Delete Character button, depends on if there is a character that already exists
+     */
     toggleExistButton[0].setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
@@ -100,6 +112,9 @@ public class LoadCharacterActivity extends GameActivity {
           }
         });
 
+    /**
+     * New Character/Delete Character button, depends on if there is a character that already exists
+     */
     toggleExistButton[1].setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
@@ -136,6 +151,7 @@ public class LoadCharacterActivity extends GameActivity {
 
       Intent babyGameIntent = new Intent(this, BabyGameInstruction.class);
       startActivity(babyGameIntent);
+      finish();
     }
   }
 
