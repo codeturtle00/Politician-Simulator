@@ -124,7 +124,7 @@ class BabyView extends SurfaceView implements ViewUpdater {
     System.out.println("arrived in babyView with string" + eventAction);
     System.out.println(babyDraw);
     babyDraw.updateEventAction(eventAction);
-    eventManager.draw(canvas);
+//    eventManager.draw(canvas);
   }
 
   /**
