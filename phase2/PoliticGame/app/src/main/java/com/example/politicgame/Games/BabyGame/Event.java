@@ -76,6 +76,7 @@ abstract class Event {
   abstract int determineYCoordinate();
 
   void draw(Canvas canvas) {
+    System.out.println("Drawing " +img +" at " +x+","+y);
     canvas.drawBitmap(img, x, y, paint);
   }
 

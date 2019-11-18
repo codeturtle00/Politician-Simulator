@@ -1,6 +1,7 @@
 package com.example.politicgame.Games.BabyGame;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.View;
@@ -13,15 +14,19 @@ class Kiss extends Event {
    *
    * @param babyX the X coordinate of the baby
    * @param babyY the Y coordinate of the baby
-   * @param babyWidth the width of the baby
-   * @param babyHeight the height of the baby
+   * @param babyWidth pixel width of the baby
+   * @param babyHeight pixel height of the baby
    * @param res the resources to draw the baby
    */
   Kiss(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     super(babyX, babyY, babyWidth, babyHeight, res);
     setX(determineXCoordinate());
     setY(determineYCoordinate());
-    setImg(BitmapFactory.decodeResource(res, R.drawable.kisslips));
+
+    // This sometimes crashes. I think lipsImg sometimes gives null??
+    Bitmap lipsImg = BitmapFactory.decodeResource(res, R.drawable.kisslips);
+    lipsImg = Bitmap.createScaledBitmap(lipsImg, 540, 330, false);
+    setImg(lipsImg);
   }
 
   /**
@@ -49,7 +54,7 @@ class Kiss extends Event {
   int determineXCoordinate() {
     //    Random r = new Random();
     //    return babyX + r.nextInt(babyWidth);
-    return 0;
+    return 100;
   }
 
   // Not used yet
@@ -57,6 +62,6 @@ class Kiss extends Event {
   int determineYCoordinate() {
     //    Random r = new Random();
     //    return babyY + r.nextInt(babyHeight / 2);
-    return 0;
+    return 100;
   }
 }

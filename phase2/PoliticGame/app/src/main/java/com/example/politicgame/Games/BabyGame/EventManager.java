@@ -127,27 +127,16 @@ class EventManager implements View.OnTouchListener {
     viewUpdater.updateScore(happinessChange);
   }
 
-  // NOT USED YET
   void draw(Canvas canvas) {
     for (Event event : events) {
       event.draw(canvas);
     }
   }
 
-  /**
-   * Sets X coordinate of the baby.
-   *
-   * @param babyX X coordinate of the baby
-   */
   void setBabyX(int babyX) {
     this.babyX = babyX;
   }
 
-  /**
-   * Sets Y coordinate of the baby.
-   *
-   * @param babyY Y coordinate of the baby
-   */
   void setBabyY(int babyY) {
     this.babyY = babyY;
   }
