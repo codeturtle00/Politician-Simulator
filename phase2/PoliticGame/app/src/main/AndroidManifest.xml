@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/BlueTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SummaryActivity"></activity>
+        <activity android:name=".GameEnd.SummaryActivity"></activity>
         <activity android:name=".UserActivity.LoginActivity.LoggedInActivity" />
         <activity android:name=".Games.SpeechGame.SpeechInstructionActivity" />
         <activity android:name=".Games.StampGame.StampActivityWon" />
@@ -39,7 +39,7 @@
         </activity>
         <activity android:name=".Pausing.PauseActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".LoadCharacter.SelectCharacterActivity" />
+        <activity android:name=".NewCharacter.SelectCharacterActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".LoadCharacter.LoadCharacterActivity" />
     </application>

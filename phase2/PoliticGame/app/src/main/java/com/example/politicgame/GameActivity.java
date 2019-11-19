@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Character.UserTools.UserAccount;
+import com.example.politicgame.GameEnd.SummaryActivity;
 import com.example.politicgame.Leaderboard.LeaderBoardActivity;
 import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 

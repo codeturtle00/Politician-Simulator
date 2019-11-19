@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.Application.PoliticGameApp;
+import com.example.politicgame.NewCharacter.SelectCharacterActivity;
 import com.example.politicgame.R;
 
 import com.example.politicgame.Common.FileSavingService;
@@ -167,6 +168,7 @@ public class LoadCharacterActivity extends GameActivity {
     cellLoaded = new Boolean[cellData.length];
     cellNames = new String[cellData.length];
 
+    // With the information we received from the cells, load the data into text
     for (int i = 0; i < cellData.length; i++){
       cellLoaded[i] = cellData[i].isLoaded();
       cellNames[i] = cellData[i].getCharName();

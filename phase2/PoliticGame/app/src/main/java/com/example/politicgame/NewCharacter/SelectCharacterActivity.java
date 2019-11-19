@@ -1,4 +1,4 @@
-package com.example.politicgame.LoadCharacter;
+package com.example.politicgame.NewCharacter;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
