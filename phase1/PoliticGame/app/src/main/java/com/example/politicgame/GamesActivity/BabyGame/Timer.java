@@ -12,22 +12,13 @@ class Timer {
   /** This Timer's BabyDraw. */
   private BabyDraw babyDraw;
 
-  /** This Timer's BabyView. */
-  private BabyView babyView;
-
-  /**
-   * Creates a new timer.
-   *
-   * @param babyDraw this Timer's BabyDraw
-   * @param babyView this Timer's BabyView
-   */
-  Timer(BabyDraw babyDraw, BabyView babyView) {
+  /** Creates a new timer. */
+  Timer(BabyDraw babyDraw) {
     timeLeftInMillis = 30000;
     this.babyDraw = babyDraw;
-    this.babyView = babyView;
   }
 
-  /** Pauses timer. */
+  /** Cancels current timer object */
   void pause() {
     if (timer != null) {
       timer.cancel();
@@ -44,9 +35,6 @@ class Timer {
           public void onTick(long millisUntilFinished) {
             timeLeftInMillis = millisUntilFinished;
             Integer timeLeft = (int) timeLeftInMillis / 1000;
-            if (timeLeft % 3 == 0) {
-              babyView.randomEvent();
-            }
             System.out.println(timeLeft);
             babyDraw.updateTime(timeLeft.toString(), false);
           }

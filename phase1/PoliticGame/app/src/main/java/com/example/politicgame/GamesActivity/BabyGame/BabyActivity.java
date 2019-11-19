@@ -15,29 +15,25 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.GamesActivity.SpeechGame.SpeechInstructionActivity;
 import com.example.politicgame.PauseButton;
 import com.example.politicgame.R;
-import com.example.politicgame.GamesActivity.SpeechGame.SpeechInstructionActivity;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class BabyActivity extends GameActivity implements BabyDraw {
   /** This game's level. */
   private final String LEVEL_NAME = "LEVEL1";
-
-  /** Happiness of the baby. Also the player's score. */
-  private Integer happiness = 50;
-
-  /** The TextView used to display the score. */
-  private TextView scoreDisplay;
 
   /** The TextView used to display the action to be performed. */
   private TextView eventActionText;
 
   /** The TextView used to display the remaining time. */
   private TextView timerDisplay;
+
+  private BabyView babyView;
+
+  private Score score;
+
+  private int happiness;
 
   /** The game's timer. */
   private Timer timer;
@@ -48,7 +44,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     // Embed BabyView into xml layout
     setContentView(R.layout.activity_baby);
-    BabyView babyView = new BabyView(this);
+    babyView = new BabyView(this);
     babyView.setBabyDraw(this);
 
     FrameLayout babyFrame = findViewById(R.id.babyFrame);
@@ -56,27 +52,16 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     setTitle("The Baby Game");
 
-    // Score
-    scoreDisplay = findViewById(R.id.scoreDisplay);
-    String score = happiness.toString() + "%";
-    scoreDisplay.setText(score);
+    // Initialize Score
+    score = new Score((TextView) findViewById(R.id.scoreDisplay), 50);
 
     // Event Action
     eventActionText = findViewById(R.id.eventActionText);
+    eventActionText.setText("test");
 
     // Timer View
     timerDisplay = findViewById(R.id.timerDisplay);
-    timer = new Timer(this, babyView);
-
-    // Next Button (delete later)
-//    final Button next = findViewById(R.id.next);
-//    next.setOnClickListener(
-//        new View.OnClickListener() {
-//          @Override
-//          public void onClick(View v) {
-//            openSpeechGame();
-//          }
-//        });
+    timer = new Timer(this);
 
     // Generate Pause Button
     new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
@@ -87,6 +72,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   protected void onPause() {
     super.onPause();
     timer.pause();
+    babyView.pause();
   }
 
   /** Resumes game. */
@@ -94,6 +80,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   protected void onResume() {
     super.onResume();
     timer.resume();
+    babyView.resume();
   }
 
   /** Opens the next level. */
@@ -158,19 +145,11 @@ public class BabyActivity extends GameActivity implements BabyDraw {
    */
   @Override
   public void updateScore(int happinessChange) {
-    if (happiness + happinessChange > 100) {
-      happiness = 100;
-    } else if (happiness + happinessChange < 0) {
-      happiness = 0;
-    } else {
-      happiness += happinessChange;
-    }
-    String score = "Score: " + happiness.toString() + "%";
-    scoreDisplay.setText(score);
+    score.updateScore(happinessChange);
+    happiness = score.getHappiness();
     if (happiness == 0) {
       gameOver();
-    }
-    if (happiness == 100) {
+    } else if (happiness == 100) {
       gameOutro();
     }
   }
@@ -196,8 +175,16 @@ public class BabyActivity extends GameActivity implements BabyDraw {
    *
    * @param eventAction the action to perform
    */
-  public void updateEventAction(String eventAction) {
-    eventActionText.setText(eventAction);
+  public void updateEventAction(final String eventAction) {
+    System.out.println("we hav arrived");
+    runOnUiThread(
+        new Runnable() {
+
+          @Override
+          public void run() {
+            eventActionText.setText(eventAction);
+          }
+        });
     System.out.println("Event action set!");
   }
 }

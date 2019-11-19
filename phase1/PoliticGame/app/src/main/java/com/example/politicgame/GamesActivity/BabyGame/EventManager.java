@@ -61,10 +61,10 @@ class EventManager implements View.OnTouchListener {
 
   /** Randomly generates an event. */
   void randomEvent() {
+    System.out.println("runningrandomevent with" + viewUpdater);
     events.clear();
     Random rand = new Random();
     final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
-
     if (randomNum == 1) {
       events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
       viewUpdater.updateEventAction(
