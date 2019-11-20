@@ -51,7 +51,7 @@ class Baby {
     width = babyImg.getWidth();
     height = babyImg.getHeight();
     x = centerX - (width / 2);
-    y = centerY - (width / 2);
+    y = centerY - (height / 2);
   }
 
   /**
