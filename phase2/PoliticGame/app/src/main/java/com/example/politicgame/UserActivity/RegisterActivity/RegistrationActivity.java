@@ -19,7 +19,6 @@ import com.example.politicgame.R;
 import com.example.politicgame.UserActivity.FormState;
 
 public class RegistrationActivity extends GameActivity {
-  private FileSavingService fileSaving;
   private RegisterViewModel registerViewModel;
 
   @Override
@@ -27,10 +26,9 @@ public class RegistrationActivity extends GameActivity {
     super.onCreate(savedInstanceState);
     this.registerViewModel = new RegisterViewModel(this);
     setContentView(R.layout.activity_registration);
-
     setTitle("Registration");
     app = (PoliticGameApp) getApplication();
-    this.fileSaving = new FileSavingService(this);
+    /** Declare features in this page */
     final EditText username = findViewById(R.id.username);
     final EditText password = findViewById(R.id.password);
     final Button saveButton = findViewById(R.id.save);
@@ -38,7 +36,6 @@ public class RegistrationActivity extends GameActivity {
     backButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            // Code here executes on main thread after user presses button
             BackToMenu();
           }
         });
@@ -66,19 +63,12 @@ public class RegistrationActivity extends GameActivity {
     TextWatcher afterTextChangedListener =
         new TextWatcher() {
           @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            // ignore
-          }
-
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
           @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {
-            // ignore
-          }
-
+          public void onTextChanged(CharSequence s, int start, int before, int count) {}
           @Override
           public void afterTextChanged(Editable s) {
-            registerViewModel.registerDataValidate(
-                username.getText().toString(), password.getText().toString());
+            registerViewModel.registerDataValidate(username.getText().toString(), password.getText().toString());
           }
         };
     username.addTextChangedListener(afterTextChangedListener);
@@ -95,14 +85,12 @@ public class RegistrationActivity extends GameActivity {
     backButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            // Code here executes on main thread after user presses button
             BackToMenu();
           }
         });
   }
-
-  public void BackToMenu() {
     /** Returns to main menu */
+  public void BackToMenu() {
     Intent switchBabyIntent = new Intent(this, MainActivity.class);
     startActivity(switchBabyIntent);
     finish();

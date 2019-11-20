@@ -38,9 +38,26 @@ public class RegisterViewModel extends UserViewModel {
     app = (PoliticGameApp) activity.getApplication();
   }
 
+  private boolean userFound(String username) {
+    JSONArray jArray = fileSaving.readJsonFile(FILE_NAME);
+    try {
+      for (int i = 0; i < jArray.length(); i++) {
+        if (jArray.getJSONObject(i).getString("UserName").equals(username)) {
+          return true;
+        }
+      }
+      return false;
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
   public void registerDataValidate(String username, String password) {
     if (!isUserNameValid(username)) {
       registerFormState.setValue(new FormState(R.string.invalid_username, null));
+    } else if (userFound(username)) {
+      registerFormState.setValue(new FormState(R.string.duplicate_user, null));
     } else if (!isPasswordValid(password)) {
       registerFormState.setValue(new FormState(null, R.string.invalid_password));
     } else {

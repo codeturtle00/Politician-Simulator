@@ -2,7 +2,7 @@ package com.example.politicgame.UserActivity.LoginActivity;
 
 import androidx.annotation.Nullable;
 
-/** Authentication result : success (user details) or error message. */
+/** Authentication result : success (user details) or error or null message. */
 class LoginResult {
   @Nullable private LoggedInUserView success;
   @Nullable private Integer error;
@@ -15,11 +15,10 @@ class LoginResult {
   LoginResult(@Nullable Integer nullError, boolean nullUser) {
     if (nullUser) {
       this.nullUser = nullError;
-    }
-    else {
+    } else {
       this.error = nullError;
     }
-    }
+  }
 
   LoginResult(@Nullable LoggedInUserView success) {
     this.success = success;
@@ -35,6 +34,7 @@ class LoginResult {
     return error;
   }
 
+  @Nullable
   Integer getNull() {
     return nullUser;
   }
