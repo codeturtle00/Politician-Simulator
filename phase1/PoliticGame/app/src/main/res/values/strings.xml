@@ -29,7 +29,7 @@
     <string name="invalid_password">Invalid Password.We expected you to enter more than 4 characters for password</string>
     <string name="invalid_username">Invalid Username or email.Please make sure it is not empty or matches email format.</string>
     <string name="login_failed">Invalid Password</string>
-    <string name="welcome">welcome </string>
+    <string name="welcome">Welcome User:  </string>
     <string name="speechRating">Your current rating: 0%</string>
     <string name="StampGameWon">Congratulations! You have made reasonable choices with the given proposals. Your charisma made you one of the most popular candidates in this election.</string>
     <string name="stamp_game_lost_leaderboard">Game Summary</string>
