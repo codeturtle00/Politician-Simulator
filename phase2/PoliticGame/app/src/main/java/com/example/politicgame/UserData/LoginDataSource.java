@@ -21,8 +21,8 @@ public class LoginDataSource {
   public LoginDataSource(Context context) {
     this.context = context;
     this.fileSaving = new FileSavingService(context);
-    Activity loginActivity = (Activity)context;
-    this.app = (PoliticGameApp)loginActivity.getApplication();
+    Activity loginActivity = (Activity) context;
+    this.app = (PoliticGameApp) loginActivity.getApplication();
   }
 
   private boolean userAuthentication(String username, String password) {
@@ -40,23 +40,41 @@ public class LoginDataSource {
     return false;
   }
 
+  private boolean userFound(String username, String password) {
+    JSONArray jArray = fileSaving.readJsonFile(FILE_NAME);
+    try {
+      for (int i = 0; i < jArray.length(); i++) {
+        if (jArray.getJSONObject(i).getString("UserName").equals(username)) {
+          return true;
+        }
+      }
+      return false;
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
   public Result<UserAccount> login(String username, String password) {
     try {
-      if (this.userAuthentication(username, password)) {
-        UserAccount user = new UserAccount(username,this.context);
-        JSONArray userArray = this.fileSaving.readJsonFile(FILE_NAME);
-        JSONObject userObjects = new JSONObject();
-        for (int i= 0; i < userArray.length(); i ++ ){
-          JSONObject userObject = userArray.getJSONObject(i);
-          String key = userObject.keys().next();
-          if (key.equals(username)){
-            userObjects = userObject;
-          }
-        }
+      if (!this.userFound(username, password)){
+        return new Result.NullResult(new IOException("UserNotFound"));
+      }
+      else if (this.userAuthentication(username, password)){
+        UserAccount user = new UserAccount(username, this.context);
+//        JSONArray userArray = this.fileSaving.readJsonFile(FILE_NAME);
+//        JSONObject userObjects = new JSONObject();
+//        for (int i = 0; i < userArray.length(); i++) {
+//          JSONObject userObject = userArray.getJSONObject(i);
+//          String key = userObject.keys().next();
+//          if (key.equals(username)) {
+//            userObjects = userObject;
+//          }
+//        }
         app.setCurrentUser(user);
         System.out.println(app.getCurrentUser().toString());
         return new Result.Success<>(user);
-      } else {
+      }
+      else {
         return new Result.Error(new IOException("Error logging in"));
       }
     } catch (Exception e) {

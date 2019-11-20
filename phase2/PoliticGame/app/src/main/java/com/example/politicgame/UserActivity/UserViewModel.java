@@ -4,6 +4,9 @@ import android.util.Patterns;
 
 import androidx.lifecycle.ViewModel;
 
+/** Model where contains common logic for user activity ,specifically
+ * it checks if the username and password are valid .
+ * Note it has child classes : LoginViewModel and RegisterViewModel*/
 public class UserViewModel extends ViewModel {
     /** This validates username so that its not null or it is a valid email address*/
     protected boolean isUserNameValid(String username) {

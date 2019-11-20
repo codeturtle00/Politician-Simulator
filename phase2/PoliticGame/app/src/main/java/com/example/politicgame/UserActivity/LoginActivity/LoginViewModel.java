@@ -32,17 +32,19 @@ public class LoginViewModel extends UserViewModel {
   }
 
   public void login(String username, String password) {
-    // can be launched in a separate asynchronous job
     Result<UserAccount> result = loginRepository.login(username, password);
-
     if (result instanceof Result.Success) {
-      UserAccount data = ((Result.Success<UserAccount>) result).getData();
-      loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
-    } else {
+      UserAccount account = ((Result.Success<UserAccount>) result).getData();
+      loginResult.setValue(new LoginResult(new LoggedInUserView(account.getDisplayName())));
+    } else if (result instanceof Result.NullResult) {
+      loginResult.setValue(new LoginResult(R.string.user_not_found,true));}
+    else{
       loginResult.setValue(new LoginResult(R.string.login_failed));
     }
+
   }
 
+  /** Based on validation result,set different loginFormState message*/
   public void loginDataChanged(String username, String password) {
     if (!isUserNameValid(username)) {
       loginFormState.setValue(new FormState(R.string.invalid_username, null));

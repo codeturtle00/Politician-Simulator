@@ -34,11 +34,11 @@ import com.example.politicgame.UserActivity.RegisterActivity.RegistrationActivit
 import org.json.JSONArray;
 import org.json.JSONException;
 
+/** An activity responsible for login*/
 public class LoginActivity extends AppCompatActivity {
   private PoliticGameApp app;
   private LoginViewModel loginViewModel;
   private FileSavingService fileSaving;
-  final private String FILE_NAME = "user.json";
 
   private void register() {
     Intent registerIntent = new Intent(this, RegistrationActivity.class);
@@ -60,31 +60,30 @@ public class LoginActivity extends AppCompatActivity {
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
+    /** Set up theme,layout,title for loginActivity */
     app = (PoliticGameApp) getApplication();
-
-    System.out.println("The current theme is blue: " + app.isThemeBlue());
-
     if (app.isThemeBlue()) {
       setTheme(R.style.BlueTheme);
     } else {
       setTheme(R.style.RedTheme);
     }
-
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
-
     setTitle("Login");
-
-      this.fileSaving = new FileSavingService(this);
-
+    /** Initialize fileSaving and ViewModel */
+    this.fileSaving = new FileSavingService(this);
     this.loginViewModel =
         ViewModelProviders.of(this, new LoginViewModelFactory(this)).get(LoginViewModel.class);
+    /** Give labels to layout */
     final EditText usernameEditText = findViewById(R.id.username);
     final EditText passwordEditText = findViewById(R.id.password);
     final Button loginButton = findViewById(R.id.login);
     final ProgressBar loadingProgressBar = findViewById(R.id.loading);
     final Button backButton = findViewById(R.id.sign_out);
-
+    /**
+     * Observe the form state of the username and password, set error state if there is a formState
+     * Error
+     */
     loginViewModel
         .getLoginFormState()
         .observe(
@@ -104,7 +103,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
               }
             });
-
+    /**
+     * Observe the result state of the username and password, if there is an error login in ,go to
+     * showLoginFailed; if login in successfully,go to updateUiWithUser
+     */
     loginViewModel
         .getLoginResult()
         .observe(
@@ -117,26 +119,25 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 loadingProgressBar.setVisibility(View.GONE);
                 if (loginResult.getError() != null) {
-                  showLoginFailed(loginResult.getError());
-                }
+                      showLoginFailed(loginResult.getError());
+                  }
+                  if (loginResult.getNull() != null) {
+                      showNoUserFound(loginResult.getNull());
+                  }
                 if (loginResult.getSuccess() != null) {
                   updateUiWithUser(loginResult.getSuccess());
                 }
                 setResult(Activity.RESULT_OK);
               }
             });
-
+    /** User input of login,passing input and update formState */
     TextWatcher afterTextChangedListener =
         new TextWatcher() {
           @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            // ignore
-          }
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
           @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {
-            // ignore
-          }
+          public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
           @Override
           public void afterTextChanged(Editable s) {
@@ -146,9 +147,9 @@ public class LoginActivity extends AppCompatActivity {
         };
     usernameEditText.addTextChangedListener(afterTextChangedListener);
     passwordEditText.addTextChangedListener(afterTextChangedListener);
+
     passwordEditText.setOnEditorActionListener(
         new TextView.OnEditorActionListener() {
-
           @Override
           public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -177,48 +178,50 @@ public class LoginActivity extends AppCompatActivity {
           }
         });
   }
-
+  /**
+   * If successfully login in, a.creates a new UserAccount object b.set a list of characters for the
+   * object loading from the database c.sets it as the current logged in user putting inside
+   * Singleton PoliticGame
+   */
   private void updateUiWithUser(LoggedInUserView model) {
-    //Log in succeeds, creates new UserAccount object, sets it with character and then sets it as the current user
-      String name = model.getDisplayName();
-
-      UserAccount loginUser = new UserAccount(name, this);
-
-      JSONArray jsonFile = fileSaving.readJsonFile(FILE_NAME);
-
-      try {
-      for (int i = 0; i < jsonFile.length(); i++){
-          String userFileName = jsonFile.getJSONObject(i).keys().next();
-          if (userFileName.equals(name)){
-              loginUser.setCharArray(jsonFile.getJSONObject(i).getJSONArray(name));
-          }
+      String FILE_NAME = "user.json";
+    String name = model.getDisplayName();
+    UserAccount loginUser = new UserAccount(name, this);
+    JSONArray jsonFile = fileSaving.readJsonFile(FILE_NAME);
+    try {
+      for (int i = 0; i < jsonFile.length(); i++) {
+        String userFileName = jsonFile.getJSONObject(i).keys().next();
+        if (userFileName.equals(name)) {
+          loginUser.setCharArray(jsonFile.getJSONObject(i).getJSONArray(name));
+        }
       }
-      } catch (JSONException e) {
-          e.printStackTrace();
-      }
-
-      app.setCurrentUser(loginUser);
-
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+    app.setCurrentUser(loginUser);
     String welcome = getString(R.string.welcome) + name;
     Intent startIntent = new Intent(this, LoggedInActivity.class);
     startActivity(startIntent);
     Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     finish();
   }
-
+  /** If have error login in,stay in Login In Page and clear username and password */
   private void showLoginFailed(@StringRes Integer errorString) {
     Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     final EditText passwordEditText = findViewById(R.id.password);
     passwordEditText.setText("");
     final EditText usernameEditText = findViewById(R.id.username);
     usernameEditText.setText("");
-    //        Intent startRegister = new Intent(this, RegistrationActivity.class);
-    //        startActivity(startRegister);
-    //        finish();
   }
-
+    /** If no user found in the database,go to Register Page */
+    private void showNoUserFound(@StringRes Integer errorString) {
+        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+        Intent registerIntent = new Intent(this, RegistrationActivity.class);
+        startActivity(registerIntent);
+        finish();
+    }
+  /** Returns to main menu */
   public void BackToMenu() {
-    /** Returns to main menu */
     Intent switchBabyIntent = new Intent(this, MainActivity.class);
     startActivity(switchBabyIntent);
     finish();

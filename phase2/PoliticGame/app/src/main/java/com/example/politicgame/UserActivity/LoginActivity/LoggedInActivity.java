@@ -14,7 +14,7 @@ import com.example.politicgame.Leaderboard.LeaderBoardActivity;
 import com.example.politicgame.LoadCharacter.LoadCharacterActivity;
 import com.example.politicgame.R;
 import com.example.politicgame.SettingsActivity;
-
+/** An activity displayed for user after user login in*/
 public class LoggedInActivity extends GameActivity {
 
     @Override
@@ -32,12 +32,11 @@ public class LoggedInActivity extends GameActivity {
         });
 
 
-        //Leaderboard button, opens the leaderboard
+        //Leader board button, opens the leader board
         final Button boardButton = findViewById(R.id.leader_board_logged);
         boardButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        // Code here executes on main thread after user presses button
                         openLeaderBoard();
                     }
                 });
@@ -48,17 +47,15 @@ public class LoggedInActivity extends GameActivity {
         settingButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        // Code here executes on main thread after user presses button
                         openSettings();
                     }
                 });
 
-        //Settings button, opens the settings menu
+        //Sign out button, lead back to main menu
         final Button signOutButton = findViewById(R.id.logged_in_sign_out);
         signOutButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        // Code here executes on main thread after user presses button
                         openMainMenu();
                     }
                 });
@@ -73,16 +70,6 @@ public class LoggedInActivity extends GameActivity {
         startActivity(loadCharacters);
         finish();
     }
-
-    public void openBabyGame() {
-        /**
-         * Starts the first game
-         */
-        Intent switchBabyIntent = new Intent(this, BabyActivity.class);
-        startActivity(switchBabyIntent);
-        finish();
-    }
-
 
     public void openLeaderBoard() {
         /**
