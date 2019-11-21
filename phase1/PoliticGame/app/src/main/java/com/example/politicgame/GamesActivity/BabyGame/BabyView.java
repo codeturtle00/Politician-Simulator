@@ -61,6 +61,9 @@ class BabyView extends SurfaceView implements ViewUpdater {
             if (canvas != null) {
               draw(canvas);
               holder.unlockCanvasAndPost(canvas);
+
+              eventManager.setCanvas(canvas);
+
               // Create EventsGenerator
               eventsGenerator = new EventsGenerator(eventManager);
               Thread thread = new Thread(eventsGenerator);

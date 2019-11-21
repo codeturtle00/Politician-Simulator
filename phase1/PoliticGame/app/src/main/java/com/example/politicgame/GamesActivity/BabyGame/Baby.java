@@ -42,8 +42,6 @@ class Baby {
    */
   Baby(int centerX, int centerY, Resources res) {
     paint = new Paint();
-//    centerX = centerX; NOT NEEDED
-//    centerY = centerY; NOT NEEDED
     babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
 
     // width and height needs to be changed to dynamically scaled depending on holder width/height

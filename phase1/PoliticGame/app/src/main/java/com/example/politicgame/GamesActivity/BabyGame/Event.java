@@ -22,24 +22,22 @@ abstract class Event {
   private final int babyHeight;
 
   /** The X coordinate to create the event. */
-  // Hasn't been used yet
-  private float x;
+  private int x;
 
   /** The Y coordinate to create the event. */
-  // Hasn't been used yet
-  private float y;
+  private int y;
 
   /** The paint to draw this event. */
-  // Hasn't been used yet
   private Paint paint;
 
   /** This event's image. */
-  // Hasn't been used yet
   private Bitmap img;
 
   /** The resources to draw the image. */
-  // Hasn't been used yet
   private Resources res;
+
+  /** Canvas to draw events. */
+  private Canvas canvas;
 
   /**
    * Creates this Event object.
@@ -50,12 +48,13 @@ abstract class Event {
    * @param babyHeight the height of the Baby
    * @param res the resources used
    */
-  Event(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
+  Event(int babyX, int babyY, int babyWidth, int babyHeight, Resources res, Canvas canvas) {
     this.babyX = babyX;
     this.babyY = babyY;
     this.babyWidth = babyWidth;
     this.babyHeight = babyHeight;
     this.res = res;
+    this.canvas = canvas;
     this.paint = new Paint();
   }
 
@@ -71,28 +70,24 @@ abstract class Event {
    */
   abstract int handleTouch(View v, float initialX, float initialY, float finalX, float finalY);
 
-  abstract int determineXCoordinate();
-
-  abstract int determineYCoordinate();
-
-  void draw(Canvas canvas) {
+  void draw() {
     canvas.drawBitmap(img, x, y, paint);
   }
 
-  float getX() {
+  void setX() {
+    x = (int) (Math.random() * (babyWidth + 1) + babyX);
+  }
+
+  void setY() {
+    y = (int) (Math.random() * (babyHeight + 1) + babyY);
+  }
+
+  int getX() {
     return x;
   }
 
-  public void setX(float x) {
-    this.x = x;
-  }
-
-  float getY() {
+  int getY() {
     return y;
-  }
-
-  public void setY(float y) {
-    this.y = y;
   }
 
   void setImg(Bitmap img) {
