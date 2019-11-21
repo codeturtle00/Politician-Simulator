@@ -20,20 +20,16 @@ class EventManager implements View.OnTouchListener {
   private ViewUpdater viewUpdater;
 
   /** X coordinate of the baby. */
-  // DOESN'T WORK YET
   private int babyX;
 
   /** Y coordinate of the baby. */
-  // DOESN'T WORK YET
   private int babyY;
 
   /** Width of the baby. */
-  // DOESN'T WORK YET
-  private int babyWidth = 0;
+  private int babyWidth;
 
   /** Height of the baby. */
-  // DOESN'T WORK YET
-  private int babyHeight = 0;
+  private int babyHeight;
 
   /** X coordinate when screen is touched. */
   private float initialX;
@@ -150,5 +146,23 @@ class EventManager implements View.OnTouchListener {
    */
   void setBabyY(int babyY) {
     this.babyY = babyY;
+  }
+
+  /**
+   * Sets width of the baby.
+   *
+   * @param width the width of the baby
+   */
+  void setBabyWidth(int width) {
+    this.babyWidth = width;
+  }
+
+  /**
+   * Sets height of the baby.
+   *
+   * @param height the height of the baby
+   */
+  void setBabyHeight(int height) {
+    this.babyHeight = height;
   }
 }

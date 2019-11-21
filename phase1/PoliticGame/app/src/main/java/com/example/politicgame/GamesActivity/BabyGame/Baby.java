@@ -10,10 +10,16 @@ import com.example.politicgame.R;
 
 class Baby {
   /** This Baby's X coordinate. */
-  private float x;
+  private int x;
 
   /** This Baby's Y coordinate. */
-  private float y;
+  private int y;
+
+//  /** The center of the Baby's X coordinate. */
+//  private float centerX;
+//
+//  /** This center of the Baby's Y coordinate. */
+//  private float centerY;
 
   /** This Baby's width. */
   private int width;
@@ -30,19 +36,22 @@ class Baby {
   /**
    * Creates a new Baby object.
    *
-   * @param x the X coordinate of the Baby
-   * @param y the Y coordinate of the Baby
+   * @param centerX the X coordinate of the center of the Baby
+   * @param centerY the Y coordinate of the center of the Baby
    * @param res the resources used to draw this Baby
    */
-  Baby(int x, int y, Resources res) {
+  Baby(int centerX, int centerY, Resources res) {
     paint = new Paint();
-    this.x = x;
-    this.y = y;
+//    centerX = centerX; NOT NEEDED
+//    centerY = centerY; NOT NEEDED
     babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
+
     // width and height needs to be changed to dynamically scaled depending on holder width/height
     babyImg = Bitmap.createScaledBitmap(babyImg, 640, 1280, false);
-    this.width = babyImg.getWidth();
-    this.height = babyImg.getHeight();
+    width = babyImg.getWidth();
+    height = babyImg.getHeight();
+    x = centerX - (width / 2);
+    y = centerY - (height / 2);
   }
 
   /**
@@ -51,7 +60,23 @@ class Baby {
    * @param canvas the canvas to draw the Baby on
    */
   void draw(Canvas canvas) {
-    canvas.drawBitmap(babyImg, this.x - (width / 2), this.y - (height / 2), paint);
+    canvas.drawBitmap(babyImg, x, y, paint);
     System.out.println("Drew baby");
+  }
+
+  int getX() {
+    return x;
+  }
+
+  int getY() {
+    return y;
+  }
+
+  int getWidth() {
+    return width;
+  }
+
+  int getHeight() {
+    return height;
   }
 }
