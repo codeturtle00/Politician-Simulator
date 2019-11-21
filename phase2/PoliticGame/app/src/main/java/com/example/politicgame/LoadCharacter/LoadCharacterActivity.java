@@ -11,12 +11,12 @@ import android.widget.TextView;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.Application.PoliticGameApp;
+import com.example.politicgame.MainActivity;
 import com.example.politicgame.NewCharacter.SelectCharacterActivity;
 import com.example.politicgame.R;
 
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.Character.UserTools.UserAccount;
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
 public class LoadCharacterActivity extends GameActivity {
   protected PoliticGameApp app;
@@ -182,7 +182,7 @@ public class LoadCharacterActivity extends GameActivity {
    * Brings you back to the logged in menu
    */
   private void toLoggedInMenu() {
-    Intent selectIntent = new Intent(this, LoggedInActivity.class);
+    Intent selectIntent = new Intent(this, MainActivity.class);
     startActivity(selectIntent);
     finish();
   }

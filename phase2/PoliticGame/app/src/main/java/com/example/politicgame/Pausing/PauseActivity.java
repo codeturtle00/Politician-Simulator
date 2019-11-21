@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
+import com.example.politicgame.MainActivity;
 import com.example.politicgame.Character.UserTools.UserAccount;
 
 public class PauseActivity extends GameActivity {
@@ -62,14 +62,14 @@ public class PauseActivity extends GameActivity {
     loggedInB.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            openLoggedInActivity();
+            openMainActivity();
           }
         });
   }
 
-  private void openLoggedInActivity() {
-    Intent LoggedInActivityIntent = new Intent(this, LoggedInActivity.class);
-    startActivity(LoggedInActivityIntent);
+  private void openMainActivity() {
+    Intent MainActivityIntent = new Intent(this, MainActivity.class);
+    startActivity(MainActivityIntent);
   }
 
   private void returnRequest(int requestCode) {
