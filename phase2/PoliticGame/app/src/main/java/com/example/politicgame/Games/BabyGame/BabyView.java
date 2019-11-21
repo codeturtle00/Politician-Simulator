@@ -1,16 +1,12 @@
 package com.example.politicgame.Games.BabyGame;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
-import com.example.politicgame.R;
 
 class BabyView extends SurfaceView implements ViewUpdater {
 
@@ -53,28 +49,31 @@ class BabyView extends SurfaceView implements ViewUpdater {
     setZOrderOnTop(true);
     holder.setFormat(PixelFormat.TRANSPARENT);
     holder.addCallback(
-        new SurfaceHolder.Callback() {
-          @Override
-          public void surfaceDestroyed(SurfaceHolder holder) {}
+            new SurfaceHolder.Callback() {
+              @Override
+              public void surfaceDestroyed(SurfaceHolder holder) {}
 
-          @Override
-          public void surfaceCreated(SurfaceHolder holder) {
-            canvas = holder.lockCanvas();
-            holderWidth = holder.getSurfaceFrame().width();
-            holderHeight = holder.getSurfaceFrame().height();
-            if (canvas != null) {
-              draw(canvas);
-              holder.unlockCanvasAndPost(canvas);
-              // Create EventsGenerator
-              eventsGenerator = new EventsGenerator(eventManager);
-              Thread thread = new Thread(eventsGenerator);
-              thread.start();
-            }
-          }
+              @Override
+              public void surfaceCreated(SurfaceHolder holder) {
+                canvas = holder.lockCanvas();
+                holderWidth = holder.getSurfaceFrame().width();
+                holderHeight = holder.getSurfaceFrame().height();
+                if (canvas != null) {
+                  draw(canvas);
+                  holder.unlockCanvasAndPost(canvas);
 
-          @Override
-          public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
-        });
+                  eventManager.setCanvas(canvas);
+
+                  // Create EventsGenerator
+                  eventsGenerator = new EventsGenerator(eventManager);
+                  Thread thread = new Thread(eventsGenerator);
+                  thread.start();
+                }
+              }
+
+              @Override
+              public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
+            });
   }
 
   /**
@@ -97,10 +96,11 @@ class BabyView extends SurfaceView implements ViewUpdater {
     Baby baby = new Baby(holderWidth / 2, holderHeight / 2, getResources());
     baby.draw(canvas);
 
-    // Set the baby's coordinates in the eventManager.
-    eventManager.setBabyX(holderWidth / 2);
-    eventManager.setBabyY(holderHeight / 2);
-
+    // Set the baby's coordinates and dimensions in the eventManager.
+    eventManager.setBabyX(baby.getX());
+    eventManager.setBabyY(baby.getY());
+    eventManager.setBabyWidth(baby.getWidth());
+    eventManager.setBabyHeight(baby.getHeight());
   }
 
   /**
@@ -124,7 +124,6 @@ class BabyView extends SurfaceView implements ViewUpdater {
     System.out.println("arrived in babyView with string" + eventAction);
     System.out.println(babyDraw);
     babyDraw.updateEventAction(eventAction);
-//    eventManager.draw(canvas);
   }
 
   /**

@@ -2,6 +2,7 @@ package com.example.politicgame.Games.BabyGame;
 
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.util.Log;
 import android.view.View;
 
@@ -18,10 +19,10 @@ class VerticalShake extends Event {
    * @param babyHeight the height of the baby
    * @param res the resources to draw the baby
    */
-  VerticalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
-    super(babyX, babyY, babyWidth, babyHeight, res);
-    setX(determineXCoordinate());
-    setY(determineYCoordinate());
+  VerticalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res, Canvas canvas) {
+    super(babyX, babyY, babyWidth, babyHeight, res, canvas);
+    setX();
+    setY();
     setImg(BitmapFactory.decodeResource(res, R.drawable.kisslips));
   }
 
@@ -45,17 +46,5 @@ class VerticalShake extends Event {
     }
     Log.d("VerticalShake", "Score decreased");
     return -5;
-  }
-
-  // Not used yet
-  @Override
-  int determineXCoordinate() {
-    return 0;
-  }
-
-  // Not used yet
-  @Override
-  int determineYCoordinate() {
-    return 0;
   }
 }
