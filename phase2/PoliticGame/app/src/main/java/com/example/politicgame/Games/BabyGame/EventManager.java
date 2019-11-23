@@ -70,7 +70,7 @@ class EventManager implements View.OnTouchListener {
 //            new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
 //        events.add(horizontalShake);
 //        horizontalShake.draw(canvas);
-        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources, viewUpdater));
+        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction(
                 "The baby needs to be cradled! Swipe horizontally at any location.");
         Log.d("EventManager", "HorizontalShake started");
@@ -79,15 +79,14 @@ class EventManager implements View.OnTouchListener {
 //            new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
 //        events.add(verticalShake);
 //        verticalShake.draw(canvas);
-        events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources, viewUpdater));
+        events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction(
                 "The baby needs to be cradled! Swipe vertically at any location.");
         Log.d("EventManager", "VerticalShake started");
       } else if (randomNum == 3) {
-        Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources, viewUpdater);
+        Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
         events.add(kiss);
         kiss.draw(canvas);
-        draw(canvas);
 //        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
         Log.d("EventManager", "Kiss started");

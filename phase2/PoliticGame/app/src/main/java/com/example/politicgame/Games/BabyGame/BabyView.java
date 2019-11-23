@@ -141,9 +141,4 @@ class BabyView extends SurfaceView implements ViewUpdater {
   public void resume() {
     if (eventsGenerator != null) eventsGenerator.setRunning(true);
   }
-
-  @Override
-  public SurfaceHolder getHolder1() {
-    return getHolder();
-  }
 }

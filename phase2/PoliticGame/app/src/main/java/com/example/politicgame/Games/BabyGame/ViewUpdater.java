@@ -24,6 +24,4 @@ interface ViewUpdater {
    * @param eventAction the action to be performed
    */
   void updateEventAction(String eventAction);
-
-  SurfaceHolder getHolder1();
 }

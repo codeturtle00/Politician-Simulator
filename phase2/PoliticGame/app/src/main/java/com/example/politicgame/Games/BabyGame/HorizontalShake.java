@@ -17,8 +17,8 @@ class HorizontalShake extends Event {
    * @param babyHeight the height of the baby
    * @param res the resources to draw the baby
    */
-  HorizontalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res, ViewUpdater viewUpdater) {
-    super(babyX, babyY, babyWidth, babyHeight, res, viewUpdater);
+  HorizontalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
+    super(babyX, babyY, babyWidth, babyHeight, res);
     setX();
     setY();
     setImg(BitmapFactory.decodeResource(res, R.drawable.kisslips));

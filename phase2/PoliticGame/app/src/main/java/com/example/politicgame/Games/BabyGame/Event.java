@@ -4,7 +4,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.view.SurfaceHolder;
 import android.view.View;
 
 /** A superclass of every event in this game. */
@@ -37,8 +36,6 @@ abstract class Event {
   /** The resources to draw the image. */
   private Resources res;
 
-  private ViewUpdater viewUpdater;
-
   /**
    * Creates this Event object.
    *
@@ -48,13 +45,12 @@ abstract class Event {
    * @param babyHeight the height of the Baby
    * @param res the resources used
    */
-  Event(int babyX, int babyY, int babyWidth, int babyHeight, Resources res, ViewUpdater viewUpdater) {
+  Event(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     this.babyX = babyX;
     this.babyY = babyY;
     this.babyWidth = babyWidth;
     this.babyHeight = babyHeight;
     this.res = res;
-    this.viewUpdater = viewUpdater;
     this.paint = new Paint();
   }
 
@@ -71,13 +67,9 @@ abstract class Event {
   abstract int handleTouch(View v, float initialX, float initialY, float finalX, float finalY);
 
   void draw(Canvas canvas) {
-    SurfaceHolder holder = viewUpdater.getHolder1();
-    Canvas c = holder.lockCanvas();
-    System.out.println("Drawing " + img +" at " + x + "," + y);
+    System.out.println("Drawing " + img + " at " + x + "," + y);
     canvas.drawBitmap(img, x, y, paint);
     System.out.println("Event drawn!");
-    holder.unlockCanvasAndPost(c);
-
   }
 
   void setX() {

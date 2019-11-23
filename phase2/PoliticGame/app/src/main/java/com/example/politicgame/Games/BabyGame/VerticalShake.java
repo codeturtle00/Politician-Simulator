@@ -2,7 +2,6 @@ package com.example.politicgame.Games.BabyGame;
 
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.util.Log;
 import android.view.View;
 
@@ -19,8 +18,8 @@ class VerticalShake extends Event {
    * @param babyHeight the height of the baby
    * @param res the resources to draw the baby
    */
-  VerticalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res, ViewUpdater viewUpdater) {
-    super(babyX, babyY, babyWidth, babyHeight, res, viewUpdater);
+  VerticalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
+    super(babyX, babyY, babyWidth, babyHeight, res);
     setX();
     setY();
     setImg(BitmapFactory.decodeResource(res, R.drawable.kisslips));
