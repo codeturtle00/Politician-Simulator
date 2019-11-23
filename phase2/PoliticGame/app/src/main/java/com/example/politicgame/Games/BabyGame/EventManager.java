@@ -60,7 +60,7 @@ class EventManager implements View.OnTouchListener {
 
   /** Randomly generates an event. */
   void randomEvent() {
-    System.out.println("runningrandomevent with" + viewUpdater);
+    Log.d("Running random event", viewUpdater.toString());
     if (events.size() < 3) {
       Random rand = new Random();
 //      final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
@@ -70,7 +70,7 @@ class EventManager implements View.OnTouchListener {
 //            new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
 //        events.add(horizontalShake);
 //        horizontalShake.draw(canvas);
-        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources, canvas));
+        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources, viewUpdater));
         viewUpdater.updateEventAction(
                 "The baby needs to be cradled! Swipe horizontally at any location.");
         Log.d("EventManager", "HorizontalShake started");
@@ -79,15 +79,16 @@ class EventManager implements View.OnTouchListener {
 //            new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
 //        events.add(verticalShake);
 //        verticalShake.draw(canvas);
-        events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources, canvas));
+        events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources, viewUpdater));
         viewUpdater.updateEventAction(
                 "The baby needs to be cradled! Swipe vertically at any location.");
         Log.d("EventManager", "VerticalShake started");
       } else if (randomNum == 3) {
-//        Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
-//        events.add(kiss);
-//        kiss.draw(canvas);
-        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources, canvas));
+        Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources, viewUpdater);
+        events.add(kiss);
+        kiss.draw(canvas);
+        draw(canvas);
+//        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
         Log.d("EventManager", "Kiss started");
       }
@@ -140,11 +141,11 @@ class EventManager implements View.OnTouchListener {
   }
 
   // NOT USED YET
-//  void draw(Canvas canvas) {
-//    for (Event event : events) {
-//      event.draw(canvas);
-//    }
-//  }
+  void draw(Canvas canvas) {
+    for (Event event : events) {
+      event.draw(canvas);
+    }
+  }
 
   void setCanvas(Canvas canvas) {
     this.canvas = canvas;

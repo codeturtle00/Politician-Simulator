@@ -49,31 +49,31 @@ class BabyView extends SurfaceView implements ViewUpdater {
     setZOrderOnTop(true);
     holder.setFormat(PixelFormat.TRANSPARENT);
     holder.addCallback(
-            new SurfaceHolder.Callback() {
-              @Override
-              public void surfaceDestroyed(SurfaceHolder holder) {}
+        new SurfaceHolder.Callback() {
+          @Override
+          public void surfaceDestroyed(SurfaceHolder holder) {}
 
-              @Override
-              public void surfaceCreated(SurfaceHolder holder) {
-                canvas = holder.lockCanvas();
-                holderWidth = holder.getSurfaceFrame().width();
-                holderHeight = holder.getSurfaceFrame().height();
-                if (canvas != null) {
-                  draw(canvas);
-                  holder.unlockCanvasAndPost(canvas);
+          @Override
+          public void surfaceCreated(SurfaceHolder holder) {
+            canvas = holder.lockCanvas();
+            holderWidth = holder.getSurfaceFrame().width();
+            holderHeight = holder.getSurfaceFrame().height();
+            if (canvas != null) {
+              draw(canvas);
+              holder.unlockCanvasAndPost(canvas);
 
-                  eventManager.setCanvas(canvas);
+              eventManager.setCanvas(canvas);
 
-                  // Create EventsGenerator
-                  eventsGenerator = new EventsGenerator(eventManager);
-                  Thread thread = new Thread(eventsGenerator);
-                  thread.start();
-                }
-              }
+              // Create EventsGenerator
+              eventsGenerator = new EventsGenerator(eventManager);
+              Thread thread = new Thread(eventsGenerator);
+              thread.start();
+            }
+          }
 
-              @Override
-              public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
-            });
+          @Override
+          public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
+        });
   }
 
   /**
@@ -88,7 +88,7 @@ class BabyView extends SurfaceView implements ViewUpdater {
     Paint paint = new Paint();
     paint.setColor(Color.WHITE);
 
-    // Example circle.
+    // Baby's crib.
     canvas.drawCircle(holderWidth / 2, holderHeight / 2, 400, paint);
     System.out.println("drew circle");
 
@@ -121,8 +121,7 @@ class BabyView extends SurfaceView implements ViewUpdater {
    */
   @Override
   public void updateEventAction(String eventAction) {
-    System.out.println("arrived in babyView with string" + eventAction);
-    System.out.println(babyDraw);
+    System.out.println("arrived in babyView with string " + eventAction);
     babyDraw.updateEventAction(eventAction);
   }
 
@@ -141,5 +140,10 @@ class BabyView extends SurfaceView implements ViewUpdater {
 
   public void resume() {
     if (eventsGenerator != null) eventsGenerator.setRunning(true);
+  }
+
+  @Override
+  public SurfaceHolder getHolder1() {
+    return getHolder();
   }
 }

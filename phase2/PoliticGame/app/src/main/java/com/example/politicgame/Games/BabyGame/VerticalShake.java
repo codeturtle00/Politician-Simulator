@@ -19,8 +19,8 @@ class VerticalShake extends Event {
    * @param babyHeight the height of the baby
    * @param res the resources to draw the baby
    */
-  VerticalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res, Canvas canvas) {
-    super(babyX, babyY, babyWidth, babyHeight, res, canvas);
+  VerticalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res, ViewUpdater viewUpdater) {
+    super(babyX, babyY, babyWidth, babyHeight, res, viewUpdater);
     setX();
     setY();
     setImg(BitmapFactory.decodeResource(res, R.drawable.kisslips));

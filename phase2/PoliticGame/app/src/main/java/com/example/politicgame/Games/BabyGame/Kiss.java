@@ -3,7 +3,6 @@ package com.example.politicgame.Games.BabyGame;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.util.Log;
 import android.view.View;
 
@@ -19,12 +18,13 @@ class Kiss extends Event {
    * @param babyHeight the height of the baby
    * @param res the resources to draw the baby
    */
-  Kiss(int babyX, int babyY, int babyWidth, int babyHeight, Resources res, Canvas canvas) {
-    super(babyX, babyY, babyWidth, babyHeight, res, canvas);
+  Kiss(int babyX, int babyY, int babyWidth, int babyHeight, Resources res, ViewUpdater viewUpdater) {
+    super(babyX, babyY, babyWidth, babyHeight, res, viewUpdater);
     setX();
     setY();
-    setImg(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, R.drawable.kisslips), 50, 30, false));
-    draw();
+    Bitmap kiss = BitmapFactory.decodeResource(res, R.drawable.kisslips);
+    kiss = Bitmap.createScaledBitmap(kiss, 50, 30, false);
+    setImg(kiss);
   }
 
   /**
