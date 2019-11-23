@@ -1,7 +1,6 @@
 package com.example.politicgame.Character.UserTools;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -9,12 +8,14 @@ import com.example.politicgame.Character.GameCharacter;
 import com.example.politicgame.Common.FileSavingService;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-
-/** Data class that captures user information for logged in users retrieved from LoginRepository. */
+/**
+ * Data class that captures user information for logged in users retrieved from LoginRepository.
+ * This class acts as a facade for UserAccountAddScore, UserAccountChar, UserAccountDB, and
+ * UserAccountResetLevels. The purpose of this facade is to delegate specific tasks to different
+ * classes, as we wish to maintain the single responsibility principle.
+ */
 public class UserAccount {
   private FileSavingService fileSaving;
   private static final String FILE_NAME = "user.json";
@@ -34,14 +35,30 @@ public class UserAccount {
     this.userAccountAddScore = new UserAccountAddScore();
   }
 
+  /**
+   * Sets the game character to currentCharacter.
+   *
+   * @param currentCharacter the character to be set
+   */
   public void setCurrentCharacter(GameCharacter currentCharacter) {
     userAccountChar.setCurrentCharacter(currentCharacter);
   }
 
+  /**
+   * Returns this game's character.
+   *
+   * @return the character to be returned
+   */
   public GameCharacter getCurrentCharacter() {
     return userAccountChar.getCurrentCharacter();
   }
 
+  /**
+   * Returns the ID of the character
+   *
+   * @param charName the name of the character
+   * @return the ID of the character
+   */
   public int getCharId(String charName) {
     return userAccountChar.getCharId(charName);
   }
