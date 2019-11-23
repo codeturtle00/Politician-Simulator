@@ -52,10 +52,12 @@ class EventManager implements View.OnTouchListener {
    * @param babyResources resources needed to draw the baby
    * @param viewUpdater ViewUpdater this EventManager updates.
    */
-  EventManager(Resources babyResources, ViewUpdater viewUpdater) {
+  EventManager(Resources babyResources, ViewUpdater viewUpdater, Baby baby) {
     events = new ArrayList<>();
     this.babyResources = babyResources;
     this.viewUpdater = viewUpdater;
+    babyHeight = baby.getHeight();
+    babyWidth = baby.getWidth();
   }
 
   /** Randomly generates an event. */
