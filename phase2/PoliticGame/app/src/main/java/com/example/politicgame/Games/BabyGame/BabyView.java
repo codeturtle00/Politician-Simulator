@@ -61,14 +61,22 @@ class BabyView extends SurfaceView implements ViewUpdater {
             canvas = holder.lockCanvas();
             holderWidth = holder.getSurfaceFrame().width();
             holderHeight = holder.getSurfaceFrame().height();
+            baby = new Baby(holderWidth / 2, holderHeight / 2, getResources());
             if (canvas != null) {
-                baby = new Baby(holderWidth / 2, holderHeight / 2, getResources());
               initDraw(canvas);
               holder.unlockCanvasAndPost(canvas);
-              // Create EventsGenerator
-              eventsGenerator = new EventsGenerator(eventManager);
-              Thread thread = new Thread(eventsGenerator);
-              thread.start();
+
+                // Set the baby's coordinates and dimensions in the eventManager.
+                System.out.println(baby);
+                eventManager.setBabyX(baby.getX());
+                eventManager.setBabyY(baby.getY());
+                eventManager.setBabyWidth(baby.getWidth());
+                eventManager.setBabyHeight(baby.getHeight());
+//
+//                // Create EventsGenerator
+                eventsGenerator = new EventsGenerator(eventManager);
+                Thread thread = new Thread(eventsGenerator);
+                thread.start();
             }
           }
 
@@ -77,14 +85,8 @@ class BabyView extends SurfaceView implements ViewUpdater {
         });
 
       // EventManager will manage the events for this game.
-      eventManager = new EventManager(getResources(), this, baby);
+      eventManager = new EventManager(getResources(), this);
       setOnTouchListener(eventManager);
-
-      // Set the baby's coordinates and dimensions in the eventManager.
-    eventManager.setBabyX(baby.getX());
-    eventManager.setBabyY(baby.getY());
-    eventManager.setBabyWidth(baby.getWidth());
-    eventManager.setBabyHeight(baby.getHeight());
   }
 
   /**
@@ -112,11 +114,11 @@ class BabyView extends SurfaceView implements ViewUpdater {
 
   @Override
   public void draw(Canvas canvas) {
-    super.draw(canvas);
-
     canvas = getHolder().lockCanvas();
     if (canvas == null) System.out.println("canvas is null");
     else {
+        super.draw(canvas);
+      System.out.println("canvas is " + canvas);
       initDraw(canvas);
       eventManager.draw(canvas);
     }

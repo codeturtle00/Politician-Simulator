@@ -49,6 +49,10 @@ public class MainActivity extends GameActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    ImageView trumpIMG = findViewById(R.id.trump);
+    Animation animated_trump = AnimationUtils.loadAnimation(this, R.anim.animated_trump);
+    trumpIMG.startAnimation(animated_trump);
+
     // Login button
     final Button loginButton = findViewById(R.id.login);
 
@@ -107,10 +111,6 @@ public class MainActivity extends GameActivity {
             openSettings();
           }
         });
-
-    ImageView trumpIMG = findViewById(R.id.trump);
-    Animation animated_trump = AnimationUtils.loadAnimation(this, R.anim.animated_trump);
-    trumpIMG.startAnimation(animated_trump);
   }
 
   public void openLoginPage() {

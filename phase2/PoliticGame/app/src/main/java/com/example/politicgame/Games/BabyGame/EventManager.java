@@ -52,12 +52,10 @@ class EventManager implements View.OnTouchListener {
    * @param babyResources resources needed to draw the baby
    * @param viewUpdater ViewUpdater this EventManager updates.
    */
-  EventManager(Resources babyResources, ViewUpdater viewUpdater, Baby baby) {
+  EventManager(Resources babyResources, ViewUpdater viewUpdater) {
     events = new ArrayList<>();
     this.babyResources = babyResources;
     this.viewUpdater = viewUpdater;
-    babyHeight = baby.getHeight();
-    babyWidth = baby.getWidth();
   }
 
   /** Randomly generates an event. */
@@ -88,7 +86,6 @@ class EventManager implements View.OnTouchListener {
       } else if (randomNum == 3) {
         Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
         events.add(kiss);
-        kiss.draw(canvas);
 //        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
         Log.d("EventManager", "Kiss started");
