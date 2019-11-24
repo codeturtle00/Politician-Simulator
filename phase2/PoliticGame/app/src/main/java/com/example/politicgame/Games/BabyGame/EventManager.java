@@ -13,6 +13,9 @@ class EventManager implements View.OnTouchListener {
   /** List of all events currently going on. */
   private ArrayList<Event> events;
 
+  /** Canvas to draw events. */
+  private Canvas canvas;
+
   /** Resources for the baby. */
   private Resources babyResources;
 
@@ -20,20 +23,16 @@ class EventManager implements View.OnTouchListener {
   private ViewUpdater viewUpdater;
 
   /** X coordinate of the baby. */
-  // DOESN'T WORK YET
   private int babyX;
 
   /** Y coordinate of the baby. */
-  // DOESN'T WORK YET
   private int babyY;
 
   /** Width of the baby. */
-  // DOESN'T WORK YET
-  private int babyWidth = 0;
+  private int babyWidth;
 
   /** Height of the baby. */
-  // DOESN'T WORK YET
-  private int babyHeight = 0;
+  private int babyHeight;
 
   /** X coordinate when screen is touched. */
   private float initialX;
@@ -61,24 +60,36 @@ class EventManager implements View.OnTouchListener {
 
   /** Randomly generates an event. */
   void randomEvent() {
-    System.out.println("runningrandomevent with" + viewUpdater);
-    events.clear();
-    Random rand = new Random();
-    final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
-    if (randomNum == 1) {
-      events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
-      viewUpdater.updateEventAction(
-          "The baby needs to be cradled! Swipe horizontally at any location.");
-      Log.d("EventManager", "HorizontalShake started");
-    } else if (randomNum == 2) {
-      events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
-      viewUpdater.updateEventAction(
-          "The baby needs to be cradled! Swipe vertically at any location.");
-      Log.d("EventManager", "VerticalShake started");
-    } else if (randomNum == 3) {
-      events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
-      viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
-      Log.d("EventManager", "Kiss started");
+    Log.d("Running random event", viewUpdater.toString());
+    if (events.size() < 3) {
+      Random rand = new Random();
+//      final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
+      int randomNum = 3; // ALWAYS SETS EVENT TO KISS
+      if (randomNum == 1) {
+//        HorizontalShake horizontalShake =
+//            new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+//        events.add(horizontalShake);
+//        horizontalShake.draw(canvas);
+        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
+        viewUpdater.updateEventAction(
+                "The baby needs to be cradled! Swipe horizontally at any location.");
+        Log.d("EventManager", "HorizontalShake started");
+      } else if (randomNum == 2) {
+//        VerticalShake verticalShake =
+//            new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+//        events.add(verticalShake);
+//        verticalShake.draw(canvas);
+        events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
+        viewUpdater.updateEventAction(
+                "The baby needs to be cradled! Swipe vertically at any location.");
+        Log.d("EventManager", "VerticalShake started");
+      } else if (randomNum == 3) {
+        Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
+        events.add(kiss);
+//        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
+        viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
+        Log.d("EventManager", "Kiss started");
+      }
     }
   }
 
@@ -127,17 +138,50 @@ class EventManager implements View.OnTouchListener {
     viewUpdater.updateScore(happinessChange);
   }
 
+  // NOT USED YET
   void draw(Canvas canvas) {
     for (Event event : events) {
       event.draw(canvas);
     }
   }
 
+  void setCanvas(Canvas canvas) {
+    this.canvas = canvas;
+  }
+
+  /**
+   * Sets X coordinate of the baby.
+   *
+   * @param babyX X coordinate of the baby
+   */
   void setBabyX(int babyX) {
     this.babyX = babyX;
   }
 
+  /**
+   * Sets Y coordinate of the baby.
+   *
+   * @param babyY Y coordinate of the baby
+   */
   void setBabyY(int babyY) {
     this.babyY = babyY;
+  }
+
+  /**
+   * Sets width of the baby.
+   *
+   * @param width the width of the baby
+   */
+  void setBabyWidth(int width) {
+    this.babyWidth = width;
+  }
+
+  /**
+   * Sets height of the baby.
+   *
+   * @param height the height of the baby
+   */
+  void setBabyHeight(int height) {
+    this.babyHeight = height;
   }
 }

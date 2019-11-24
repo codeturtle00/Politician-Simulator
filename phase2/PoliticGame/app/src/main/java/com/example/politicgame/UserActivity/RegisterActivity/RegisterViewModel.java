@@ -13,7 +13,7 @@ import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.UserActivity.FormState;
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
+import com.example.politicgame.MainActivity;
 import com.example.politicgame.UserActivity.UserViewModel;
 
 import org.json.JSONArray;
@@ -109,7 +109,7 @@ public class RegisterViewModel extends UserViewModel {
   }
 
   public void openLoggedInScreen() {
-    Intent loggedIntent = new Intent(context, LoggedInActivity.class);
+    Intent loggedIntent = new Intent(context, MainActivity.class);
     context.startActivity(loggedIntent);
     Activity activity = (Activity) context;
     activity.finish();

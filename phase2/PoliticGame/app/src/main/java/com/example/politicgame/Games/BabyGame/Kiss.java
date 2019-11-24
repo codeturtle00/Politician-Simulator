@@ -14,19 +14,17 @@ class Kiss extends Event {
    *
    * @param babyX the X coordinate of the baby
    * @param babyY the Y coordinate of the baby
-   * @param babyWidth pixel width of the baby
-   * @param babyHeight pixel height of the baby
+   * @param babyWidth the width of the baby
+   * @param babyHeight the height of the baby
    * @param res the resources to draw the baby
    */
   Kiss(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     super(babyX, babyY, babyWidth, babyHeight, res);
-    setX(determineXCoordinate());
-    setY(determineYCoordinate());
-
-    // This sometimes crashes. I think lipsImg sometimes gives null??
-    Bitmap lipsImg = BitmapFactory.decodeResource(res, R.drawable.kisslips);
-    lipsImg = Bitmap.createScaledBitmap(lipsImg, 540, 330, false);
-    setImg(lipsImg);
+    setX();
+    setY();
+    Bitmap kiss = BitmapFactory.decodeResource(res, R.drawable.kisslips);
+    kiss = Bitmap.createScaledBitmap(kiss, 50, 30, false);
+    setImg(kiss);
   }
 
   /**
@@ -41,27 +39,13 @@ class Kiss extends Event {
    */
   @Override
   int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
-    if (Math.abs(finalY - initialY) < 5 && Math.abs(finalX - initialX) < 5) {
-      Log.d("Kiss", "Score increased");
-      return 3;
+    if (Math.abs(finalX - initialX) < 5 && Math.abs(finalY - initialY) < 5) {
+      if (Math.abs(finalX - getX()) < 5 && Math.abs(finalY - getY()) < 5) {
+        Log.d("Kiss", "Score increased");
+        return 3;
+      }
     }
     Log.d("Kiss", "Score decreased");
     return -5;
-  }
-
-  // Not used yet
-  @Override
-  int determineXCoordinate() {
-    //    Random r = new Random();
-    //    return babyX + r.nextInt(babyWidth);
-    return 100;
-  }
-
-  // Not used yet
-  @Override
-  int determineYCoordinate() {
-    //    Random r = new Random();
-    //    return babyY + r.nextInt(babyHeight / 2);
-    return 100;
   }
 }

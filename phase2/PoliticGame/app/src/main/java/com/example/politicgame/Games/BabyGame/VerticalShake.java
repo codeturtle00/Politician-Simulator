@@ -20,8 +20,8 @@ class VerticalShake extends Event {
    */
   VerticalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     super(babyX, babyY, babyWidth, babyHeight, res);
-    setX(determineXCoordinate());
-    setY(determineYCoordinate());
+    setX();
+    setY();
     setImg(BitmapFactory.decodeResource(res, R.drawable.kisslips));
   }
 
@@ -45,17 +45,5 @@ class VerticalShake extends Event {
     }
     Log.d("VerticalShake", "Score decreased");
     return -5;
-  }
-
-  // Not used yet
-  @Override
-  int determineXCoordinate() {
-    return 0;
-  }
-
-  // Not used yet
-  @Override
-  int determineYCoordinate() {
-    return 0;
   }
 }

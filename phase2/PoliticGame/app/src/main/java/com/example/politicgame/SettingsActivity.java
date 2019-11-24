@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
+import com.example.politicgame.MainActivity;
 
 public class SettingsActivity extends GameActivity {
   private String lastActivity;
@@ -100,7 +100,7 @@ public class SettingsActivity extends GameActivity {
       Intent restartIntent = new Intent(this, MainActivity.class);
       startActivity(restartIntent);
     } else {
-      Intent restartIntent = new Intent(this, LoggedInActivity.class);
+      Intent restartIntent = new Intent(this, MainActivity.class);
       startActivity(restartIntent);
     }
     finish();

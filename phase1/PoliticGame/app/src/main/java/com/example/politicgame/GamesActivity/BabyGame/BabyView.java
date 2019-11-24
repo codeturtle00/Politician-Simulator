@@ -61,6 +61,9 @@ class BabyView extends SurfaceView implements ViewUpdater {
             if (canvas != null) {
               draw(canvas);
               holder.unlockCanvasAndPost(canvas);
+
+              eventManager.setCanvas(canvas);
+
               // Create EventsGenerator
               eventsGenerator = new EventsGenerator(eventManager);
               Thread thread = new Thread(eventsGenerator);
@@ -93,9 +96,11 @@ class BabyView extends SurfaceView implements ViewUpdater {
     Baby baby = new Baby(holderWidth / 2, holderHeight / 2, getResources());
     baby.draw(canvas);
 
-    // Set the baby's coordinates in the eventManager.
-    eventManager.setBabyX(holderWidth / 2);
-    eventManager.setBabyY(holderHeight / 2);
+    // Set the baby's coordinates and dimensions in the eventManager.
+    eventManager.setBabyX(baby.getX());
+    eventManager.setBabyY(baby.getY());
+    eventManager.setBabyWidth(baby.getWidth());
+    eventManager.setBabyHeight(baby.getHeight());
   }
 
   /**

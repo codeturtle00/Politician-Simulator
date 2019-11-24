@@ -14,7 +14,9 @@ import com.example.politicgame.Leaderboard.LeaderBoardActivity;
 import com.example.politicgame.LoadCharacter.LoadCharacterActivity;
 import com.example.politicgame.R;
 import com.example.politicgame.SettingsActivity;
-/** An activity displayed for user after user login in*/
+/** An activity displayed for user after user login in
+ *
+ * CURRENTLY USELESS AS FUNCTIONALITY HAS MERGED INTO MAINACTIVITY*/
 public class LoggedInActivity extends GameActivity {
 
     @Override

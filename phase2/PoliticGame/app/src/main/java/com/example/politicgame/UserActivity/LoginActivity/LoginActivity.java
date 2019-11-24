@@ -200,7 +200,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     app.setCurrentUser(loginUser);
     String welcome = getString(R.string.welcome) + name;
-    Intent startIntent = new Intent(this, LoggedInActivity.class);
+    Intent startIntent = new Intent(this, MainActivity.class);
     startActivity(startIntent);
     Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     finish();

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.Leaderboard.LeaderBoardActivity;
+import com.example.politicgame.LoadCharacter.LoadCharacterActivity;
 import com.example.politicgame.UserActivity.LoginActivity.LoginActivity;
 
 import org.json.JSONException;
@@ -24,15 +25,48 @@ public class MainActivity extends GameActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    // Login button, starts the login process
+    ImageView trumpIMG = findViewById(R.id.trump);
+    Animation animated_trump = AnimationUtils.loadAnimation(this, R.anim.animated_trump);
+    trumpIMG.startAnimation(animated_trump);
+
+    // Login button
     final Button loginButton = findViewById(R.id.login);
-    loginButton.setOnClickListener(
-        new View.OnClickListener() {
-          public void onClick(View v) {
-            // Code here executes on main thread after user presses button
-            openLoginPage();
-          }
-        });
+
+    if (app.getCurrentUser() == null) {
+      loginButton.setOnClickListener(
+              new View.OnClickListener() {
+                public void onClick(View v) {
+                  // Code here executes on main thread after user presses button
+                  openLoginPage();
+                }
+              });
+    } else {
+      loginButton.setText(getString(R.string.sign_out));
+      loginButton.setOnClickListener(
+              new View.OnClickListener() {
+                public void onClick(View v) {
+                  app.setCurrentUser(null);
+                  // Reload Activity
+                  finish();
+                  startActivity(getIntent());
+                }
+              });
+    }
+
+    //Select Characters button
+    final Button selectCharactersButton = findViewById(R.id.select_character);
+
+    if (app.getCurrentUser() == null) {
+      selectCharactersButton.setEnabled(false);
+    }
+    else {
+      selectCharactersButton.setEnabled(true);
+      selectCharactersButton.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View v) {
+          openLoadCharacter();
+        }
+      });
+    }
 
     // Leaderboard button, opens the leaderboard
     final Button boardButton = findViewById(R.id.leaderBoard);
@@ -53,10 +87,6 @@ public class MainActivity extends GameActivity {
             openSettings();
           }
         });
-
-    ImageView trumpIMG = findViewById(R.id.trump);
-    Animation animated_trump = AnimationUtils.loadAnimation(this, R.anim.animated_trump);
-    trumpIMG.startAnimation(animated_trump);
   }
 
   public void openLoginPage() {
@@ -77,6 +107,12 @@ public class MainActivity extends GameActivity {
     Intent settingsIntent = new Intent(this, SettingsActivity.class);
     settingsIntent.putExtra("SESSION_ID", "main");
     startActivity(settingsIntent);
+    finish();
+  }
+
+  public void openLoadCharacter () {
+    Intent loadCharacters = new Intent(this, LoadCharacterActivity.class);
+    startActivity(loadCharacters);
     finish();
   }
 }

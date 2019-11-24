@@ -22,23 +22,18 @@ abstract class Event {
   private final int babyHeight;
 
   /** The X coordinate to create the event. */
-  // Hasn't been used yet
-  private float x;
+  private int x;
 
   /** The Y coordinate to create the event. */
-  // Hasn't been used yet
-  private float y;
+  private int y;
 
   /** The paint to draw this event. */
-  // Hasn't been used yet
   private Paint paint;
 
   /** This event's image. */
-  // Hasn't been used yet
   private Bitmap img;
 
   /** The resources to draw the image. */
-  // Hasn't been used yet
   private Resources res;
 
   /**
@@ -71,29 +66,26 @@ abstract class Event {
    */
   abstract int handleTouch(View v, float initialX, float initialY, float finalX, float finalY);
 
-  abstract int determineXCoordinate();
-
-  abstract int determineYCoordinate();
-
   void draw(Canvas canvas) {
-    System.out.println("Drawing " +img +" at " +x+","+y);
+    System.out.println("Drawing " + img + " at " + x + "," + y);
     canvas.drawBitmap(img, x, y, paint);
+    System.out.println("Event drawn!");
   }
 
-  float getX() {
+  void setX() {
+    x = (int) (Math.random() * (babyWidth + 1) + babyX);
+  }
+
+  void setY() {
+    y = (int) (Math.random() * (babyHeight + 1) + babyY);
+  }
+
+  int getX() {
     return x;
   }
 
-  public void setX(float x) {
-    this.x = x;
-  }
-
-  float getY() {
+  int getY() {
     return y;
-  }
-
-  public void setY(float y) {
-    this.y = y;
   }
 
   void setImg(Bitmap img) {
