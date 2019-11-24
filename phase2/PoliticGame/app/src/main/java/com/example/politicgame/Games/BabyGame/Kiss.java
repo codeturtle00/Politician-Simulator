@@ -20,11 +20,11 @@ class Kiss extends Event {
    */
   Kiss(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     super(babyX, babyY, babyWidth, babyHeight, res);
+    Bitmap kiss = BitmapFactory.decodeResource(res, R.drawable.kisslips);
+    //    kiss = Bitmap.createScaledBitmap(kiss, 50, 30, false);
+    setImg(kiss);
     setX();
     setY();
-    Bitmap kiss = BitmapFactory.decodeResource(res, R.drawable.kisslips);
-    kiss = Bitmap.createScaledBitmap(kiss, 50, 30, false);
-    setImg(kiss);
   }
 
   /**
@@ -39,13 +39,17 @@ class Kiss extends Event {
    */
   @Override
   int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
-    if (Math.abs(finalX - initialX) < 5 && Math.abs(finalY - initialY) < 5) {
-      if (Math.abs(finalX - getX()) < 5 && Math.abs(finalY - getY()) < 5) {
+    if (Math.abs(finalX - initialX) < 20 && Math.abs(finalY - initialY) < 20) {
+      if (!getInteraction()
+          && 0 < finalX - getX()
+          && finalX - getX() < imgWidth()
+          && 0 < finalY - getY()
+          && finalY - getY() < imgHeight()) {
         Log.d("Kiss", "Score increased");
-        return 3;
+        setInteraction(true);
+        return 10;
       }
     }
-    Log.d("Kiss", "Score decreased");
-    return -5;
+    return 0;
   }
 }
