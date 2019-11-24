@@ -45,7 +45,7 @@ class Baby {
     babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
 
     // width and height needs to be changed to dynamically scaled depending on holder width/height
-    babyImg = Bitmap.createScaledBitmap(babyImg, 640, 1280, false);
+    babyImg = Bitmap.createScaledBitmap(babyImg, 640, 971, false);
     width = babyImg.getWidth();
     height = babyImg.getHeight();
     x = centerX - (width / 2);
