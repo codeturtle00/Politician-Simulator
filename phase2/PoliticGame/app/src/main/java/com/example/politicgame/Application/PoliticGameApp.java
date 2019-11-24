@@ -35,7 +35,6 @@ public class PoliticGameApp extends Application {
   }
 
 
-
   // Methods for tracking current user
 
   /**
@@ -47,6 +46,7 @@ public class PoliticGameApp extends Application {
     return currentUser;
   }
 
+
   /**
    * Sets current UserAccount
    *
@@ -56,6 +56,7 @@ public class PoliticGameApp extends Application {
     this.currentUser = newUser;
   }
 
+
   /**
    * Returns the current character name
    *
@@ -64,6 +65,7 @@ public class PoliticGameApp extends Application {
   public String getCurrentCharacter() {
     return currentCharacter;
   }
+
 
   /**
    * Sets the current character name
@@ -85,6 +87,7 @@ public class PoliticGameApp extends Application {
    */
   public void chooseBlueTheme(boolean isBlue) { themeHandler.chooseBlueTheme(isBlue); }
 
+
   /**
    * Returns if the current theme is blue or not
    *
@@ -99,6 +102,7 @@ public class PoliticGameApp extends Application {
   /**Switches the music track*/
   public void switchMusic() { musicHandler.switchMusic(); }
 
+
   /**Returns the current track number
    *
    * @return The current track number
@@ -107,12 +111,14 @@ public class PoliticGameApp extends Application {
     return musicHandler.getCurrentTrackNum();
   }
 
+
   /**Returns if the music is playing
    *
    *
    * @return Is the music playing
    */
   public boolean isMusicOn() { return musicHandler.getMusicOn(); }
+
 
   /**Toggles the music player*/
   public void toggleMusic() { musicHandler.toggleMusic(); }

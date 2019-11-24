@@ -17,30 +17,6 @@ import org.json.JSONObject;
 
 public class MainActivity extends GameActivity {
 
-  protected void onStart() {
-    // If the theme is changed from the start menu then this will reflect that change
-    if (app.isThemeBlue()) {
-      setTheme(R.style.BlueTheme);
-    } else {
-      setTheme(R.style.RedTheme);
-    }
-
-    super.onStart();
-    System.out.println("The current theme is blue: " + app.isThemeBlue());
-  }
-
-  protected void onResume() {
-    // If the theme is changed from the start menu then this will reflect that change
-    if (app.isThemeBlue()) {
-      setTheme(R.style.BlueTheme);
-    } else {
-      setTheme(R.style.RedTheme);
-    }
-
-    super.onResume();
-    System.out.println("The current theme is blue: " + app.isThemeBlue());
-  }
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     setTitle("Main Menu");

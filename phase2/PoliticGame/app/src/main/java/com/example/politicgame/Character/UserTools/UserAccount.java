@@ -23,13 +23,6 @@ public class UserAccount {
   private Context context;
   private GameCharacter currentCharacter;
 
-  public void setCurrentCharacter(GameCharacter currentCharacter) {
-    this.currentCharacter = currentCharacter;
-  }
-
-  public GameCharacter getCurrentCharacter() {
-    return currentCharacter;
-  }
 
   public UserAccount(String displayName, Context context) {
     this.context = context;
@@ -37,6 +30,32 @@ public class UserAccount {
     this.displayName = displayName;
   }
 
+
+  /**
+   * Sets the current character
+   *
+   * @param currentCharacter  The new current character's name
+   */
+  public void setCurrentCharacter(GameCharacter currentCharacter) {
+    this.currentCharacter = currentCharacter;
+  }
+
+  /**
+   * Get the current character
+   *
+   * @return  The name of the current character
+   */
+  public GameCharacter getCurrentCharacter() {
+    return currentCharacter;
+  }
+
+  /**
+   * Grabs the character type of the character selected
+   *
+   * @param charName  The name of the character whom we want to know about
+   * @return          The character's character type, which refers to their model they selected
+   *                  when they created their character
+   */
   public int getCharId(String charName) {
     try {
       for (int i = 0; i < charArray.length(); i++) {

@@ -24,6 +24,64 @@ public abstract class GameActivity extends AppCompatActivity {
   /** The application. */
   protected PoliticGameApp app;
 
+  protected void onStop(){
+    /*
+    if (app.isMusicOn()){
+      app.toggleMusic();
+    }
+    */
+
+    super.onStop();
+  }
+
+  protected void onRestart(){
+    /*
+    if (!app.isMusicOn()){
+      app.toggleMusic();
+    }
+     */
+
+
+    super.onRestart();
+  }
+
+  protected void onStart() {
+    // If the theme is changed from the start menu then this will reflect that change
+    if (app.isThemeBlue()) {
+      setTheme(R.style.BlueTheme);
+    } else {
+      setTheme(R.style.RedTheme);
+    }
+
+    /*
+    if (!app.isMusicOn()){
+      app.toggleMusic();
+    }
+    */
+
+    super.onStart();
+    System.out.println("The current theme is blue: " + app.isThemeBlue());
+  }
+
+  protected void onResume() {
+    // If the theme is changed from the start menu then this will reflect that change
+    if (app.isThemeBlue()) {
+      setTheme(R.style.BlueTheme);
+    } else {
+      setTheme(R.style.RedTheme);
+    }
+
+    /*
+    if (!app.isMusicOn()){
+      app.toggleMusic();
+    }
+    */
+
+
+    super.onResume();
+    System.out.println("The current theme is blue: " + app.isThemeBlue());
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

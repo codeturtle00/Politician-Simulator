@@ -42,6 +42,7 @@
         <activity android:name=".NewCharacter.SelectCharacterActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".LoadCharacter.LoadCharacterActivity" />
+        <activity android:name=".GameMode.GameModeActivity" />
     </application>
 
 </manifest>

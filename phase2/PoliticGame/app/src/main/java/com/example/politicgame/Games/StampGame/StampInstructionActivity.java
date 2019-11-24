@@ -10,9 +10,15 @@ import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 
 public class StampInstructionActivity extends GameActivity {
+  private final String LEVEL_NAME = "LEVEL3";
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     app = (PoliticGameApp) getApplication();
+
+    if (isGameComplete(LEVEL_NAME)) {
+      openSummary();
+    }
 
     System.out.println("The current theme is blue: " + app.isThemeBlue());
 
