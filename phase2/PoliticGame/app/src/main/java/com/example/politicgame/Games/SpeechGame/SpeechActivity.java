@@ -16,38 +16,32 @@ import com.example.politicgame.Pausing.PauseButton;
 import com.example.politicgame.R;
 import com.example.politicgame.Games.StampGame.StampInstructionActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class SpeechActivity extends GameActivity {
-    private static final String TAG = "Speech Activity";
-    public static final String INPUT_MESSAGE = "politicgame.speech.input";
-    public static final String CORRECTION_MESSAGE = "politicgame.speech.result";
-    private final String LEVEL_NAME = "LEVEL2";
-    private String correct;
-    SpeechAwardPoints rating;
+    private SpeechPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech);
-        String displayPrompt = app.getSpeechView().loadPrompt();
-        String answer = app.getSpeechView().loadAnswer();
-        this.correct = answer;
-        ArrayList<String> choice = app.getSpeechView().loadChoice();
 
+        presenter = (SpeechPresenter) this.getIntent().getSerializableExtra("SPEECH PRESENTER");
 
+        ArrayList<String> choices = presenter.loadChoice();
         // TextView for prompt and choices
         TextView prompt = findViewById(R.id.prompt);
-        prompt.setText(displayPrompt);
+        prompt.setText(presenter.loadPrompt());
         TextView choiceA = findViewById(R.id.ChoiceA);
         TextView choiceB = findViewById(R.id.ChoiceB);
         TextView choiceC = findViewById(R.id.ChoiceC);
         TextView choiceD = findViewById(R.id.ChoiceD);
         TextView[] textViews = {choiceA, choiceB, choiceC, choiceD};
         for (int i = 0; i < 4; i++) {
-            textViews[i].setText(choice.get(i));
+            textViews[i].setText(choices.get(i));
         }
-        rating = new SpeechAwardPoints(getIntent().getIntExtra("current rating", 0));
+
         setTitle("The Speech Game");
 
         new PauseButton((ConstraintLayout) findViewById(R.id.speechLayout), this);
@@ -64,36 +58,29 @@ public class SpeechActivity extends GameActivity {
      * page If the user input does not match the answer,keep the point and go to fail result page
      */
     public void compare(View view) {
-        EditText editText = (EditText) findViewById(R.id.answer);
-        String userInput = editText.getText().toString();
-        boolean matches = userInput.toLowerCase().equals(this.correct.toLowerCase());
-        boolean exit = app.getSpeechView().isExitPoint();
+        EditText editText = findViewById(R.id.answer);
+        presenter.setUserInput(editText.getText().toString());
 
-        if(exit){
-            saveGame(SpeechAwardPoints.getCurrentPoints(), LEVEL_NAME);
+        boolean exit = presenter.isExitPoint();
+        if (exit) {
+            saveGame(presenter.getCurRating(), "LEVEL2");
         }
+        presenter.updateRating();
 
-        if (matches) {
+
+        if (presenter.matches()) {
             Intent successfulIntent = new Intent(this, SuccessSpeechResult.class);
-            successfulIntent.putExtra(INPUT_MESSAGE, userInput);
-            successfulIntent.putExtra("visible", exit);
+            successfulIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
             startActivity(successfulIntent);
-            rating.awardPoints();
             finish();
         } else {
             Intent failIntent = new Intent(this, FailureSpeechResult.class);
-            failIntent.putExtra(INPUT_MESSAGE, userInput);
-            failIntent.putExtra("visible", exit);
+            failIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
             startActivity(failIntent);
-            rating.losePoints();
             finish();
         }
     }
 
-    public void openPauseMenu() {
-        Intent pauseMenuIntent = new Intent(this, PauseActivity.class);
-        startActivityForResult(pauseMenuIntent, 1);
-    }
 
     public void openMainMenu() {
         Intent mainMenuIntent = new Intent(this, MainActivity.class);
@@ -101,13 +88,6 @@ public class SpeechActivity extends GameActivity {
         finish();
     }
 
-
-    /* Switch to Next Game View**/
-    public void openStampGame() {
-        Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
-        startActivity(switchStampIntent);
-        finish();
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
