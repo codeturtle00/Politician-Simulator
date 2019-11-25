@@ -10,6 +10,8 @@ import android.view.SurfaceView;
  * depends on EventManager.
  */
 interface ViewUpdater {
+  /** Draws baby and events. */
+  void drawUpdate();
 
   /**
    * Updates happiness.

@@ -8,4 +8,6 @@
     <color name="backgroundRed">#ff4d4d</color>
 
     <color name="textWhite">#FFFFFF</color>
+
+    <color name="greyButtonTint">#1D000000</color>
 </resources>

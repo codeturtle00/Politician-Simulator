@@ -36,6 +36,9 @@ abstract class Event {
   /** The resources to draw the image. */
   private Resources res;
 
+  /** Whether this event has been interacted with. */
+  private boolean interaction = false;
+
   /**
    * Creates this Event object.
    *
@@ -90,5 +93,21 @@ abstract class Event {
 
   void setImg(Bitmap img) {
     this.img = img;
+  }
+
+  int imgWidth() {
+    return img.getWidth();
+  }
+
+  int imgHeight() {
+    return img.getHeight();
+  }
+
+  void setInteraction(boolean interaction) {
+    this.interaction = interaction;
+  }
+
+  boolean getInteraction() {
+    return interaction;
   }
 }

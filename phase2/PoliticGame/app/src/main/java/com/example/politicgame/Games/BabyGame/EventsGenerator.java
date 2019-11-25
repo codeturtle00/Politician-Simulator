@@ -16,6 +16,7 @@ public class EventsGenerator implements Runnable {
   public void run() {
     while (isRunning) {
       eventManager.randomEvent();
+      eventManager.update();
       try {
         sleep(1000);
       } catch (Exception e) {

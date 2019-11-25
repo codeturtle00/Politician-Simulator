@@ -13,9 +13,6 @@ class EventManager implements View.OnTouchListener {
   /** List of all events currently going on. */
   private ArrayList<Event> events;
 
-  /** Canvas to draw events. */
-  private Canvas canvas;
-
   /** Resources for the baby. */
   private Resources babyResources;
 
@@ -61,32 +58,32 @@ class EventManager implements View.OnTouchListener {
   /** Randomly generates an event. */
   void randomEvent() {
     Log.d("Running random event", viewUpdater.toString());
-    if (events.size() < 3) {
+    if (events.size() < 1) {
       Random rand = new Random();
-//      final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
+      //            final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
       int randomNum = 3; // ALWAYS SETS EVENT TO KISS
       if (randomNum == 1) {
-//        HorizontalShake horizontalShake =
-//            new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
-//        events.add(horizontalShake);
-//        horizontalShake.draw(canvas);
+        //        HorizontalShake horizontalShake =
+        //            new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+        //        events.add(horizontalShake);
+        //        horizontalShake.draw(canvas);
         events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction(
-                "The baby needs to be cradled! Swipe horizontally at any location.");
+            "The baby needs to be cradled! Swipe horizontally at any location.");
         Log.d("EventManager", "HorizontalShake started");
       } else if (randomNum == 2) {
-//        VerticalShake verticalShake =
-//            new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
-//        events.add(verticalShake);
-//        verticalShake.draw(canvas);
+        //        VerticalShake verticalShake =
+        //            new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+        //        events.add(verticalShake);
+        //        verticalShake.draw(canvas);
         events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction(
-                "The baby needs to be cradled! Swipe vertically at any location.");
+            "The baby needs to be cradled! Swipe vertically at any location.");
         Log.d("EventManager", "VerticalShake started");
       } else if (randomNum == 3) {
         Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
         events.add(kiss);
-//        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
+        //        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
         Log.d("EventManager", "Kiss started");
       }
@@ -118,15 +115,42 @@ class EventManager implements View.OnTouchListener {
     }
     // Only runs when finger is lifted off screen
     if (touch.getAction() == MotionEvent.ACTION_UP) {
-      Random r = new Random();
-      for (Event event : events) {
-        int scoreChange = event.handleTouch(v, initialX, initialY, finalX, finalY);
-        // randomize scoreChange between 0.5x to 1.5x
-        scoreChange *= (0.5 + r.nextFloat());
-        updateScore(scoreChange);
-      }
+      handleTouch(v);
     }
     return true;
+  }
+
+  /**
+   * Makes the correct calls to events when screen is touched. Also updates the score based on these
+   * calls.
+   *
+   * @param v the View currently used
+   */
+  void handleTouch(View v) {
+    Random r = new Random();
+    ArrayList<Event> tempEvents = new ArrayList<>(events);
+    int totalScoreChange = 0;
+    for (Event event : tempEvents) {
+      int scoreChange = event.handleTouch(v, initialX, initialY, finalX, finalY);
+      // randomize scoreChange between 0.5x to 1.5x
+      scoreChange *= (0.5 + r.nextFloat());
+      totalScoreChange += scoreChange;
+
+      // Removes kiss
+      if (event.getClass().equals(Kiss.class) && event.getInteraction()) events.remove(event);
+    }
+
+    // If totalScoreChange is 0, user did not properly interact with any event.
+    if (totalScoreChange == 0) {
+      totalScoreChange = (int) (-10 * (0.5 + r.nextFloat()));
+    }
+    updateScore(totalScoreChange);
+    update();
+  }
+
+  /** Updates the game. */
+  void update() {
+    viewUpdater.drawUpdate();
   }
 
   /**
@@ -138,15 +162,15 @@ class EventManager implements View.OnTouchListener {
     viewUpdater.updateScore(happinessChange);
   }
 
-  // NOT USED YET
+  /**
+   * Draws each event in events.
+   *
+   * @param canvas the canvas which to draw on
+   */
   void draw(Canvas canvas) {
     for (Event event : events) {
       event.draw(canvas);
     }
-  }
-
-  void setCanvas(Canvas canvas) {
-    this.canvas = canvas;
   }
 
   /**

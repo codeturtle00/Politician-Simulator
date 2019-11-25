@@ -69,12 +69,13 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     // TODO: DELETE WHEN GAME IS FINISHED
     Button next = findViewById(R.id.nextGame);
-    next.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        openSpeechGame();
-      }
-    });
+    next.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            openSpeechGame();
+          }
+        });
   }
 
   /** Pauses game. */
