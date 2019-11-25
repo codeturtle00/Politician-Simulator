@@ -61,7 +61,7 @@ public class SpeechResult extends GameActivity implements Serializable {
     public void returnSpeech() {
         Intent backToSpeech = new Intent(this, SpeechActivity.class);
         backToSpeech.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
-        startActivity(backToSpeech);
+        startActivityForResult(backToSpeech, 5);
         finish();
     }
 

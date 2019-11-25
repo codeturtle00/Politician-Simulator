@@ -71,12 +71,12 @@ public class SpeechActivity extends GameActivity {
         if (presenter.matches()) {
             Intent successfulIntent = new Intent(this, SuccessSpeechResult.class);
             successfulIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
-            startActivity(successfulIntent);
+            startActivityForResult(successfulIntent, 5);
             finish();
         } else {
             Intent failIntent = new Intent(this, FailureSpeechResult.class);
             failIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
-            startActivity(failIntent);
+            startActivityForResult(failIntent, 5);
             finish();
         }
     }
