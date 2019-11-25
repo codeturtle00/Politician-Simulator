@@ -63,11 +63,13 @@ abstract class Event {
    * @param v the View being used
    * @param initialX the X coordinate of the initial touch
    * @param initialY the Y coordinate of the initial touch
+   * @param movingX
+   * @param movingY
    * @param finalX the X coordinate of where the touch ended
    * @param finalY the Y coordinate of where the touch ended
    * @return value to change baby happiness by
    */
-  abstract int handleTouch(View v, float initialX, float initialY, float finalX, float finalY);
+  abstract int handleTouch(View v, float initialX, float initialY, float movingX, float movingY, float finalX, float finalY);
 
   void draw(Canvas canvas) {
     System.out.println("Drawing " + img + " at " + x + "," + y);

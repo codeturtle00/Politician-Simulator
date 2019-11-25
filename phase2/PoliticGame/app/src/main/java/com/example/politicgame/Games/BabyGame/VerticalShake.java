@@ -31,12 +31,14 @@ class VerticalShake extends Event {
    * @param v the View being used
    * @param initialX the X coordinate of the initial touch
    * @param initialY the Y coordinate of the initial touch
+   * @param movingX
+   * @param movingY
    * @param finalX the X coordinate of where the touch ended
    * @param finalY the Y coordinate of where the touch ended
    * @return value to change baby happiness by
    */
   @Override
-  int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
+  int handleTouch(View v, float initialX, float initialY, float movingX, float movingY, float finalX, float finalY) {
     if (initialX > getX() && initialY > getY()) {
       if (Math.abs(finalX - initialX) < 100 && Math.abs(finalY - initialY) > 100) {
         Log.d("VerticalShake", "Score increased");

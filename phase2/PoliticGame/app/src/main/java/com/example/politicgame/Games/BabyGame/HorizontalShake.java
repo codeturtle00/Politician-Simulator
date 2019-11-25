@@ -30,12 +30,14 @@ class HorizontalShake extends Event {
    * @param v the View being used
    * @param initialX the X coordinate of the initial touch
    * @param initialY the Y coordinate of the initial touch
+   * @param movingX the updated X coordinate from finger movement
+   * @param movingY the updated Y coordinate from finger movement
    * @param finalX the X coordinate of where the touch ended
    * @param finalY the Y coordinate of where the touch ended
    * @return value to change baby happiness by
    */
   @Override
-  int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
+  int handleTouch(View v, float initialX, float initialY, float movingX, float movingY, float finalX, float finalY) {
     if (initialX > getX() && initialY > getY()) {
       if (Math.abs(finalY - initialY) < 200 && Math.abs(finalX - initialX) > 200) {
         Log.d("HorizontalShake", "Score increased");

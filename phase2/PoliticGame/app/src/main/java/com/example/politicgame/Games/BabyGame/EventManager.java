@@ -35,6 +35,9 @@ class EventManager implements View.OnTouchListener {
   private float initialY;
 //  private float finalX;
 //  private float finalY;
+  private float movingX;
+  private float movingY;
+  private boolean moving;
 
   /**
    * Initializes a new EventManager which manages screen touches and events.
@@ -92,22 +95,30 @@ class EventManager implements View.OnTouchListener {
    */
   @Override
   public boolean onTouch(View v, MotionEvent touch) {
-      float finalX;
-      float finalY;
+
     switch (touch.getAction()) {
       case MotionEvent.ACTION_DOWN: // Screen was initially touched
          initialX = touch.getX();
          initialY = touch.getY();
         Log.d("EventManager", "ACTION_DOWN registered at " + initialX + ", " + initialY);
         break;
-      case MotionEvent.ACTION_MOVE:
+
+      case MotionEvent.ACTION_MOVE: // Finger moves
+        movingX = touch.getX();
+        movingY = touch.getY();
+        moving = true;
+        Log.d("EventManager", "ACTION_MOVE registered at " + movingX + ", " + movingY);
+        handleTouch(v,0, 0);
+        break;
 
       case MotionEvent.ACTION_UP: // When finger is lifted off screen; eg. end of a swipe
-        finalX = touch.getX();
-        finalY = touch.getY();
-        Log.d("EventManager", "ACTION_UP registered");
+        float finalX = touch.getX();
+        float finalY = touch.getY();
+        moving = false;
+        Log.d("EventManager", "ACTION_UP registered at " + finalX + ", " + finalY);
         handleTouch(v, finalX, finalY);
         break;
+
       default:
         return false;
     }
@@ -127,7 +138,7 @@ class EventManager implements View.OnTouchListener {
     for (Event event : tempEvents) {
       // If click near an event, then call the event's handleTouch()
       if (Math.abs(event.getX() - initialX) < 200 && Math.abs(event.getY() - initialY) < 200) {
-        int scoreChange = event.handleTouch(v, initialX, initialY, finalX, finalY);
+        int scoreChange = event.handleTouch(v, initialX, initialY, movingX, movingY, finalX, finalY);
         // randomize scoreChange between 0.5x to 1.5x
         scoreChange *= (0.5 + r.nextFloat());
         totalScoreChange += scoreChange;
@@ -137,8 +148,9 @@ class EventManager implements View.OnTouchListener {
       if (event.getClass().equals(Kiss.class) && event.getInteraction()) events.remove(event);
     }
 
-    // If totalScoreChange is 0, user did not properly interact with any event.
-    if (totalScoreChange == 0) {
+    // If totalScoreChange is 0 and finger stopped moving,
+    // then user did not properly interact with any event.
+    if (totalScoreChange == 0 && !moving){
       totalScoreChange = (int) (-10 * (0.5 + r.nextFloat()));
     }
     updateScore(totalScoreChange);
