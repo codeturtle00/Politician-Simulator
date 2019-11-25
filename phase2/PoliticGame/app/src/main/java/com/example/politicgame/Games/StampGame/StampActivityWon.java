@@ -1,11 +1,13 @@
 package com.example.politicgame.Games.StampGame;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.Application.PoliticGameApp;
+import com.example.politicgame.GameMode.GameMode;
 import com.example.politicgame.R;
 
 public class StampActivityWon extends GameActivity {
@@ -31,9 +33,18 @@ public class StampActivityWon extends GameActivity {
     button.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            // Code here executes on main thread after user presses button
-            openSummary();
+            openFromStamp();
           }
         });
+  }
+
+  public void openFromStamp(){
+    GameMode gm = (GameMode) getIntent().getSerializableExtra("GameMode");
+
+    gm.save(app, getIntent().getIntExtra("score", 0));
+    Intent summaryIntent = gm.next(this);
+
+    startActivity(summaryIntent);
+    finish();
   }
 }

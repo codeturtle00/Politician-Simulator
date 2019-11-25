@@ -8,6 +8,7 @@ import com.example.politicgame.Character.GameCharacter;
 import com.example.politicgame.Common.FileSavingService;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -138,6 +139,30 @@ public class UserAccount {
   public void addScore(String charName, int score) {
     JSONArray charArray = getCharArray();
     userAccountAddScore.addScore(charArray, charName, score);
+  }
+
+
+  /**
+   * Saves a high score for an individual level, used for the individial game modes
+   *
+   * @param levelName   The name of the level's key. Possible values: "LEVEL1", "LEVEL2", "LEVEL3"
+   * @param charName    The name of the character to write to
+   * @param score       The score that the character has achieved
+   */
+  public void singleSave (String levelName, String charName, int score){
+    JSONArray charArray = getCharArray();
+
+    try {
+      for (int i = 0; i < charArray.length(); i++) {
+        JSONObject currentChar = charArray.getJSONObject(i);
+        String currName = currentChar.keys().next();
+        if (currName.equals(charName)) {
+          currentChar.getJSONObject(charName).getJSONObject("SingleScores").getJSONArray(levelName).put(score);
+        }
+      }
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
   }
 
   /**

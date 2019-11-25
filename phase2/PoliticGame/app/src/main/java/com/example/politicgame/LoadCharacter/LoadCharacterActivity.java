@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.GameMode.GameModeActivity;
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.MainActivity;
@@ -150,8 +151,8 @@ public class LoadCharacterActivity extends GameActivity {
     if (currCharacter != 0 && cellLoaded[currCharacter - 1]) {
       app.setCurrentCharacter(cellNames[currCharacter - 1]);
 
-      Intent babyGameIntent = new Intent(this, BabyGameInstruction.class);
-      startActivity(babyGameIntent);
+      Intent gameModeSelectIntent = new Intent(this, GameModeActivity.class);
+      startActivity(gameModeSelectIntent);
       finish();
     }
   }

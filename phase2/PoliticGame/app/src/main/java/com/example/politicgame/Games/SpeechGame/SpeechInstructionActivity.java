@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.GameMode.GameMode;
+import com.example.politicgame.GameMode.StampArcade;
 import com.example.politicgame.Games.StampGame.StampInstructionActivity;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
@@ -13,16 +15,14 @@ import com.example.politicgame.R;
 public class SpeechInstructionActivity extends GameActivity {
 
     final private String LEVEL_NAME = "LEVEL2";
-    private PoliticGameApp app;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(isGameComplete(LEVEL_NAME)){
+        if (((GameMode)getIntent().getSerializableExtra("GameMode")).isGameComplete(app)) {
             openStampGame();
         }
-        app = (PoliticGameApp) getApplication();
 
         System.out.println("The current theme is blue: " + app.isThemeBlue());
 
@@ -49,6 +49,10 @@ public class SpeechInstructionActivity extends GameActivity {
     public void startSpeechGame() {
         Intent startSpeechIntent = new Intent(this, SpeechActivity.class);
         startSpeechIntent.putExtra("current rating", 0);
+
+        // Added for game mode modification
+        startSpeechIntent.putExtra("GameMode", getIntent().getSerializableExtra("GameMode"));
+
         startActivity(startSpeechIntent);
         finish();
     }
@@ -58,6 +62,10 @@ public class SpeechInstructionActivity extends GameActivity {
      *  **/
     public void openStampGame() {
         Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
+
+        // Added for game mode modification
+        switchStampIntent.putExtra("GameMode", new StampArcade(/*app*/));
+
         startActivity(switchStampIntent);
         finish();
     }

@@ -123,14 +123,18 @@ public class StampActivity extends GameActivity {
 
   public void openStampLost() {
     Intent stampLostIntent = new Intent(this, StampActivityLost.class);
-    saveGame(gh.getCurrentScore(), LEVEL_NAME);
+    stampLostIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
+    stampLostIntent.putExtra("score", gh.getCurrentScore());
+    //saveGame(gh.getCurrentScore(), LEVEL_NAME);
     startActivity(stampLostIntent);
     finish();
   }
 
   public void openStampWon() {
     Intent stampWonIntent = new Intent(this, StampActivityWon.class);
-    saveGame(gh.getCurrentScore(), LEVEL_NAME);
+    stampWonIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
+    stampWonIntent.putExtra("score", gh.getCurrentScore());
+    //saveGame(gh.getCurrentScore(), LEVEL_NAME);
     startActivity(stampWonIntent);
     finish();
   }
