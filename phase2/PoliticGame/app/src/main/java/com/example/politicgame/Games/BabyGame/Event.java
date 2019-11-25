@@ -79,8 +79,16 @@ abstract class Event {
     x = (int) (Math.random() * (babyWidth + 1) + babyX);
   }
 
+  void setX(int x) {
+    this.x = x;
+  }
+
   void setY() {
     y = (int) (Math.random() * (babyHeight + 1) + babyY);
+  }
+
+  void setY(int y) {
+    this.y = y;
   }
 
   int getX() {
