@@ -19,9 +19,9 @@ class HorizontalShake extends Event {
    */
   HorizontalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     super(babyX, babyY, babyWidth, babyHeight, res);
-    setX();
-    setY();
-    setImg(BitmapFactory.decodeResource(res, R.drawable.kisslips));
+    setImg(BitmapFactory.decodeResource(res, R.drawable.leftrightarrow));
+    setX((int) (Math.random() * (babyWidth / 2) + babyX + (babyWidth / 2)));
+    setY((int) (Math.random() * (babyHeight / 2) + babyY + (babyHeight / 2)));
   }
 
   /**
@@ -37,8 +37,9 @@ class HorizontalShake extends Event {
   @Override
   int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
     if (initialX > getX() && initialY > getY()) {
-      if (Math.abs(finalY - initialY) < 100 && Math.abs(finalX - initialX) > 100) {
+      if (Math.abs(finalY - initialY) < 200 && Math.abs(finalX - initialX) > 200) {
         Log.d("HorizontalShake", "Score increased");
+        setInteraction(true);
         return 5;
       }
     }

@@ -63,14 +63,13 @@ class EventManager implements View.OnTouchListener {
       //            final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
       int randomNum = 3; // ALWAYS SETS EVENT TO KISS
       if (randomNum == 1) {
-        //        HorizontalShake horizontalShake =
-        //            new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
-        //        events.add(horizontalShake);
-        //        horizontalShake.draw(canvas);
-        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
-        viewUpdater.updateEventAction(
-            "The baby needs to be cradled! Swipe horizontally at any location.");
+        HorizontalShake horizontalShake =
+            new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+        events.add(horizontalShake);
+//        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
+        viewUpdater.updateEventAction("Horizontal Shake");
         Log.d("EventManager", "HorizontalShake started");
+
       } else if (randomNum == 2) {
         //        VerticalShake verticalShake =
         //            new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
@@ -80,6 +79,7 @@ class EventManager implements View.OnTouchListener {
         viewUpdater.updateEventAction(
             "The baby needs to be cradled! Swipe vertically at any location.");
         Log.d("EventManager", "VerticalShake started");
+
       } else if (randomNum == 3) {
         Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
         events.add(kiss);
@@ -105,6 +105,7 @@ class EventManager implements View.OnTouchListener {
         initialY = touch.getY();
         Log.d("EventManager", "ACTION_DOWN registered");
         break;
+
       case MotionEvent.ACTION_UP: // When finger is lifted off screen; eg. end of a swipe
         finalX = touch.getX();
         finalY = touch.getY();
@@ -131,10 +132,13 @@ class EventManager implements View.OnTouchListener {
     ArrayList<Event> tempEvents = new ArrayList<>(events);
     int totalScoreChange = 0;
     for (Event event : tempEvents) {
-      int scoreChange = event.handleTouch(v, initialX, initialY, finalX, finalY);
-      // randomize scoreChange between 0.5x to 1.5x
-      scoreChange *= (0.5 + r.nextFloat());
-      totalScoreChange += scoreChange;
+      // If click near an event, then call the event's handleTouch()
+      if (Math.abs(event.getX() - initialX) < 200 && Math.abs(event.getY() - initialY) < 200) {
+        int scoreChange = event.handleTouch(v, initialX, initialY, finalX, finalY);
+        // randomize scoreChange between 0.5x to 1.5x
+        scoreChange *= (0.5 + r.nextFloat());
+        totalScoreChange += scoreChange;
+      }
 
       // Removes kiss
       if (event.getClass().equals(Kiss.class) && event.getInteraction()) events.remove(event);

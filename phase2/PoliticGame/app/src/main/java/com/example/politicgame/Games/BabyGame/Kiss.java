@@ -21,7 +21,7 @@ class Kiss extends Event {
   Kiss(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     super(babyX, babyY, babyWidth, babyHeight, res);
     Bitmap kiss = BitmapFactory.decodeResource(res, R.drawable.kisslips);
-//    kiss = Bitmap.createScaledBitmap(kiss, 5, 3, false);
+    kiss = Bitmap.createScaledBitmap(kiss, 100, 60, false);
     setImg(kiss);
     setX((int) (Math.random() * (babyWidth / 2) + babyX));
     setY((int) (Math.random() * (babyHeight / 2) + babyY));
@@ -39,7 +39,7 @@ class Kiss extends Event {
    */
   @Override
   int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
-    if (Math.abs(finalX - initialX) < 20 && Math.abs(finalY - initialY) < 20) {
+    if (Math.abs(finalX - initialX) < 50 && Math.abs(finalY - initialY) < 50) {
       if (!getInteraction()
           && 0 < finalX - getX()
           && finalX - getX() < imgWidth()
