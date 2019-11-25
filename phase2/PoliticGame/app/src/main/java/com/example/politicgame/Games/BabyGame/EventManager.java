@@ -31,18 +31,6 @@ class EventManager implements View.OnTouchListener {
   /** Height of the baby. */
   private int babyHeight;
 
-  /** X coordinate when screen is touched. */
-  private float initialX;
-
-  /** Y coordinate when screen is touched. */
-  private float initialY;
-
-  /** X coordinate of where the touch ends; eg. end of a swipe. */
-  private float finalX;
-
-  /** Y coordinate of where the touch ends; eg. end of a swipe. */
-  private float finalY;
-
   /**
    * Initializes a new EventManager which manages screen touches and events.
    *
@@ -99,12 +87,18 @@ class EventManager implements View.OnTouchListener {
    */
   @Override
   public boolean onTouch(View v, MotionEvent touch) {
+      float initialX = 0;
+      float initialY = 0;
+      float finalX = 0;
+      float finalY = 0;
     switch (touch.getAction()) {
       case MotionEvent.ACTION_DOWN: // Screen was initially touched
-        initialX = touch.getX();
-        initialY = touch.getY();
+         initialX = touch.getX();
+         initialY = touch.getY();
         Log.d("EventManager", "ACTION_DOWN registered");
         break;
+
+        case MotionEvent.ACTION_MOVE:
 
       case MotionEvent.ACTION_UP: // When finger is lifted off screen; eg. end of a swipe
         finalX = touch.getX();
@@ -116,7 +110,7 @@ class EventManager implements View.OnTouchListener {
     }
     // Only runs when finger is lifted off screen
     if (touch.getAction() == MotionEvent.ACTION_UP) {
-      handleTouch(v);
+      handleTouch(v,initialX, initialY, finalX, finalY);
     }
     return true;
   }
@@ -127,7 +121,7 @@ class EventManager implements View.OnTouchListener {
    *
    * @param v the View currently used
    */
-  void handleTouch(View v) {
+  void handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
     Random r = new Random();
     ArrayList<Event> tempEvents = new ArrayList<>(events);
     int totalScoreChange = 0;
