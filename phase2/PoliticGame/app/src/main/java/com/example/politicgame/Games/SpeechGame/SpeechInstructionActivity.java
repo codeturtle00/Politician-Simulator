@@ -11,25 +11,15 @@ import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 
 public class SpeechInstructionActivity extends GameActivity {
-
+    private SpeechPresenter presenter = new SpeechPresenter();
     final private String LEVEL_NAME = "LEVEL2";
-    private PoliticGameApp app;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(isGameComplete(LEVEL_NAME)){
+        if (isGameComplete(LEVEL_NAME)) {
             openStampGame();
-        }
-        app = (PoliticGameApp) getApplication();
-
-        System.out.println("The current theme is blue: " + app.isThemeBlue());
-
-        if (app.isThemeBlue()){
-            setTheme(R.style.BlueTheme);
-        } else {
-            setTheme(R.style.RedTheme);
         }
 
         setContentView(R.layout.activity_speech_instruction);
@@ -48,14 +38,14 @@ public class SpeechInstructionActivity extends GameActivity {
 
     public void startSpeechGame() {
         Intent startSpeechIntent = new Intent(this, SpeechActivity.class);
-        startSpeechIntent.putExtra("current rating", 0);
+        startSpeechIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
         startActivity(startSpeechIntent);
         finish();
     }
 
     /**
-     *  Switch to Next Game View
-     *  **/
+     * Switch to Next Game View
+     **/
     public void openStampGame() {
         Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
         startActivity(switchStampIntent);
