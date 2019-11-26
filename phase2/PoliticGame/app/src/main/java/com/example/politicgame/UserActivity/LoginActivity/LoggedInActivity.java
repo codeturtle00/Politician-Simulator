@@ -78,7 +78,9 @@ public class LoggedInActivity extends GameActivity {
          * Opens the leaderboard screen
          */
         Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
-        startActivityForResult(switchBoardIntent, 2);
+        switchBoardIntent.putExtra("SESSION_ID", "loggedIn");
+        startActivity(switchBoardIntent);
+        finish();
     }
 
     public void openSettings() {

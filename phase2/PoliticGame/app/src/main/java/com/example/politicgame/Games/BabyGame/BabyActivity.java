@@ -124,7 +124,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
         new View.OnClickListener() {
           public void onClick(View v) {
             gameOverDialog.dismiss();
-            openLoggedIn();
+            openMainMenu();
           }
         });
     gameOverDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

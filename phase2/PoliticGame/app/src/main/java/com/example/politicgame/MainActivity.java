@@ -102,13 +102,13 @@ public class MainActivity extends GameActivity {
   public void openLeaderBoard() {
     /** Opens the leaderboard screen */
     Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
-    startActivityForResult(switchBoardIntent, 2);
+    startActivity(switchBoardIntent);
+    finish();
   }
 
   public void openSettings() {
     /** Open the settings menu */
     Intent settingsIntent = new Intent(this, SettingsActivity.class);
-    settingsIntent.putExtra("SESSION_ID", "main");
     startActivity(settingsIntent);
     finish();
   }

@@ -1,5 +1,6 @@
 package com.example.politicgame.Leaderboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.MainActivity;
 import com.example.politicgame.R;
 
 import org.json.JSONArray;
@@ -40,15 +42,11 @@ public class LeaderBoardActivity extends GameActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             // Code here executes on main thread after user presses button
-            BackToMenu();
+            returnMainMenu();
           }
         });
   }
 
-  public void BackToMenu() {
-    /** Returns to main menu */
-    finish();
-  }
 
   public void updateBoard() {
     /** Updates the leaderboard */
@@ -160,5 +158,12 @@ public class LeaderBoardActivity extends GameActivity {
     Log.i("Character Scores", boardList.toString());
 
     return boardList;
+  }
+
+  /** Return to the previous menu */
+  public void returnMainMenu() {
+    Intent restartIntent = new Intent(this, MainActivity.class);
+    startActivity(restartIntent);
+    finish();
   }
 }
