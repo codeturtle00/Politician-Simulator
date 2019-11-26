@@ -27,8 +27,26 @@ public class SpeechActivity extends GameActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech);
 
-        presenter = (SpeechPresenter) this.getIntent().getSerializableExtra("SPEECH PRESENTER");
 
+//        ArrayList<String> choices = presenter.loadChoice();
+//        // TextView for prompt and choices
+//        TextView prompt = findViewById(R.id.prompt);
+//        prompt.setText(presenter.loadPrompt());
+//        TextView choiceA = findViewById(R.id.ChoiceA);
+//        TextView choiceB = findViewById(R.id.ChoiceB);
+//        TextView choiceC = findViewById(R.id.ChoiceC);
+//        TextView choiceD = findViewById(R.id.ChoiceD);
+//        TextView[] textViews = {choiceA, choiceB, choiceC, choiceD};
+//        for (int i = 0; i < 4; i++) {
+//            textViews[i].setText(choices.get(i));
+//        }
+
+        setTitle("The Speech Game");
+
+        new PauseButton((ConstraintLayout) findViewById(R.id.speechLayout), this);
+    }
+
+    private void update(){
         ArrayList<String> choices = presenter.loadChoice();
         // TextView for prompt and choices
         TextView prompt = findViewById(R.id.prompt);
@@ -41,15 +59,15 @@ public class SpeechActivity extends GameActivity {
         for (int i = 0; i < 4; i++) {
             textViews[i].setText(choices.get(i));
         }
-
-        setTitle("The Speech Game");
-
-        new PauseButton((ConstraintLayout) findViewById(R.id.speechLayout), this);
+        EditText editText = findViewById(R.id.answer);
+        editText.setText("");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        presenter = (SpeechPresenter) this.getIntent().getSerializableExtra("SPEECH PRESENTER");
+        update();
     }
 
     /**
