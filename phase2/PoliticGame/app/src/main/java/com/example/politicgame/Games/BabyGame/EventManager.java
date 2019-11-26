@@ -33,8 +33,8 @@ class EventManager implements View.OnTouchListener {
 
   private float initialX;
   private float initialY;
-//  private float finalX;
-//  private float finalY;
+  //  private float finalX;
+  //  private float finalY;
   private float movingX;
   private float movingY;
   private boolean moving;
@@ -54,26 +54,21 @@ class EventManager implements View.OnTouchListener {
   /** Randomly generates an event. */
   void randomEvent() {
     Log.d("Running random event", viewUpdater.toString());
-    if (events.size() < 1) {
       Random rand = new Random();
-      //            final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
-      int randomNum = 3; // ALWAYS SETS EVENT TO KISS
+      final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
+
       if (randomNum == 1) {
         HorizontalShake horizontalShake =
             new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
         events.add(horizontalShake);
-//        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction("Horizontal Shake");
         Log.d("EventManager", "HorizontalShake started");
 
       } else if (randomNum == 2) {
-        //        VerticalShake verticalShake =
-        //            new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
-        //        events.add(verticalShake);
-        //        verticalShake.draw(canvas);
-        events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
-        viewUpdater.updateEventAction(
-            "The baby needs to be cradled! Swipe vertically at any location.");
+        VerticalShake verticalShake =
+            new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+        events.add(verticalShake);
+        viewUpdater.updateEventAction("VerticalShake started");
         Log.d("EventManager", "VerticalShake started");
 
       } else if (randomNum == 3) {
@@ -84,7 +79,6 @@ class EventManager implements View.OnTouchListener {
         Log.d("EventManager", "Kiss started");
       }
     }
-  }
 
   /**
    * Calls events when screen is touched to handleTouch the score.
@@ -98,8 +92,8 @@ class EventManager implements View.OnTouchListener {
 
     switch (touch.getAction()) {
       case MotionEvent.ACTION_DOWN: // Screen was initially touched
-         initialX = touch.getX();
-         initialY = touch.getY();
+        initialX = touch.getX();
+        initialY = touch.getY();
         Log.d("EventManager", "ACTION_DOWN registered at " + initialX + ", " + initialY);
         break;
 
@@ -108,7 +102,7 @@ class EventManager implements View.OnTouchListener {
         movingY = touch.getY();
         moving = true;
         Log.d("EventManager", "ACTION_MOVE registered at " + movingX + ", " + movingY);
-        handleTouch(v,0, 0);
+        handleTouch(v, 0, 0);
         break;
 
       case MotionEvent.ACTION_UP: // When finger is lifted off screen; eg. end of a swipe
@@ -138,19 +132,20 @@ class EventManager implements View.OnTouchListener {
     for (Event event : tempEvents) {
       // If click near an event, then call the event's handleTouch()
       if (Math.abs(event.getX() - initialX) < 200 && Math.abs(event.getY() - initialY) < 200) {
-        int scoreChange = event.handleTouch(v, initialX, initialY, movingX, movingY, finalX, finalY);
+        int scoreChange =
+            event.handleTouch(v, initialX, initialY, movingX, movingY, finalX, finalY);
         // randomize scoreChange between 0.5x to 1.5x
         scoreChange *= (0.5 + r.nextFloat());
         totalScoreChange += scoreChange;
       }
 
       // Removes kiss
-      if (event.getClass().equals(Kiss.class) && event.getInteraction()) events.remove(event);
+      if (event.getInteraction()) events.remove(event);
     }
 
     // If totalScoreChange is 0 and finger stopped moving,
     // then user did not properly interact with any event.
-    if (totalScoreChange == 0 && !moving){
+    if (totalScoreChange == 0 && !moving) {
       totalScoreChange = (int) (-10 * (0.5 + r.nextFloat()));
     }
     updateScore(totalScoreChange);
