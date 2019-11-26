@@ -201,8 +201,6 @@ public class LoginActivity extends PopUpActivity {
     }
     app.setCurrentUser(loginUser);
     String welcome = getString(R.string.welcome) + name;
-    Intent startIntent = new Intent(this, MainActivity.class);
-    startActivity(startIntent);
     Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     finish();
   }
@@ -223,8 +221,6 @@ public class LoginActivity extends PopUpActivity {
     }
   /** Returns to main menu */
   public void BackToMenu() {
-    Intent switchBabyIntent = new Intent(this, MainActivity.class);
-    startActivity(switchBabyIntent);
     finish();
   }
 }
