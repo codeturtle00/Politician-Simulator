@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.GameMode.GameMode;
+import com.example.politicgame.GameMode.StampArcade;
 import com.example.politicgame.Games.StampGame.StampInstructionActivity;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
@@ -18,7 +20,7 @@ public class SpeechInstructionActivity extends GameActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (isGameComplete(LEVEL_NAME)) {
+        if (((GameMode)getIntent().getSerializableExtra("GameMode")).isGameComplete(app)) {
             openStampGame();
         }
 
@@ -38,7 +40,11 @@ public class SpeechInstructionActivity extends GameActivity {
 
     public void startSpeechGame() {
         Intent startSpeechIntent = new Intent(this, SpeechActivity.class);
+
+        // Added for game mode modification
+        startSpeechIntent.putExtra("GameMode", getIntent().getSerializableExtra("GameMode"));
         startSpeechIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
+
         startActivity(startSpeechIntent);
         finish();
     }
@@ -48,6 +54,10 @@ public class SpeechInstructionActivity extends GameActivity {
      **/
     public void openStampGame() {
         Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
+
+        // Added for game mode modification
+        switchStampIntent.putExtra("GameMode", new StampArcade(/*app*/));
+
         startActivity(switchStampIntent);
         finish();
     }

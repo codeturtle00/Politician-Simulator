@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.GameMode.GameMode;
 import com.example.politicgame.Games.SpeechGame.SpeechInstructionActivity;
 import com.example.politicgame.Pausing.PauseButton;
 import com.example.politicgame.R;
@@ -66,7 +67,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     // Generate Pause Button
     new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
 
-    // DELETE WHEN GAME IS FINISHED
+    // TODO: DELETE WHEN GAME IS FINISHED
     Button next = findViewById(R.id.nextGame);
     next.setOnClickListener(
         new View.OnClickListener() {
@@ -95,8 +96,15 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
   /** Opens the next level. */
   void openSpeechGame() {
-    Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
-    saveGame(happiness, LEVEL_NAME);
+    GameMode gm = (GameMode) getIntent().getSerializableExtra("GameMode");
+
+    //These two lines replace the two below
+    gm.save(app, happiness);
+    Intent switchSpeechIntent = gm.next(this);
+
+    //Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
+    //saveGame(happiness, LEVEL_NAME);
+
     startActivity(switchSpeechIntent);
     finish();
   }

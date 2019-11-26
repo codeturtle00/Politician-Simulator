@@ -13,6 +13,7 @@ import com.example.politicgame.Character.PoliticianA;
 import com.example.politicgame.Character.PoliticianB;
 import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.GameMode.GameModeActivity;
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
@@ -101,6 +102,8 @@ public class SelectCharacterActivity extends GameActivity {
                 });
     }
 
+
+
     public void characterSet(String name){
         selectedCharacter.setName(name);
         UserAccount user = app.getCurrentUser();
@@ -121,18 +124,19 @@ public class SelectCharacterActivity extends GameActivity {
         user.addCharArray(newChar);
         System.out.println("Saved!!!");
         user.saveToDb();
+
         //Sets current characters' name
         app.setCurrentCharacter(name);
 
-        startGame();
+        startGameModeSelection();
     }
 
 
 
 
-  public void startGame() {
-    Intent startGameIntent = new Intent(this, BabyGameInstruction.class);
-    startActivity(startGameIntent);
-    finish();
+  public void startGameModeSelection() {
+      Intent gameModeSelectIntent = new Intent(this, GameModeActivity.class);
+      startActivity(gameModeSelectIntent);
+      finish();
   }
 }

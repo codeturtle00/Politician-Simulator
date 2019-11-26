@@ -67,17 +67,20 @@ public class SpeechActivity extends GameActivity {
         }
         presenter.updateRating();
 
+        Log.i("gm == null", String.valueOf(getIntent().getSerializableExtra("GameMode") == null));
 
         if (presenter.matches()) {
             Intent successfulIntent = new Intent(this, SuccessSpeechResult.class);
             successfulIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
+            successfulIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
             startActivityForResult(successfulIntent, 5);
-            finish();
+            //finish();
         } else {
             Intent failIntent = new Intent(this, FailureSpeechResult.class);
             failIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
+            failIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
             startActivityForResult(failIntent, 5);
-            finish();
+            //finish();
         }
     }
 

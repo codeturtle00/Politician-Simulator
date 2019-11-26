@@ -7,7 +7,6 @@ public class PoliticianA extends GameCharacter {
   private int charId = 1;
 
   /** Gets the JSON data for level 1. */
-  @Override
     protected JSONObject getJsonLevel1() {
     JSONObject detailObject = new JSONObject();
     try {
@@ -24,7 +23,6 @@ public class PoliticianA extends GameCharacter {
   }
 
   /** Gets the JSON data for level 2. */
-  @Override
   protected JSONObject getJsonLevel2() {
     JSONObject detailObject = new JSONObject();
     try {
@@ -41,7 +39,6 @@ public class PoliticianA extends GameCharacter {
   }
 
   /** Gets the JSON data for level 3. */
-  @Override
   protected JSONObject getJsonLevel3() {
     JSONObject detailObject = new JSONObject();
     try {
@@ -56,10 +53,12 @@ public class PoliticianA extends GameCharacter {
     return detailObject;
   }
 
-  @Override
+
+  /** Gets the character being used. */
   public JSONObject getJsonCharacter() {
     JSONObject politic = super.getJsonCharacter();
     try {
+      // Set the character ID to 1
       politic.getJSONObject(getName()).put(detail.charId.toString(), this.charId);
     } catch (JSONException e) {
       e.printStackTrace();

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.politicgame.Character.SpriteSetter;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.R;
 import com.example.politicgame.MainActivity;
@@ -23,21 +24,11 @@ public class PauseActivity extends GameActivity {
 
     setTitle("Paused");
 
-    UserAccount currUser = app.getCurrentUser();
-    int charId = currUser.getCharId(app.getCurrentCharacter());
-
     final ImageView pauseImage = findViewById(R.id.pause_menu_image);
 
-    if (charId == 1) {
-      pauseImage.setImageResource(R.drawable.jake);
-//      pauseImage.setBackgroundResource(R.drawable.jake);
-    } else if (charId == 2) {
-      pauseImage.setImageResource(R.drawable.helmet_guy);
-//      pauseImage.setBackgroundResource(R.drawable.helmet_guy);
-    } else {
-      pauseImage.setImageResource(R.drawable.pause_filler);
-//      pauseImage.setBackgroundResource(R.drawable.pause_filler);
-    }
+    // Set the sprite for the pause menu
+    SpriteSetter ss = new SpriteSetter(app);
+    ss.setSprite(pauseImage);
 
     // Resume button
     final Button resumeB = findViewById(R.id.resume);

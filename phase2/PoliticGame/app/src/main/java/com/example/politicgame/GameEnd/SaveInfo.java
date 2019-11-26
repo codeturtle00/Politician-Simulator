@@ -34,6 +34,11 @@ public class SaveInfo {
         currentUser.saveToDb();
     }
 
+    public void singleSaveInfo(String levelName){
+        currentUser.singleSave(levelName, charName, totalScore);
+        currentUser.saveToDb();
+    }
+
     public UserAccount getCurrentUser() {
         return currentUser;
     }

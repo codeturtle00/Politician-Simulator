@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.Application.PoliticGameApp;
+import com.example.politicgame.GameMode.GameMode;
 import com.example.politicgame.R;
 
 public class StampInstructionActivity extends GameActivity {
@@ -16,7 +17,7 @@ public class StampInstructionActivity extends GameActivity {
   public void onCreate(Bundle savedInstanceState) {
     app = (PoliticGameApp) getApplication();
 
-    if (isGameComplete(LEVEL_NAME)) {
+    if (((GameMode)getIntent().getSerializableExtra("GameMode")).isGameComplete(app)) {
       openSummary();
     }
 
@@ -44,8 +45,9 @@ public class StampInstructionActivity extends GameActivity {
   }
 
   public void startStampGame() {
-    Intent startStampIntent = new Intent(this, StampActivity.class);
-    startActivity(startStampIntent);
+    Intent startStampGame = new Intent(this, StampActivity.class);
+    startStampGame.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
+    startActivity(startStampGame);
     finish();
   }
 }

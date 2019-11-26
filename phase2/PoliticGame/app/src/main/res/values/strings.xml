@@ -49,4 +49,5 @@
     <string name="summary">this is the summary for all 3 game scores</string>
     <string name="summary_main_menu">Save and Quit</string>
     <string name="summary_quit">Quit without Saving</string>
+    <string name ="game_mode_title">Select a Game Mode</string>
 </resources>
