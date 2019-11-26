@@ -55,8 +55,9 @@ class EventManager implements View.OnTouchListener {
   void randomEvent() {
     Log.d("Running random event", viewUpdater.toString());
       Random rand = new Random();
-      final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
+      final int randomNum = rand.nextInt(6); // Generates number between 0 and 5
 
+    // Only 1-3 will trigger an event
       if (randomNum == 1) {
         HorizontalShake horizontalShake =
             new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
@@ -74,7 +75,6 @@ class EventManager implements View.OnTouchListener {
       } else if (randomNum == 3) {
         Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
         events.add(kiss);
-        //        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
         Log.d("EventManager", "Kiss started");
       }
@@ -146,7 +146,7 @@ class EventManager implements View.OnTouchListener {
     // If totalScoreChange is 0 and finger stopped moving,
     // then user did not properly interact with any event.
     if (totalScoreChange == 0 && !moving) {
-      totalScoreChange = (int) (-10 * (0.5 + r.nextFloat()));
+      totalScoreChange = (int) (-5 * (0.5 + r.nextFloat()));
     }
     updateScore(totalScoreChange);
     update();
