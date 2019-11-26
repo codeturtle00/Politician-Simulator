@@ -55,7 +55,7 @@ abstract class Event {
     this.babyHeight = babyHeight;
     this.res = res;
     this.paint = new Paint();
-    paint.setAlpha(80);
+    paint.setAlpha(95);
   }
 
   /**

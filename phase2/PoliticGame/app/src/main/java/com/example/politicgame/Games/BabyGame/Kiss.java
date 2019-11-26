@@ -49,7 +49,7 @@ class Kiss extends Event {
           && finalY - getY() < imgHeight() + 20) {
         Log.d("Kiss", "Score increased");
         setInteraction(true);
-        return 10;
+        return 3;
       }
     }
     return 0;
