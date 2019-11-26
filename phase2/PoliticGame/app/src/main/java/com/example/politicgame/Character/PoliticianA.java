@@ -8,7 +8,7 @@ public class PoliticianA extends GameCharacter {
 
   /** Gets the JSON data for level 1. */
   @Override
-  protected JSONObject getJsonLevel1() {
+    protected JSONObject getJsonLevel1() {
     JSONObject detailObject = new JSONObject();
     try {
 

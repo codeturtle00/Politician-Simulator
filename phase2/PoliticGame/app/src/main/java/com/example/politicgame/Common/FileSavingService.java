@@ -15,7 +15,9 @@ import java.io.InputStreamReader;
 
 /** This is an API for file reading and writing
  * All file saving and reading should be done by this API
- * You can view it as a thin layer to get access to database(json,txt)*/
+ * You can view it as a thin layer to get access to database(json,txt)
+ * User need to pass in the context to create the object
+ **/
 public class FileSavingService {
   private Context context;
   public FileSavingService(Context context) {
