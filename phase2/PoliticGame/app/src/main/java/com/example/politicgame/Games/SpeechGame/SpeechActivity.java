@@ -27,7 +27,8 @@ public class SpeechActivity extends GameActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech);
 
-
+//        presenter = (SpeechPresenter) this.getIntent().getSerializableExtra("SPEECH PRESENTER");
+//
 //        ArrayList<String> choices = presenter.loadChoice();
 //        // TextView for prompt and choices
 //        TextView prompt = findViewById(R.id.prompt);
@@ -41,12 +42,15 @@ public class SpeechActivity extends GameActivity {
 //            textViews[i].setText(choices.get(i));
 //        }
 
+
         setTitle("The Speech Game");
 
         new PauseButton((ConstraintLayout) findViewById(R.id.speechLayout), this);
     }
 
     private void update(){
+//        presenter = (SpeechPresenter) this.getIntent().getSerializableExtra("SPEECH PRESENTER");
+
         ArrayList<String> choices = presenter.loadChoice();
         // TextView for prompt and choices
         TextView prompt = findViewById(R.id.prompt);
@@ -59,8 +63,6 @@ public class SpeechActivity extends GameActivity {
         for (int i = 0; i < 4; i++) {
             textViews[i].setText(choices.get(i));
         }
-        EditText editText = findViewById(R.id.answer);
-        editText.setText("");
     }
 
     @Override
@@ -85,21 +87,17 @@ public class SpeechActivity extends GameActivity {
         }
         presenter.updateRating();
 
-        Log.i("gm == null", String.valueOf(getIntent().getSerializableExtra("GameMode") == null));
 
         if (presenter.matches()) {
             Intent successfulIntent = new Intent(this, SuccessSpeechResult.class);
             successfulIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
-            successfulIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
             startActivityForResult(successfulIntent, 5);
-            //finish();
         } else {
             Intent failIntent = new Intent(this, FailureSpeechResult.class);
             failIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
-            failIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
             startActivityForResult(failIntent, 5);
-            //finish();
         }
+        update();
     }
 
 
