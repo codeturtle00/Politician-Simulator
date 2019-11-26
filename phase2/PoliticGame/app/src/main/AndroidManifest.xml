@@ -28,7 +28,8 @@
         <activity android:name=".Games.SpeechGame.SpeechActivity" />
         <activity android:name=".Games.BabyGame.BabyActivity" />
         <activity android:name=".Games.BabyGame.BabyGameInstruction" />
-        <activity android:name=".UserActivity.LoginActivity.LoginActivity" />
+        <activity android:name=".UserActivity.LoginActivity.LoginActivity"
+            android:theme="@style/PopUp"/>
         <activity android:name=".UserActivity.RegisterActivity.RegistrationActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -37,10 +38,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Pausing.PauseActivity" />
+        <activity android:name=".Pausing.PauseActivity"
+            android:theme="@style/PopUp"/>
         <activity android:name=".SettingsActivity" />
         <activity android:name=".NewCharacter.SelectCharacterActivity" />
         <activity android:name=".GameActivity" />
+        <activity android:name=".PopUpActivity"/>
         <activity android:name=".LoadCharacter.LoadCharacterActivity" />
         <activity android:name=".GameMode.GameModeActivity" />
         <activity android:name=".GameEnd.SingleEndActivity" />

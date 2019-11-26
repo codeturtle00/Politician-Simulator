@@ -18,4 +18,14 @@
         <item name="backColor">@color/backgroundRed</item>
         <item name="textColor">@color/textWhite</item>
     </style>
+
+    <style name="PopUp" >
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
 </resources>

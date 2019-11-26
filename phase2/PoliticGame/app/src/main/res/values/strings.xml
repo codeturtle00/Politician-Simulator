@@ -23,7 +23,7 @@
     <string name="NPC_image">npcImage</string>
     <string name="NPC_Prompt">npcPrompt</string>
     <string name="next_game">Next</string>
-    <string name="prompt_email">Email or UserName</string>
+    <string name="prompt_email">Email or Username</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in_short"> Sign In</string>
     <string name="invalid_password">Invalid Password.We expected you to enter more than 4 characters for password</string>
@@ -50,4 +50,5 @@
     <string name="summary_main_menu">Save and Quit</string>
     <string name="summary_quit">Quit without Saving</string>
     <string name ="game_mode_title">Select a Game Mode</string>
+    <string name="main_menu">Main Menu</string>
 </resources>
