@@ -55,6 +55,7 @@ abstract class Event {
     this.babyHeight = babyHeight;
     this.res = res;
     this.paint = new Paint();
+    paint.setAlpha(80);
   }
 
   /**
@@ -73,7 +74,9 @@ abstract class Event {
 
   void draw(Canvas canvas) {
     System.out.println("Drawing " + img + " at " + x + "," + y);
-    canvas.drawBitmap(img, x, y, paint);
+    int adjusted_x = x - imgWidth()/2;
+    int adjusted_y = y - imgHeight()/2;
+    canvas.drawBitmap(img, adjusted_x, adjusted_y, paint);
     System.out.println("Event drawn!");
   }
 
