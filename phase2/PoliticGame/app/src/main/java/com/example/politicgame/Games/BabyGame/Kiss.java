@@ -41,12 +41,12 @@ class Kiss extends Event {
    */
   @Override
   int handleTouch(View v, float initialX, float initialY, float movingX, float movingY, float finalX, float finalY) {
-    if (Math.abs(finalX - initialX) < 50 && Math.abs(finalY - initialY) < 50) {
+    if (Math.abs(finalX - initialX) < 20 && Math.abs(finalY - initialY) < 20) {
       if (!getInteraction()
-          && 0 < finalX - getX()
-          && finalX - getX() < imgWidth()
-          && 0 < finalY - getY()
-          && finalY - getY() < imgHeight()) {
+          && -20 < finalX - getX()
+          && finalX - getX() < imgWidth() + 20
+          && -20 < finalY - getY()
+          && finalY - getY() < imgHeight() + 20) {
         Log.d("Kiss", "Score increased");
         setInteraction(true);
         return 10;
