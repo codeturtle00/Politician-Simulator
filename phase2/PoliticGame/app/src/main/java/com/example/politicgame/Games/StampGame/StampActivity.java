@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.politicgame.Character.SpriteSetter;
 import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.Pausing.PauseButton;
@@ -104,21 +105,14 @@ public class StampActivity extends GameActivity {
 
     new PauseButton((ConstraintLayout) findViewById(R.id.stampLayout), this);
 
+    // Set up prompts
     gh.changeProposalNum(proposalLeft);
     gh.setPrompt(promptDisplay);
 
-    UserAccount currUser = app.getCurrentUser();
-    int charId = currUser.getCharId(app.getCurrentCharacter());
-
+    // Set the sprite for the game menu
     final ImageView pauseImage = findViewById(R.id.stamp_game_character_image);
-
-    if (charId == 1) {
-      pauseImage.setImageResource(R.drawable.jake);
-    } else if (charId == 2) {
-      pauseImage.setImageResource(R.drawable.helmet_guy);
-    } else {
-      pauseImage.setImageResource(R.drawable.pause_filler);
-    }
+    SpriteSetter ss = new SpriteSetter(app);
+    ss.setSprite(pauseImage);
   }
 
   public void openStampLost() {

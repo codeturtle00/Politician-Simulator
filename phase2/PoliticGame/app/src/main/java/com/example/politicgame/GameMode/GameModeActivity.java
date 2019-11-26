@@ -24,14 +24,16 @@ public class GameModeActivity extends GameActivity {
         setContentView(R.layout.activity_game_mode);
 
 
+        // User clicked arcade mode
         final TextView startArcadeMode = findViewById(R.id.ArcadeMode);
         startArcadeMode.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        startArcadeGameMode();
+                        startArcadeMenu();
                     }
                 });
 
+        // User clicked BabyGame Mode
         final TextView startBabyMode = findViewById(R.id.BabyGameMode);
         startBabyMode.setOnClickListener(
                 new View.OnClickListener() {
@@ -40,6 +42,7 @@ public class GameModeActivity extends GameActivity {
                     }
                 });
 
+        // User clicked SpeechGame Mode
         final TextView startSpeechMode = findViewById(R.id.SpeechGameMode);
         startSpeechMode.setOnClickListener(
                 new View.OnClickListener() {
@@ -48,6 +51,7 @@ public class GameModeActivity extends GameActivity {
                     }
                 });
 
+        // User clicked StampGame Mode
         final TextView startStampMode = findViewById(R.id.StampGameMode);
         startStampMode.setOnClickListener(
                 new View.OnClickListener() {
@@ -56,6 +60,7 @@ public class GameModeActivity extends GameActivity {
                     }
                 });
 
+        // User clicked go back
         final Button backGameMode = findViewById(R.id.back_game_mode);
         backGameMode.setOnClickListener(
             new View.OnClickListener() {
@@ -66,14 +71,21 @@ public class GameModeActivity extends GameActivity {
     }
 
 
-    private void startArcadeGameMode() {
-        Intent startArcadeGame = new Intent(this, BabyGameInstruction.class);
-        startArcadeGame.putExtra("GameMode", new BabyArcade(/*app*/));
-        startActivity(startArcadeGame);
+    /**
+     * Start the Arcade Game Mode, which has the player play each game in the order they were meant
+     * to be played, from BabyGame, to SpeechGame and then to StampGame.
+     */
+    private void startArcadeMenu() {
+        Intent startArcadeMenu = new Intent(this, ArcadeActivity.class);
+        startActivity(startArcadeMenu);
         finish();
     }
 
 
+    /**
+     * Start the Single-Game Mode and load BabyGame, which will lead the player to a results screen
+     * after they are done the game
+     */
     private void startBabyGameMode() {
         Intent startBabyGame = new Intent(this, BabyGameInstruction.class);
         startBabyGame.putExtra("GameMode", new SingleMode(BABYLEVEL));
@@ -82,6 +94,10 @@ public class GameModeActivity extends GameActivity {
     }
 
 
+    /**
+     * Start the Single-Game Mode and load SpeechGame, which will lead the player to a results screen
+     * after they are done the game
+     */
     private void startSpeechGameMode() {
         Intent startSpeechGame = new Intent(this, SpeechInstructionActivity.class);
         startSpeechGame.putExtra("GameMode", new SingleMode(SPEECHLEVEL));
@@ -90,6 +106,10 @@ public class GameModeActivity extends GameActivity {
     }
 
 
+    /**
+     * Start the Single-Game Mode and load StampGame, which will lead the player to a results screen
+     * after they are done the game
+     */
     private void startStampGameMode() {
         Intent startStampGame = new Intent(this, StampInstructionActivity.class);
         startStampGame.putExtra("GameMode", new SingleMode(STAMPLEVEL));
@@ -98,6 +118,9 @@ public class GameModeActivity extends GameActivity {
     }
 
 
+    /**
+     * Go back to the load character menu
+     */
     private void openLoadCharacter () {
         Intent loadCharacters = new Intent(this, LoadCharacterActivity.class);
         startActivity(loadCharacters);

@@ -17,6 +17,12 @@ public abstract class ArcadeMode implements GameMode, Serializable {
     /*protected PoliticGameApp app;*/
     private String levelName;
 
+    /**
+     * Constructs the ArcadeMode object, but since this class is abstract, the children will pass on
+     * their constant level names here in order to differentiate between the levels
+     *
+     * @param level_name    The name of the level as specified in the JSON files
+     */
     public ArcadeMode(/*PoliticGameApp app,*/ String level_name){
         /*this.app = app;*/
         this.levelName = level_name;

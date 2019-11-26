@@ -44,6 +44,7 @@
         <activity android:name=".LoadCharacter.LoadCharacterActivity" />
         <activity android:name=".GameMode.GameModeActivity" />
         <activity android:name=".GameEnd.SingleEndActivity" />
+        <activity android:name=".GameMode.ArcadeActivity" />
     </application>
 
 </manifest>
