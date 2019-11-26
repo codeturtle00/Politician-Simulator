@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.GameMode.GameMode;
 import com.example.politicgame.Games.StampGame.StampInstructionActivity;
 import com.example.politicgame.R;
 
@@ -63,10 +64,20 @@ public class SpeechResult extends GameActivity implements Serializable {
     }
 
     public void openStampGame() {
-        Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
-        saveGame(presenter.getCurRating(), LEVEL_NAME);
-        startActivity(switchStampIntent);
-        finish();
+        GameMode gm = (GameMode) getIntent().getSerializableExtra("GameMode");
+
+        Log.i("gm == null", String.valueOf(gm == null));
+        Log.i("presenter == null", String.valueOf(presenter == null));
+
+        // Save and then move to the next activity
+        // Also the if condition will never be false, but this is here to just remove a warning
+        if (gm != null) {
+            gm.save(app, presenter.getCurRating());
+            Intent switchStampIntent = gm.next(this);
+
+            startActivity(switchStampIntent);
+            finish();
+        }
     }
 
 }
