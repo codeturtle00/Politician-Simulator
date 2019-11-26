@@ -96,7 +96,7 @@ public class SelectCharacterActivity extends GameActivity {
         backButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        openLoggedIn();
+                        openMainMenu();
                         app.getCurrentUser().setCurrentCharacter(selectedCharacter);
                     }
                 });

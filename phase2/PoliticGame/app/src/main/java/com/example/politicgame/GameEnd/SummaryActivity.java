@@ -41,7 +41,7 @@ public class SummaryActivity extends GameActivity {
           public void onClick(View v) {
             // Code here executes on main thread after user presses button
             saveData.saveInfo();
-            openLoggedIn();
+            openMainMenu();
           }
         });
 
@@ -51,7 +51,7 @@ public class SummaryActivity extends GameActivity {
           public void onClick(View v) {
             // Code here executes on main thread after user presses button
             saveData.resetLevels();
-            openLoggedIn();
+            openMainMenu();
           }
         });
   }

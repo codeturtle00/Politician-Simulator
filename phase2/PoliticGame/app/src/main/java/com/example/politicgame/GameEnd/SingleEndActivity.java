@@ -46,7 +46,7 @@ public class SingleEndActivity extends GameActivity{
                         SaveInfo saveData = new SaveInfo(app.getCurrentUser(), app.getCurrentCharacter(), score);
                         saveData.singleSaveInfo(levelName);
 
-                        openLoggedIn();
+                        openMainMenu();
                     }
                 });
 
@@ -54,7 +54,7 @@ public class SingleEndActivity extends GameActivity{
         quitMainMenuButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        openLoggedIn();
+                        openMainMenu();
                     }
                 });
     }

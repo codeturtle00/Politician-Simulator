@@ -10,6 +10,7 @@ import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.GameEnd.SummaryActivity;
 import com.example.politicgame.Leaderboard.LeaderBoardActivity;
+import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -102,12 +103,14 @@ public abstract class GameActivity extends AppCompatActivity {
     finish();
   }
 
-  /** Opens the login menu. */
+  // openLoggedIn() is depreciated as LoggedInActivity class is now unused
+  /*
   public void openLoggedIn() {
-    Intent loggedIntent = new Intent(this, MainActivity.class);
+    Intent loggedIntent = new Intent(this, LoggedInActivity.class);
     startActivity(loggedIntent);
     finish();
   }
+  */
 
   /** Opens the summary page. */
   public void openSummary() {
