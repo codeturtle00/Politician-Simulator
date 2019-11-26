@@ -22,6 +22,7 @@ public interface GameMode {
      */
     public Intent next(Context lastActivity);
 
+
     /**
      * Saves the data for the current game. Depending on the game mode it saves to different places
      * and saves the information differently.
@@ -42,6 +43,7 @@ public interface GameMode {
      * @param score         The score to be saved
      */
     public void save(PoliticGameApp app, int score);
+
 
     /**
      * Returns if this game has already been completed for this current play-through

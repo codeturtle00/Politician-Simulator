@@ -23,7 +23,7 @@ public abstract class ArcadeMode implements GameMode, Serializable {
      *
      * @param level_name    The name of the level as specified in the JSON files
      */
-    public ArcadeMode(/*PoliticGameApp app,*/ String level_name){
+    ArcadeMode(/*PoliticGameApp app,*/ String level_name){
         /*this.app = app;*/
         this.levelName = level_name;
     }

@@ -55,6 +55,7 @@ abstract class Event {
     this.babyHeight = babyHeight;
     this.res = res;
     this.paint = new Paint();
+    paint.setAlpha(95);
   }
 
   /**
@@ -63,15 +64,19 @@ abstract class Event {
    * @param v the View being used
    * @param initialX the X coordinate of the initial touch
    * @param initialY the Y coordinate of the initial touch
+   * @param movingX
+   * @param movingY
    * @param finalX the X coordinate of where the touch ended
    * @param finalY the Y coordinate of where the touch ended
    * @return value to change baby happiness by
    */
-  abstract int handleTouch(View v, float initialX, float initialY, float finalX, float finalY);
+  abstract int handleTouch(View v, float initialX, float initialY, float movingX, float movingY, float finalX, float finalY);
 
   void draw(Canvas canvas) {
     System.out.println("Drawing " + img + " at " + x + "," + y);
-    canvas.drawBitmap(img, x, y, paint);
+    int adjusted_x = x - imgWidth()/2;
+    int adjusted_y = y - imgHeight()/2;
+    canvas.drawBitmap(img, adjusted_x, adjusted_y, paint);
     System.out.println("Event drawn!");
   }
 
@@ -79,8 +84,16 @@ abstract class Event {
     x = (int) (Math.random() * (babyWidth + 1) + babyX);
   }
 
+  void setX(int x) {
+    this.x = x;
+  }
+
   void setY() {
     y = (int) (Math.random() * (babyHeight + 1) + babyY);
+  }
+
+  void setY(int y) {
+    this.y = y;
   }
 
   int getX() {

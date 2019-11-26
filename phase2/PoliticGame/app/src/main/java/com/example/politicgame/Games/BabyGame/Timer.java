@@ -14,7 +14,7 @@ class Timer {
 
   /** Creates a new timer. */
   Timer(BabyDraw babyDraw) {
-    timeLeftInMillis = 30000;
+    timeLeftInMillis = 60000;
     this.babyDraw = babyDraw;
   }
 

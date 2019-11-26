@@ -21,10 +21,10 @@ class Kiss extends Event {
   Kiss(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     super(babyX, babyY, babyWidth, babyHeight, res);
     Bitmap kiss = BitmapFactory.decodeResource(res, R.drawable.kisslips);
-    //    kiss = Bitmap.createScaledBitmap(kiss, 50, 30, false);
+    kiss = Bitmap.createScaledBitmap(kiss, 100, 60, false);
     setImg(kiss);
-    setX();
-    setY();
+    setX((int) (Math.random() * (babyWidth / 2) + babyX));
+    setY((int) (Math.random() * (babyHeight / 2) + babyY));
   }
 
   /**
@@ -33,21 +33,23 @@ class Kiss extends Event {
    * @param v the View being used
    * @param initialX the X coordinate of the initial touch
    * @param initialY the Y coordinate of the initial touch
+   * @param movingX not used
+   * @param movingY not used
    * @param finalX the X coordinate of where the touch ended
    * @param finalY the Y coordinate of where the touch ended
    * @return value to change baby happiness by
    */
   @Override
-  int handleTouch(View v, float initialX, float initialY, float finalX, float finalY) {
+  int handleTouch(View v, float initialX, float initialY, float movingX, float movingY, float finalX, float finalY) {
     if (Math.abs(finalX - initialX) < 20 && Math.abs(finalY - initialY) < 20) {
       if (!getInteraction()
-          && 0 < finalX - getX()
-          && finalX - getX() < imgWidth()
-          && 0 < finalY - getY()
-          && finalY - getY() < imgHeight()) {
+          && -20 < finalX - getX()
+          && finalX - getX() < imgWidth() + 20
+          && -20 < finalY - getY()
+          && finalY - getY() < imgHeight() + 20) {
         Log.d("Kiss", "Score increased");
         setInteraction(true);
-        return 10;
+        return 3;
       }
     }
     return 0;

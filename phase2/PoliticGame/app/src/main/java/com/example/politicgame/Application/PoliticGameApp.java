@@ -16,10 +16,7 @@ public class PoliticGameApp extends Application {
   // Song selections
   private MusicPlayer musicHandler;
 
-  public SpeechGameViewModel getSpeechView() {
-    return speechView;
-  }
-  private SpeechGameViewModel speechView = new SpeechGameViewModel();
+
 
 
   public void onCreate() {
@@ -31,7 +28,6 @@ public class PoliticGameApp extends Application {
     // Music Player
     musicHandler = new MusicPlayer(this);
 
-    speechView.loadQuestions();
   }
 
 

@@ -14,9 +14,6 @@ public class SpeechGame {
         return this.display;
     }
 
-    public SpeechGame() {
-
-    }
 
 
 }

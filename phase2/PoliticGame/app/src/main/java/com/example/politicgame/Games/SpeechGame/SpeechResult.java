@@ -8,27 +8,28 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.GameMode.GameMode;
 import com.example.politicgame.Games.StampGame.StampInstructionActivity;
 import com.example.politicgame.R;
 
-public class SpeechResult extends GameActivity {
+import java.io.Serializable;
 
+public class SpeechResult extends GameActivity implements Serializable {
+    private SpeechPresenter presenter;
     private final String LEVEL_NAME = "LEVEL2";
-    private int num_prompts;
 
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(SpeechActivity.INPUT_MESSAGE);
-        TextView textView = findViewById(R.id.userInput);
-        textView.setText(message);
 
-        num_prompts = getIntent().getIntExtra("prompt", 1);
+        presenter = (SpeechPresenter) this.getIntent().getSerializableExtra("SPEECH PRESENTER");
+
+        TextView textView = findViewById(R.id.userInput);
+        textView.setText(presenter.getUserInput());
 
         TextView ratingDisplay = findViewById(R.id.curRating);
-        String newRating = SpeechAwardPoints.getFeedback();
-        ratingDisplay.setText(newRating);
+        ratingDisplay.setText(presenter.getFeedback());
+
         final Button confirm = findViewById(R.id.confirm);
         confirm.setOnClickListener(
                 new View.OnClickListener() {
@@ -44,7 +45,8 @@ public class SpeechResult extends GameActivity {
                         openStampGame();
                     }
                 });
-        if(getIntent().getBooleanExtra("visible", false)){
+
+        if (presenter.isExitPoint()) {
             next.setVisibility(View.VISIBLE);
             confirm.setVisibility(View.INVISIBLE);
         }
@@ -57,22 +59,30 @@ public class SpeechResult extends GameActivity {
         setContentView(R.layout.activity_speech_result);
     }
 
-    public void returnSpeech(){
+    public void returnSpeech() {
         Intent backToSpeech = new Intent(this, SpeechActivity.class);
-        backToSpeech.putExtra("current rating", SpeechAwardPoints.getCurrentPoints());
-        backToSpeech.putExtra("num prompts", num_prompts);
-
-        Log.i("Current iteration", ((Integer)num_prompts).toString());
-
-        startActivity(backToSpeech);
+        backToSpeech.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
+        backToSpeech.putExtra("GameMode", getIntent().getSerializableExtra("GameMode")); // pass the presenter
+        startActivityForResult(backToSpeech, 5);
         finish();
+
     }
 
     public void openStampGame() {
-        Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);
-        saveGame(SpeechAwardPoints.getCurrentPoints(), LEVEL_NAME);
-        startActivity(switchStampIntent);
-        finish();
+        GameMode gm = (GameMode) getIntent().getSerializableExtra("GameMode");
+
+        Log.i("gm == null", String.valueOf(gm == null));
+        Log.i("presenter == null", String.valueOf(presenter == null));
+
+        // Save and then move to the next activity
+        // Also the if condition will never be false, but this is here to just remove a warning
+        if (gm != null) {
+            gm.save(app, presenter.getCurRating());
+            Intent switchStampIntent = gm.next(this);
+
+            startActivity(switchStampIntent);
+            finish();
+        }
     }
 
 }

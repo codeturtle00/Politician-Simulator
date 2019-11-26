@@ -31,17 +31,13 @@ class EventManager implements View.OnTouchListener {
   /** Height of the baby. */
   private int babyHeight;
 
-  /** X coordinate when screen is touched. */
   private float initialX;
-
-  /** Y coordinate when screen is touched. */
   private float initialY;
-
-  /** X coordinate of where the touch ends; eg. end of a swipe. */
-  private float finalX;
-
-  /** Y coordinate of where the touch ends; eg. end of a swipe. */
-  private float finalY;
+  //  private float finalX;
+  //  private float finalY;
+  private float movingX;
+  private float movingY;
+  private boolean moving;
 
   /**
    * Initializes a new EventManager which manages screen touches and events.
@@ -58,37 +54,31 @@ class EventManager implements View.OnTouchListener {
   /** Randomly generates an event. */
   void randomEvent() {
     Log.d("Running random event", viewUpdater.toString());
-    if (events.size() < 1) {
       Random rand = new Random();
-      //            final int randomNum = rand.nextInt(4); // Generates number between 0 and 3
-      int randomNum = 3; // ALWAYS SETS EVENT TO KISS
+      final int randomNum = rand.nextInt(6); // Generates number between 0 and 5
+
+    // Only 1-3 will trigger an event
       if (randomNum == 1) {
-        //        HorizontalShake horizontalShake =
-        //            new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
-        //        events.add(horizontalShake);
-        //        horizontalShake.draw(canvas);
-        events.add(new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
-        viewUpdater.updateEventAction(
-            "The baby needs to be cradled! Swipe horizontally at any location.");
+        HorizontalShake horizontalShake =
+            new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+        events.add(horizontalShake);
+        viewUpdater.updateEventAction("Horizontal Shake");
         Log.d("EventManager", "HorizontalShake started");
+
       } else if (randomNum == 2) {
-        //        VerticalShake verticalShake =
-        //            new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
-        //        events.add(verticalShake);
-        //        verticalShake.draw(canvas);
-        events.add(new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources));
-        viewUpdater.updateEventAction(
-            "The baby needs to be cradled! Swipe vertically at any location.");
+        VerticalShake verticalShake =
+            new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+        events.add(verticalShake);
+        viewUpdater.updateEventAction("VerticalShake started");
         Log.d("EventManager", "VerticalShake started");
+
       } else if (randomNum == 3) {
         Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
         events.add(kiss);
-        //        events.add(new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources));
         viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
         Log.d("EventManager", "Kiss started");
       }
     }
-  }
 
   /**
    * Calls events when screen is touched to handleTouch the score.
@@ -99,23 +89,32 @@ class EventManager implements View.OnTouchListener {
    */
   @Override
   public boolean onTouch(View v, MotionEvent touch) {
+
     switch (touch.getAction()) {
       case MotionEvent.ACTION_DOWN: // Screen was initially touched
         initialX = touch.getX();
         initialY = touch.getY();
-        Log.d("EventManager", "ACTION_DOWN registered");
+        Log.d("EventManager", "ACTION_DOWN registered at " + initialX + ", " + initialY);
         break;
+
+      case MotionEvent.ACTION_MOVE: // Finger moves
+        movingX = touch.getX();
+        movingY = touch.getY();
+        moving = true;
+        Log.d("EventManager", "ACTION_MOVE registered at " + movingX + ", " + movingY);
+        handleTouch(v, 0, 0);
+        break;
+
       case MotionEvent.ACTION_UP: // When finger is lifted off screen; eg. end of a swipe
-        finalX = touch.getX();
-        finalY = touch.getY();
-        Log.d("EventManager", "ACTION_UP registered");
+        float finalX = touch.getX();
+        float finalY = touch.getY();
+        moving = false;
+        Log.d("EventManager", "ACTION_UP registered at " + finalX + ", " + finalY);
+        handleTouch(v, finalX, finalY);
         break;
+
       default:
         return false;
-    }
-    // Only runs when finger is lifted off screen
-    if (touch.getAction() == MotionEvent.ACTION_UP) {
-      handleTouch(v);
     }
     return true;
   }
@@ -126,23 +125,28 @@ class EventManager implements View.OnTouchListener {
    *
    * @param v the View currently used
    */
-  void handleTouch(View v) {
+  void handleTouch(View v, float finalX, float finalY) {
     Random r = new Random();
     ArrayList<Event> tempEvents = new ArrayList<>(events);
     int totalScoreChange = 0;
     for (Event event : tempEvents) {
-      int scoreChange = event.handleTouch(v, initialX, initialY, finalX, finalY);
-      // randomize scoreChange between 0.5x to 1.5x
-      scoreChange *= (0.5 + r.nextFloat());
-      totalScoreChange += scoreChange;
+      // If click near an event, then call the event's handleTouch()
+      if (Math.abs(event.getX() - initialX) < 200 && Math.abs(event.getY() - initialY) < 200) {
+        int scoreChange =
+            event.handleTouch(v, initialX, initialY, movingX, movingY, finalX, finalY);
+        // randomize scoreChange between 0.5x to 1.5x
+        scoreChange *= (0.5 + r.nextFloat());
+        totalScoreChange += scoreChange;
+      }
 
       // Removes kiss
-      if (event.getClass().equals(Kiss.class) && event.getInteraction()) events.remove(event);
+      if (event.getInteraction()) events.remove(event);
     }
 
-    // If totalScoreChange is 0, user did not properly interact with any event.
-    if (totalScoreChange == 0) {
-      totalScoreChange = (int) (-10 * (0.5 + r.nextFloat()));
+    // If totalScoreChange is 0 and finger stopped moving,
+    // then user did not properly interact with any event.
+    if (totalScoreChange == 0 && !moving) {
+      totalScoreChange = (int) (-5 * (0.5 + r.nextFloat()));
     }
     updateScore(totalScoreChange);
     update();
