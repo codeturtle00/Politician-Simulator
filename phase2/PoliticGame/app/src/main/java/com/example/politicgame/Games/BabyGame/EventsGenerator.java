@@ -15,7 +15,7 @@ public class EventsGenerator implements Runnable {
   @Override
   public void run() {
     while (isRunning) {
-      eventManager.randomEvent();
+      if (eventManager.numEvents() < 3) eventManager.randomEvent();
       eventManager.update();
       try {
         sleep(1000);

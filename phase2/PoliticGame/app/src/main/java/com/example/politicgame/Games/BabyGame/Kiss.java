@@ -21,7 +21,7 @@ class Kiss extends Event {
   Kiss(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     super(babyX, babyY, babyWidth, babyHeight, res);
     Bitmap kiss = BitmapFactory.decodeResource(res, R.drawable.kisslips);
-    kiss = Bitmap.createScaledBitmap(kiss, 100, 60, false);
+    kiss = Bitmap.createScaledBitmap(kiss, 120, 72, false);
     setImg(kiss);
     setX((int) (Math.random() * (babyWidth / 2) + babyX));
     setY((int) (Math.random() * (babyHeight / 2) + babyY));

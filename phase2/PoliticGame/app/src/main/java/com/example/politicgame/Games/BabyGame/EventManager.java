@@ -62,20 +62,20 @@ class EventManager implements View.OnTouchListener {
         HorizontalShake horizontalShake =
             new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
         events.add(horizontalShake);
-        viewUpdater.updateEventAction("Horizontal Shake");
+        viewUpdater.updateEventAction("Cradle the baby! Slowly swipe back and forth along the arrow.");
         Log.d("EventManager", "HorizontalShake started");
 
       } else if (randomNum == 2) {
         VerticalShake verticalShake =
             new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
         events.add(verticalShake);
-        viewUpdater.updateEventAction("VerticalShake started");
+        viewUpdater.updateEventAction("Cradle the baby! Slowly swipe back and forth along the arrow.");
         Log.d("EventManager", "VerticalShake started");
 
       } else if (randomNum == 3) {
         Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
         events.add(kiss);
-        viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
+        viewUpdater.updateEventAction("Kiss the baby! Tap the kiss icon.");
         Log.d("EventManager", "Kiss started");
       }
     }
@@ -211,5 +211,14 @@ class EventManager implements View.OnTouchListener {
    */
   void setBabyHeight(int height) {
     this.babyHeight = height;
+  }
+
+  /**
+   * Returns the number of events currently happening.
+   *
+   * @return the number of events going on
+   */
+  int numEvents() {
+    return events.size();
   }
 }
