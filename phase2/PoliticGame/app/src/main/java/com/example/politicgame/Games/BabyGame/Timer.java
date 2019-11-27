@@ -3,7 +3,7 @@ package com.example.politicgame.Games.BabyGame;
 import android.os.CountDownTimer;
 
 class Timer {
-  /** Time left. */
+  /** Time arrow_left. */
   private long timeLeftInMillis;
 
   /** Countdown timer */
@@ -26,7 +26,7 @@ class Timer {
     }
   }
 
-  /** Resumes timer with however much time the player had left before. */
+  /** Resumes timer with however much time the player had arrow_left before. */
   void resume() {
     System.out.println("resuming with time " + timeLeftInMillis);
     timer =

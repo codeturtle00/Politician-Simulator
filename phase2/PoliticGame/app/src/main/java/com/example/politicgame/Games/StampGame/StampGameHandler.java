@@ -309,10 +309,10 @@ class StampGameHandler {
   }
 
   /**
-   * updates the number of proposals left that is being displayed on screen
+   * updates the number of proposals arrow_left that is being displayed on screen
    *
    * @param proposal TextView object of the proposal
-   * @param proposalLeft the integer value of the number of proposal left to be given to the user
+   * @param proposalLeft the integer value of the number of proposal arrow_left to be given to the user
    */
   private void updateProposal(TextView proposal, Integer proposalLeft) {
     String proposalLeftString = proposalLeft.toString();
@@ -320,7 +320,7 @@ class StampGameHandler {
   }
 
   /**
-   * change the proposal number displayed to the number of proposals left
+   * change the proposal number displayed to the number of proposals arrow_left
    *
    * @param proposalNum the minimum of {size of verbs, size of nouns};
    */

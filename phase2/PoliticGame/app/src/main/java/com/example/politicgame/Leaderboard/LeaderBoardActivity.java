@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.politicgame.Application.PoliticGameApp;
@@ -17,13 +20,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
-public class LeaderBoardActivity extends GameActivity {
-
-  private PoliticGameApp app;
+public class LeaderBoardActivity extends GameActivity implements AdapterView.OnItemSelectedListener {
+  private final String MODEONE = "Election Mode";
+  private final String MODETWO = "Baby Game";
+  private final String MODETHREE = "Speech Game";
+  private final String MODEFOUR = "Stamp Game";
   private final String FILE_NAME = "user.json";
   private FileSavingService fileSaving;
+
+  private String boardType;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +44,24 @@ public class LeaderBoardActivity extends GameActivity {
 
     this.fileSaving = new FileSavingService(this);
 
+    // Implementation for the Spinner
+    boardType = getIntent().getStringExtra("BoardType");
+    Spinner boardMenu = findViewById(R.id.election_spinner);
+    boardMenu.setOnItemSelectedListener(this);
+
+    // The drop down menu items
+    List<String> boards = getSpinnerItem(boardType);
+
+    // Creating adapter for spinner
+    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.board_spinner_layout, boards);
+
+    // Drop down layout style - list view with radio button
+    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+    // Attaching data adapter to spinner
+    boardMenu.setAdapter(dataAdapter);
+
+    // Update the scoreboard
     updateBoard();
 
     // Return to main menu button
@@ -45,6 +73,51 @@ public class LeaderBoardActivity extends GameActivity {
             returnMainMenu();
           }
         });
+  }
+
+
+  private List<String> getSpinnerItem(String currentBoard){
+    List<String> boardsLeft = new ArrayList<>(Arrays.asList(MODEONE,MODETWO,MODETHREE,MODEFOUR));
+    List<String> boards = new ArrayList<>();
+
+    // Remove the current score board type
+    boardsLeft.remove(currentBoard);
+
+    // Add the board types in order of the current score board type and then the rest in normal order
+    boards.add(currentBoard);
+    boards.addAll(boardsLeft);
+
+    return boards;
+  }
+
+
+  public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    // On selecting a spinner item
+    String item = parent.getItemAtPosition(position).toString();
+
+    if(item != boardType){
+      if (item.equals("Election Mode")){
+        Log.i("ItemSelected", "Election mode leaderboard selected");
+        boardType = MODEONE;
+      } else if (item.equals("Baby Game")){
+        Log.i("ItemSelected", "Baby game mode leaderboard selected");
+        boardType = MODETWO;
+      } else if (item.equals("Speech Game")){
+        Log.i("ItemSelected", "Speech game mode leaderboard selected");
+        boardType = MODETHREE;
+      } else if (item.equals("Stamp Game")){
+        Log.i("ItemSelected", "Stamp game mode leaderboard selected");
+        boardType = MODEFOUR;
+      }
+
+      reloadBoard();
+    }
+  }
+
+
+  public void onNothingSelected(AdapterView<?> parent) {
+    Log.i("ItemSelected", "No drop down item has been selected");
+
   }
 
 
@@ -116,6 +189,7 @@ public class LeaderBoardActivity extends GameActivity {
     }
   }
 
+
   public JSONArray getBoard() {
     /** Retrieves the leaderboard information */
     JSONArray jsonList = this.fileSaving.readJsonFile(FILE_NAME);
@@ -160,9 +234,21 @@ public class LeaderBoardActivity extends GameActivity {
     return boardList;
   }
 
+
   /** Return to the previous menu */
-  public void returnMainMenu() {
-    Intent restartIntent = new Intent(this, MainActivity.class);
+  private void returnMainMenu() {
+    Intent backIntent = new Intent(this, MainActivity.class);
+    startActivity(backIntent);
+    finish();
+  }
+
+
+  /**
+   * Reload the leaderboard
+   */
+  private void reloadBoard(){
+    Intent restartIntent = new Intent(this, LeaderBoardActivity.class);
+    restartIntent.putExtra("BoardType", boardType);
     startActivity(restartIntent);
     finish();
   }
