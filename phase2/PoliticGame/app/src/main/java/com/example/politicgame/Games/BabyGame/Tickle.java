@@ -8,9 +8,13 @@ import android.view.View;
 
 import com.example.politicgame.R;
 
-class Kiss extends Event {
+class Tickle extends Event {
+  private int numTickles = 5;
+  private int left;
+  private int right;
+
   /**
-   * Creates this Kiss event.
+   * Creates this Tickle event.
    *
    * @param babyX the X coordinate of the baby
    * @param babyY the Y coordinate of the baby
@@ -18,13 +22,17 @@ class Kiss extends Event {
    * @param babyHeight the height of the baby
    * @param res the resources to draw the baby
    */
-  Kiss(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
+  Tickle(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
     super(babyX, babyY, babyWidth, babyHeight, res);
-    Bitmap kiss = BitmapFactory.decodeResource(res, R.drawable.kisslips);
-    kiss = Bitmap.createScaledBitmap(kiss, 120, 72, false);
-    setImg(kiss);
-    setX((int) (Math.random() * (babyWidth / 2) + babyX));
-    setY((int) (Math.random() * (babyHeight / 2) + babyY));
+    Bitmap tickle = BitmapFactory.decodeResource(res, R.drawable.tickle);
+    tickle = Bitmap.createScaledBitmap(tickle, 180, 180, false);
+    setImg(tickle);
+    left = babyX + (babyWidth / 5);
+    right = babyX + babyWidth - (babyWidth / 5);
+    int side = Math.random() < 0.5 ? 0 : 1;
+    if (side == 0) setX(left);
+    else setX(right);
+    setY((babyHeight / 3) + babyY);
   }
 
   /**
@@ -48,15 +56,23 @@ class Kiss extends Event {
       float movingY,
       float finalX,
       float finalY) {
-    if (Math.abs(finalX - initialX) < 20 && Math.abs(finalY - initialY) < 20) {
+
+    if (numTickles > 0 && Math.abs(finalX - initialX) < 20 && Math.abs(finalY - initialY) < 20) {
       if (!getInteraction()
           && -20 < finalX - getX()
           && finalX - getX() < imgWidth() + 20
           && -20 < finalY - getY()
           && finalY - getY() < imgHeight() + 20) {
-        Log.d("Kiss", "Score increased");
-        setInteraction(true);
-        return 10;
+        numTickles--;
+        if (getX() == left) {
+          setX(right);
+          Log.d("Tickle", "Right Side Set");
+        } else {
+          setX(left);
+          Log.d("Tickle", "Left Side Set");
+        }
+        if (numTickles == 0) setInteraction(true);
+        return 3;
       }
     }
     return 0;
