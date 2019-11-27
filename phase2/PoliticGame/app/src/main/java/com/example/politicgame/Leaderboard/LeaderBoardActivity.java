@@ -25,7 +25,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class LeaderBoardActivity extends GameActivity implements AdapterView.OnItemSelectedListener {
+public class LeaderBoardActivity extends GameActivity
+    implements AdapterView.OnItemSelectedListener {
   private final String MODEONE = "Election Mode";
   private final String MODETWO = "Baby Game";
   private final String MODETHREE = "Speech Game";
@@ -53,7 +54,8 @@ public class LeaderBoardActivity extends GameActivity implements AdapterView.OnI
     List<String> boards = getSpinnerItem(boardType);
 
     // Creating adapter for spinner
-    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.board_spinner_layout, boards);
+    ArrayAdapter<String> dataAdapter =
+        new ArrayAdapter<String>(this, R.layout.board_spinner_layout, boards);
 
     // Drop down layout style - list view with radio button
     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -62,7 +64,7 @@ public class LeaderBoardActivity extends GameActivity implements AdapterView.OnI
     boardMenu.setAdapter(dataAdapter);
 
     // Update the scoreboard
-    updateBoard();
+    updateBoard(boardType);
 
     // Return to main menu button
     final Button button = findViewById(R.id.back);
@@ -75,37 +77,36 @@ public class LeaderBoardActivity extends GameActivity implements AdapterView.OnI
         });
   }
 
-
-  private List<String> getSpinnerItem(String currentBoard){
-    List<String> boardsLeft = new ArrayList<>(Arrays.asList(MODEONE,MODETWO,MODETHREE,MODEFOUR));
+  private List<String> getSpinnerItem(String currentBoard) {
+    List<String> boardsLeft = new ArrayList<>(Arrays.asList(MODEONE, MODETWO, MODETHREE, MODEFOUR));
     List<String> boards = new ArrayList<>();
 
     // Remove the current score board type
     boardsLeft.remove(currentBoard);
 
-    // Add the board types in order of the current score board type and then the rest in normal order
+    // Add the board types in order of the current score board type and then the rest in normal
+    // order
     boards.add(currentBoard);
     boards.addAll(boardsLeft);
 
     return boards;
   }
 
-
   public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
     // On selecting a spinner item
     String item = parent.getItemAtPosition(position).toString();
 
-    if(item != boardType){
-      if (item.equals("Election Mode")){
+    if (item != boardType) {
+      if (item.equals(MODEONE)) {
         Log.i("ItemSelected", "Election mode leaderboard selected");
         boardType = MODEONE;
-      } else if (item.equals("Baby Game")){
+      } else if (item.equals(MODETWO)) {
         Log.i("ItemSelected", "Baby game mode leaderboard selected");
         boardType = MODETWO;
-      } else if (item.equals("Speech Game")){
+      } else if (item.equals(MODETHREE)) {
         Log.i("ItemSelected", "Speech game mode leaderboard selected");
         boardType = MODETHREE;
-      } else if (item.equals("Stamp Game")){
+      } else if (item.equals(MODEFOUR)) {
         Log.i("ItemSelected", "Stamp game mode leaderboard selected");
         boardType = MODEFOUR;
       }
@@ -114,126 +115,66 @@ public class LeaderBoardActivity extends GameActivity implements AdapterView.OnI
     }
   }
 
-
   public void onNothingSelected(AdapterView<?> parent) {
     Log.i("ItemSelected", "No drop down item has been selected");
-
   }
 
+  public void updateBoard(String boardType) {
+    LeaderBoard board = getLeaderBoard(boardType);
+    List<JSONObject> boardCell = board.getBoard();
 
-  public void updateBoard() {
-    /** Updates the leaderboard */
-    // The JSONArray will come from Jacky's API for reading JSON
-    JSONArray charScores = getBoard();
+    JSONObject first = boardCell.get(0);
+    JSONObject second = boardCell.get(1);
+    JSONObject third = boardCell.get(2);
 
-    JSONObject first = new JSONObject();
-    JSONObject second = new JSONObject();
-    JSONObject third = new JSONObject();
-    try {
-      first.put("filler", new JSONObject().put("score", 0));
-      second.put("filler", new JSONObject().put("score", 0));
-      third.put("filler", new JSONObject().put("score", 0));
+    // The actual display of the leaderboard
+    final TextView player1 = findViewById(R.id.player1);
+    applyScores(player1, first, "First");
 
-      for (int i = 0; i < charScores.length(); i++) {
-        JSONObject charInfo = charScores.getJSONObject(i);
-        String charName = charInfo.keys().next();
-        int charScoreNum = charInfo.getJSONObject(charName).getInt("score");
+    final TextView player2 = findViewById(R.id.player2);
+    applyScores(player2, second, "Second");
 
-        Log.i("First", first.toString());
-        Log.i("Second", second.toString());
-        Log.i("Third", third.toString());
-        Log.i("charScores(name)", charInfo.toString());
+    final TextView player3 = findViewById(R.id.player3);
+    applyScores(player3, third, "Third");
+  }
 
-        if (charScoreNum > first.getJSONObject((first.keys().next())).getInt("score")) {
-          third = second;
-          second = first;
-          first = new JSONObject().put(charName, charInfo.getJSONObject(charName));
-        } else if (charScoreNum > second.getJSONObject((second.keys().next())).getInt("score")) {
-          third = second;
-          second = new JSONObject().put(charName, charInfo.getJSONObject(charName));
-        } else if (charScoreNum > third.getJSONObject((third.keys().next())).getInt("score")) {
-          third = new JSONObject().put(charName, charInfo.getJSONObject(charName));
-        }
-      }
-
-      // The actual display of the leaderboard
-      final TextView player1 = findViewById(R.id.player1);
-      player1.setText(
-          "First\nUser: "
-              + first.getJSONObject(first.keys().next()).getString("userName")
-              + "\nGameCharacter: "
-              + first.keys().next()
-              + "\nScore: "
-              + first.getJSONObject(first.keys().next()).getInt("score"));
-
-      final TextView player2 = findViewById(R.id.player2);
-      player2.setText(
-          "Second\nUser: "
-              + second.getJSONObject(second.keys().next()).getString("userName")
-              + "\nGameCharacter: "
-              + second.keys().next()
-              + "\nScore: "
-              + second.getJSONObject(second.keys().next()).getInt("score"));
-
-      final TextView player3 = findViewById(R.id.player3);
-      player3.setText(
-          "Third\nUser: "
-              + third.getJSONObject(third.keys().next()).getString("userName")
-              + "\nGameCharacter: "
-              + third.keys().next()
-              + "\nScore: "
-              + third.getJSONObject(third.keys().next()).getInt("score"));
-
+  private void applyScores(TextView textField, JSONObject scoreInfo, String rank){
+    try{
+    if (!scoreInfo.has("fill")) {
+      textField.setText(
+              rank + "\nUser: "
+                      + scoreInfo.getJSONObject(scoreInfo.keys().next()).getString("userName")
+                      + "\nGameCharacter: "
+                      + scoreInfo.keys().next()
+                      + "\nScore: "
+                      + scoreInfo.getJSONObject(scoreInfo.keys().next()).getInt("score"));
+    }
     } catch (JSONException e) {
       e.printStackTrace();
     }
   }
 
+  private LeaderBoard getLeaderBoard(String boardType) {
+    LeaderBoard lb;
 
-  public JSONArray getBoard() {
-    /** Retrieves the leaderboard information */
-    JSONArray jsonList = this.fileSaving.readJsonFile(FILE_NAME);
-
-    JSONArray boardList = new JSONArray();
-
-    try {
-      // A JSON files containing the User, their characters and their scores
-      for (int i = 0; i < jsonList.length(); i++) {
-        Iterator<String> userKeys = jsonList.getJSONObject(i).keys();
-        while (userKeys.hasNext()) {
-          String userKey = userKeys.next(); // String version of the userName
-          JSONArray charArray = jsonList.getJSONObject(i).getJSONArray(userKey);
-
-          for (int j = 0; j < charArray.length(); j++) {
-            JSONObject currentCharacter = charArray.getJSONObject(j);
-            String charName = currentCharacter.keys().next();
-
-            JSONArray scores = currentCharacter.getJSONObject(charName).getJSONArray("SCORE");
-
-            for (int k = 0; k < scores.length(); k++) {
-              JSONObject charScore = new JSONObject();
-              JSONObject charInfo = new JSONObject();
-
-              charInfo.put("userName", userKey);
-              charInfo.put("score", scores.getInt(k));
-              charScore.put(charName, charInfo);
-
-              Log.i("Character Score", charScore.toString());
-
-              boardList.put(charScore);
-            }
-          }
-        }
-      }
-    } catch (JSONException e) {
-      e.printStackTrace();
+    if (boardType.equals(MODEONE)) {
+      Log.i("ItemSelected", "Election mode leaderboard selected");
+      lb = new ElectionBoardGetter(this);
+    } else if (boardType.equals(MODETWO)) {
+      Log.i("ItemSelected", "Baby game mode leaderboard selected");
+      lb = new SingleBoardGetter(this, "LEVEL1");
+    } else if (boardType.equals(MODETHREE)) {
+      Log.i("ItemSelected", "Speech game mode leaderboard selected");
+      lb = new SingleBoardGetter(this, "LEVEL2");
+    } else if (boardType.equals(MODEFOUR)) {
+      Log.i("ItemSelected", "Stamp game mode leaderboard selected");
+      lb = new SingleBoardGetter(this, "LEVEL3");
+    } else {
+      lb = new ElectionBoardGetter(this);
     }
 
-    Log.i("Character Scores", boardList.toString());
-
-    return boardList;
+    return lb;
   }
-
 
   /** Return to the previous menu */
   private void returnMainMenu() {
@@ -242,11 +183,8 @@ public class LeaderBoardActivity extends GameActivity implements AdapterView.OnI
     finish();
   }
 
-
-  /**
-   * Reload the leaderboard
-   */
-  private void reloadBoard(){
+  /** Reload the leaderboard */
+  private void reloadBoard() {
     Intent restartIntent = new Intent(this, LeaderBoardActivity.class);
     restartIntent.putExtra("BoardType", boardType);
     startActivity(restartIntent);
