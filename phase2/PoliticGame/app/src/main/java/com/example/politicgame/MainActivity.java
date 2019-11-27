@@ -29,6 +29,10 @@ public class MainActivity extends GameActivity {
     Animation animated_trump = AnimationUtils.loadAnimation(this, R.anim.animated_trump);
     trumpIMG.startAnimation(animated_trump);
 
+    ImageView titleIMG = findViewById(R.id.gameTitle);
+    Animation animated_title = AnimationUtils.loadAnimation(this, R.anim.animated_title);
+    titleIMG.startAnimation(animated_title);
+
     // Login button
     final Button loginButton = findViewById(R.id.login);
 
@@ -93,7 +97,6 @@ public class MainActivity extends GameActivity {
     /** Opens the login page */
     Intent loginPageIntent = new Intent(this, LoginActivity.class);
     startActivity(loginPageIntent);
-    finish();
   }
 
   public void openLeaderBoard() {

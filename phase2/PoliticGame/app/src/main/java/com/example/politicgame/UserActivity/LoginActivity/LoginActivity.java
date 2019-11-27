@@ -27,6 +27,7 @@ import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.Application.PoliticGameApp;
+import com.example.politicgame.PopUpActivity;
 import com.example.politicgame.R;
 import com.example.politicgame.UserActivity.FormState;
 import com.example.politicgame.UserActivity.RegisterActivity.RegistrationActivity;
@@ -35,7 +36,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 /** An activity responsible for login*/
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends PopUpActivity {
   private PoliticGameApp app;
   private LoginViewModel loginViewModel;
   private FileSavingService fileSaving;

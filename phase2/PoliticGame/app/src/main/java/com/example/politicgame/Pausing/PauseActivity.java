@@ -8,11 +8,12 @@ import android.widget.ImageView;
 
 import com.example.politicgame.Character.SpriteSetter;
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.PopUpActivity;
 import com.example.politicgame.R;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.Character.UserTools.UserAccount;
 
-public class PauseActivity extends GameActivity {
+public class PauseActivity extends PopUpActivity {
 
   private final int DEFAULT_CODE = 0;
   private final int RESUME_CODE = 1;
@@ -40,16 +41,7 @@ public class PauseActivity extends GameActivity {
         });
 
     // Quit to main menu button
-    final Button quitB = findViewById(R.id.sign_out);
-    quitB.setOnClickListener(
-        new View.OnClickListener() {
-          public void onClick(View v) {
-            returnRequest(QUIT_CODE);
-          }
-        });
-
-    // Quit to logged in menu button
-    final Button loggedInB = findViewById(R.id.pause_menu_load_screen);
+    final Button loggedInB = findViewById(R.id.pause_main_menu);
     loggedInB.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {

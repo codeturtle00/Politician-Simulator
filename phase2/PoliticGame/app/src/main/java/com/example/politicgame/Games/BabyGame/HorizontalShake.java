@@ -10,9 +10,9 @@ import com.example.politicgame.R;
 
 class HorizontalShake extends Event {
 
-    private int swipesLeft = 5;
-    private boolean moveLeft = true;
-    private Bitmap img;
+  private int swipesLeft = 5;
+  private boolean moveLeft = true;
+  private Bitmap img;
 
   /**
    * Creates this HorizontalShake event.
@@ -44,27 +44,38 @@ class HorizontalShake extends Event {
    * @return value to change baby happiness by
    */
   @Override
-  int handleTouch(View v, float initialX, float initialY, float movingX, float movingY, float finalX, float finalY) {
+  int handleTouch(
+      View v,
+      float initialX,
+      float initialY,
+      float movingX,
+      float movingY,
+      float finalX,
+      float finalY) {
 
-      if (swipesLeft > 0 && Math.abs(initialY - movingY) < 50) {
-          if (initialX - movingX > 100 && moveLeft) {
-            swipesLeft--;
-            Log.d("HorizontalShake", "Swiping Left, swipesLeft = " + swipesLeft);
-            img = Bitmap.createScaledBitmap(img, (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false);
-            setImg(img);
-            moveLeft = false;
-          } else if (movingX - initialX > 100 && !moveLeft) {
-            swipesLeft--;
-            Log.d("HorizontalShake", "Swiping Right, swipesLeft = " + swipesLeft);
-            img = Bitmap.createScaledBitmap(img, (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false);
-            setImg(img);
-            moveLeft = true;
-          }
+    if (swipesLeft > 0 && Math.abs(movingY - getY()) < 50) {
+      if (initialX - movingX > 100 && moveLeft) {
+        swipesLeft--;
+        Log.d("HorizontalShake", "Swiping Left, swipesLeft = " + swipesLeft);
+        img =
+            Bitmap.createScaledBitmap(
+                img, (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false);
+        setImg(img);
+        moveLeft = false;
+        if (swipesLeft == 0) setInteraction(true);
+        return 3;
+      } else if (movingX - initialX > 100 && !moveLeft) {
+        swipesLeft--;
+        Log.d("HorizontalShake", "Swiping Right, swipesLeft = " + swipesLeft);
+        img =
+            Bitmap.createScaledBitmap(
+                img, (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false);
+        setImg(img);
+        moveLeft = true;
+        if (swipesLeft == 0) setInteraction(true);
+        return 3;
       }
-      if (swipesLeft == 0) {
-          setInteraction(true);
-          return 10;
-      }
-      return 0;
+    }
+    return 0;
   }
 }
