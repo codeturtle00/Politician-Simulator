@@ -7,39 +7,15 @@
     android:background="?attr/backColor"
     tools:context=".NewCharacter.SelectCharacterActivity">
 
-    <ImageView
-        android:id="@+id/imageButton"
-        android:layout_width="134dp"
-        android:layout_height="249dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="60dp"
-        android:contentDescription="First politician picture"
-        android:padding="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_character_text"
-        app:srcCompat="@drawable/jake" />
-
-    <ImageView
-        android:id="@+id/imageButton2"
-        android:layout_width="143dp"
-        android:layout_height="241dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="46dp"
-        android:contentDescription="Second politician picture"
-        android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/imageButton"
-        app:srcCompat="@drawable/helmet_guy" />
-
     <TextView
         android:id="@+id/select_character_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_marginBottom="495dp"
         android:text="Select Your Character"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/name_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,20 +24,19 @@
         android:id="@+id/name_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Insert name here"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/submit_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/submit_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="24dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,24 +47,103 @@
         android:id="@+id/error_character"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:textColor="#F44336"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        tools:layout_editor_absoluteX="222dp" />
 
     <TextView
         android:id="@+id/error_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="191dp"
         android:layout_marginBottom="8dp"
         android:textColor="#F44336"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/name_input"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="327dp"
+        android:layout_height="537dp"
+        android:fillViewport="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="88dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="150dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageButton"
+                android:layout_width="330dp"
+                android:layout_height="338dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="60dp"
+                android:contentDescription="First politician picture"
+                android:padding="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/select_character_text"
+                app:srcCompat="@drawable/jake" />
+
+            <ImageView
+                android:id="@+id/imageButton2"
+                android:layout_width="330dp"
+                android:layout_height="336dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="60dp"
+                android:contentDescription="Second politician picture"
+                android:padding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageButton"
+                app:layout_constraintTop_toTopOf="@+id/imageButton"
+                app:srcCompat="@drawable/helmet_guy" />
+
+            <ImageView
+                android:id="@+id/imageButton3"
+                android:layout_width="330dp"
+                android:layout_height="336dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="60dp"
+                android:contentDescription="Third politician picture"
+                android:padding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageButton"
+                app:layout_constraintTop_toTopOf="@+id/imageButton"
+                app:srcCompat="@drawable/harry_potter" />
+
+            <ImageView
+                android:id="@+id/imageButton4"
+                android:layout_width="330dp"
+                android:layout_height="336dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="60dp"
+                android:contentDescription="Fourth politician picture"
+                android:padding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageButton"
+                app:layout_constraintTop_toTopOf="@+id/imageButton"
+                app:srcCompat="@drawable/sponge_bob" />
+
+            <ImageView
+                android:id="@+id/imageButton5"
+                android:layout_width="330dp"
+                android:layout_height="336dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="60dp"
+                android:contentDescription="Fifth politician picture"
+                android:padding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageButton"
+                app:layout_constraintTop_toTopOf="@+id/imageButton"
+                app:srcCompat="@drawable/winnie" />
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <Button
         android:id="@+id/backButton"
