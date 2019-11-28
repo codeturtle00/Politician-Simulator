@@ -23,8 +23,9 @@ public class SpriteSetter {
 //      pauseImage.setBackgroundResource(R.drawable.jake);
         } else if (charId == 2) {
             image.setImageResource(R.drawable.helmet_guy);
-//      pauseImage.setBackgroundResource(R.drawable.helmet_guy);
-        } else {
+      //      pauseImage.setBackgroundResource(R.drawable.helmet_guy);
+    }
+        else {
             image.setImageResource(R.drawable.pause_filler);
 //      pauseImage.setBackgroundResource(R.drawable.pause_filler);
         }
