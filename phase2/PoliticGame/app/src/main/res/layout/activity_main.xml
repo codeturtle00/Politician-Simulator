@@ -20,20 +20,17 @@
 
     <Button
         android:id="@+id/leaderBoard"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="92dp"
         android:text="@string/view_leader_board"
-        android:textAllCaps="false"
         android:textColor="@color/textWhite"
         android:textSize="30sp"
-        android:fontFamily="@font/pixelfont"
-        android:textStyle="bold"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/greenbutton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/login"
@@ -41,33 +38,25 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
         android:text="@string/login"
-        android:textAllCaps="false"
-        android:textColor="@color/textWhite"
+        style="@style/Button"
         android:textSize="30sp"
-        android:fontFamily="@font/pixelfont"
-        android:textStyle="bold"
         android:padding="20dp"
         app:layout_constraintBottom_toTopOf="@+id/select_character"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/greenbutton"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/select_character"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
         android:text="@string/logged_in_activity_select_char"
-        android:textAllCaps="false"
-        android:textColor="@color/textWhite"
         android:textSize="30sp"
-        android:fontFamily="@font/pixelfont"
-        android:textStyle="bold"
         android:padding="20dp"
         app:layout_constraintBottom_toTopOf="@+id/leaderBoard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/greenbutton"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/settings"
