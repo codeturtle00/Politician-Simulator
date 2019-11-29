@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Blue application theme. -->
-    <style name="BlueTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BlueTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -11,7 +11,7 @@
 
 
     <!-- Red application theme. -->
-    <style name="RedTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="RedTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
