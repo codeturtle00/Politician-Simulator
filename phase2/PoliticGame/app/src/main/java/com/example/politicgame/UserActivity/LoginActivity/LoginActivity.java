@@ -16,9 +16,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,13 +53,6 @@ public class LoginActivity extends PopUpActivity {
   @Override
   protected void onStart() {
     super.onStart();
-    final Button registration = findViewById(R.id.signup);
-    registration.setOnClickListener(
-        new View.OnClickListener() {
-          public void onClick(View v) {
-            register();
-          }
-        });
   }
 
   @Override
@@ -80,7 +76,14 @@ public class LoginActivity extends PopUpActivity {
     final EditText passwordEditText = findViewById(R.id.password);
     final Button loginButton = findViewById(R.id.login);
     final ProgressBar loadingProgressBar = findViewById(R.id.loading);
-    final Button backButton = findViewById(R.id.sign_out);
+    final ImageButton closeButton = findViewById(R.id.closeLogin);
+    final Button registration = findViewById(R.id.signup);
+    Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
+    usernameEditText.startAnimation(slide_up);
+    passwordEditText.startAnimation(slide_up);
+    loginButton.startAnimation(slide_up);
+    registration.startAnimation(slide_up);
+
     /**
      * Observe the form state of the username and password, set error state if there is a formState
      * Error
@@ -171,13 +174,20 @@ public class LoginActivity extends PopUpActivity {
           }
         });
 
-    backButton.setOnClickListener(
+    closeButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
             // Code here executes on main thread after user presses button
-            BackToMenu();
+              finish();
           }
         });
+
+    registration.setOnClickListener(
+          new View.OnClickListener() {
+              public void onClick(View v) {
+                  register();
+              }
+              });
   }
   /**
    * If successfully login in, a.creates a new UserAccount object b.set a list of characters for the
@@ -219,8 +229,4 @@ public class LoginActivity extends PopUpActivity {
         startActivity(registerIntent);
         finish();
     }
-  /** Returns to main menu */
-  public void BackToMenu() {
-    finish();
-  }
 }

@@ -116,6 +116,7 @@ public class MainActivity extends GameActivity {
     /** Opens the login page */
     Intent loginPageIntent = new Intent(this, LoginActivity.class);
     startActivity(loginPageIntent);
+    overridePendingTransition(R.anim.slide_up, R.anim.slide_up);
   }
 
   public void openLeaderBoard() {
