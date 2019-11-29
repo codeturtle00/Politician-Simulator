@@ -121,6 +121,7 @@ public class MainActivity extends GameActivity {
   public void openLeaderBoard() {
     /** Opens the leaderboard screen */
     Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
+    switchBoardIntent.putExtra("BoardType", "Election Mode");
     startActivity(switchBoardIntent);
     finish();
   }

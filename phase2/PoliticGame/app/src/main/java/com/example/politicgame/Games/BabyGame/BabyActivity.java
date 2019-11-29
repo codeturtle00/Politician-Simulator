@@ -98,12 +98,12 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   void openSpeechGame() {
     GameMode gm = (GameMode) getIntent().getSerializableExtra("GameMode");
 
-    //These two lines replace the two below
+    // These two lines replace the two below
     gm.save(app, happiness);
     Intent switchSpeechIntent = gm.next(this);
 
-    //Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
-    //saveGame(happiness, LEVEL_NAME);
+    // Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
+    // saveGame(happiness, LEVEL_NAME);
 
     startActivity(switchSpeechIntent);
     finish();

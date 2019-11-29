@@ -55,7 +55,7 @@ abstract class Event {
     this.babyHeight = babyHeight;
     this.res = res;
     this.paint = new Paint();
-    paint.setAlpha(95);
+    paint.setAlpha(180);
   }
 
   /**
@@ -70,26 +70,25 @@ abstract class Event {
    * @param finalY the Y coordinate of where the touch ended
    * @return value to change baby happiness by
    */
-  abstract int handleTouch(View v, float initialX, float initialY, float movingX, float movingY, float finalX, float finalY);
+  abstract int handleTouch(
+      View v,
+      float initialX,
+      float initialY,
+      float movingX,
+      float movingY,
+      float finalX,
+      float finalY);
 
   void draw(Canvas canvas) {
     System.out.println("Drawing " + img + " at " + x + "," + y);
-    int adjusted_x = x - imgWidth()/2;
-    int adjusted_y = y - imgHeight()/2;
-    canvas.drawBitmap(img, adjusted_x, adjusted_y, paint);
+    int adjustedX = x - imgWidth() / 2;
+    int adjustedY = y - imgHeight() / 2;
+    canvas.drawBitmap(img, adjustedX, adjustedY, paint);
     System.out.println("Event drawn!");
-  }
-
-  void setX() {
-    x = (int) (Math.random() * (babyWidth + 1) + babyX);
   }
 
   void setX(int x) {
     this.x = x;
-  }
-
-  void setY() {
-    y = (int) (Math.random() * (babyHeight + 1) + babyY);
   }
 
   void setY(int y) {
@@ -106,6 +105,10 @@ abstract class Event {
 
   void setImg(Bitmap img) {
     this.img = img;
+  }
+
+  Bitmap getImg() {
+    return img;
   }
 
   int imgWidth() {

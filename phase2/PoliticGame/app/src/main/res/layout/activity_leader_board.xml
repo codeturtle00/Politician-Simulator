@@ -12,7 +12,7 @@
         android:id="@+id/player3"
         android:layout_width="243dp"
         android:layout_height="120dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="Empty, play some more to fill the leaderboard"
         android:textColor="?attr/textColor"
         android:textSize="18sp"
@@ -26,13 +26,14 @@
         android:id="@+id/player2"
         android:layout_width="242dp"
         android:layout_height="120dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="Empty, play some more to fill the leaderboard"
         android:textColor="?attr/textColor"
         android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player1" />
 
@@ -40,24 +41,35 @@
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginTop="32dp"
         android:text="Go back to main Menu"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player3" />
 
     <TextView
         android:id="@+id/player1"
         android:layout_width="241dp"
         android:layout_height="120dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="32dp"
         android:text="Empty, play some more to fill the leaderboard"
         android:textColor="?attr/textColor"
         android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/election_spinner" />
+
+    <Spinner
+        android:id="@+id/election_spinner"
+        android:layout_width="305dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

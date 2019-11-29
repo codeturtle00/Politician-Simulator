@@ -45,7 +45,7 @@ public class StampActivity extends GameActivity {
 
     /*
      The Three TextView on screen that shows one's rating, the proposal, and number of
-     proposal left
+     proposal arrow_left
     */
     final TextView rating = findViewById(R.id.stamp_game_rating_score);
     final TextView promptDisplay = findViewById(R.id.npcPrompt);

@@ -3,16 +3,13 @@ package com.example.politicgame.Games.BabyGame;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.util.Log;
 import android.view.View;
 
 import com.example.politicgame.R;
 
 class VerticalShake extends Event {
-
-  private Bitmap img ;
-  private int swipesLeft = 5;
+  private int swipesLeft = 3;
   private boolean moveUp = true;
 
   /**
@@ -28,7 +25,7 @@ class VerticalShake extends Event {
     super(babyX, babyY, babyWidth, babyHeight, res);
     setX((int) (Math.random() * (babyWidth / 3) + babyX));
     setY((int) (Math.random() * (babyHeight / 2) + babyY + (babyHeight / 2)));
-    img = BitmapFactory.decodeResource(res, R.drawable.updownarrow);
+    Bitmap img = BitmapFactory.decodeResource(res, R.drawable.updownarrow);
     setImg(img);
   }
 
@@ -38,32 +35,42 @@ class VerticalShake extends Event {
    * @param v the View being used
    * @param initialX the X coordinate of the initial touch
    * @param initialY the Y coordinate of the initial touch
-   * @param movingX
-   * @param movingY
-   * @param finalX the X coordinate of where the touch ended
-   * @param finalY the Y coordinate of where the touch ended
+   * @param movingX the updated X coordinate from finger movement
+   * @param movingY the updated Y coordinate from finger movement
+   * @param finalX not used
+   * @param finalY not used
    * @return value to change baby happiness by
    */
   @Override
-  int handleTouch(View v, float initialX, float initialY, float movingX, float movingY, float finalX, float finalY) {
-    if (swipesLeft > 0 && Math.abs(initialX - movingX) < 50) {
+  int handleTouch(
+      View v,
+      float initialX,
+      float initialY,
+      float movingX,
+      float movingY,
+      float finalX,
+      float finalY) {
+
+    if (swipesLeft > 0 && Math.abs(movingX - getX()) < 50) {
       if (initialY - movingY > 100 && !moveUp) {
         swipesLeft--;
         Log.d("VerticalShake", "Swiping Left, swipesLeft = " + swipesLeft);
         moveUp = true;
-        img = Bitmap.createScaledBitmap(img, (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false);
-        setImg(img);
+        setImg(
+            Bitmap.createScaledBitmap(
+                getImg(), (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false));
+        if (swipesLeft == 0) setInteraction(true);
+        return 5;
       } else if (movingY - initialY > 100 && moveUp) {
         swipesLeft--;
         Log.d("VerticalShake", "Swiping Right, swipesLeft = " + swipesLeft);
-        img = Bitmap.createScaledBitmap(img, (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false);
-        setImg(img);
+        setImg(
+            Bitmap.createScaledBitmap(
+                getImg(), (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false));
         moveUp = false;
+        if (swipesLeft == 0) setInteraction(true);
+        return 5;
       }
-    }
-    if (swipesLeft == 0) {
-      setInteraction(true);
-      return 10;
     }
     return 0;
   }

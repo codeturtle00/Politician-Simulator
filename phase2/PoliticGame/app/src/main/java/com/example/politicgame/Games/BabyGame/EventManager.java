@@ -54,31 +54,38 @@ class EventManager implements View.OnTouchListener {
   /** Randomly generates an event. */
   void randomEvent() {
     Log.d("Running random event", viewUpdater.toString());
-      Random rand = new Random();
-      final int randomNum = rand.nextInt(6); // Generates number between 0 and 5
+    Random rand = new Random();
+    final int randomNum = rand.nextInt(7); // Generates number between 0 and 5
 
-    // Only 1-3 will trigger an event
-      if (randomNum == 1) {
-        HorizontalShake horizontalShake =
-            new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
-        events.add(horizontalShake);
-        viewUpdater.updateEventAction("Horizontal Shake");
-        Log.d("EventManager", "HorizontalShake started");
+    // Only 1-4 will trigger an event
+    if (randomNum == 1) {
+      HorizontalShake horizontalShake =
+          new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+      events.add(horizontalShake);
+      viewUpdater.updateEventAction(
+          "Cradle the baby! Slowly swipe back and forth along the arrow.");
+      Log.d("EventManager", "HorizontalShake started");
 
-      } else if (randomNum == 2) {
-        VerticalShake verticalShake =
-            new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
-        events.add(verticalShake);
-        viewUpdater.updateEventAction("VerticalShake started");
-        Log.d("EventManager", "VerticalShake started");
+    } else if (randomNum == 2) {
+      VerticalShake verticalShake =
+          new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+      events.add(verticalShake);
+      viewUpdater.updateEventAction(
+          "Cradle the baby! Slowly swipe back and forth along the arrow.");
+      Log.d("EventManager", "VerticalShake started");
 
-      } else if (randomNum == 3) {
-        Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
-        events.add(kiss);
-        viewUpdater.updateEventAction("Kiss the baby. Touch anywhere");
-        Log.d("EventManager", "Kiss started");
-      }
+    } else if (randomNum == 3) {
+      Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
+      events.add(kiss);
+      viewUpdater.updateEventAction("Kiss the baby! Tap the kiss icon.");
+      Log.d("EventManager", "Kiss started");
+    } else if (randomNum == 4) {
+      Tickle tickle = new Tickle(babyX, babyY, babyWidth, babyHeight, babyResources);
+      events.add(tickle);
+      viewUpdater.updateEventAction("Tickle the baby! Tap on the tickle icons.");
+      Log.d("EventManager", "Tickle started");
     }
+  }
 
   /**
    * Calls events when screen is touched to handleTouch the score.
@@ -211,5 +218,14 @@ class EventManager implements View.OnTouchListener {
    */
   void setBabyHeight(int height) {
     this.babyHeight = height;
+  }
+
+  /**
+   * Returns the number of events currently happening.
+   *
+   * @return the number of events going on
+   */
+  int numEvents() {
+    return events.size();
   }
 }
