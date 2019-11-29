@@ -23,7 +23,7 @@
         style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="50dp"
         android:text="@string/view_leader_board"
         android:textColor="@color/textWhite"
         android:textSize="30sp"
@@ -31,6 +31,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:text="Play"
+        style="@style/Button"
+        android:textSize="30sp"
+        android:padding="20dp"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/login"
@@ -41,6 +56,8 @@
         style="@style/Button"
         android:textSize="30sp"
         android:padding="20dp"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
         app:layout_constraintBottom_toTopOf="@+id/select_character"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -58,15 +75,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        android:text="Settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@null"
+        android:src="@drawable/settings_icon"/>
 
     <ImageView
         android:id="@+id/gameTitle"

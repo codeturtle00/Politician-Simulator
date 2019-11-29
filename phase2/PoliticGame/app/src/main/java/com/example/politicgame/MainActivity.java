@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
@@ -18,11 +19,12 @@ import org.json.JSONObject;
 
 public class MainActivity extends GameActivity {
 
+  boolean theme;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    setTitle("Main Menu");
 
     super.onCreate(savedInstanceState);
+    theme = app.isThemeBlue();
     setContentView(R.layout.activity_main);
 
     ImageView trumpIMG = findViewById(R.id.trump);
@@ -43,7 +45,7 @@ public class MainActivity extends GameActivity {
     leaderboardButton();
 
     // Settings button, opens the settings menu
-    final Button settingButton = findViewById(R.id.settings);
+    final ImageButton settingButton = findViewById(R.id.settings);
     settingButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
@@ -56,8 +58,11 @@ public class MainActivity extends GameActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    // Reload buttons that depend on if user is logged in
     selectCharacterButton();
     loginButton();
+    // If theme has changed, reload
+    if (theme != app.isThemeBlue()) recreate();
   }
 
   private void leaderboardButton() {
@@ -105,8 +110,9 @@ public class MainActivity extends GameActivity {
               new View.OnClickListener() {
                 public void onClick(View v) {
                   app.setCurrentUser(null);
-                  // Reload Activity
-                  onResume();
+                  // Reload necessary buttons
+                  selectCharacterButton();
+                  loginButton();
                 }
               });
     }
@@ -131,7 +137,7 @@ public class MainActivity extends GameActivity {
     /** Open the settings menu */
     Intent settingsIntent = new Intent(this, SettingsActivity.class);
     startActivity(settingsIntent);
-    finish();
+    overridePendingTransition(R.anim.slide_up, R.anim.slide_up);
   }
 
   public void openLoadCharacter () {

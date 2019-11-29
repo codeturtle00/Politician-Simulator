@@ -4,10 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-public class SettingsActivity extends GameActivity {
+public class SettingsActivity extends PopUpActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -37,11 +38,11 @@ public class SettingsActivity extends GameActivity {
           }
         });
 
-    final Button quitButton = findViewById(R.id.sign_out);
+    final ImageButton quitButton = findViewById(R.id.closeSettings);
     quitButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            returnMainMenu();
+              finish();
           }
         });
 
@@ -85,10 +86,4 @@ public class SettingsActivity extends GameActivity {
     finish();
   }
 
-  /** Return to the previous menu */
-  public void returnMainMenu() {
-  Intent restartIntent = new Intent(this, MainActivity.class);
-  startActivity(restartIntent);
-  finish();
-  }
 }
