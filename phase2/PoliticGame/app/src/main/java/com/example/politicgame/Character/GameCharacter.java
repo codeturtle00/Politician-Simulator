@@ -12,13 +12,9 @@ public class GameCharacter {
         this.charId = charId;
     }
   public JSONObject getJsonChar(String name){
-      CharacterBuilder charBuilder = new CharacterBuilder(name);
+      CharacterBuilder charBuilder = new CharacterBuilder(name, charId);
       JSONObject charJson = charBuilder.getJsonChar();
-      try {
-          charJson.put("charId",this.charId);
-      } catch (JSONException e) {
-          e.printStackTrace();
-      }
+
       return charJson;
   }
 }

@@ -26,21 +26,6 @@ public class SelectCharacterActivity extends GameActivity {
   private Drawable highlight;
   private PoliticGameApp app;
 
-  private void setListener(
-      final ImageView charButton, final ArrayList<ImageView> charList, final int i) {
-    charButton.setOnClickListener(
-        new View.OnClickListener() {
-          public void onClick(View v) {
-            currCharacter = i;
-            selectedCharacter = new GameCharacter(i);
-            for (ImageView view : charList) {
-              view.setBackground(null);
-            }
-            charButton.setBackground(highlight);
-          }
-        });
-  }
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -102,6 +87,21 @@ public class SelectCharacterActivity extends GameActivity {
             app.getCurrentUser().setCurrentCharacter(selectedCharacter);
           }
         });
+  }
+
+  private void setListener(
+          final ImageView charButton, final ArrayList<ImageView> charList, final int i) {
+    charButton.setOnClickListener(
+            new View.OnClickListener() {
+              public void onClick(View v) {
+                currCharacter = i;
+                selectedCharacter = new GameCharacter(i);
+                for (ImageView view : charList) {
+                  view.setBackground(null);
+                }
+                charButton.setBackground(highlight);
+              }
+            });
   }
 
   public void characterSet(String name) {

@@ -15,12 +15,6 @@ class Baby {
   /** This Baby's Y coordinate. */
   private int y;
 
-//  /** The center of the Baby's X coordinate. */
-//  private float centerX;
-//
-//  /** This center of the Baby's Y coordinate. */
-//  private float centerY;
-
   /** This Baby's width. */
   private int width;
 
@@ -38,14 +32,14 @@ class Baby {
    *
    * @param centerX the X coordinate of the center of the Baby
    * @param centerY the Y coordinate of the center of the Baby
-   * @param res the resources used to draw this Baby
+   * @param res the resources used to draw the Baby
    */
   Baby(int centerX, int centerY, Resources res) {
     paint = new Paint();
-    babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
 
-    // width and height needs to be changed to dynamically scaled depending on holder width/height
+    babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
     babyImg = Bitmap.createScaledBitmap(babyImg, 640, 971, false);
+    // width and height needs to be changed to dynamically scaled depending on holder width/height
     width = babyImg.getWidth();
     height = babyImg.getHeight();
     x = centerX - (width / 2);
@@ -60,6 +54,36 @@ class Baby {
   void draw(Canvas canvas) {
     canvas.drawBitmap(babyImg, x, y, paint);
     System.out.println("Drew baby");
+  }
+
+  /**
+   * Sets this Baby to be crying.
+   *
+   * @param res the resources used to draw the Baby
+   */
+  void setCry(Resources res) {
+    babyImg = BitmapFactory.decodeResource(res, R.drawable.crybaby);
+    babyImg = Bitmap.createScaledBitmap(babyImg, 640, 971, false);
+  }
+
+  /**
+   * Sets this Baby to be sad.
+   *
+   * @param res the resources used to draw the Baby
+   */
+  void setSad(Resources res) {
+    babyImg = BitmapFactory.decodeResource(res, R.drawable.sadbaby);
+    babyImg = Bitmap.createScaledBitmap(babyImg, 640, 971, false);
+  }
+
+  /**
+   * Sets this Baby to be happy.
+   *
+   * @param res the resources used to draw the Baby
+   */
+  void setHappy(Resources res) {
+    babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
+    babyImg = Bitmap.createScaledBitmap(babyImg, 640, 971, false);
   }
 
   int getX() {

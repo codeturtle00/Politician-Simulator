@@ -43,6 +43,8 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    int initHappiness = 50;
+
     // Embed BabyView into xml layout
     setContentView(R.layout.activity_baby);
     babyView = new BabyView(this);
@@ -54,7 +56,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     setTitle("The Baby Game");
 
     // Initialize Score
-    score = new Score((TextView) findViewById(R.id.scoreDisplay), 50);
+    score = new Score((TextView) findViewById(R.id.scoreDisplay), initHappiness);
 
     // Event Action
     eventActionText = findViewById(R.id.eventActionText);
@@ -165,6 +167,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   public void updateScore(int happinessChange) {
     score.updateScore(happinessChange);
     happiness = score.getHappiness();
+    babyView.setBabyMood(happiness);
     if (happiness == 0) {
       gameOver();
     } else if (happiness == 100) {
