@@ -1,5 +1,7 @@
 package com.example.politicgame.Character.UserTools;
 
+import android.util.Log;
+
 import com.example.politicgame.Character.GameCharacter;
 
 import org.json.JSONArray;
@@ -46,6 +48,7 @@ class UserAccountChar {
         String currName = charInfo.keys().next();
 
         if (currName.equals(charName)) {
+          Log.i("charId Object", charInfo.getJSONObject(charName).toString());
           return charInfo.getJSONObject(charName).getInt("charId");
         }
       }

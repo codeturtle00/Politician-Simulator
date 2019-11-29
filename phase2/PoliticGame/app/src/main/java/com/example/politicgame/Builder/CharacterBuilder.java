@@ -26,7 +26,7 @@ public class CharacterBuilder {
     SingleScores
   }
 
-  public CharacterBuilder(String name) {
+  public CharacterBuilder(String name, int charId) {
     this.jsonChar = new JSONObject();
     try {
       JSONObject detailObject = new JSONObject();
@@ -40,6 +40,7 @@ public class CharacterBuilder {
           getJsonScore().get(detail.SCORE.toString()));
       detailObject.put(detail.SingleScores.toString(),
           getJsonSingles().get(detail.SingleScores.toString()));
+      detailObject.put(detail.charId.toString(), charId);
       this.jsonChar.put(name, detailObject);
     } catch (JSONException e) {
       e.printStackTrace();
@@ -55,6 +56,21 @@ public class CharacterBuilder {
     try {
       JSONObject statsObject = new JSONObject();
       detailObject.put(name, statsObject);
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+    return detailObject;
+  }
+
+  /** Helper method to create a nested json Array for user,given name
+   * Note :if tracking more data for each level,we will change stataObject
+   * inside this helper method
+   * {"LEVEL1":[]} */
+  private JSONObject createNestedJsonArray(String name) {
+    JSONObject detailObject = new JSONObject();
+    try {
+      JSONArray statsArray = new JSONArray();
+      detailObject.put(name, statsArray);
     } catch (JSONException e) {
       e.printStackTrace();
     }
@@ -78,7 +94,7 @@ public class CharacterBuilder {
 
   /** Gets the JSON data for score. */
   private JSONObject getJsonScore() {
-    return createNestedJsonObject(detail.SCORE.toString());
+    return createNestedJsonArray(detail.SCORE.toString());
   }
 
   /** SingleScores: { LEVEL1:{[]}, LEVEL2:{[]}, LEVEL3:{[]} } */

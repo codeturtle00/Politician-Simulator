@@ -20,11 +20,20 @@ public class SpriteSetter {
 
         if (charId == 1) {
             image.setImageResource(R.drawable.jake);
-//      pauseImage.setBackgroundResource(R.drawable.jake);
+            //pauseImage.setBackgroundResource(R.drawable.jake);
         } else if (charId == 2) {
             image.setImageResource(R.drawable.helmet_guy);
-      //      pauseImage.setBackgroundResource(R.drawable.helmet_guy);
-    }
+            //pauseImage.setBackgroundResource(R.drawable.helmet_guy);
+        } else if (charId == 3) {
+            image.setImageResource(R.drawable.saitama);
+            //pauseImage.setBackgroundResource(R.drawable.helmet_guy);
+        } else if (charId == 4) {
+            image.setImageResource(R.drawable.tohru);
+            //pauseImage.setBackgroundResource(R.drawable.helmet_guy);
+        } else if (charId == 5) {
+            image.setImageResource(R.drawable.pause_filler);
+            //pauseImage.setBackgroundResource(R.drawable.helmet_guy);
+        }
         else {
             image.setImageResource(R.drawable.pause_filler);
 //      pauseImage.setBackgroundResource(R.drawable.pause_filler);
