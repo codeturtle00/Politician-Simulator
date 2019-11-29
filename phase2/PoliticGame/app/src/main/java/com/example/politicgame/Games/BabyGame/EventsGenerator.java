@@ -18,7 +18,7 @@ public class EventsGenerator implements Runnable {
       if (eventManager.numEvents() < 3) eventManager.randomEvent();
       eventManager.update();
       try {
-        sleep(1000);
+        sleep(500);
       } catch (Exception e) {
         e.printStackTrace();
       }

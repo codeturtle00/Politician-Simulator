@@ -114,6 +114,21 @@ class BabyView extends SurfaceView implements ViewUpdater {
     eventManager.draw(canvas);
   }
 
+  /**
+   * Sets the image of the baby based on happiness.
+   *
+   * @param happiness the happiness of the baby
+   */
+  void setBabyMood(int happiness) {
+    if (happiness <= 20) {
+      baby.setCry(getResources());
+    } else if (happiness <= 80) {
+      baby.setSad(getResources());
+    } else {
+      baby.setHappy(getResources());
+    }
+  }
+
   /** Draws baby and events. */
   @Override
   public void drawUpdate() {
