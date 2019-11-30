@@ -1,5 +1,6 @@
 package com.example.politicgame;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
@@ -27,5 +28,13 @@ public abstract class PopUpActivity extends FragmentActivity {
         app = (PoliticGameApp) getApplication();
 
         setTheme(R.style.PopUp);
+    }
+
+    protected void returnRequest(int requestCode) {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("result", requestCode);
+
+        setResult(RESULT_OK, resultIntent);
+        finish();
     }
 }

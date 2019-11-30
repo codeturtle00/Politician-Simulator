@@ -10,7 +10,6 @@ import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.GameEnd.SummaryActivity;
 import com.example.politicgame.Leaderboard.LeaderBoardActivity;
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +21,11 @@ import org.json.JSONObject;
  */
 public abstract class GameActivity extends AppCompatActivity {
   /** The application. */
+
+  public static final int DEFAULT_CODE = 0;
+  public static final int RESUME_CODE = 1;
+  public static final int QUIT_CODE = 2;
+
   protected PoliticGameApp app;
 
   protected void onStop(){
