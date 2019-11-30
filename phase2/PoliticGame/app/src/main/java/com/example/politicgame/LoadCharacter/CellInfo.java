@@ -1,5 +1,7 @@
 package com.example.politicgame.LoadCharacter;
 
+import android.widget.Button;
+
 public interface CellInfo {
     /**Returns the text for the cell's button
      *
@@ -7,11 +9,14 @@ public interface CellInfo {
      */
     public String getButtonText();
 
-    /**Returns the text for the inside of the cell
+    /**
+     * Alters the visibility of the cell's Delete Character and Create Character
+     * buttons.
      *
-     * @return Text for the cell, dependent on if the cell is loaded or empty
+     * @param createButton Button for character creation
+     * @param deleteButton Button for character deletion
      */
-    public String getCellText();
+    public void showCreateDeleteButtons(Button createButton, Button deleteButton);
 
 
     /**Returns if the cell is loaded or not
