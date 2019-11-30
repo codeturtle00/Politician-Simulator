@@ -33,6 +33,7 @@
 
     <Button
         android:id="@+id/save"
+        style="@style/Button"
         android:layout_width="168dp"
         android:layout_height="78dp"
         android:onClick="saveUserToDb"
@@ -46,10 +47,10 @@
 
     <Button
         android:id="@+id/sign_out"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="Back"
         app:layout_constraintStart_toStartOf="parent"

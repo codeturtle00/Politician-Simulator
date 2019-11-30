@@ -80,6 +80,7 @@
 
     <Button
         android:id="@+id/toggleMusic"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Toggle Music"
@@ -89,6 +90,7 @@
 
     <Button
         android:id="@+id/changeMusic"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
