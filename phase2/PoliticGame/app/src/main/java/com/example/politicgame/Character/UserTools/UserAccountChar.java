@@ -58,6 +58,25 @@ class UserAccountChar {
     return 0;
   }
 
+  boolean isDuplicate(String charName) {
+    try {
+      for (int i = 0; i < charArray.length(); i++) {
+        JSONObject charInfo = charArray.getJSONObject(i);
+        String currName = charInfo.keys().next();
+
+        Log.i("Checking Character ID", charInfo.toString());
+
+        if (currName.equals(charName)) {
+          Log.i("charId Object", "The name is a duplicate");
+          return true;
+        }
+      }
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
   void deleteCharByName(String charName) {
     try {
       for (int i = 0; i < charArray.length(); i++) {

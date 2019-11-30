@@ -65,6 +65,16 @@ public class UserAccount {
   }
 
   /**
+   * Checks if the user already has a character with the same name
+   *
+   * @param charName the name of the character
+   * @return If the user has another character with the same name
+   */
+  public boolean isDuplicate(String charName) {
+    return userAccountChar.isDuplicate(charName);
+  }
+
+  /**
    * Adds charObject to charArray.
    *
    * @param charObject The object added to charArray, it should contain level info and score
@@ -179,6 +189,7 @@ public class UserAccount {
     newString.append(getCharArray().toString());
     return newString.toString();
   }
+
 
   /**
    * Saves the current version of charArray to user.json and will create the file if it does not

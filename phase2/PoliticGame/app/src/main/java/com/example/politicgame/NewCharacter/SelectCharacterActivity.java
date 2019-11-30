@@ -3,6 +3,7 @@ package com.example.politicgame.NewCharacter;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -61,8 +62,12 @@ public class SelectCharacterActivity extends GameActivity {
     submitName.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
+            UserAccount user = app.getCurrentUser();
             String name = inputName.getText().toString();
-            if (currCharacter != 0 && !name.equals(null) && !name.equals("")) {
+
+            boolean isUnique = !user.isDuplicate(name);
+
+            if (currCharacter != 0 && (!name.equals("") && isUnique)) {
               characterSet(name);
             }
 
@@ -73,8 +78,15 @@ public class SelectCharacterActivity extends GameActivity {
             }
 
             if (name.equals("")) {
+              Log.i("error_name","Enter a character name");
               error_name.setText("Enter a character name");
-            } else {
+            }
+            else if (!isUnique){
+              Log.i("error_name","Character name already exists for this user");
+              error_name.setText("Character name already exists for this user");
+            }
+            else {
+              Log.i("error_name","Empty Error String");
               error_name.setText("");
             }
           }
@@ -84,7 +96,7 @@ public class SelectCharacterActivity extends GameActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             openMainMenu();
-            app.getCurrentUser().setCurrentCharacter(selectedCharacter);
+            //app.getCurrentUser().setCurrentCharacter(selectedCharacter);
           }
         });
   }

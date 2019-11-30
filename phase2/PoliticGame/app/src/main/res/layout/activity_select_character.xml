@@ -147,7 +147,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageButton"
                 app:layout_constraintTop_toTopOf="@+id/imageButton"
-                app:srcCompat="@drawable/winnie" />
+                app:srcCompat="@drawable/paul_gries" />
         </LinearLayout>
     </HorizontalScrollView>
 
