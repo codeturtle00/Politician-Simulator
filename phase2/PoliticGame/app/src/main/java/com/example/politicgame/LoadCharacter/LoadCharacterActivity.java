@@ -6,20 +6,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.GameMode.GameModeActivity;
-import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.NewCharacter.SelectCharacterActivity;
+import com.example.politicgame.PopUpActivity;
 import com.example.politicgame.R;
 
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.Character.UserTools.UserAccount;
 
-public class LoadCharacterActivity extends GameActivity {
+public class LoadCharacterActivity extends PopUpActivity {
   protected PoliticGameApp app;
   private final int TOTAL_CELLS = 2;
   private final String FILE_NAME = "user.json";
@@ -31,7 +32,7 @@ public class LoadCharacterActivity extends GameActivity {
   private TextView[] charButton;
   private Button[] toggleExistButton;
   private Button startButton;
-  private TextView backButton;
+  private ImageButton closeButton;
 
   // Variables that help measure the state of the loading cells
   private Boolean[] cellLoaded;
@@ -44,13 +45,7 @@ public class LoadCharacterActivity extends GameActivity {
 
     System.out.println("The current theme is blue: " + app.isThemeBlue());
 
-    // Set theme
-    if (app.isThemeBlue()) {
-      setTheme(R.style.BlueTheme);
-    } else {
-      setTheme(R.style.RedTheme);
-    }
-
+    // Only used if ActionBar is enabled
     setTitle("Load Your Character");
 
     currCharacter = 0;
@@ -61,9 +56,9 @@ public class LoadCharacterActivity extends GameActivity {
 
     highlight = getResources().getDrawable(R.drawable.highlight);
     charButton = new TextView [] {findViewById(R.id.character_1),findViewById(R.id.character_2)};
-    toggleExistButton = new Button [] {findViewById(R.id.toggle_exist_1),findViewById(R.id.toggle_exist_2)};
+    toggleExistButton = new Button [] {findViewById(R.id.create_character1),findViewById(R.id.create_character2)};
     startButton = findViewById(R.id.start_button);
-    backButton = findViewById(R.id.load_character_back);
+    closeButton = findViewById(R.id.closeLoadCharacter);
 
     Log.i("onCreate", "Before we populate cells");
 
@@ -135,10 +130,10 @@ public class LoadCharacterActivity extends GameActivity {
           }
         });
 
-    backButton.setOnClickListener(
+    closeButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            toLoggedInMenu();
+            finish();
           }
         });
   }
@@ -176,16 +171,6 @@ public class LoadCharacterActivity extends GameActivity {
       charButton[i].setText(cellData[i].getCellText());
       toggleExistButton[i].setText(cellData[i].getButtonText());
     }
-  }
-
-
-  /**
-   * Brings you back to the logged in menu
-   */
-  private void toLoggedInMenu() {
-    Intent selectIntent = new Intent(this, MainActivity.class);
-    startActivity(selectIntent);
-    finish();
   }
 
 
