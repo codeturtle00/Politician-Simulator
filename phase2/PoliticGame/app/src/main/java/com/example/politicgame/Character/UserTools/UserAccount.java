@@ -21,19 +21,23 @@ public class UserAccount {
   private FileSavingService fileSaving;
   private static final String FILE_NAME = "user.json";
   private Context context;
+  private String displayName;
 
   private UserAccountChar userAccountChar;
   private UserAccountDB userAccountDB;
   private UserAccountResetLevels userAccountResetLevels;
   private UserAccountAddScore userAccountAddScore;
+  private UserScore userScore;
 
   public UserAccount(String displayName, Context context) {
+    this.displayName = displayName;
     this.context = context;
     this.fileSaving = new FileSavingService(context);
     this.userAccountChar = new UserAccountChar(displayName);
     this.userAccountDB = new UserAccountDB(FILE_NAME, displayName);
     this.userAccountResetLevels = new UserAccountResetLevels();
     this.userAccountAddScore = new UserAccountAddScore();
+    this.userScore = new UserScore(context, displayName);
   }
 
   /**
@@ -149,8 +153,12 @@ public class UserAccount {
   public void addScore(String charName, int score) {
     JSONArray charArray = getCharArray();
     userAccountAddScore.addScore(charArray, charName, score);
+    userScore.addScore(score);
   }
 
+  public int getTotalScore(){
+    return userScore.getTotalScore();
+  }
 
   /**
    * Saves a high score for an individual level, used for the individial game modes
@@ -160,6 +168,8 @@ public class UserAccount {
    * @param score       The score that the character has achieved
    */
   public void singleSave (String levelName, String charName, int score){
+    userScore.addScore(score);
+
     JSONArray charArray = getCharArray();
 
     try {

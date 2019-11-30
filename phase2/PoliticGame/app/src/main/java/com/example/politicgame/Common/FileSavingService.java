@@ -43,6 +43,7 @@ public class FileSavingService {
     }
     return textBuilder.toString();
   }
+
 /** This is writing a txt File given the fileName and the string to be saved into the txt*/
   public void writeStringFile(String textToSave, String fileName) {
     FileOutputStream outputStream;

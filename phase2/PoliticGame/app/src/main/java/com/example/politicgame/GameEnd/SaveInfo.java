@@ -23,7 +23,7 @@ public class SaveInfo {
     /**
      * Saves the loaded info to the current user's character
      */
-    public void saveInfo(){
+    void saveInfo(){
         currentUser.addScore(charName, totalScore);
         currentUser.resetLevels(charName);
         currentUser.saveToDb();
@@ -34,7 +34,7 @@ public class SaveInfo {
         currentUser.saveToDb();
     }
 
-    public void singleSaveInfo(String levelName){
+    void singleSaveInfo(String levelName){
         currentUser.singleSave(levelName, charName, totalScore);
         currentUser.saveToDb();
     }
