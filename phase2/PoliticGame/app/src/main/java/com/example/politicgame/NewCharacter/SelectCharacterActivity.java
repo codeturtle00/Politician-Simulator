@@ -72,7 +72,7 @@ public class SelectCharacterActivity extends GameActivity {
             }
 
             if (currCharacter == 0) {
-              error_select.setText("Please select a character");
+              error_select.setText("Swipe and tap the icons to select a character");
             } else {
               error_select.setText("");
             }
