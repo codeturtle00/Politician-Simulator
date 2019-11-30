@@ -5,7 +5,18 @@
     android:id="@+id/settingsLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backColor">
+    android:background="@drawable/yellow_background">
+
+    <TextView
+        android:id="@+id/loginTitle"
+        style="@style/menuTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SETTINGS"
+        app:layout_constraintTop_toBottomOf="@id/closeSettings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -34,16 +45,14 @@
             android:text="Red" />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/sign_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Save and Quit"
+    <ImageButton
+        android:id="@+id/closeSettings"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:src ="@android:drawable/ic_delete"
+        android:background="@null"/>
 
     <TextView
         android:id="@+id/settingsText1"

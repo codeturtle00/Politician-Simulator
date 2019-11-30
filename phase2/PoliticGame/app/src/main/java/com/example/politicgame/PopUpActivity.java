@@ -1,7 +1,5 @@
 package com.example.politicgame;
 
-import android.app.Activity;
-import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
@@ -18,11 +19,12 @@ import org.json.JSONObject;
 
 public class MainActivity extends GameActivity {
 
+  boolean theme;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    setTitle("Main Menu");
 
     super.onCreate(savedInstanceState);
+    theme = app.isThemeBlue();
     setContentView(R.layout.activity_main);
 
     ImageView trumpIMG = findViewById(R.id.trump);
@@ -33,31 +35,48 @@ public class MainActivity extends GameActivity {
     Animation animated_title = AnimationUtils.loadAnimation(this, R.anim.animated_title);
     titleIMG.startAnimation(animated_title);
 
-    // Login button
-    final Button loginButton = findViewById(R.id.login);
+    //Generate Login button
+    loginButton();
 
-    if (app.getCurrentUser() == null) {
-      loginButton.setOnClickListener(
-              new View.OnClickListener() {
-                public void onClick(View v) {
-                  // Code here executes on main thread after user presses button
-                  openLoginPage();
-                }
-              });
-    } else {
-      loginButton.setText(getString(R.string.sign_out));
-      loginButton.setOnClickListener(
-              new View.OnClickListener() {
-                public void onClick(View v) {
-                  app.setCurrentUser(null);
-                  // Reload Activity
-                  finish();
-                  startActivity(getIntent());
-                }
-              });
-    }
+    //Generate Select Characters button
+    selectCharacterButton();
 
-    //Select Characters button
+    //Generate Leaderboard button
+    leaderboardButton();
+
+    // Settings button, opens the settings menu
+    final ImageButton settingButton = findViewById(R.id.settings);
+    settingButton.setOnClickListener(
+        new View.OnClickListener() {
+          public void onClick(View v) {
+            // Code here executes on main thread after user presses button
+            openSettings();
+          }
+        });
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    // Reload buttons that depend on if user is logged in
+    selectCharacterButton();
+    loginButton();
+    // If theme has changed, reload
+    if (theme != app.isThemeBlue()) recreate();
+  }
+
+  private void leaderboardButton() {
+    final Button boardButton = findViewById(R.id.leaderBoard);
+    boardButton.setOnClickListener(
+        new View.OnClickListener() {
+          public void onClick(View v) {
+            // Code here executes on main thread after user presses button
+            openLeaderBoard();
+          }
+        });
+  }
+
+  private void selectCharacterButton() {
     final Button selectCharactersButton = findViewById(R.id.select_character);
 
     if (app.getCurrentUser() == null) {
@@ -71,32 +90,39 @@ public class MainActivity extends GameActivity {
         }
       });
     }
+  }
 
-    // Leaderboard button, opens the leaderboard
-    final Button boardButton = findViewById(R.id.leaderBoard);
-    boardButton.setOnClickListener(
-        new View.OnClickListener() {
-          public void onClick(View v) {
-            // Code here executes on main thread after user presses button
-            openLeaderBoard();
-          }
-        });
+  private void loginButton() {
+    final Button loginButton = findViewById(R.id.login);
 
-    // Settings button, opens the settings menu
-    final Button settingButton = findViewById(R.id.settings);
-    settingButton.setOnClickListener(
-        new View.OnClickListener() {
-          public void onClick(View v) {
-            // Code here executes on main thread after user presses button
-            openSettings();
-          }
-        });
+    if (app.getCurrentUser() == null) {
+      loginButton.setText(getString(R.string.login));
+      loginButton.setOnClickListener(
+              new View.OnClickListener() {
+                public void onClick(View v) {
+                  // Code here executes on main thread after user presses button
+                  openLoginPage();
+                }
+              });
+    } else {
+      loginButton.setText(getString(R.string.sign_out));
+      loginButton.setOnClickListener(
+              new View.OnClickListener() {
+                public void onClick(View v) {
+                  app.setCurrentUser(null);
+                  // Reload necessary buttons
+                  selectCharacterButton();
+                  loginButton();
+                }
+              });
+    }
   }
 
   public void openLoginPage() {
     /** Opens the login page */
     Intent loginPageIntent = new Intent(this, LoginActivity.class);
     startActivity(loginPageIntent);
+    overridePendingTransition(R.anim.slide_up, R.anim.slide_up);
   }
 
   public void openLeaderBoard() {
@@ -111,7 +137,7 @@ public class MainActivity extends GameActivity {
     /** Open the settings menu */
     Intent settingsIntent = new Intent(this, SettingsActivity.class);
     startActivity(settingsIntent);
-    finish();
+    overridePendingTransition(R.anim.slide_up, R.anim.slide_up);
   }
 
   public void openLoadCharacter () {

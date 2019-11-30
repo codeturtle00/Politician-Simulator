@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Blue application theme. -->
-    <style name="BlueTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BlueTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -11,7 +11,7 @@
 
 
     <!-- Red application theme. -->
-    <style name="RedTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="RedTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -22,10 +22,32 @@
     <style name="PopUp" >
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowContentOverlay">@drawable/shadow</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="Button" >
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/greenbutton</item>
+        <item name="android:textColor">@color/textWhite</item>
+        <item name="android:fontFamily">@font/pixelfont</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="menuTitle" >
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textWhite</item>
+        <item name="android:fontFamily">@font/pixelfont</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">50sp</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1.0</item>
+        <item name="android:shadowDy">5.0</item>
+        <item name="android:shadowRadius">10.0</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
     </style>
 
 </resources>

@@ -51,4 +51,5 @@
     <string name="summary_quit">Quit without Saving</string>
     <string name ="game_mode_title">Select a Game Mode</string>
     <string name="main_menu">Main Menu</string>
+    <string name="login">Login</string>
 </resources>

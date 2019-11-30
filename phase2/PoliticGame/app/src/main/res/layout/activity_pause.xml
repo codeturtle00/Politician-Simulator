@@ -5,19 +5,16 @@
     android:id="@+id/pauseLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pausebackgroundbitmap">
+    android:background="@drawable/pausebackground">
 
     <Button
         android:id="@+id/resume"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/resume"
-        android:textAllCaps="false"
-        android:textColor="@color/textWhite"
         android:textSize="28sp"
-        android:fontFamily="@font/pixelfont"
-        android:textStyle="bold"
         android:padding="15dp"
         android:background="@drawable/greenbutton"
         app:layout_constraintBottom_toTopOf="@+id/pause_main_menu"
@@ -36,15 +33,12 @@
 
     <Button
         android:id="@+id/pause_main_menu"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:text="@string/main_menu"
-        android:textAllCaps="false"
-        android:textColor="@color/textWhite"
         android:textSize="28sp"
-        android:fontFamily="@font/pixelfont"
-        android:textStyle="bold"
         android:padding="15dp"
         android:background="@drawable/greenbutton"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,14 +47,12 @@
 
     <TextView
         android:id="@+id/pause_menu_title"
+        style="@style/menuTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Pause Menu"
-        android:textColor="@color/textWhite"
-        android:textSize="50sp"
-        android:fontFamily="@font/pixelfont"
-        android:textStyle="bold"
+        android:shadowDx="1.0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
