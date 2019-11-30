@@ -47,6 +47,7 @@
 
     <Button
         android:id="@+id/continue_button"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -57,6 +58,7 @@
 
     <Button
         android:id="@+id/new_game_button"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="31dp"
@@ -67,6 +69,7 @@
 
     <Button
         android:id="@+id/back_arcade_menu"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"

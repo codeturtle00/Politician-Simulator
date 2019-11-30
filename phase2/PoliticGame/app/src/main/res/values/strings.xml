@@ -12,7 +12,7 @@
     <string name="speech_game_title">The Speech Game</string>
     <string name="the_stamping_game">The Stamping Game</string>
     <string name="baby_game_instruction_body">As everyone knows, baby kissing is the basis of modern day politics. As a politician, you must interact with these little humans. In this game, you will be given instructions on how to interact with the baby. You have 30 seconds to make the baby as happy as possible.</string>
-    <string name="speech_instruction_body">In this game you will be giving a speech to public given a topic. What you need to do is to select the related word from the four possible choices and type it as an input</string>
+    <string name="speech_instruction_body">In this game you will be giving a speech to the public given a topic. What you need to do is to select the related word from the four possible choices and type it as an input</string>
     <string name="stamp_instruction_body">In this game you are sorting out the policies of your party. As the campaign leader, you decide what your party should fight for. However, the general populace will not always be happy with what you decide on, so use your judgement to decide what may be best for the country.</string>
     <string name="open_the_game">Open The Game!</string>
     <string name="stamp_game_no">No</string>

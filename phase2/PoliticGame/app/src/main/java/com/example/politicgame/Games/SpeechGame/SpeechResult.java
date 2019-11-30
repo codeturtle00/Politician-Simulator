@@ -19,6 +19,10 @@ public class SpeechResult extends GameActivity implements Serializable {
     private final String LEVEL_NAME = "LEVEL2";
 
     @Override
+    /**
+     * Initializes this activity and retrieves the necessary information from the presenter to be
+     * displayed
+     */
     protected void onStart() {
         super.onStart();
 
@@ -54,15 +58,24 @@ public class SpeechResult extends GameActivity implements Serializable {
     }
 
     @Override
+    /**
+     * Creates activity
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech_result);
     }
 
+    /**
+     * Goes back to SpeechActivity
+     */
     public void returnSpeech() {
         finish();
     }
 
+    /**
+     * Goes into StampGame
+     */
     public void openStampGame() {
         GameMode gm = (GameMode) getIntent().getSerializableExtra("GameMode");
 

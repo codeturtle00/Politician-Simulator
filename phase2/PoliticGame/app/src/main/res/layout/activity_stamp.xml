@@ -26,10 +26,10 @@
 
     <Button
         android:id="@+id/stamp_game_yes"
+        style="@style/Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/stamp_game_yes"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,10 +37,10 @@
 
     <Button
         android:id="@+id/stamp_game_no"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/stamp_game_no"
         app:layout_constraintBottom_toBottomOf="parent"

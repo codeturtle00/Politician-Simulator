@@ -6,14 +6,27 @@ import java.util.Collections;
 import java.util.List;
 
 public class SpeechRepository implements Serializable {
-    public ArrayList<String> getPrompt() {
+
+    /**Returns the ArrayList containing the prompts
+     *
+     * @return prompt: ArrayList containing all the game prompts to be answered
+     */
+    ArrayList<String> getPrompt() {
         return prompt;
     }
 
-    public ArrayList<ArrayList<String>> getChoice() {
+    /**Returns the ArrayList containing the choices
+     *
+     * @return choice: ArrayList containing all the game choices to be answered
+     */
+    ArrayList<ArrayList<String>> getChoice() {
         return choice;
     }
 
+    /**Returns the ArrayList containing the answers
+     *
+     * @return answer: ArrayList containing all the correct game answers
+     */
     public ArrayList<String> getAnswer() {
         return answer;
     }
@@ -23,6 +36,12 @@ public class SpeechRepository implements Serializable {
     private ArrayList<String> answer = new ArrayList();
     private SpeechResource speechResource;
 
+    /**Randomly mixes up the order for which the prompts, choices, and answers are loaded out
+     *
+     * @param numRange: int representing the number of questions present
+     * @return fullRange: a List of integers representing indices to mix up the order
+     * of prompt, choice, and answer
+     */
     private List<Integer> randomSelection(int numRange) {
         List<Integer> fullRange = new ArrayList<>();
         for (int i = 0; i <= numRange; i++) {
@@ -35,10 +54,17 @@ public class SpeechRepository implements Serializable {
         return fullRange;
     }
 
+    /**
+     * Constructor that initializes a SpeechResource object
+     */
     SpeechRepository() {
         this.speechResource = new SpeechResource();
     }
 
+    /**Initializes prompt, choice, and answer
+     *
+     * @param numRange: int representing the number of questions to be used
+     */
     public void loadQuestions(int numRange) {
         List<Integer> numRanges = randomSelection(Math.min(numRange, speechResource.getDataBaseNum() - 1));
         for (int i : numRanges) {
