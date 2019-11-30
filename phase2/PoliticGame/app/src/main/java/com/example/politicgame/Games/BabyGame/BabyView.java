@@ -8,10 +8,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.example.politicgame.R;
+
+import java.util.ConcurrentModificationException;
 
 class BabyView extends SurfaceView implements ViewUpdater {
 
@@ -111,7 +114,11 @@ class BabyView extends SurfaceView implements ViewUpdater {
     // Draws baby in the center.
     baby.draw(canvas);
 
-    eventManager.draw(canvas);
+    try{
+      eventManager.draw(canvas);
+    } catch (ConcurrentModificationException e) {
+      Log.e("Babyview draw()", "ConcurrentModificationException");
+    }
   }
 
   /**
