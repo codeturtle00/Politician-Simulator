@@ -45,14 +45,9 @@ public class PauseActivity extends PopUpActivity {
     loggedInB.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            openMainActivity();
+            returnRequest(QUIT_CODE);
           }
         });
-  }
-
-  private void openMainActivity() {
-    Intent MainActivityIntent = new Intent(this, MainActivity.class);
-    startActivity(MainActivityIntent);
   }
 
   private void returnRequest(int requestCode) {
