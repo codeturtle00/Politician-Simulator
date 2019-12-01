@@ -20,8 +20,13 @@ public class ThemeLoader {
      *
      * @param isBlue Choose if the current theme is blue
      */
-    public void chooseBlueTheme(boolean isBlue) { this.isBlue = isBlue; }
+    void chooseBlueTheme(boolean isBlue) { this.isBlue = isBlue; }
 
+    /**
+     * Returns if the theme is currently blue
+     *
+     * @return  Is the current theme blue?
+     */
     public boolean isThemeBlue() {
         return isBlue;
     }

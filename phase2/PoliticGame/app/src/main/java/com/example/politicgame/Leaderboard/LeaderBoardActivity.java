@@ -10,19 +10,15 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 public class LeaderBoardActivity extends GameActivity
@@ -32,7 +28,6 @@ public class LeaderBoardActivity extends GameActivity
   private final String MODETHREE = "Speech Game";
   private final String MODEFOUR = "Stamp Game";
   private final String FILE_NAME = "user.json";
-  private FileSavingService fileSaving;
 
   private String boardType;
 
@@ -42,8 +37,6 @@ public class LeaderBoardActivity extends GameActivity
     setContentView(R.layout.activity_leader_board);
 
     setTitle("Leaderboard");
-
-    this.fileSaving = new FileSavingService(this);
 
     // Implementation for the Spinner
     boardType = getIntent().getStringExtra("BoardType");
@@ -55,7 +48,7 @@ public class LeaderBoardActivity extends GameActivity
 
     // Creating adapter for spinner
     ArrayAdapter<String> dataAdapter =
-        new ArrayAdapter<String>(this, R.layout.board_spinner_layout, boards);
+        new ArrayAdapter<>(this, R.layout.board_spinner_layout, boards);
 
     // Drop down layout style - list view with radio button
     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -99,11 +92,21 @@ public class LeaderBoardActivity extends GameActivity
     return boards;
   }
 
+  /**
+   * The activity's response to changes to the spinner
+   *
+   * @param parent    The AdapterView representation of the Spinner's status
+   * @param view      The current view of the spinner, needed to recognize the correct method
+   * @param position  The current position of the item selected by the spinner
+   * @param id        The id of the Spinner, needed to recognize the correct method
+   */
   public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
     // On selecting a spinner item
     String item = parent.getItemAtPosition(position).toString();
 
-    if (item != boardType) {
+    // Sets the new mode and reloads the leaderboard so as long as the selected item is not the
+    // currently selected item
+    if (!item.equals(boardType)) {
       if (item.equals(MODEONE)) {
         Log.i("ItemSelected", "Election mode leaderboard selected");
         boardType = MODEONE;
@@ -122,11 +125,23 @@ public class LeaderBoardActivity extends GameActivity
     }
   }
 
+  /**
+   * The activity's response to having nothing selected, not really used in this case as the default
+   * item is always the current board, but this is left here to fulfill the implementation of the
+   * spinner
+   *
+   * @param parent  The AdapterView representation of the Spinner's status
+   */
   public void onNothingSelected(AdapterView<?> parent) {
     Log.i("ItemSelected", "No drop down item has been selected");
   }
 
-  public void updateBoard(String boardType) {
+  /**
+   * Updates the board with the current board type's scores and data
+   *
+   * @param boardType The board type we want to generate a board for
+   */
+  private void updateBoard(String boardType) {
     LeaderBoard board = getLeaderBoard(boardType);
     List<JSONObject> boardCell = board.getBoard();
 
@@ -145,6 +160,13 @@ public class LeaderBoardActivity extends GameActivity
     applyScores(player3, third, "Third");
   }
 
+  /**
+   * Apply the scores to the activity
+   *
+   * @param textField The TextView object we want to set text for
+   * @param scoreInfo The JSONObject containing the score, character and the user who achieved it
+   * @param rank      The rank of the score, used to differentiate what rank to set the TextView to
+   */
   private void applyScores(TextView textField, JSONObject scoreInfo, String rank){
     try{
     if (!scoreInfo.has("fill")) {
@@ -161,6 +183,13 @@ public class LeaderBoardActivity extends GameActivity
     }
   }
 
+  /**
+   * Returns a LeaderBoard object which has different implementations which can all be used to
+   * retrieve scoreboards, each with different sources of scores, users and characters
+   *
+   * @param boardType The current board type that we want to retrieve a leaderboard for
+   * @return          An object that implements LeaderBoard that can be used to generate scores
+   */
   private LeaderBoard getLeaderBoard(String boardType) {
     LeaderBoard lb;
 

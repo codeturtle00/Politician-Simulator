@@ -4,7 +4,7 @@ import android.media.MediaPlayer;
 
 import com.example.politicgame.R;
 
-public class MusicPlayer {
+class MusicPlayer {
 
     // PoliticGameApp
     private PoliticGameApp app;
@@ -31,7 +31,9 @@ public class MusicPlayer {
         startMusic();
     }
 
-    // Methods for music selection
+    /**
+     * Switch tracks for the MediaPlayer
+     */
     void switchMusic() {
         if (currentTrack < TRACK_ARRAY.length - 1) {
             currentTrack++;
@@ -46,24 +48,43 @@ public class MusicPlayer {
         startMusic();
     }
 
+    /**
+     * Returns the current track number
+     *
+     * @return  The current track number
+     */
     int getCurrentTrackNum() {
         return currentTrack + 1;
     }
 
+    /**
+     * Returns a boolean on if the music is currently on
+     *
+     * @return  Is the music currently on
+     */
     boolean getMusicOn() {
         return musicOn;
     }
 
+    /**
+     * Start the music
+     */
     private void startMusic() {
         musicPlayer.start();
         musicOn = true;
     }
 
+    /**
+     * Pause the music
+     */
     private void pauseMusic() {
         musicPlayer.pause();
         musicOn = false;
     }
 
+    /**
+     * Turn the music on if the music was originally off, or turn the music off if it was already on
+     */
     void toggleMusic() {
         if (musicOn) {
             pauseMusic();

@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.GameMode.GameMode;
-import com.example.politicgame.GameMode.SpeechArcade;
+import com.example.politicgame.GameMode.GameModeModel.GameMode;
+import com.example.politicgame.GameMode.GameModeModel.SpeechArcade;
 import com.example.politicgame.Games.SpeechGame.SpeechInstructionActivity;
 import com.example.politicgame.R;
 

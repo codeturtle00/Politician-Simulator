@@ -1,25 +1,16 @@
-package com.example.politicgame.GameMode;
+package com.example.politicgame.GameMode.GameModeModel;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.Character.UserTools.UserAccount;
-import com.example.politicgame.GameEnd.SingleEndActivity;
-import com.example.politicgame.Games.SpeechGame.SpeechInstructionActivity;
+import com.example.politicgame.GameMode.SingleEndActivity;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.Serializable;
-
-public class SingleMode implements GameMode, Serializable {
+public class SingleMode implements GameMode {
     private String levelName;
     private int score;
 
-    SingleMode(String level_name){
+    public SingleMode(String level_name){
         this.levelName = level_name;
     }
 

@@ -7,13 +7,8 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.Character.UserTools.UserAccount;
-import com.example.politicgame.GameEnd.SummaryActivity;
+import com.example.politicgame.GameMode.SummaryActivity;
 import com.example.politicgame.Leaderboard.LeaderBoardActivity;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * GameActivity includes code every minigame activity should have. To implement into a minigame's
@@ -26,44 +21,14 @@ public abstract class GameActivity extends AppCompatActivity {
   public static final int RESUME_CODE = 1;
   public static final int QUIT_TO_MENU_CODE = 2;
   public static final int REFRESH_BG = 3;
-
-
   protected PoliticGameApp app;
 
-  protected void onStop(){
-    /*
-    if (app.isMusicOn()){
-      app.toggleMusic();
-    }
-    */
-
-    super.onStop();
-  }
-
-  protected void onRestart(){
-    /*
-    if (!app.isMusicOn()){
-      app.toggleMusic();
-    }
-     */
-
-
-    super.onRestart();
-  }
-
   protected void onStart() {
-    // If the theme is changed from the start menu then this will reflect that change
     if (app.isThemeBlue()) {
       setTheme(R.style.BlueTheme);
     } else {
       setTheme(R.style.RedTheme);
     }
-
-    /*
-    if (!app.isMusicOn()){
-      app.toggleMusic();
-    }
-    */
 
     super.onStart();
     System.out.println("The current theme is blue: " + app.isThemeBlue());
@@ -76,13 +41,6 @@ public abstract class GameActivity extends AppCompatActivity {
     } else {
       setTheme(R.style.RedTheme);
     }
-
-    /*
-    if (!app.isMusicOn()){
-      app.toggleMusic();
-    }
-    */
-
 
     super.onResume();
     System.out.println("The current theme is blue: " + app.isThemeBlue());
@@ -142,72 +100,5 @@ public abstract class GameActivity extends AppCompatActivity {
         Log.i("Result Code", "Result code is " + resultCode);
       }
     }
-  }
-
-  /**
-   * Saves the character being used and score for the current user.
-   *
-   * @param score the score in the user's game playthrough
-   * @param levelName the level the user is on
-   */
-  public void saveGame(int score, String levelName) {
-    UserAccount currentUser = app.getCurrentUser();
-    String currentCharacterName = app.getCurrentCharacter();
-
-    JSONArray charArray = currentUser.getCharArray();
-
-    Log.i("Get existing characters", charArray.toString());
-
-    try {
-      int i;
-      for (i = 0; i < charArray.length(); i++) {
-        JSONObject charObject = charArray.getJSONObject(i);
-        String charName = charObject.keys().next();
-
-        if (charName.equals(currentCharacterName)) {
-          JSONObject levelObj = charObject.getJSONObject(charName).getJSONObject(levelName);
-          levelObj.put("score", score);
-          levelObj.put("complete", true);
-        }
-      }
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
-
-    currentUser.saveToDb();
-  }
-
-  /**
-   * Determines if the user has played the given level and records it.
-   *
-   * @param levelName the current level
-   * @return if the user has played through the level
-   */
-  public boolean isGameComplete(String levelName) {
-    UserAccount currentUser = app.getCurrentUser();
-    String currentCharacterName = app.getCurrentCharacter();
-
-    JSONArray charArray = currentUser.getCharArray();
-
-    Log.i("Get existing characters", charArray.toString());
-
-    boolean isComplete = false;
-
-    try {
-      int i;
-      for (i = 0; i < charArray.length(); i++) {
-        JSONObject charObject = charArray.getJSONObject(i);
-        String charName = charObject.keys().next();
-
-        if (charName.equals(currentCharacterName)) {
-          JSONObject levelObj = charObject.getJSONObject(charName).getJSONObject(levelName);
-          isComplete = levelObj.getBoolean("complete");
-        }
-      }
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
-
-    return isComplete;
   }
 }

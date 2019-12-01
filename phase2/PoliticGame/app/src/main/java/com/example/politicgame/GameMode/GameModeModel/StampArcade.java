@@ -1,16 +1,15 @@
-package com.example.politicgame.GameMode;
+package com.example.politicgame.GameMode.GameModeModel;
 
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.GameEnd.SummaryActivity;
+import com.example.politicgame.GameMode.SummaryActivity;
 
 public class StampArcade extends ArcadeMode{
     private static final String LEVEL_NAME = "LEVEL3";
 
-    public StampArcade(/*PoliticGameApp app*/){
-        super(/*app,*/ LEVEL_NAME);
+    public StampArcade(){
+        super(LEVEL_NAME);
     }
 
     /**

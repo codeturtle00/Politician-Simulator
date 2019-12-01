@@ -15,6 +15,12 @@ public class SpriteSetter {
         this.currentUser = app.getCurrentUser();
     }
 
+
+    /**
+     * Sets the ImageView object's image source to be the currently selected character's sprite
+     *
+     * @param image The ImageView object to set an image to
+     */
     public void setSprite(ImageView image){
         int charId = currentUser.getCharId(app.getCurrentCharacter());
 
