@@ -1,4 +1,4 @@
-package com.example.politicgame.UserActivity;
+package com.example.politicgame.UserActivity.UserModel;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,9 +9,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.LoginActivity.ViewModelResult;
+import com.example.politicgame.UserActivity.UserInterface.FormState;
+import com.example.politicgame.UserActivity.UserInterface.ViewModelResult;
 
 /** Model where contains common logic for user activity ,specifically
  * it checks if the username and password are valid .

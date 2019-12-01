@@ -1,8 +1,8 @@
-package com.example.politicgame.UserActivity.LoginActivity;
+package com.example.politicgame.UserActivity.UserInterface;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
+
 import androidx.annotation.StringRes;
 import androidx.lifecycle.ViewModelProviders;
 import android.view.View;
@@ -15,8 +15,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.RegisterActivity.RegistrationActivity;
-import com.example.politicgame.UserActivity.UserPopUpActivity;
+import com.example.politicgame.UserActivity.UserModel.LoggedInUserView;
+import com.example.politicgame.UserActivity.UserModel.LoginViewModel;
+import com.example.politicgame.UserActivity.UserDatabase.LoginViewModelFactory;
 
 /** An activity responsible for login */
 public class LoginActivity extends UserPopUpActivity {

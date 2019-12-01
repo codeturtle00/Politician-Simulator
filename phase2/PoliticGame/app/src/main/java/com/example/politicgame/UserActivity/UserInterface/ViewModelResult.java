@@ -1,6 +1,6 @@
-package com.example.politicgame.UserActivity.LoginActivity;
-
+package com.example.politicgame.UserActivity.UserInterface;
 import androidx.annotation.Nullable;
+import com.example.politicgame.UserActivity.UserModel.LoggedInUserView;
 /** Authentication result : success (user details) or error or invalid message. */
 public class ViewModelResult {
   @Nullable private LoggedInUserView success;

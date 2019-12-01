@@ -27,9 +27,9 @@
         <activity android:name=".Games.SpeechGame.SpeechActivity" />
         <activity android:name=".Games.BabyGame.BabyActivity" />
         <activity android:name=".Games.BabyGame.BabyGameInstruction" />
-        <activity android:name=".UserActivity.LoginActivity.LoginActivity"
+        <activity android:name=".UserActivity.UserInterface.LoginActivity"
             android:theme="@style/PopUp"/>
-        <activity android:name=".UserActivity.RegisterActivity.RegistrationActivity"
+        <activity android:name=".UserActivity.UserInterface.RegistrationActivity"
             android:theme="@style/PopUp"/>
         <activity android:name=".MainActivity">
             <intent-filter>

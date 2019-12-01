@@ -9,13 +9,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.Leaderboard.LeaderBoardActivity;
 import com.example.politicgame.LoadCharacter.LoadCharacterActivity;
-import com.example.politicgame.UserActivity.LoginActivity.LoginActivity;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.politicgame.UserActivity.UserInterface.LoginActivity;
 
 public class MainActivity extends GameActivity {
 

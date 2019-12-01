@@ -1,4 +1,4 @@
-package com.example.politicgame.UserActivity;
+package com.example.politicgame.UserActivity.UserInterface;
 
 import android.app.Activity;
 import android.text.Editable;
@@ -17,10 +17,12 @@ import androidx.lifecycle.Observer;
 
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.PopUpActivity;
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInUserView;
-import com.example.politicgame.UserActivity.LoginActivity.ViewModelResult;
+import com.example.politicgame.UserActivity.UserInterface.FormState;
+import com.example.politicgame.UserActivity.UserInterface.ViewModelResult;
+import com.example.politicgame.UserActivity.UserModel.LoggedInUserView;
+import com.example.politicgame.UserActivity.UserModel.UserViewModel;
 
-public abstract class UserPopUpActivity extends PopUpActivity {
+abstract class UserPopUpActivity extends PopUpActivity {
 
   /** The application. */
   protected PoliticGameApp app;
