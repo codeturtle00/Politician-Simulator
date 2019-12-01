@@ -16,23 +16,20 @@ class Tickle extends Event {
   /**
    * Creates this Tickle event.
    *
-   * @param babyX the X coordinate of the baby
-   * @param babyY the Y coordinate of the baby
-   * @param babyWidth the width of the baby
-   * @param babyHeight the height of the baby
+   * @param baby The Baby this event is acting upon
    * @param res the resources to draw the baby
    */
-  Tickle(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
-    super(babyX, babyY, babyWidth, babyHeight, res);
+  Tickle(Baby baby, Resources res) {
+    super(baby, res);
     Bitmap tickle = BitmapFactory.decodeResource(res, R.drawable.tickle);
     tickle = Bitmap.createScaledBitmap(tickle, 180, 180, false);
     setImg(tickle);
-    left = babyX + (babyWidth / 5);
-    right = babyX + babyWidth - (babyWidth / 5);
+    left = getBabyX() + (getBabyWidth() / 5);
+    right = getBabyX() + getBabyWidth() - (getBabyWidth() / 5);
     int side = Math.random() < 0.5 ? 0 : 1;
     if (side == 0) setX(left);
     else setX(right);
-    setY((babyHeight / 3) + babyY);
+    setY((getBabyHeight() / 3) + getBabyY());
   }
 
   /**

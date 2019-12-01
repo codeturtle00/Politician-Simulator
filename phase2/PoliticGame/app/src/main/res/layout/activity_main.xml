@@ -58,19 +58,6 @@
         android:padding="20dp"
         android:paddingStart="50dp"
         android:paddingEnd="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/select_character"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <Button
-        android:id="@+id/select_character"
-        style="@style/Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:text="@string/logged_in_activity_select_char"
-        android:textSize="30sp"
-        android:padding="20dp"
         app:layout_constraintBottom_toTopOf="@+id/leaderBoard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
