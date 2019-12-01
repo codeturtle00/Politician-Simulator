@@ -2,6 +2,7 @@ package com.example.politicgame;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.Leaderboard.LeaderBoardActivity;
 import com.example.politicgame.LoadCharacter.LoadCharacterActivity;
+import com.example.politicgame.Pausing.PauseActivity;
 import com.example.politicgame.UserActivity.LoginActivity.LoginActivity;
 
 import org.json.JSONException;
@@ -62,7 +64,7 @@ public class MainActivity extends GameActivity {
     selectCharacterButton();
     loginButton();
     // If theme has changed, reload
-    if (theme != app.isThemeBlue()) recreate();
+//    if (theme != app.isThemeBlue()) recreate();
   }
 
   private void leaderboardButton() {
@@ -135,13 +137,32 @@ public class MainActivity extends GameActivity {
 
   public void openSettings() {
     /** Open the settings menu */
-    Intent settingsIntent = new Intent(this, SettingsActivity.class);
-    startActivity(settingsIntent);
-    overridePendingTransition(R.anim.slide_up, R.anim.slide_up);
+      Intent pauseMenuIntent = new Intent(this, SettingsActivity.class);
+      startActivityForResult(pauseMenuIntent, 2);
   }
 
   public void openLoadCharacter () {
     Intent loadCharacters = new Intent(this, LoadCharacterActivity.class);
     startActivity(loadCharacters);
   }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+      if (requestCode == 2) {
+          if (resultCode == RESULT_OK) {
+              int userInput = data.getIntExtra("result", 0);
+
+              if (userInput == GameActivity.REFRESH_BG) {
+                  Log.i("onActivityResult", "Refreshing background activity");
+                  overridePendingTransition(0, 0);
+                  recreate();
+                  overridePendingTransition(0, 0);
+                  openSettings();
+              }
+          } else {
+              Log.i("Result Code", "Result code is " + resultCode);
+          }
+      }
+        }
 }

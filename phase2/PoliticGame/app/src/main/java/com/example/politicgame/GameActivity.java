@@ -25,6 +25,7 @@ public abstract class GameActivity extends AppCompatActivity {
   public static final int DEFAULT_CODE = 0;
   public static final int RESUME_CODE = 1;
   public static final int QUIT_TO_MENU_CODE = 2;
+  public static final int REFRESH_BG = 3;
 
 
   protected PoliticGameApp app;

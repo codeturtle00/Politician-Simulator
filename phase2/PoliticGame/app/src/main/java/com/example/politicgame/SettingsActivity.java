@@ -9,6 +9,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class SettingsActivity extends PopUpActivity {
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -20,21 +21,25 @@ public class SettingsActivity extends PopUpActivity {
     final TextView currentTrack = findViewById(R.id.currentTrackText);
     currentTrack.setText("Track: " + app.getCurrentTrackNum());
 
+    // Blue theme selector
     final RadioButton radioBlue = findViewById(R.id.colorBlue);
+    if (app.isThemeBlue()) radioBlue.setChecked(true);
     radioBlue.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
             app.chooseBlueTheme(true);
-            restart();
+            returnRequest(GameActivity.REFRESH_BG);
           }
         });
 
+    // Red theme selector
     final RadioButton radioRed = findViewById(R.id.colorRed);
+    if (!app.isThemeBlue()) radioRed.setChecked(true);
     radioRed.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
             app.chooseBlueTheme(false);
-            restart();
+            returnRequest(GameActivity.REFRESH_BG);
           }
         });
 
@@ -42,7 +47,7 @@ public class SettingsActivity extends PopUpActivity {
     quitButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-              finish();
+            finish();
           }
         });
 
@@ -83,7 +88,5 @@ public class SettingsActivity extends PopUpActivity {
   public void restart() {
     Intent restart = new Intent(this, SettingsActivity.class);
     startActivity(restart);
-    finish();
   }
-
 }
