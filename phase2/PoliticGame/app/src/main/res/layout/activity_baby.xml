@@ -16,6 +16,10 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:text="Timer"
+        android:textStyle= "bold"
+        android:textColor= "@color/textWhite"
+        android:fontFamily= "@font/pixelfont"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +41,10 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:text="Score"
+        android:textStyle= "bold"
+        android:textColor= "@color/textWhite"
+        android:fontFamily= "@font/pixelfont"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,11 +52,10 @@
         android:id="@+id/eventActionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="167dp"
-        android:layout_marginLeft="167dp"
         android:layout_marginTop="64dp"
-        android:layout_marginEnd="167dp"
-        android:layout_marginRight="167dp"
+        android:textColor= "#BDBDBD"
+        android:fontFamily= "@font/pixelfont"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
