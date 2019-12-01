@@ -43,12 +43,13 @@ class Baby {
   Baby(int centerX, int centerY, Resources res, int width) {
     paint = new Paint();
 
-    babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
-    babyImg = Bitmap.createScaledBitmap(babyImg, width, (width * 44 / 29), false);
+    // Height is set in proportion with width
+    this.width = width;
+    this.height = width * 44 / 29;
 
-    // width and height needs to be changed to dynamically scaled depending on holder width/height
-    width = babyImg.getWidth();
-    height = babyImg.getHeight();
+    babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
+    babyImg = Bitmap.createScaledBitmap(babyImg, width, height, false);
+
     x = centerX - (width / 2);
     y = centerY - (height / 2);
     originalX = x;
@@ -72,7 +73,7 @@ class Baby {
    */
   void setCry(Resources res) {
     babyImg = BitmapFactory.decodeResource(res, R.drawable.crybaby);
-    babyImg = Bitmap.createScaledBitmap(babyImg, 640, 971, false);
+    babyImg = Bitmap.createScaledBitmap(babyImg, width, height, false);
   }
 
   /**
@@ -82,7 +83,7 @@ class Baby {
    */
   void setSad(Resources res) {
     babyImg = BitmapFactory.decodeResource(res, R.drawable.sadbaby);
-    babyImg = Bitmap.createScaledBitmap(babyImg, 640, 971, false);
+    babyImg = Bitmap.createScaledBitmap(babyImg, width, height, false);
   }
 
   /**
@@ -92,7 +93,7 @@ class Baby {
    */
   void setHappy(Resources res) {
     babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
-    babyImg = Bitmap.createScaledBitmap(babyImg, 640, 971, false);
+    babyImg = Bitmap.createScaledBitmap(babyImg, width, height, false);
   }
 
   /** Resets the baby's coordinates to the original ones when drawn. */
