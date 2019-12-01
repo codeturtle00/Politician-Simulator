@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.politicgame.Application.PoliticGameApp;
@@ -30,6 +31,7 @@ public class RegistrationActivity extends UserPopUpActivity {
     final Button registerButton = findViewById(R.id.save);
     final ProgressBar loadingProgressBar = findViewById(R.id.loading);
     final Button backButton = findViewById(R.id.sign_out);
+    final ImageButton closeButton = findViewById(R.id.closeRegister);
     // Observe the form state of the username and password, set error state if there is a formState
     // Error
     setFormStateListener(registerViewModel, registerButton, usernameEditText, passwordEditText);
@@ -47,6 +49,13 @@ public class RegistrationActivity extends UserPopUpActivity {
             System.out.println("register");
           }
         });
+
+    closeButton.setOnClickListener(
+            new View.OnClickListener() {
+              public void onClick(View v) {
+                finish();
+              }
+            });
 
     backButton.setOnClickListener(
         new View.OnClickListener() {
