@@ -114,7 +114,7 @@ class BabyView extends SurfaceView implements ViewUpdater {
     // Draws baby in the center.
     baby.draw(canvas);
 
-    try{
+    try {
       eventManager.draw(canvas);
     } catch (ConcurrentModificationException e) {
       Log.e("Babyview draw()", "ConcurrentModificationException");
@@ -178,10 +178,14 @@ class BabyView extends SurfaceView implements ViewUpdater {
   }
 
   void pause() {
-    if (eventsGenerator != null) eventsGenerator.setRunning(false);
+    if (eventsGenerator != null) {
+      eventsGenerator.pause();
+    }
   }
 
   public void resume() {
-    if (eventsGenerator != null) eventsGenerator.setRunning(true);
+    if (eventsGenerator != null) {
+      eventsGenerator.resume();
+    }
   }
 }
