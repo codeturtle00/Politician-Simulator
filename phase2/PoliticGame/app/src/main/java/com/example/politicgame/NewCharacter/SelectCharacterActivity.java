@@ -1,8 +1,10 @@
 package com.example.politicgame.NewCharacter;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,10 +23,20 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class SelectCharacterActivity extends GameActivity {
+  final private int THIRDCHARACTERSCORE = 100;
+  final private int FOURTHCHARACTERSCORE = 200;
+  final private int FIFTHCHARACTERSCORE = 300;
+
   private int currCharacter;
   private GameCharacter selectedCharacter;
   private Drawable highlight;
   private PoliticGameApp app;
+  private ImageView charAButton;
+  private ImageView charBButton;
+  private ImageView charCButton;
+  private ImageView charDButton;
+  private ImageView charEButton;
+  private TextView totalScoreText;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -35,46 +47,52 @@ public class SelectCharacterActivity extends GameActivity {
     currCharacter = 0;
     highlight = getResources().getDrawable(R.drawable.highlight);
 
-    final ImageView charAButton = findViewById(R.id.imageButton);
-    final ImageView charBButton = findViewById(R.id.imageButton2);
-    final ImageView charCButton = findViewById(R.id.imageButton3);
-    final ImageView charDButton = findViewById(R.id.imageButton4);
-    final ImageView charEButton = findViewById(R.id.imageButton5);
+    charAButton = findViewById(R.id.imageButton);
+    charBButton = findViewById(R.id.imageButton2);
+    charCButton = findViewById(R.id.imageButton3);
+    charDButton = findViewById(R.id.imageButton4);
+    charEButton = findViewById(R.id.imageButton5);
+    totalScoreText = findViewById(R.id.score_count);
     final TextView inputName = findViewById(R.id.name_input);
     final Button submitName = findViewById(R.id.submit_name);
     final Button backButton = findViewById(R.id.backButton);
     final TextView error_name = findViewById(R.id.error_name);
     final TextView error_select = findViewById(R.id.error_character);
-    final ArrayList<ImageView> charArray = new ArrayList<>();
-    charArray.add(charAButton);
-    charArray.add(charBButton);
-    charArray.add(charCButton);
-    charArray.add(charDButton);
-    charArray.add(charEButton);
     // Character A is selected
-    this.setListener(charAButton, charArray, 1);
-    this.setListener(charBButton, charArray, 2);
-    this.setListener(charCButton, charArray, 3);
-    this.setListener(charDButton, charArray, 4);
-    this.setListener(charEButton, charArray, 5);
+
+    setCharacterWheel();
+
+    //Set initial text instructions
+    error_select.setTextColor(Color.parseColor("#FFFFFF"));
+    error_select.setText("Swipe below for more characters");
 
     submitName.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
+            UserAccount user = app.getCurrentUser();
             String name = inputName.getText().toString();
-            if (currCharacter != 0 && !name.equals(null) && !name.equals("")) {
+
+            boolean isUnique = !user.isDuplicate(name);
+
+            if (currCharacter != 0 && (!name.equals("") && isUnique)) {
               characterSet(name);
             }
 
             if (currCharacter == 0) {
-              error_select.setText("Please select a character");
+              error_select.setTextColor(Color.parseColor("#F44336"));
+              error_select.setText("Swipe and tap the icons to select a character");
             } else {
               error_select.setText("");
             }
 
             if (name.equals("")) {
+              Log.i("error_name", "Enter a character name");
               error_name.setText("Enter a character name");
+            } else if (!isUnique) {
+              Log.i("error_name", "Character name already exists for this user");
+              error_name.setText("Character name already exists for this user");
             } else {
+              Log.i("error_name", "Empty Error String");
               error_name.setText("");
             }
           }
@@ -84,10 +102,46 @@ public class SelectCharacterActivity extends GameActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             openMainMenu();
-            app.getCurrentUser().setCurrentCharacter(selectedCharacter);
+            //app.getCurrentUser().setCurrentCharacter(selectedCharacter);
           }
         });
   }
+
+  private void setCharacterWheel(){
+    UserAccount user = app.getCurrentUser();
+    int totalScore = user.getTotalScore();
+
+    ArrayList<ImageView> charArray = new ArrayList<>();
+    charArray.add(charAButton);
+    charArray.add(charBButton);
+    this.setListener(charAButton, charArray, 1);
+    this.setListener(charBButton, charArray, 2);
+
+    String scoreMsg = "Total Score: " + totalScore;
+    totalScoreText.setText(scoreMsg);
+
+    if (totalScore >= THIRDCHARACTERSCORE){
+      charArray.add(charCButton);
+      this.setListener(charCButton, charArray, 3);
+    } else {
+      charCButton.setImageResource(R.drawable.character_3_lock);
+    }
+
+    if (totalScore >= FOURTHCHARACTERSCORE){
+      charArray.add(charDButton);
+      this.setListener(charDButton, charArray, 4);
+    } else {
+      charDButton.setImageResource(R.drawable.character_4_lock);
+    }
+
+    if (totalScore >= FIFTHCHARACTERSCORE){
+      charArray.add(charEButton);
+      this.setListener(charEButton, charArray, 5);
+    } else {
+      charEButton.setImageResource(R.drawable.character_5_lock);
+    }
+  }
+
 
   private void setListener(
           final ImageView charButton, final ArrayList<ImageView> charList, final int i) {

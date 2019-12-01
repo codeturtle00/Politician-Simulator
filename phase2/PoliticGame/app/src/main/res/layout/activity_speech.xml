@@ -61,8 +61,9 @@
 
     <Button
         android:id="@+id/submit"
-        android:layout_width="80dp"
-        android:layout_height="43dp"
+        style="@style/Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:onClick="compare"
         android:text="@string/speech_compare"

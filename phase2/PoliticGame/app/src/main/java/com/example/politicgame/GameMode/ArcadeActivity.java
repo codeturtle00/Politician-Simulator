@@ -60,30 +60,46 @@ public class ArcadeActivity extends GameActivity {
         ss.setSprite(pauseImage);
     }
 
-    public void startGameModeSelection() {
+    /**
+     * Start the GameModeActivity activity
+     */
+    private void startGameModeSelection() {
         Intent gameModeSelectIntent = new Intent(this, GameModeActivity.class);
         startActivity(gameModeSelectIntent);
         finish();
     }
 
-    public void startNewArcadeMode(){
+    /**
+     * Start a new Arcade Mode and reset level data in case there is existing data
+     */
+    private void startNewArcadeMode(){
         resetData();
 
         startBabyGame();
     }
 
-    public void startBabyGame(){
+    /**
+     * Start the baby game with the Arcade GameMode passedx through
+     */
+    private void startBabyGame(){
         Intent startArcadeGame = new Intent(this, BabyGameInstruction.class);
-        startArcadeGame.putExtra("GameMode", new BabyArcade(/*app*/));
+        startArcadeGame.putExtra("GameMode", new BabyArcade());
         startActivity(startArcadeGame);
         finish();
     }
 
-    public void resetData(){
+    /**
+     * Uses an instance of SaveInfo reset the level data
+     */
+    private void resetData(){
         SaveInfo saveData = new SaveInfo(app.getCurrentUser(), app.getCurrentCharacter(), 0);
         saveData.resetLevels();
     }
 
+    /**
+     * Checks if there is an existing playthrough of an Arcade game mode
+     * @return
+     */
     public boolean existingArcade(){
         return (new BabyArcade()).isGameComplete(app);
     }

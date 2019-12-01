@@ -96,8 +96,6 @@
 
     <Button
         android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="64dp"
@@ -110,6 +108,10 @@
         android:textStyle="bold"
         android:padding="15dp"
         android:background="@drawable/greenbutton"
+        style="@style/Button"
+        android:layout_width="168dp"
+        android:layout_height="78dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -120,8 +122,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registration"
-        app:layout_constraintTop_toBottomOf="@id/closeRegister"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center" />
+        app:layout_constraintTop_toBottomOf="@id/closeRegister">
+
+    </TextView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

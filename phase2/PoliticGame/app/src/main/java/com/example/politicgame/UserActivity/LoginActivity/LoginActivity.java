@@ -1,32 +1,22 @@
 package com.example.politicgame.UserActivity.LoginActivity;
 
-import android.app.Activity;
-import androidx.lifecycle.Observer;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.lifecycle.ViewModelProviders;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.PopUpActivity;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.FormState;
 import com.example.politicgame.UserActivity.RegisterActivity.RegistrationActivity;
 import com.example.politicgame.UserActivity.UserPopUpActivity;
-import com.example.politicgame.UserActivity.UserViewModel;
 
 /** An activity responsible for login */
 public class LoginActivity extends UserPopUpActivity {
@@ -46,7 +36,6 @@ public class LoginActivity extends UserPopUpActivity {
       setTheme(R.style.BlueTheme);
     } else {
       setTheme(R.style.RedTheme);
-    }
     setContentView(R.layout.activity_login);
     setTitle(R.string.login);
     this.loginViewModel =
@@ -95,10 +84,10 @@ public class LoginActivity extends UserPopUpActivity {
     registration.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            registerIntent();
+            goToRegister();
           }
         });
-  }
+  }}
   /** Display user name if login in successfully */
   @Override
   protected void updateUiWithUser(LoggedInUserView model) {
@@ -117,14 +106,14 @@ public class LoginActivity extends UserPopUpActivity {
   }
   /** If no user found in the database,go to Register Page */
   @Override
-  protected void invalidUserMessage(String invalidMessage) {
+  protected void invalidUserMessage(String invalidMessage){
     Toast.makeText(getApplicationContext(), invalidMessage, Toast.LENGTH_SHORT).show();
     Intent registerIntent = new Intent(this, RegistrationActivity.class);
     startActivity(registerIntent);
     finish();
   }
   /** Go to registration Activity after validation fails */
-  private void registerIntent() {
+  private void goToRegister() {
     Intent registerIntent = new Intent(this, RegistrationActivity.class);
     startActivity(registerIntent);
     finish();

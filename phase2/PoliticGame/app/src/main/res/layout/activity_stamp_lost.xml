@@ -39,6 +39,7 @@
 
     <Button
         android:id="@+id/stamp_game_lost_leaderboard"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/stamp_game_lost_leaderboard"

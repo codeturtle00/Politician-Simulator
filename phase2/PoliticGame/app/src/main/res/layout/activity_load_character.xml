@@ -4,28 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backColor">
-
-    <Button
-        android:id="@+id/toggle_exist_2"
-        android:layout_width="36dp"
-        android:layout_height="158dp"
-        android:text="Button"
-        app:layout_constraintStart_toEndOf="@+id/character_2"
-        app:layout_constraintTop_toTopOf="@+id/character_2" />
+    android:background="@drawable/pausebackground">
 
     <TextView
         android:id="@+id/load_character_title"
+        style="@style/menuTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:padding="10dp"
-        android:text="Load Your Character"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Select Character"
+        app:layout_constraintTop_toBottomOf="@id/closeLoadCharacter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center" />
 
     <view
         android:id="@+id/view"
@@ -38,31 +28,15 @@
         app:layout_constraintTop_toBottomOf="@+id/load_character_title" />
 
     <TextView
-        android:id="@+id/load_character_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Characters"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view" />
-
-    <TextView
         android:id="@+id/character_1"
         android:layout_width="200dp"
         android:layout_height="158dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="17dp"
+        android:layout_marginTop="30dp"
         android:padding="10dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/load_character_subtitle" />
+        app:layout_constraintTop_toBottomOf="@+id/load_character_title" />
 
 
     <TextView
@@ -77,41 +51,90 @@
         android:padding="10dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/character_1" />
 
 
     <Button
-        android:id="@+id/toggle_exist_1"
-        android:layout_width="36dp"
-        android:layout_height="158dp"
-        android:text="Button"
-        app:layout_constraintStart_toEndOf="@+id/character_1"
+        android:id="@+id/create_character1"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create New Character"
+        android:visibility="gone"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/character_1"
+        app:layout_constraintEnd_toEndOf="@id/character_1"
         app:layout_constraintTop_toTopOf="@+id/character_1" />
 
     <Button
-        android:id="@+id/start_button"
+        android:id="@+id/create_character2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Start the Game!"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Create New Character"
+        android:visibility="gone"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/character_2"
+        app:layout_constraintEnd_toEndOf="@id/character_2"
+        app:layout_constraintTop_toTopOf="@+id/character_2" />
+
+
+    <ImageButton
+        android:id="@+id/delete_character1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="@id/character_1"
+        app:layout_constraintTop_toTopOf="@id/character_1"
+        android:visibility="gone"
+        android:src ="@android:drawable/ic_delete"
+        android:background="@null"/>
+
+    <ImageButton
+        android:id="@+id/delete_character2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="@id/character_2"
+        app:layout_constraintTop_toTopOf="@id/character_2"
+        android:visibility="gone"
+        android:src ="@android:drawable/ic_delete"
+        android:background="@null"/>
+
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Please select a character!"
+        android:fontFamily="@font/pixelfont"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:textSize="20sp"
+        android:textColor="#FF4E4E"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/start_button"/>
 
     <Button
-        android:id="@+id/load_character_back"
+        android:id="@+id/start_button"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Back"
-        app:layout_constraintBottom_toTopOf="@+id/load_character_title"
+        android:layout_marginTop="30dp"
+        android:textSize="25sp"
+        android:padding="15dp"
+        android:text="Start Game"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/character_2" />
+
+    <ImageButton
+        android:id="@+id/closeLoadCharacter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src ="@android:drawable/ic_delete"
+        android:background="@null"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -143,6 +143,5 @@ public class MainActivity extends GameActivity {
   public void openLoadCharacter () {
     Intent loadCharacters = new Intent(this, LoadCharacterActivity.class);
     startActivity(loadCharacters);
-    finish();
   }
 }

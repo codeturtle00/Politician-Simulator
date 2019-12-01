@@ -35,6 +35,7 @@
 
     <Button
         android:id="@+id/submit_name"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -48,9 +49,9 @@
         android:id="@+id/error_character"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:textColor="#F44336"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/select_character_text" />
@@ -62,7 +63,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="20dp"
         android:textColor="#F44336"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/name_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -71,11 +72,13 @@
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
-        android:layout_width="339dp"
-        android:layout_height="374dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="274dp"
+        android:layout_height="396dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/picture_frame"
         android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/select_character_text">
 
@@ -83,14 +86,14 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:paddingRight="65dp">
+            android:paddingRight="30dp">
 
             <ImageView
                 android:id="@+id/imageButton"
-                android:layout_width="203dp"
-                android:layout_height="310dp"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="60dp"
+                android:layout_width="215dp"
+                android:layout_height="332dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="32dp"
                 android:contentDescription="First politician picture"
                 android:padding="5dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -99,10 +102,10 @@
 
             <ImageView
                 android:id="@+id/imageButton2"
-                android:layout_width="203dp"
-                android:layout_height="310dp"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="60dp"
+                android:layout_width="215dp"
+                android:layout_height="332dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="32dp"
                 android:contentDescription="Second politician picture"
                 android:padding="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -112,10 +115,10 @@
 
             <ImageView
                 android:id="@+id/imageButton3"
-                android:layout_width="203dp"
-                android:layout_height="310dp"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="60dp"
+                android:layout_width="215dp"
+                android:layout_height="332dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="32dp"
                 android:contentDescription="Third politician picture"
                 android:padding="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -125,10 +128,10 @@
 
             <ImageView
                 android:id="@+id/imageButton4"
-                android:layout_width="203dp"
-                android:layout_height="310dp"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="60dp"
+                android:layout_width="215dp"
+                android:layout_height="332dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="32dp"
                 android:contentDescription="Fourth politician picture"
                 android:padding="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -138,21 +141,22 @@
 
             <ImageView
                 android:id="@+id/imageButton5"
-                android:layout_width="203dp"
-                android:layout_height="310dp"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="60dp"
+                android:layout_width="215dp"
+                android:layout_height="332dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="32dp"
                 android:contentDescription="Fifth politician picture"
                 android:padding="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageButton"
                 app:layout_constraintTop_toTopOf="@+id/imageButton"
-                app:srcCompat="@drawable/winnie" />
+                app:srcCompat="@drawable/paul_gries" />
         </LinearLayout>
     </HorizontalScrollView>
 
     <Button
         android:id="@+id/backButton"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -161,4 +165,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8" />
+
+    <ImageView
+        android:id="@+id/star"
+        android:layout_width="34dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toEndOf="@+id/backButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/star" />
+
+    <TextView
+        android:id="@+id/score_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:text="total score: 0"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/star"
+        app:layout_constraintTop_toTopOf="@+id/star" />
 </androidx.constraintlayout.widget.ConstraintLayout>

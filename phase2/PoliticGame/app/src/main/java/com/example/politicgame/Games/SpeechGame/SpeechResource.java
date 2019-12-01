@@ -26,6 +26,9 @@ public class SpeechResource implements Serializable {
 
     private int dataBaseNum;
 
+    /**
+     * Constructor which initializes all the possible prompts, answers, and choices
+     */
     SpeechResource() {
         this.prompt = new ArrayList();
         this.choice = new ArrayList();
@@ -36,6 +39,9 @@ public class SpeechResource implements Serializable {
         this.dataBaseNum = this.prompt.size();
     }
 
+    /**
+     * Initializes all the prompts in order
+     */
     private void setPrompt() {
         this.prompt.add(
                 "The country needs more budget to spend on improving public education and there is discussion for raising the money");
@@ -59,6 +65,9 @@ public class SpeechResource implements Serializable {
                 "Older citizens are struggling to retire at reasonable age and there is discussion to increase senior assissance");
     }
 
+    /**
+     * Initializes the choices in order
+     */
     private void setChoice() {
         this.helpSetChoice("taxes", "environment", "religion", "military");
         this.helpSetChoice("immigration", "healthcare", "corporations", "taxes");
@@ -72,6 +81,13 @@ public class SpeechResource implements Serializable {
         this.helpSetChoice("pension", "internet", "military", "diversity");
     }
 
+    /**Helps group the choices together
+     *
+     * @param A: choice 1
+     * @param B: choice 2
+     * @param C: choice 3
+     * @param D: choice 4
+     */
     private void helpSetChoice(String A, String B, String C, String D) {
         ArrayList<String> array = new ArrayList<String>();
         array.add(A);
@@ -81,6 +97,9 @@ public class SpeechResource implements Serializable {
         choice.add(array);
     }
 
+    /**
+     * Initializes the answers in order
+     */
     private void setAnswer() {
         this.answer.add("taxes");
         this.answer.add("taxes");

@@ -10,12 +10,10 @@
 
     <ImageView
         android:id="@+id/stamp_game_character_image"
-        android:layout_width="116dp"
-        android:layout_height="202dp"
+        android:layout_width="166dp"
+        android:layout_height="235dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/stamp_game_char_image"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,10 +24,10 @@
 
     <Button
         android:id="@+id/stamp_game_yes"
+        style="@style/Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/stamp_game_yes"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,10 +35,10 @@
 
     <Button
         android:id="@+id/stamp_game_no"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/stamp_game_no"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -12,11 +12,17 @@ import com.example.politicgame.Games.StampGame.StampInstructionActivity;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 
+/**
+ * Activity displaying the instructions for the game
+ */
 public class SpeechInstructionActivity extends GameActivity {
     private SpeechPresenter presenter = new SpeechPresenter();
     final private String LEVEL_NAME = "LEVEL2";
 
     @Override
+    /**
+     * Initializes the
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -38,6 +44,9 @@ public class SpeechInstructionActivity extends GameActivity {
                 });
     }
 
+    /**
+     * Starts SpeechActivity
+     */
     public void startSpeechGame() {
         Intent startSpeechIntent = new Intent(this, SpeechActivity.class);
 
@@ -50,7 +59,7 @@ public class SpeechInstructionActivity extends GameActivity {
     }
 
     /**
-     * Switch to Next Game View
+     * Switch to the next game's activity
      **/
     public void openStampGame() {
         Intent switchStampIntent = new Intent(this, StampInstructionActivity.class);

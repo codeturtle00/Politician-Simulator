@@ -31,7 +31,7 @@ public class SpriteSetter {
             image.setImageResource(R.drawable.tohru);
             //pauseImage.setBackgroundResource(R.drawable.helmet_guy);
         } else if (charId == 5) {
-            image.setImageResource(R.drawable.pause_filler);
+            image.setImageResource(R.drawable.paul_gries);
             //pauseImage.setBackgroundResource(R.drawable.helmet_guy);
         }
         else {

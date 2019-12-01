@@ -6,20 +6,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.GameMode.GameModeActivity;
-import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.MainActivity;
 import com.example.politicgame.NewCharacter.SelectCharacterActivity;
+import com.example.politicgame.PopUpActivity;
 import com.example.politicgame.R;
 
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.Character.UserTools.UserAccount;
 
-public class LoadCharacterActivity extends GameActivity {
+public class LoadCharacterActivity extends PopUpActivity {
   protected PoliticGameApp app;
   private final int TOTAL_CELLS = 2;
   private final String FILE_NAME = "user.json";
@@ -29,9 +29,15 @@ public class LoadCharacterActivity extends GameActivity {
 
   // Buttons and Textviews for navigating the screen
   private TextView[] charButton;
-  private Button[] toggleExistButton;
   private Button startButton;
-  private TextView backButton;
+  private ImageButton closeButton;
+
+  /**
+   * Stores the character create and delete button for cell i
+   * charCreateDelButtons[i][0]: create Button for cell i
+   * charCreateDelButtons[i][1]: delete Button for cell i
+   */
+  private View[][] charCreateDelButtons;
 
   // Variables that help measure the state of the loading cells
   private Boolean[] cellLoaded;
@@ -44,13 +50,6 @@ public class LoadCharacterActivity extends GameActivity {
 
     System.out.println("The current theme is blue: " + app.isThemeBlue());
 
-    // Set theme
-    if (app.isThemeBlue()) {
-      setTheme(R.style.BlueTheme);
-    } else {
-      setTheme(R.style.RedTheme);
-    }
-
     setTitle("Load Your Character");
 
     currCharacter = 0;
@@ -61,9 +60,11 @@ public class LoadCharacterActivity extends GameActivity {
 
     highlight = getResources().getDrawable(R.drawable.highlight);
     charButton = new TextView [] {findViewById(R.id.character_1),findViewById(R.id.character_2)};
-    toggleExistButton = new Button [] {findViewById(R.id.toggle_exist_1),findViewById(R.id.toggle_exist_2)};
+    charCreateDelButtons = new View[][]
+            {{findViewById(R.id.create_character1), findViewById(R.id.delete_character1)},
+                    {findViewById(R.id.create_character2), findViewById(R.id.delete_character2)}};
     startButton = findViewById(R.id.start_button);
-    backButton = findViewById(R.id.load_character_back);
+    closeButton = findViewById(R.id.closeLoadCharacter);
 
     Log.i("onCreate", "Before we populate cells");
 
@@ -101,32 +102,26 @@ public class LoadCharacterActivity extends GameActivity {
         });
 
     /**
-     * New Character/Delete Character button, depends on if there is a character that already exists
+     * Sets onClickListeners for all charCreateDelButtons
      */
-    toggleExistButton[0].setOnClickListener(
-        new View.OnClickListener() {
-          public void onClick(View v) {
-            if (cellLoaded[0]) {
-              deleteCharacter(cellNames[0]);
-            } else {
-              createNewCharacter();
-            }
-          }
-        });
+    for (int i = 0; i < charCreateDelButtons.length; i++) {
+      final int finalI = i;
 
-    /**
-     * New Character/Delete Character button, depends on if there is a character that already exists
-     */
-    toggleExistButton[1].setOnClickListener(
-        new View.OnClickListener() {
-          public void onClick(View v) {
-            if (cellLoaded[1]) {
-              deleteCharacter(cellNames[1]);
-            } else {
-              createNewCharacter();
-            }
-          }
-        });
+      charCreateDelButtons[i][0].setOnClickListener(
+              new View.OnClickListener() {
+                public void onClick(View v) {
+                  createNewCharacter();
+                  }
+                }
+              );
+      charCreateDelButtons[i][1].setOnClickListener(
+              new View.OnClickListener() {
+                public void onClick(View v) {
+                  deleteCharacter(cellNames[finalI]);
+                }
+              }
+      );
+    }
 
     startButton.setOnClickListener(
         new View.OnClickListener() {
@@ -135,10 +130,10 @@ public class LoadCharacterActivity extends GameActivity {
           }
         });
 
-    backButton.setOnClickListener(
+    closeButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            toLoggedInMenu();
+            finish();
           }
         });
   }
@@ -153,8 +148,8 @@ public class LoadCharacterActivity extends GameActivity {
 
       Intent gameModeSelectIntent = new Intent(this, GameModeActivity.class);
       startActivity(gameModeSelectIntent);
-      finish();
-    }
+      finishAffinity();
+    } else findViewById(R.id.errorText).setVisibility(View.VISIBLE);
   }
 
 
@@ -174,18 +169,10 @@ public class LoadCharacterActivity extends GameActivity {
       cellLoaded[i] = cellData[i].isLoaded();
       cellNames[i] = cellData[i].getCharName();
       charButton[i].setText(cellData[i].getCellText());
-      toggleExistButton[i].setText(cellData[i].getButtonText());
+
+      // Each cell sets the visibility of their create and delete buttons
+      cellData[i].setCreateDeleteButtons(charCreateDelButtons[i][0], charCreateDelButtons[i][1]);
     }
-  }
-
-
-  /**
-   * Brings you back to the logged in menu
-   */
-  private void toLoggedInMenu() {
-    Intent selectIntent = new Intent(this, MainActivity.class);
-    startActivity(selectIntent);
-    finish();
   }
 
 
@@ -207,8 +194,6 @@ public class LoadCharacterActivity extends GameActivity {
     userAcc.deleteCharByName(charName);
     userAcc.saveToDb();
 
-    Intent restartIntent = new Intent(this, LoadCharacterActivity.class);
-    startActivity(restartIntent);
-    finish();
+    recreate();
   }
 }

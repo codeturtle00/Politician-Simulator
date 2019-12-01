@@ -9,6 +9,7 @@
 
     <Button
         android:id="@+id/save_main_menu"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -94,6 +95,7 @@
 
     <Button
         android:id="@+id/quit_main_menu"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"

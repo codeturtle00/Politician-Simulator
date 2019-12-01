@@ -21,19 +21,23 @@ public class UserAccount {
   private FileSavingService fileSaving;
   private static final String FILE_NAME = "user.json";
   private Context context;
+  private String displayName;
 
   private UserAccountChar userAccountChar;
   private UserAccountDB userAccountDB;
   private UserAccountResetLevels userAccountResetLevels;
   private UserAccountAddScore userAccountAddScore;
+  private UserScore userScore;
 
   public UserAccount(String displayName, Context context) {
+    this.displayName = displayName;
     this.context = context;
     this.fileSaving = new FileSavingService(context);
     this.userAccountChar = new UserAccountChar(displayName);
     this.userAccountDB = new UserAccountDB(FILE_NAME, displayName);
     this.userAccountResetLevels = new UserAccountResetLevels();
     this.userAccountAddScore = new UserAccountAddScore();
+    this.userScore = new UserScore(context, displayName);
   }
 
   /**
@@ -62,6 +66,16 @@ public class UserAccount {
    */
   public int getCharId(String charName) {
     return userAccountChar.getCharId(charName);
+  }
+
+  /**
+   * Checks if the user already has a character with the same name
+   *
+   * @param charName the name of the character
+   * @return If the user has another character with the same name
+   */
+  public boolean isDuplicate(String charName) {
+    return userAccountChar.isDuplicate(charName);
   }
 
   /**
@@ -139,8 +153,17 @@ public class UserAccount {
   public void addScore(String charName, int score) {
     JSONArray charArray = getCharArray();
     userAccountAddScore.addScore(charArray, charName, score);
+    userScore.addScore(score);
   }
 
+  /**
+   * Returns User's total life-time score
+   *
+   * @return  The total score that the user has acquired over all saved game modes and play throughs
+   */
+  public int getTotalScore(){
+    return userScore.getTotalScore();
+  }
 
   /**
    * Saves a high score for an individual level, used for the individial game modes
@@ -150,6 +173,8 @@ public class UserAccount {
    * @param score       The score that the character has achieved
    */
   public void singleSave (String levelName, String charName, int score){
+    userScore.addScore(score);
+
     JSONArray charArray = getCharArray();
 
     try {
@@ -179,6 +204,7 @@ public class UserAccount {
     newString.append(getCharArray().toString());
     return newString.toString();
   }
+
 
   /**
    * Saves the current version of charArray to user.json and will create the file if it does not
