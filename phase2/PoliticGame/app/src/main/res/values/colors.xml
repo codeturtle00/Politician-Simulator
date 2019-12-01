@@ -10,4 +10,6 @@
     <color name="textWhite">#FFFFFF</color>
 
     <color name="greyButtonTint">#1D000000</color>
+
+    <color name="loadCharacterBack">#3BD62D</color>
 </resources>

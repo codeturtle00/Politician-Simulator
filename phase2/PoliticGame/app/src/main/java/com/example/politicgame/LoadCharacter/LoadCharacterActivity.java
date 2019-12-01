@@ -168,7 +168,7 @@ public class LoadCharacterActivity extends PopUpActivity {
     for (int i = 0; i < cellData.length; i++){
       cellLoaded[i] = cellData[i].isLoaded();
       cellNames[i] = cellData[i].getCharName();
-      charButton[i].setText(cellData[i].getCellText());
+      charButton[i].setText("\n" + cellData[i].getCellText()); //"\n" for centering
 
       // Each cell sets the visibility of their create and delete buttons
       cellData[i].setCreateDeleteButtons(charCreateDelButtons[i][0], charCreateDelButtons[i][1]);
