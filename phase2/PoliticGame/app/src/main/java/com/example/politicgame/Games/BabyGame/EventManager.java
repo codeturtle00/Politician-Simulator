@@ -153,7 +153,7 @@ class EventManager implements View.OnTouchListener {
     // If totalScoreChange is 0 and finger stopped moving,
     // then user did not properly interact with any event.
     if (totalScoreChange == 0 && !moving) {
-      totalScoreChange = (int) (-5 * (0.5 + r.nextFloat()));
+      totalScoreChange = (int) (-10 * (0.5 + r.nextFloat()));
     }
     updateScore(totalScoreChange);
     update();
