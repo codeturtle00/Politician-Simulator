@@ -1,4 +1,4 @@
-package com.example.politicgame.Builder;
+package com.example.politicgame.Character;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

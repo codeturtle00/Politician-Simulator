@@ -1,9 +1,5 @@
 package com.example.politicgame.Character;
 
-import com.example.politicgame.Builder.CharacterBuilder;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class GameCharacter {
