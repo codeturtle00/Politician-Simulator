@@ -1,4 +1,4 @@
-package com.example.politicgame.LoadCharacter;
+package com.example.politicgame.CharacterSelect;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -9,10 +9,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.politicgame.GameActivity;
 import com.example.politicgame.GameMode.GameModeActivity;
 import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.NewCharacter.SelectCharacterActivity;
 import com.example.politicgame.PopUpActivity;
 import com.example.politicgame.R;
 

@@ -1,4 +1,4 @@
-package com.example.politicgame.NewCharacter;
+package com.example.politicgame.CharacterSelect;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -174,7 +174,7 @@ public class SelectCharacterActivity extends GameActivity {
    *
    * @param name  The name of the character we are creating
    */
-  public void characterSet(String name) {
+  private void characterSet(String name) {
     UserAccount user = app.getCurrentUser();
     JSONObject newChar = selectedCharacter.getJsonChar(name);
     String charName = newChar.keys().next();
@@ -201,7 +201,7 @@ public class SelectCharacterActivity extends GameActivity {
   /**
    * Opens the game mode selection screen so that the user can begin play
    */
-  public void startGameModeSelection() {
+  private void startGameModeSelection() {
     Intent gameModeSelectIntent = new Intent(this, GameModeActivity.class);
     startActivity(gameModeSelectIntent);
     finish();

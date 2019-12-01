@@ -42,10 +42,10 @@
             android:theme="@style/PopUp"/>
         <activity android:name=".SettingsActivity"
             android:theme="@style/PopUp"/>
-        <activity android:name=".NewCharacter.SelectCharacterActivity" />
+        <activity android:name=".CharacterSelect.SelectCharacterActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".PopUpActivity"/>
-        <activity android:name=".LoadCharacter.LoadCharacterActivity"
+        <activity android:name=".CharacterSelect.LoadCharacterActivity"
             android:theme="@style/PopUp"/>
         <activity android:name=".GameMode.GameModeActivity" />
         <activity android:name=".GameMode.SingleEndActivity" />

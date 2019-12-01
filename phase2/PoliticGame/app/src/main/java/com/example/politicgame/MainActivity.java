@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.politicgame.Leaderboard.LeaderBoardActivity;
-import com.example.politicgame.LoadCharacter.LoadCharacterActivity;
+import com.example.politicgame.CharacterSelect.LoadCharacterActivity;
 import com.example.politicgame.UserActivity.UserInterface.LoginActivity;
 
 public class MainActivity extends GameActivity {
