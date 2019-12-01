@@ -1,6 +1,4 @@
-package com.example.politicgame.UserData;
-
-import android.widget.ImageView;
+package com.example.politicgame.UserActivity.UserDatabase;
 
 import com.example.politicgame.Character.UserTools.UserAccount;
 

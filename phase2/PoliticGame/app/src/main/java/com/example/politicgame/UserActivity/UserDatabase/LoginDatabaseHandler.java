@@ -1,22 +1,23 @@
-package com.example.politicgame.UserData;
+package com.example.politicgame.UserActivity.UserDatabase;
 
 import android.app.Activity;
 import android.content.Context;
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Character.UserTools.UserAccount;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.IOException;
 
 /** Handles credentials and retrieves user information. */
-public class LoginDatabaseHandler {
+class LoginDatabaseHandler {
   private Context context;
   private FileSavingService fileSaving;
   private PoliticGameApp app;
 
-  public LoginDatabaseHandler(Context context) {
+  LoginDatabaseHandler(Context context) {
     this.context = context;
     this.fileSaving = new FileSavingService(context);
     Activity loginActivity = (Activity) context;
@@ -73,7 +74,7 @@ public class LoginDatabaseHandler {
   /** Precondition: Username and password passed into this class is clean and valid
    * as it go through FormState
    */
-  public Result login(String username, String password) {
+  Result login(String username, String password) {
       if (!this.userFound(username)) {
         return new Result.InvalidResult.EmptyResult(username);
       }

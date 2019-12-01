@@ -1,4 +1,4 @@
-package com.example.politicgame.UserActivity.RegisterActivity;
+package com.example.politicgame.UserActivity.UserInterface;
 
 import androidx.annotation.StringRes;
 import android.content.Intent;
@@ -10,9 +10,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInUserView;
-import com.example.politicgame.UserActivity.LoginActivity.LoginActivity;
-import com.example.politicgame.UserActivity.UserPopUpActivity;
+import com.example.politicgame.UserActivity.UserModel.LoggedInUserView;
+import com.example.politicgame.UserActivity.UserModel.RegisterViewModel;
+import com.example.politicgame.UserActivity.UserDatabase.RegistrationDatabaseHandler;
 
 public class RegistrationActivity extends UserPopUpActivity {
   private RegisterViewModel registerViewModel;

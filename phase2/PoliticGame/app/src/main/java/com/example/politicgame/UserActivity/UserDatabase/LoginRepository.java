@@ -1,4 +1,4 @@
-package com.example.politicgame.UserData;
+package com.example.politicgame.UserActivity.UserDatabase;
 
 import com.example.politicgame.Character.UserTools.UserAccount;
 

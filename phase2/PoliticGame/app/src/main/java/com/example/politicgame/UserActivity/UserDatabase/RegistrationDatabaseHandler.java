@@ -1,9 +1,8 @@
-package com.example.politicgame.UserActivity.RegisterActivity;
+package com.example.politicgame.UserActivity.UserDatabase;
 
 import android.content.Context;
 import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.Common.FileSavingService;
-import com.example.politicgame.UserData.Result;
 
 import org.json.JSONArray;
 import org.json.JSONException;

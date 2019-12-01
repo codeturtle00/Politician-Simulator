@@ -1,21 +1,17 @@
-package com.example.politicgame.UserActivity.RegisterActivity;
+package com.example.politicgame.UserActivity.UserModel;
 
 import android.content.Context;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.FormState;
-import com.example.politicgame.UserActivity.LoginActivity.LoggedInUserView;
-import com.example.politicgame.UserActivity.LoginActivity.ViewModelResult;
-import com.example.politicgame.UserActivity.UserViewModel;
-import com.example.politicgame.UserData.Result;
+import com.example.politicgame.UserActivity.UserInterface.ViewModelResult;
+import com.example.politicgame.UserActivity.UserDatabase.RegistrationDatabaseHandler;
+import com.example.politicgame.UserActivity.UserDatabase.Result;
 
 
 public class RegisterViewModel extends UserViewModel {
   private RegistrationDatabaseHandler registerSaving;
-  RegisterViewModel(Context context, RegistrationDatabaseHandler registerSaving){
+  public RegisterViewModel(Context context, RegistrationDatabaseHandler registerSaving){
     super(context);
     this.registerSaving = registerSaving;
   }

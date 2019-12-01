@@ -1,4 +1,4 @@
-package com.example.politicgame.UserActivity;
+package com.example.politicgame.UserActivity.UserInterface;
 
 import androidx.annotation.Nullable;
 
@@ -7,13 +7,11 @@ public class FormState {
   @Nullable private Integer usernameError;
   @Nullable private Integer passwordError;
   private boolean isDataValid;
-
   public FormState(@Nullable Integer usernameError, @Nullable Integer passwordError) {
     this.usernameError = usernameError;
     this.passwordError = passwordError;
     this.isDataValid = false;
   }
-
   public FormState(boolean isDataValid) {
     this.usernameError = null;
     this.passwordError = null;

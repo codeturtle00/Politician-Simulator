@@ -1,16 +1,16 @@
-package com.example.politicgame.UserActivity.LoginActivity;
+package com.example.politicgame.UserActivity.UserModel;
 
 import android.content.Context;
 
-import com.example.politicgame.UserActivity.UserViewModel;
-import com.example.politicgame.UserData.LoginRepository;
-import com.example.politicgame.UserData.Result;
+import com.example.politicgame.UserActivity.UserInterface.ViewModelResult;
+import com.example.politicgame.UserActivity.UserDatabase.LoginRepository;
+import com.example.politicgame.UserActivity.UserDatabase.Result;
 import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.R;
 
 public class LoginViewModel extends UserViewModel {
   private LoginRepository loginRepository;
-  LoginViewModel(Context context, LoginRepository loginRepository) {
+  public LoginViewModel(Context context, LoginRepository loginRepository) {
     super(context);
     this.loginRepository = loginRepository; }
     @Override
