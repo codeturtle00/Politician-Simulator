@@ -1,6 +1,9 @@
 package com.example.politicgame.Games.BabyGame;
 
+import android.graphics.Color;
 import android.widget.TextView;
+
+import androidx.annotation.ColorInt;
 
 public class Score {
 
@@ -17,6 +20,13 @@ public class Score {
   /** Update score and returns new score */
   void updateScore(int happinessChange) {
 
+    // Change color of text depending on score change
+    if (happinessChange < -1 ) scoreBox.setTextColor(Color.parseColor("#ffcccc"));
+    else if (happinessChange > 1)
+      scoreBox.setTextColor(Color.parseColor("#b3ffb3"));
+    else scoreBox.setTextColor(Color.parseColor("#ffffff"));
+
+    // Check if bounds reached
     if (happiness + happinessChange > 100) {
       happiness = 100;
     } else if (happiness + happinessChange < 0) {
@@ -25,7 +35,6 @@ public class Score {
       happiness += happinessChange;
     }
 
-    // temp show score text. Will add a happiness meter gfx
     String scoreBoxText = "Happiness: " + happiness + "%";
     scoreBox.setText(scoreBoxText);
   }
