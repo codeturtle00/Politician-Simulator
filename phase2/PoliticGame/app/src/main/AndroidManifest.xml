@@ -30,7 +30,8 @@
         <activity android:name=".Games.BabyGame.BabyGameInstruction" />
         <activity android:name=".UserActivity.LoginActivity.LoginActivity"
             android:theme="@style/PopUp"/>
-        <activity android:name=".UserActivity.RegisterActivity.RegistrationActivity" />
+        <activity android:name=".UserActivity.RegisterActivity.RegistrationActivity"
+            android:theme="@style/PopUp"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
