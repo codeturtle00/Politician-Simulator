@@ -5,6 +5,8 @@ import android.content.Context;
 import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Character.UserTools.UserAccount;
+import com.example.politicgame.UserActivity.UserModel.DatabaseHandler;
+import com.example.politicgame.UserActivity.UserModel.Result;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,12 +14,12 @@ import org.json.JSONException;
 import java.io.IOException;
 
 /** Handles credentials and retrieves user information. */
-class LoginDatabaseHandler {
+public class LoginDatabaseHandler implements DatabaseHandler {
   private Context context;
   private FileSavingService fileSaving;
   private PoliticGameApp app;
 
-  LoginDatabaseHandler(Context context) {
+  public LoginDatabaseHandler(Context context) {
     this.context = context;
     this.fileSaving = new FileSavingService(context);
     Activity loginActivity = (Activity) context;
@@ -54,7 +56,7 @@ class LoginDatabaseHandler {
     return false;
   }
 
-  private Result setAccountCharacter(String username){
+  private Result setAccountCharacter(String username) {
     UserAccount loginUser = new UserAccount(username, this.context);
     JSONArray jsonFile = fileSaving.readJsonFile("user.json");
     try {
@@ -71,18 +73,18 @@ class LoginDatabaseHandler {
     return new Result.Success(loginUser);
   }
 
-  /** Precondition: Username and password passed into this class is clean and valid
-   * as it go through FormState
+  /**
+   * Precondition: Username and password passed into this class is clean and valid as it go through
+   * FormState
    */
-  Result login(String username, String password) {
-      if (!this.userFound(username)) {
-        return new Result.InvalidResult.EmptyResult(username);
-      }
-      else if (this.userAuthentication(username, password)) {
-        return setAccountCharacter(username);
-      }
-      else {
-        return new Result.Error(new IOException("Error logging in"));
-      }
+  @Override
+  public Result connectDatabase(String username, String password) {
+    if (!this.userFound(username)) {
+      return new Result.InvalidResult.EmptyResult(username);
+    } else if (this.userAuthentication(username, password)) {
+      return setAccountCharacter(username);
+    } else {
+      return new Result.Error(new IOException("Error logging in"));
     }
+  }
 }

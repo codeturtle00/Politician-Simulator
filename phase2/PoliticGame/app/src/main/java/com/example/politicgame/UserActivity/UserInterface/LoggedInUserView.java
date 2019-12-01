@@ -1,4 +1,4 @@
-package com.example.politicgame.UserActivity.UserModel;
+package com.example.politicgame.UserActivity.UserInterface;
 /** Class exposing authenticated user details to the UI. */
 public class LoggedInUserView {
   private String displayName;

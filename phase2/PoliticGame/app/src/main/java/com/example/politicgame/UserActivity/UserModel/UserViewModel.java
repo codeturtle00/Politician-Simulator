@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModel;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 import com.example.politicgame.UserActivity.UserInterface.FormState;
-import com.example.politicgame.UserActivity.UserInterface.ViewModelResult;
 
 /** Model where contains common logic for user activity ,specifically
  * it checks if the username and password are valid .
@@ -19,16 +18,16 @@ import com.example.politicgame.UserActivity.UserInterface.ViewModelResult;
 public abstract class UserViewModel extends ViewModel {
     private MutableLiveData<FormState> formState = new MutableLiveData<>();
     protected PoliticGameApp app;
-    protected MutableLiveData<ViewModelResult> dataResult = new MutableLiveData<>();
+    MutableLiveData<ViewModelResult> dataResult = new MutableLiveData<>();
     public LiveData<ViewModelResult> getViewModelResult() { return dataResult;}
     public LiveData<FormState> getFormState() { return formState;}
-    protected UserViewModel(Context context){
+    UserViewModel(Context context){
         Activity activity = (Activity) context;
         app = (PoliticGameApp) activity.getApplication();
 
     }
     /** This validates username so that its not null or it is a valid email address*/
-    protected boolean usernameValid(String username) {
+    private boolean usernameValid(String username) {
         if (username == null) {
             return false;
         }
@@ -40,7 +39,7 @@ public abstract class UserViewModel extends ViewModel {
     }
 
     /** This validates password so that its length is greater than 4*/
-    protected boolean passwordValid(String password) {
+    private boolean passwordValid(String password) {
         return password != null && password.trim().length() > 4;
     }
 

@@ -1,4 +1,4 @@
-package com.example.politicgame.UserActivity.UserDatabase;
+package com.example.politicgame.UserActivity.UserModel;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -6,8 +6,6 @@ import androidx.annotation.NonNull;
 
 import com.example.politicgame.UserActivity.UserDatabase.LoginDatabaseHandler;
 import com.example.politicgame.UserActivity.UserInterface.LoginActivity;
-import com.example.politicgame.UserActivity.UserDatabase.LoginRepository;
-import com.example.politicgame.UserActivity.UserModel.LoginViewModel;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel. Required given LoginViewModel has a
