@@ -19,7 +19,9 @@ class StampGameHandler {
 
   private WordListManager wordListManager;
 
-  private ProposalBuilder proposalBuilder;
+  private StringListManager stringListManager;
+
+  private ProposalsManager proposalsManager;
 
   /** The list of verbs being used in game handler to construct Prompts */
   private List<Word> verbs;
@@ -36,12 +38,6 @@ class StampGameHandler {
   /** The current Prompt being given to the user */
   private Proposal currentPrompt;
 
-  /**
-   * The pronoun used to call the user, we will modify this in Phase 2 where depending on the
-   * character chosen by the user, the pronoun will be changed
-   */
-  private String pronoun = "sir";
-
   /** The verb used for when we run out of prompts */
   private Verb emptyAction = new Verb("", 0);
 
@@ -49,19 +45,7 @@ class StampGameHandler {
   private Noun emptyNoun = new Noun("", 0, false);
 
   /** The list of Strings we use to form the beginning of a proposal */
-  private List<String> promptBeginList =
-      new ArrayList<>(
-          Arrays.asList(
-              "Good afternoon "
-                  + pronoun
-                  + ", based on our campaign researchers' speculation, would you like to",
-              "This just in "
-                  + pronoun
-                  + ", based on the rumors from our excited supporters, is it true that you would",
-              "Greetings " + pronoun + ", based on the meeting result last week, are you going to",
-              "Nice to meet you "
-                  + pronoun
-                  + ". I am one of your many campaign assistants and was wondering if you would advocate to"));
+  private List<String> promptBeginList;
 
   /**
    * The constructor for the game handler
@@ -71,24 +55,19 @@ class StampGameHandler {
    */
   StampGameHandler(Context context) {
     this.context = context;
-    this.wordListManager = new WordListManager(new StringListManager(context));
+    this.stringListManager = new StringListManager(context);
+    this.wordListManager = new WordListManager(this.stringListManager);
 
     verbs = wordListManager.getVerbs();
     nouns = wordListManager.getNouns();
+    promptBeginList = stringListManager.getPromptStartList();
+    proposalsManager = new ProposalsManager(nouns, verbs, promptBeginList);
 
-    prompts = new ArrayList<>();
+    prompts = proposalsManager.generateProposalList(10);
+    for (Proposal proposal: prompts){
+      System.out.println(proposal.getString());
+    }
   }
-
-  //  /**
-  //   * generate a double between(inclusive) double min and double max
-  //   *
-  //   * @param min the minimum double we can generate
-  //   * @param max the maximum doulbe we can generate
-  //   * @return a double between(inclusive) min and max
-  //   */
-  //  private double getRandomDoubleBetweenRange(double min, double max) {
-  //    return (Math.random() * ((max - min) + 1)) + min;
-  //  }
 
   /** Generate a prompt, if the verbs or nouns are empty, we will generate an emptyPrompt */
   private void createPrompt() {

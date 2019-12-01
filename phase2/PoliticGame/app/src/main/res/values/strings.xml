@@ -78,4 +78,8 @@
     <string name="pos_C_Noun_students">sad computer science students at the University of Toronto</string>
     <string name="neg_C_Noun_sealClubber">seal clubbers, who have hunted and killed countless baby seals</string>
     <string name="neg_C_Noun_thieves">thieves, who have stolen goods from innocent students</string>
+    <string name="promptStarter_1">Good afternoon, based on our campaign researchers\' speculation, would you like to</string>
+    <string name="promptStarter_2">This just in, based on the rumors from our excited supporters, is it true that you would</string>
+    <string name="promptStarter_3">Greetings, based on the meeting result last week, are you going to</string>
+    <string name="promptStarter_4">Nice to meet you. I am one of your many campaign assistants and was wondering if you would like to</string>
 </resources>

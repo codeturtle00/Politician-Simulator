@@ -74,4 +74,13 @@ class StringListManager {
                     this.context.getString(R.string.neg_C_Noun_thieves)));
   }
 
+  List<String> getPromptStartList() {
+    return new ArrayList<>(
+            Arrays.asList(
+                    this.context.getString(R.string.promptStarter_1),
+                    this.context.getString(R.string.promptStarter_2),
+                    this.context.getString(R.string.promptStarter_3),
+                    this.context.getString(R.string.promptStarter_4)));
+  }
+
 }

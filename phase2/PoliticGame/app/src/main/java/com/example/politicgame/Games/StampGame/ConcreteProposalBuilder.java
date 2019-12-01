@@ -41,9 +41,9 @@ class ConcreteProposalBuilder implements ProposalBuilder {
     this.noun = noun;
   }
 
-  public void setHasCountableNoun(Boolean countable) {
-    this.hasCountableNoun = countable;
-  }
+//  public void setHasCountableNoun(Boolean countable) {
+//    this.hasCountableNoun = countable;
+//  }
 
   /**
    * This is the last step of constructing a proposal, if the noun within the proposal is countable,
@@ -51,7 +51,7 @@ class ConcreteProposalBuilder implements ProposalBuilder {
    * nouns. If the noun is not countable, then we use the other constructor for proposal.
    */
   public void setProposal() {
-    if (hasCountableNoun) {
+    if (noun.getAmountable()) {
       int amount = (int) getRandomDoubleBetweenRange(1, 1000);
       this.proposal = new Proposal(this.promptStart, this.verb, this.noun, amount);
     } else {
