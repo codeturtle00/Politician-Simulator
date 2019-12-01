@@ -13,7 +13,6 @@
         android:theme="@style/BlueTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".GameEnd.SummaryActivity"></activity>
-        <activity android:name=".UserActivity.LoginActivity.LoggedInActivity" />
         <activity android:name=".Games.SpeechGame.SpeechInstructionActivity" />
         <activity android:name=".Games.StampGame.StampActivityWon" />
         <activity android:name=".Games.StampGame.StampActivityLost" />
@@ -28,9 +27,11 @@
         <activity android:name=".Games.SpeechGame.SpeechActivity" />
         <activity android:name=".Games.BabyGame.BabyActivity" />
         <activity android:name=".Games.BabyGame.BabyGameInstruction" />
-        <activity android:name=".UserActivity.LoginActivity.LoginActivity"
+        <activity android:name=".UserActivity.UserInterface.LoggedInActivity"/>
+        <activity android:name=".UserActivity.UserInterface.LoginActivity"
             android:theme="@style/PopUp"/>
-        <activity android:name=".UserActivity.RegisterActivity.RegistrationActivity" />
+        <activity android:name=".UserActivity.UserInterface.RegistrationActivity"
+            android:theme="@style/PopUp"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

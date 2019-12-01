@@ -1,8 +1,6 @@
 package com.example.politicgame.Games.BabyGame;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,8 +9,6 @@ import android.graphics.PorterDuff;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
-import com.example.politicgame.R;
 
 import java.util.ConcurrentModificationException;
 
@@ -71,12 +67,9 @@ class BabyView extends SurfaceView implements ViewUpdater {
             holderHeight = holder.getSurfaceFrame().height();
             baby = new Baby(holderWidth / 2, holderHeight / 2, getResources());
 
-            // Set the baby's coordinates and dimensions in the eventManager.
+            // Set the baby in the eventManager.
             System.out.println(baby);
-            eventManager.setBabyX(baby.getX());
-            eventManager.setBabyY(baby.getY());
-            eventManager.setBabyWidth(baby.getWidth());
-            eventManager.setBabyHeight(baby.getHeight());
+            eventManager.setBaby(baby);
 
             if (canvas != null) {
               draw(canvas);

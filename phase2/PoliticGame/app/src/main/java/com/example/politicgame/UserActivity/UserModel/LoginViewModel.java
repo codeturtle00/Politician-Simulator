@@ -1,0 +1,27 @@
+package com.example.politicgame.UserActivity.UserModel;
+
+import android.content.Context;
+
+import com.example.politicgame.Character.UserTools.UserAccount;
+import com.example.politicgame.R;
+import com.example.politicgame.UserActivity.UserInterface.LoggedInUserView;
+
+public class LoginViewModel extends UserViewModel {
+  private LoginRepository loginRepository;
+  LoginViewModel(Context context, LoginRepository loginRepository) {
+    super(context);
+    this.loginRepository = loginRepository; }
+    @Override
+  public void databaseRequest(String username, String password) {
+    Result result = loginRepository.login(username, password);
+     if (result instanceof Result.Success) {
+      UserAccount account = ((Result.Success) result).getData();
+       this.app.setCurrentUser(account);
+      dataResult.setValue(new ViewModelResult(new LoggedInUserView(account.getDisplayName())));
+    } else if (result instanceof Result.InvalidResult.EmptyResult) {
+      dataResult.setValue(new ViewModelResult(this.app.getString(R.string.user_not_found)+ ((Result.InvalidResult.EmptyResult) result).getLostData()));}
+    else{
+      dataResult.setValue(new ViewModelResult(R.string.login_failed));
+    }
+  }
+}

@@ -19,22 +19,11 @@ class EventManager implements View.OnTouchListener {
   /** ViewUpdater object managed by this EventManager. */
   private ViewUpdater viewUpdater;
 
-  /** X coordinate of the baby. */
-  private int babyX;
-
-  /** Y coordinate of the baby. */
-  private int babyY;
-
-  /** Width of the baby. */
-  private int babyWidth;
-
-  /** Height of the baby. */
-  private int babyHeight;
+  /** This game's Baby */
+  private Baby baby;
 
   private float initialX;
   private float initialY;
-  //  private float finalX;
-  //  private float finalY;
   private float movingX;
   private float movingY;
   private boolean moving;
@@ -60,7 +49,7 @@ class EventManager implements View.OnTouchListener {
     // Only 1-4 will trigger an event
     if (randomNum == 1) {
       HorizontalShake horizontalShake =
-          new HorizontalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+          new HorizontalShake(baby, babyResources);
       events.add(horizontalShake);
       viewUpdater.updateEventAction(
           "Cradle the baby! Slowly swipe back and forth along the arrow.");
@@ -68,19 +57,19 @@ class EventManager implements View.OnTouchListener {
 
     } else if (randomNum == 2) {
       VerticalShake verticalShake =
-          new VerticalShake(babyX, babyY, babyWidth, babyHeight, babyResources);
+          new VerticalShake(baby, babyResources);
       events.add(verticalShake);
       viewUpdater.updateEventAction(
           "Cradle the baby! Slowly swipe back and forth along the arrow.");
       Log.d("EventManager", "VerticalShake started");
 
     } else if (randomNum == 3) {
-      Kiss kiss = new Kiss(babyX, babyY, babyWidth, babyHeight, babyResources);
+      Kiss kiss = new Kiss(baby, babyResources);
       events.add(kiss);
       viewUpdater.updateEventAction("Kiss the baby! Tap the kiss icon.");
       Log.d("EventManager", "Kiss started");
     } else if (randomNum == 4) {
-      Tickle tickle = new Tickle(babyX, babyY, babyWidth, babyHeight, babyResources);
+      Tickle tickle = new Tickle(baby, babyResources);
       events.add(tickle);
       viewUpdater.updateEventAction("Tickle the baby! Tap on the tickle icons.");
       Log.d("EventManager", "Tickle started");
@@ -117,6 +106,8 @@ class EventManager implements View.OnTouchListener {
         float finalY = touch.getY();
         moving = false;
         Log.d("EventManager", "ACTION_UP registered at " + finalX + ", " + finalY);
+        baby.resetCoordinates();
+        update();
         handleTouch(v, finalX, finalY);
         break;
 
@@ -146,7 +137,7 @@ class EventManager implements View.OnTouchListener {
         totalScoreChange += scoreChange;
       }
 
-      // Removes kiss
+      // Removes events that are over.
       if (event.getInteraction()) events.remove(event);
     }
 
@@ -185,39 +176,12 @@ class EventManager implements View.OnTouchListener {
   }
 
   /**
-   * Sets X coordinate of the baby.
+   * Sets the Baby.
    *
-   * @param babyX X coordinate of the baby
+   * @param baby the Baby to be set to this EventManager
    */
-  void setBabyX(int babyX) {
-    this.babyX = babyX;
-  }
-
-  /**
-   * Sets Y coordinate of the baby.
-   *
-   * @param babyY Y coordinate of the baby
-   */
-  void setBabyY(int babyY) {
-    this.babyY = babyY;
-  }
-
-  /**
-   * Sets width of the baby.
-   *
-   * @param width the width of the baby
-   */
-  void setBabyWidth(int width) {
-    this.babyWidth = width;
-  }
-
-  /**
-   * Sets height of the baby.
-   *
-   * @param height the height of the baby
-   */
-  void setBabyHeight(int height) {
-    this.babyHeight = height;
+  void setBaby(Baby baby) {
+    this.baby = baby;
   }
 
   /**

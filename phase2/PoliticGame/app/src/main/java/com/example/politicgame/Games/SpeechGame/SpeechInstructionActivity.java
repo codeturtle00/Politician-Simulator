@@ -17,11 +17,10 @@ import com.example.politicgame.R;
  */
 public class SpeechInstructionActivity extends GameActivity {
     private SpeechPresenter presenter = new SpeechPresenter();
-    final private String LEVEL_NAME = "LEVEL2";
 
     @Override
     /**
-     * Initializes the
+     * Initializes this activity
      */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

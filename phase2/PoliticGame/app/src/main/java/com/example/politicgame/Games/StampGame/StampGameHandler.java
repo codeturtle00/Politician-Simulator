@@ -1,8 +1,10 @@
 package com.example.politicgame.Games.StampGame;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +14,15 @@ import java.util.List;
  * the stamp game that is going on
  */
 class StampGameHandler {
+
+  private Context context;
+
+  private WordListManager wordListManager;
+
+  private StringListManager stringListManager;
+
+  private ProposalsManager proposalsManager;
+
   /** The list of verbs being used in game handler to construct Prompts */
   private List<Word> verbs;
 
@@ -27,12 +38,6 @@ class StampGameHandler {
   /** The current Prompt being given to the user */
   private Proposal currentPrompt;
 
-  /**
-   * The pronoun used to call the user, we will modify this in Phase 2 where depending on the
-   * character chosen by the user, the pronoun will be changed
-   */
-  private String pronoun = "sir";
-
   /** The verb used for when we run out of prompts */
   private Verb emptyAction = new Verb("", 0);
 
@@ -40,19 +45,7 @@ class StampGameHandler {
   private Noun emptyNoun = new Noun("", 0, false);
 
   /** The list of Strings we use to form the beginning of a proposal */
-  private List<String> promptBeginList =
-      new ArrayList<>(
-          Arrays.asList(
-              "Good afternoon "
-                  + pronoun
-                  + ", based on our campaign researchers' speculation, would you like to",
-              "This just in "
-                  + pronoun
-                  + ", based on the rumors from our excited supporters, is it true that you would",
-              "Greetings " + pronoun + ", based on the meeting result last week, are you going to",
-              "Nice to meet you "
-                  + pronoun
-                  + ". I am one of your many campaign assistants and was wondering if you would advocate to"));
+  private List<String> promptBeginList;
 
   /**
    * The constructor for the game handler
@@ -60,133 +53,19 @@ class StampGameHandler {
    * <p>We construct one prompt when we instantiate the stampGameHandler, and we replace the
    * currentPrompt whenever the updateRating() method is called.
    */
-  StampGameHandler() {
-    verbs = new ArrayList<>();
-    nouns = new ArrayList<>();
-    prompts = new ArrayList<>();
+  StampGameHandler(Context context) {
+    this.context = context;
+    this.stringListManager = new StringListManager(context);
+    this.wordListManager = new WordListManager(this.stringListManager);
 
-    // Positive verbs that has a positive effect on the object
-    List<String> verbListPositive =
-        new ArrayList<>(
-            Arrays.asList(
-                "campaign with the best interests of",
-                "send aid to",
-                "donate money to charities that work with",
-                "gift a bouquet of flowers to"));
+    verbs = wordListManager.getVerbs();
+    nouns = wordListManager.getNouns();
+    promptBeginList = stringListManager.getPromptStartList();
+    proposalsManager = new ProposalsManager(nouns, verbs, promptBeginList);
 
-    addWordToList(verbListPositive, verbs, "posVerb");
-
-    // Positive verbs that has a negative effect on the object
-    List<String> verbListNegative =
-        new ArrayList<>(
-            Arrays.asList(
-                "send a police squad to detain and imprison",
-                "punch the daylights out of",
-                "launch nukes against",
-                "send an army against",
-                "launch an investigation against",
-                "personally find and laugh at"));
-
-    addWordToList(verbListNegative, verbs, "negVerb");
-
-    // Positive nouns that are not amountable
-    List<String> nounListPositiveNA =
-        new ArrayList<>(
-            Arrays.asList(
-                "Gandhi, a recently popular peace advocate who campaigns in India",
-                "the popular late-night TV show host John Olive Oil",
-                "Bill Rye, a once popular figure in science who recently published a paper on the benefits of foot rubs",
-                "Toe-Knee, a rising star in the genre of Jazz, who recently released his hit album \"CS Blues\"",
-                "Jacki, a citizen who has been wrongfully imprisoned in the country of Canada for not holding the door for the boy behind him"));
-
-    addWordToList(nounListPositiveNA, nouns, "posNounNA");
-
-    // Positive nouns that are amountable
-    List<String> nounListPositiveYA =
-        new ArrayList<>(
-            Arrays.asList(
-                "puppies, specifically the ones at the Downtown Toronto Dog Shelter",
-                "Boundless Peacocks, the very last of their species",
-                "sad computer science students at the University of Toronto"));
-
-    addWordToList(nounListPositiveYA, nouns, "posNounYA");
-
-    // Negative nouns that are not amountable
-    List<String> nounListNegativeNA =
-        new ArrayList<>(
-            Arrays.asList(
-                "the leader of North Coreeah, who is planning a nuclear strike",
-                "Colin, a medical practitioner found to have cheated on his medical exams after a related illegal nose smuggling ring was busted",
-                "Kavin, a phantom thief who masterminded the theft all the laptop chargers, but not the laptops, at the University of Toronto last Fall"));
-
-    addWordToList(nounListNegativeNA, nouns, "negNounNA");
-
-    // Negative nouns that are amountable
-    List<String> nounListNegativeYA = new ArrayList<>(Arrays.asList("seal clubbers"));
-
-    addWordToList(nounListNegativeYA, nouns, "negNounYA");
-  }
-
-  /**
-   * generate a double between(inclusive) double min and double max
-   *
-   * @param min the minimum double we can generate
-   * @param max the maximum doulbe we can generate
-   * @return a double between(inclusive) min and max
-   */
-  private double getRandomDoubleBetweenRange(double min, double max) {
-    return (Math.random() * ((max - min) + 1)) + min;
-  }
-
-  /**
-   * Make each word in stringList into a Word object and put it into wordList, the category of the
-   * stringList is specified by the String word
-   *
-   * @param stringList a list of strings
-   * @param wordList the list of Word
-   * @param word the category for all the strings that will be put into wordList
-   */
-  private void addWordToList(List<String> stringList, List<Word> wordList, String word) {
-    int min = 1;
-    int max = 5;
-
-    switch (word) {
-      case "posVerb":
-        for (String item : stringList) {
-          int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Verb(item, posCategory));
-        }
-        break;
-      case "negVerb":
-        for (String item : stringList) {
-          int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Verb(item, -negCategory));
-        }
-        break;
-      case "negNounYA":
-        for (String item : stringList) {
-          int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Noun(item, -negCategory, true));
-        }
-        break;
-      case "negNounNA":
-        for (String item : stringList) {
-          int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Noun(item, -negCategory, false));
-        }
-        break;
-      case "posNounYA":
-        for (String item : stringList) {
-          int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Noun(item, posCategory, true));
-        }
-        break;
-      case "posNounNA":
-        for (String item : stringList) {
-          int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Noun(item, posCategory, false));
-        }
-        break;
+    prompts = proposalsManager.generateProposalList(10);
+    for (Proposal proposal: prompts){
+      System.out.println(proposal.getString());
     }
   }
 
@@ -312,7 +191,8 @@ class StampGameHandler {
    * updates the number of proposals arrow_left that is being displayed on screen
    *
    * @param proposal TextView object of the proposal
-   * @param proposalLeft the integer value of the number of proposal arrow_left to be given to the user
+   * @param proposalLeft the integer value of the number of proposal arrow_left to be given to the
+   *     user
    */
   private void updateProposal(TextView proposal, Integer proposalLeft) {
     String proposalLeftString = proposalLeft.toString();

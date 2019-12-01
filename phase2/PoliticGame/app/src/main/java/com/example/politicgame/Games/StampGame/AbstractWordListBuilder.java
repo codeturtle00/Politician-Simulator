@@ -5,9 +5,15 @@ import java.util.List;
 
 public abstract class AbstractWordListBuilder implements WordListBuilder {
 
+  /**
+   * The list of Word this builder constructs
+   */
   private List<Word> wordList = new ArrayList<>();
 
-    private boolean isPositive;
+  /**
+   * Whether the list of word to be constructed contains positive or negative words
+   */
+  private boolean isPositive;
 
     /**
      * The minimum and maximum score a word can obtain
@@ -19,28 +25,28 @@ public abstract class AbstractWordListBuilder implements WordListBuilder {
    * generate a double between(inclusive) double min and double max
    *
    * @param min the minimum double we can generate
-   * @param max the maximum doulbe we can generate
+   * @param max the maximum double we can generate
    * @return a double between(inclusive) min and max
    */
   double getRandomDoubleBetweenRange(double min, double max) {
     return (Math.random() * ((max - min) + 1)) + min;
   }
 
-  public List<Word> getWordList() {
+  List<Word> getWordList() {
     return wordList;
   }
 
-    public boolean isPositive() {
+    boolean isPositive() {
         return isPositive;
     }
 
 
 
-    public int getMin() {
+    int getMin() {
         return min;
     }
 
-    public int getMax() {
+    int getMax() {
         return max;
     }
 

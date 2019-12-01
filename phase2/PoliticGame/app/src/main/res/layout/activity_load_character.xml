@@ -20,112 +20,44 @@
     <view
         android:id="@+id/view"
         class="androidx.constraintlayout.widget.ConstraintLayout"
-        android:layout_width="295dp"
-        android:layout_height="431dp"
+        android:layout_width="313dp"
+        android:layout_height="546dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/load_character_title" />
 
-    <TextView
-        android:id="@+id/character_1"
-        android:layout_width="200dp"
-        android:layout_height="158dp"
-        android:layout_marginTop="30dp"
-        android:padding="10dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/load_character_title" />
-
-
-    <TextView
-        android:id="@+id/character_2"
-        android:layout_width="200dp"
-        android:layout_height="158dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
-        android:padding="10dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/character_1" />
-
-
-    <Button
-        android:id="@+id/create_character1"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create New Character"
-        android:visibility="gone"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="@+id/character_1"
-        app:layout_constraintEnd_toEndOf="@id/character_1"
-        app:layout_constraintTop_toTopOf="@+id/character_1" />
-
-    <Button
-        android:id="@+id/create_character2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create New Character"
-        android:visibility="gone"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="@+id/character_2"
-        app:layout_constraintEnd_toEndOf="@id/character_2"
-        app:layout_constraintTop_toTopOf="@+id/character_2" />
-
-
-    <ImageButton
-        android:id="@+id/delete_character1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="@id/character_1"
-        app:layout_constraintTop_toTopOf="@id/character_1"
-        android:visibility="gone"
-        android:src ="@android:drawable/ic_delete"
-        android:background="@null"/>
-
-    <ImageButton
-        android:id="@+id/delete_character2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="@id/character_2"
-        app:layout_constraintTop_toTopOf="@id/character_2"
-        android:visibility="gone"
-        android:src ="@android:drawable/ic_delete"
-        android:background="@null"/>
 
     <TextView
         android:id="@+id/errorText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Please select a character!"
+        android:layout_width="200dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/pixelfont"
+        android:padding="10dp"
+        android:text="Please select an existing character or create one!"
+        android:textColor="#FF4E4E"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="invisible"
-        android:textSize="20sp"
-        android:textColor="#FF4E4E"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/start_button"/>
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
 
     <Button
         android:id="@+id/start_button"
         style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textSize="25sp"
+        android:layout_marginTop="12dp"
         android:padding="15dp"
         android:text="Start Game"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/character_2" />
+        app:layout_constraintTop_toBottomOf="@+id/errorText" />
 
     <ImageButton
         android:id="@+id/closeLoadCharacter"
@@ -135,6 +67,108 @@
         app:layout_constraintTop_toTopOf="parent"
         android:src ="@android:drawable/ic_delete"
         android:background="@null"/>
+
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="290dp"
+        android:layout_height="170dp"
+        android:background="@drawable/cave_sky"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view">
+
+        <TextView
+            android:id="@+id/character_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/frameLayout1"
+            app:layout_constraintEnd_toEndOf="@+id/frameLayout1"
+            app:layout_constraintStart_toStartOf="@+id/frameLayout1"
+            app:layout_constraintTop_toTopOf="@+id/frameLayout1" />
+
+        <ImageButton
+            android:id="@+id/delete_character1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:src="@android:drawable/ic_delete"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/character_1"
+            app:layout_constraintTop_toTopOf="@id/character_1" />
+
+        <Button
+            android:id="@+id/create_character1"
+            style="@style/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Create New Character"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/character_1"
+            app:layout_constraintStart_toStartOf="@+id/character_1"
+            app:layout_constraintTop_toTopOf="@+id/character_1" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="290dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/cave_sky"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout1">
+
+        <TextView
+            android:id="@+id/character_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/frameLayout2"
+            app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
+            app:layout_constraintStart_toStartOf="@+id/frameLayout2"
+            app:layout_constraintTop_toTopOf="@+id/frameLayout2" />
+
+        <ImageButton
+            android:id="@+id/delete_character2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:src="@android:drawable/ic_delete"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/character_2"
+            app:layout_constraintTop_toTopOf="@id/character_2" />
+
+        <Button
+            android:id="@+id/create_character2"
+            style="@style/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Create New Character"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/character_2"
+            app:layout_constraintStart_toStartOf="@+id/character_2"
+            app:layout_constraintTop_toTopOf="@+id/frameLayout2" />
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

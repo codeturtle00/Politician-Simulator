@@ -19,7 +19,7 @@ import com.example.politicgame.R;
 public class StampActivity extends GameActivity {
 
   private final String LEVEL_NAME = "LEVEL3";
-  StampGameHandler gh = new StampGameHandler();
+  private StampGameHandler gameHandler;
 
   @Override
   protected void onStart() {
@@ -29,14 +29,7 @@ public class StampActivity extends GameActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     app = (PoliticGameApp) getApplication();
-
-    System.out.println("The current theme is blue: " + app.isThemeBlue());
-
-    if (app.isThemeBlue()) {
-      setTheme(R.style.BlueTheme);
-    } else {
-      setTheme(R.style.RedTheme);
-    }
+    gameHandler = new StampGameHandler(this);
 
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_stamp);
@@ -60,16 +53,16 @@ public class StampActivity extends GameActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             // Code here executes on main thread after user presses button
-            gh.changeRating(rating, true);
-            gh.changeProposalNum(proposalLeft);
-            gh.setPrompt(promptDisplay);
-            if (gh.intFromTextView(rating) == 0
-                || (gh.intFromTextView(rating) < 50 && gh.getPromptsSize(proposalLeft) == 0)) {
+            gameHandler.changeRating(rating, true);
+            gameHandler.changeProposalNum(proposalLeft);
+            gameHandler.setPrompt(promptDisplay);
+            if (gameHandler.intFromTextView(rating) == 0
+                || (gameHandler.intFromTextView(rating) < 50 && gameHandler.getPromptsSize(proposalLeft) == 0)) {
               openStampLost();
               //        finish();
 
-            } else if (gh.intFromTextView(rating) == 100
-                || (gh.intFromTextView(rating) >= 50 && gh.getPromptsSize(proposalLeft) == 0)) {
+            } else if (gameHandler.intFromTextView(rating) == 100
+                || (gameHandler.intFromTextView(rating) >= 50 && gameHandler.getPromptsSize(proposalLeft) == 0)) {
               openStampWon();
               //        finish();
 
@@ -86,16 +79,16 @@ public class StampActivity extends GameActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             // Code here executes on main thread after user presses button
-            gh.changeRating(rating, false);
-            gh.changeProposalNum(proposalLeft);
-            gh.setPrompt(promptDisplay);
-            if (gh.intFromTextView(rating) == 0
-                || (gh.intFromTextView(rating) < 50 && gh.getPromptsSize(proposalLeft) == 0)) {
+            gameHandler.changeRating(rating, false);
+            gameHandler.changeProposalNum(proposalLeft);
+            gameHandler.setPrompt(promptDisplay);
+            if (gameHandler.intFromTextView(rating) == 0
+                || (gameHandler.intFromTextView(rating) < 50 && gameHandler.getPromptsSize(proposalLeft) == 0)) {
               openStampLost();
               //        finish();
 
-            } else if (gh.intFromTextView(rating) == 100
-                || (gh.intFromTextView(rating) >= 50 && gh.getPromptsSize(proposalLeft) == 0)) {
+            } else if (gameHandler.intFromTextView(rating) == 100
+                || (gameHandler.intFromTextView(rating) >= 50 && gameHandler.getPromptsSize(proposalLeft) == 0)) {
               openStampWon();
               //        finish();
 
@@ -106,8 +99,8 @@ public class StampActivity extends GameActivity {
     new PauseButton((ConstraintLayout) findViewById(R.id.stampLayout), this);
 
     // Set up prompts
-    gh.changeProposalNum(proposalLeft);
-    gh.setPrompt(promptDisplay);
+    gameHandler.changeProposalNum(proposalLeft);
+    gameHandler.setPrompt(promptDisplay);
 
     // Set the sprite for the game menu
     final ImageView pauseImage = findViewById(R.id.stamp_game_character_image);
@@ -118,8 +111,8 @@ public class StampActivity extends GameActivity {
   public void openStampLost() {
     Intent stampLostIntent = new Intent(this, StampActivityLost.class);
     stampLostIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
-    stampLostIntent.putExtra("score", gh.getCurrentScore());
-    //saveGame(gh.getCurrentScore(), LEVEL_NAME);
+    stampLostIntent.putExtra("score", gameHandler.getCurrentScore());
+    //saveGame(gameHandler.getCurrentScore(), LEVEL_NAME);
     startActivity(stampLostIntent);
     finish();
   }
@@ -127,8 +120,8 @@ public class StampActivity extends GameActivity {
   public void openStampWon() {
     Intent stampWonIntent = new Intent(this, StampActivityWon.class);
     stampWonIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
-    stampWonIntent.putExtra("score", gh.getCurrentScore());
-    //saveGame(gh.getCurrentScore(), LEVEL_NAME);
+    stampWonIntent.putExtra("score", gameHandler.getCurrentScore());
+    //saveGame(gameHandler.getCurrentScore(), LEVEL_NAME);
     startActivity(stampWonIntent);
     finish();
   }

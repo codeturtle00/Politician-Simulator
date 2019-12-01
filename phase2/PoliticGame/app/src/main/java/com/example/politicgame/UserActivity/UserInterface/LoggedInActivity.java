@@ -1,4 +1,4 @@
-package com.example.politicgame.UserActivity.LoginActivity;
+package com.example.politicgame.UserActivity.UserInterface;
 
 import android.content.Intent;
 import android.os.Bundle;

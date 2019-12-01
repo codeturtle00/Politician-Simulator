@@ -4,7 +4,7 @@ import android.view.View;
 
 public class EmptyCell implements CellInfo {
     private final String BUTTONTEXT = "New";
-    private final String CELLTEXT = "Press button to create character";
+    private final String CELLTEXT = "";
 
     public EmptyCell(){}
 
