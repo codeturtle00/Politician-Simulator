@@ -12,16 +12,15 @@ import java.util.List;
  * The StringListManager contains several lists of strings that are used by the WordListBuilder
  * class to construct WordList
  */
-public class StringListManager {
-  //TODO: Make sure to instantiate StringListManager inside StampGameHandler class
+class StringListManager {
   private Context context;
 
-  public StringListManager(Context context) {
+  StringListManager(Context context) {
     this.context = context;
   }
 
 
-  public List<String> getPosVerbStringList() {
+  List<String> getPosVerbStringList() {
     return new ArrayList<>(
             Arrays.asList(
                     this.context.getString(R.string.pos_verb_campaign),
@@ -30,7 +29,7 @@ public class StringListManager {
                     this.context.getString(R.string.pos_verb_gift)));
   }
 
-  public List<String> getNegVerbStringList() {
+  List<String> getNegVerbStringList() {
     return new ArrayList<>(
             Arrays.asList(
                     this.context.getString(R.string.neg_verb_sendPolice),
@@ -42,7 +41,7 @@ public class StringListManager {
 
   }
 
-  public List<String> getPosNotCNounStringList() {
+  List<String> getPosNotCNounStringList() {
     return new ArrayList<>(
             Arrays.asList(
                     this.context.getString(R.string.pos_NotC_Noun_BillRye),
@@ -52,7 +51,7 @@ public class StringListManager {
                     this.context.getString(R.string.pos_NotC_Noun_ToeKnee)));
   }
 
-  public List<String> getNegNotCNounStringList() {
+  List<String> getNegNotCNounStringList() {
     return new ArrayList<>(
             Arrays.asList(
                     this.context.getString(R.string.neg_NotC_Noun_leaderKorea),
@@ -60,7 +59,7 @@ public class StringListManager {
                     this.context.getString(R.string.neg_NotC_Noun_Kavin)));
   }
 
-  public List<String> getPosCNounStringList() {
+  List<String> getPosCNounStringList() {
     return new ArrayList<>(
             Arrays.asList(
                     this.context.getString(R.string.pos_C_Noun_Puppy),
@@ -68,10 +67,11 @@ public class StringListManager {
                     this.context.getString(R.string.pos_C_Noun_students)));
   }
 
-  public List<String> getNegCNounStringList() {
+  List<String> getNegCNounStringList() {
     return new ArrayList<>(
             Arrays.asList(
                     this.context.getString(R.string.neg_C_Noun_sealClubber),
                     this.context.getString(R.string.neg_C_Noun_thieves)));
   }
+
 }

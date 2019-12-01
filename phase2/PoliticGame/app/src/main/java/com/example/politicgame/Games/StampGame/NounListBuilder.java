@@ -6,7 +6,7 @@ public class NounListBuilder extends AbstractWordListBuilder {
 
   private boolean countable;
 
-  public void setCountable(boolean countable) {
+   void setCountable(boolean countable) {
     this.countable = countable;
   }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,11 +13,13 @@ import java.util.List;
  * The Game handler for Stamp Game It is in charge of updating the score and storing the score for
  * the stamp game that is going on
  */
- class StampGameHandler {
-
-  private StringListManager stringManager;
+class StampGameHandler {
 
   private Context context;
+
+  private WordListManager wordListManager;
+
+  private ProposalBuilder proposalBuilder;
 
   /** The list of verbs being used in game handler to construct Prompts */
   private List<Word> verbs;
@@ -68,94 +71,24 @@ import java.util.List;
    */
   StampGameHandler(Context context) {
     this.context = context;
-    stringManager = new StringListManager(context);
-    verbs = new ArrayList<>();
-    nouns = new ArrayList<>();
+    this.wordListManager = new WordListManager(new StringListManager(context));
+
+    verbs = wordListManager.getVerbs();
+    nouns = wordListManager.getNouns();
+
     prompts = new ArrayList<>();
-
-
-
-    addWordToList(stringManager.getPosVerbStringList(), verbs, "posVerb");
-
-
-
-    addWordToList(stringManager.getNegVerbStringList(), verbs, "negVerb");
-
-
-    addWordToList(stringManager.getPosNotCNounStringList(), nouns, "posNounNA");
-
-
-    addWordToList(stringManager.getPosCNounStringList(), nouns, "posNounYA");
-
-
-    addWordToList(stringManager.getNegNotCNounStringList(), nouns, "negNounNA");
-
-
-    addWordToList(stringManager.getNegCNounStringList(), nouns, "negNounYA");
   }
 
-  /**
-   * generate a double between(inclusive) double min and double max
-   *
-   * @param min the minimum double we can generate
-   * @param max the maximum doulbe we can generate
-   * @return a double between(inclusive) min and max
-   */
-  private double getRandomDoubleBetweenRange(double min, double max) {
-    return (Math.random() * ((max - min) + 1)) + min;
-  }
-
-  /**
-   * Make each word in stringList into a Word object and put it into wordList, the category of the
-   * stringList is specified by the String word
-   *
-   * @param stringList a list of strings
-   * @param wordList the list of Word
-   * @param word the category for all the strings that will be put into wordList
-   */
-  private void addWordToList(List<String> stringList, List<Word> wordList, String word) {
-    int min = 1;
-    int max = 5;
-
-    switch (word) {
-      case "posVerb":
-        for (String item : stringList) {
-          int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Verb(item, posCategory));
-        }
-        break;
-      case "negVerb":
-        for (String item : stringList) {
-          int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Verb(item, -negCategory));
-        }
-        break;
-      case "negNounYA":
-        for (String item : stringList) {
-          int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Noun(item, -negCategory, true));
-        }
-        break;
-      case "negNounNA":
-        for (String item : stringList) {
-          int negCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Noun(item, -negCategory, false));
-        }
-        break;
-      case "posNounYA":
-        for (String item : stringList) {
-          int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Noun(item, posCategory, true));
-        }
-        break;
-      case "posNounNA":
-        for (String item : stringList) {
-          int posCategory = (int) (getRandomDoubleBetweenRange(min, max));
-          wordList.add(new Noun(item, posCategory, false));
-        }
-        break;
-    }
-  }
+  //  /**
+  //   * generate a double between(inclusive) double min and double max
+  //   *
+  //   * @param min the minimum double we can generate
+  //   * @param max the maximum doulbe we can generate
+  //   * @return a double between(inclusive) min and max
+  //   */
+  //  private double getRandomDoubleBetweenRange(double min, double max) {
+  //    return (Math.random() * ((max - min) + 1)) + min;
+  //  }
 
   /** Generate a prompt, if the verbs or nouns are empty, we will generate an emptyPrompt */
   private void createPrompt() {
@@ -279,7 +212,8 @@ import java.util.List;
    * updates the number of proposals arrow_left that is being displayed on screen
    *
    * @param proposal TextView object of the proposal
-   * @param proposalLeft the integer value of the number of proposal arrow_left to be given to the user
+   * @param proposalLeft the integer value of the number of proposal arrow_left to be given to the
+   *     user
    */
   private void updateProposal(TextView proposal, Integer proposalLeft) {
     String proposalLeftString = proposalLeft.toString();

@@ -31,14 +31,6 @@ public class StampActivity extends GameActivity {
     app = (PoliticGameApp) getApplication();
     gameHandler = new StampGameHandler(this);
 
-    System.out.println("The current theme is blue: " + app.isThemeBlue());
-
-    if (app.isThemeBlue()) {
-      setTheme(R.style.BlueTheme);
-    } else {
-      setTheme(R.style.RedTheme);
-    }
-
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_stamp);
 
