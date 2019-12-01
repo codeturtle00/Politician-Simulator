@@ -77,6 +77,13 @@ public class LeaderBoardActivity extends GameActivity
         });
   }
 
+  /**
+   * Sets the spinner items in the correct order, with the current item being the one the user is
+   * currently seeing
+   *
+   * @param currentBoard  A String which notes refers to the type of board we are currently on
+   * @return              Returns the list of strings of the other boards
+   */
   private List<String> getSpinnerItem(String currentBoard) {
     List<String> boardsLeft = new ArrayList<>(Arrays.asList(MODEONE, MODETWO, MODETHREE, MODEFOUR));
     List<String> boards = new ArrayList<>();

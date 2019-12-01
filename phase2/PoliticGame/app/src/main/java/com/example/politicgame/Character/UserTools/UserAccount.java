@@ -156,6 +156,11 @@ public class UserAccount {
     userScore.addScore(score);
   }
 
+  /**
+   * Returns User's total life-time score
+   *
+   * @return  The total score that the user has acquired over all saved game modes and play throughs
+   */
   public int getTotalScore(){
     return userScore.getTotalScore();
   }

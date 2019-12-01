@@ -26,6 +26,11 @@ public class UserScore {
         this.fileSaving = new FileSavingService(context);
     }
 
+    /**
+     * Return the user's life-time score over all characters they saved games with
+     *
+     * @return  The total score the user has received and saved in all time
+     */
     int getTotalScore (){
         int score = 0;
 
@@ -48,14 +53,25 @@ public class UserScore {
         return score;
     }
 
+    /**
+     * Adds the score to the User's life-time score
+     *
+     * @param score The score to be added
+     */
     void addScore(int score){
         if (new File(context.getFilesDir() + "/" + FILE_NAME).exists()){
+            //If the file exists, then we will write to an existing file
             saveExists(score);
         } else {
+            //If the file does not exist, then we will create a new file and write to it
             saveNotExist(score);
         }
     }
 
+    /**
+     * Adds the score and saves it, called only if we know the file already exists
+     * @param score
+     */
     private void saveExists(int score){
         try {
             JSONArray fileArray = fileSaving.readJsonFile(FILE_NAME);
@@ -81,6 +97,10 @@ public class UserScore {
         }
     }
 
+    /**
+     * Creates the UserScores.json file to write scores to and saves the user's new score to it
+     * @param score
+     */
     private void saveNotExist(int score){
         try {
             JSONObject userObject = new JSONObject();

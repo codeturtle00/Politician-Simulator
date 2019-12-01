@@ -23,7 +23,13 @@ public class FileSavingService {
   public FileSavingService(Context context) {
     this.context = context;
   }
-/** This reads a txt file given the fileName, returning the string read in the file*/
+
+  /**
+   * This reads a txt file given the fileName, returning the string read in the file
+   *
+   * @param fileName  The name of the file to read from
+   * @return          The String representation of the file
+   */
   public String readStringFile(String fileName) {
     StringBuilder textBuilder = new StringBuilder();
     try {
@@ -44,7 +50,12 @@ public class FileSavingService {
     return textBuilder.toString();
   }
 
-/** This is writing a txt File given the fileName and the string to be saved into the txt*/
+  /**
+   * This is writing a txt File given the fileName and the string to be saved into the txt
+   *
+   * @param textToSave  The String which we will write to the file
+   * @param fileName    The name of the file which we will write to
+   */
   public void writeStringFile(String textToSave, String fileName) {
     FileOutputStream outputStream;
     File rootDir = this.context.getFilesDir();
@@ -59,7 +70,12 @@ public class FileSavingService {
     }
   }
 
-  /** This is appending a txt File given the fileName and the string to be saved into the txt*/
+  /**
+   * This is appending a txt File given the fileName and the string to be saved into the txt
+   *
+   * @param textToSave  The text to be added to the save file
+   * @param fileName    The name of the file which we will append to
+   */
   public void appendStringFile(String textToSave, String fileName) {
     FileOutputStream outputStream;
     File rootDir = this.context.getFilesDir();
@@ -69,7 +85,12 @@ public class FileSavingService {
     this.writeStringFile(savedText.toString(),fileName);
   }
 
-  /** This is reading a json file given the fileName,returning a json array*/
+  /**
+   * This is reading a json file given the fileName,returning a json array
+   *
+   * @param fileName  The name of the file which we are reading from
+   * @return          The JSONArray which we get from reading the file
+   */
   public JSONArray readJsonFile(String fileName) {
     String jsonString;
     JSONArray jsonArray = new JSONArray();
@@ -88,7 +109,13 @@ public class FileSavingService {
     }
     return jsonArray;
   }
-  /** This is appending a json array given the fileName*/
+
+  /**
+   * This is appending a json array given the fileName
+   *
+   * @param jsonArray The JSONArray we are appending to the file
+   * @param fileName  The name of the file which we are appending to
+   */
   public void appendJsonArray(JSONArray jsonArray, String fileName) {
     JSONArray oldArray = this.readJsonFile(fileName);
     try {
@@ -101,15 +128,26 @@ public class FileSavingService {
     writeJson(fileName, oldArray);
   }
 
-  /** This is appending a json object given the fileName*/
+
+  /**
+   * Appends a JSONObject to a top-level JSONArray in the file
+   *
+   * @param jsonObject
+   * @param fileName
+   */
   public void appendJsonObject(JSONObject jsonObject, String fileName) {
     JSONArray oldArray = this.readJsonFile(fileName);
     oldArray.put(jsonObject);
     writeJson(fileName, oldArray);
   }
 
-  /** This is replacing a json object given the fileName, if the json object is not
-   * found in the json file , then append the json object into the json file*/
+  /**
+   * Replaces a JSONObject in the given file, if the JSONObject does not already exist with the same
+   * key at the appropriate level, the we will write it to the file
+   *
+   * @param jsonObject  The JSONObject we are overwriting with
+   * @param fileName    The name of the file in which you are seeking to replace in
+   */
   public void replaceJsonObject(JSONObject jsonObject, String fileName) {
     File rootDir = this.context.getFilesDir();
     JSONArray jsonArray = this.readJsonFile(fileName);
@@ -133,7 +171,12 @@ public class FileSavingService {
 
   }
 
-  /** This is writing a json file given a fileName and jsonArray*/
+  /**
+   * This is writing a json file given a fileName and jsonArray
+   *
+   * @param fileName  The name of the file in which we writing the JSON to
+   * @param jsonArray The JSONArray we are writing with
+   */
   public void writeJson(String fileName, JSONArray jsonArray) {
     File rootDir = this.context.getFilesDir();
     FileOutputStream outputStream;

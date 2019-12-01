@@ -17,6 +17,11 @@ public class ElectionBoardGetter extends BoardLoader{
         super(lastContext);
     }
 
+    /**
+     * Returns the scores as a JSONArray so they can be sorted
+     *
+     * @return  The scores for Election mode playthroughs
+     */
     JSONArray getScores(){
         JSONArray jsonList = this.fileSaving.readJsonFile(FILE_NAME);
         JSONArray boardList = new JSONArray();
