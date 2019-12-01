@@ -1,7 +1,15 @@
 package com.example.politicgame.UserData;
 
+import android.widget.ImageView;
+
+import com.example.politicgame.Character.UserTools.UserAccount;
+
 /**
- * A generic class that holds a result success w/ data or an error exception.
+ * A class that holds the result of processing the information to the database
+ * And it is sent to ViewModel for further processes,used as an indication for
+ * different action in ViewModel
+ * This class contains three inner static classes:
+ * Success,Error,EmptyResult
  */
 public class Result<T> {
     // hide the private constructor to limit subclass types (Success, Error)
@@ -16,46 +24,57 @@ public class Result<T> {
         } else if (this instanceof Result.Error) {
             Result.Error error = (Result.Error) this;
             return "Error[exception=" + error.getError().toString() + "]";
+        } else if (this instanceof Result.InvalidResult.EmptyResult) {
+            Result.InvalidResult.EmptyResult empty =(Result.InvalidResult.EmptyResult) this;
+            return "Empty User[Can not found =" + empty.getLostData() +"]";
+        } else if (this instanceof Result.InvalidResult.DuplicateResult) {
+            Result.InvalidResult.DuplicateResult duplicate =(Result.InvalidResult.DuplicateResult) this;
+            return "Empty User[Duplicate =" + duplicate.getLostData() +"]";
         }
         return "";
     }
 
-    // Success sub-class
-    public final static class Success<T> extends Result {
-        private T data;
+    /** Success sub-class
+    Return an instance of Success to ViewModel if the process to database is successful,including the
+     following use cases:
 
-        public Success(T data) {
-            this.data = data;
-        }
-
-        public T getData() {
-            return this.data;
-        }
+     */
+    public static class Success extends Result {
+        private UserAccount data;
+        public Success(UserAccount data) { this.data = data; }
+        public UserAccount getData() { return this.data; }
     }
 
-    // Error sub-class
-    public final static class Error extends Result {
+    /**Error sub-class
+     Return an instance of Error to ViewModel if the process to database fails in the following ways:
+     a.Access deny(Wrong UserName and password for login)
+
+    */
+    public static class Error extends Result {
         private Exception error;
-
-        public Error(Exception error) {
-            this.error = error;
-        }
-
-        public Exception getError() {
-            return this.error;
-        }
+        public Error(Exception error) {this.error = error;}
+        public Exception getError() {return this.error;}
     }
 
-    // Error sub-class
-    public final static class NullResult extends Result {
-        private Exception error;
-
-        public NullResult(Exception error) {
-            this.error = error;
+    /**Error sub-class
+     Return an instance of Error to ViewModel if the process to database fails in the following ways:
+     a.Empty Result(no user was found from database during login process)
+     b.Duplicate Result(a user already exists in the database during registration process)
+     */
+    public static class InvalidResult extends Result {
+        private String invalidData;
+        public InvalidResult(String invalidData) { this.invalidData = invalidData;}
+        public String getLostData() { return this.invalidData;}
+        public static class EmptyResult extends InvalidResult{
+            public EmptyResult(String emptyUserName){
+                super(emptyUserName);
+            }
+        }
+        public static class DuplicateResult extends InvalidResult{
+            public DuplicateResult(String duplicateUserName){
+                super(duplicateUserName);
+            }
         }
 
-        public Exception getError() {
-            return this.error;
-        }
     }
 }
