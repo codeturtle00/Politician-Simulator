@@ -27,11 +27,12 @@
         <activity android:name=".Games.SpeechGame.SpeechActivity" />
         <activity android:name=".Games.BabyGame.BabyActivity" />
         <activity android:name=".Games.BabyGame.BabyGameInstruction" />
-        <activity android:name=".UserActivity.UserInterface.LoggedInActivity"/>
-        <activity android:name=".UserActivity.UserInterface.LoginActivity"
-            android:theme="@style/PopUp"/>
-        <activity android:name=".UserActivity.UserInterface.RegistrationActivity"
-            android:theme="@style/PopUp"/>
+        <activity
+            android:name=".UserActivity.UserInterface.LoginActivity"
+            android:theme="@style/PopUp" />
+        <activity
+            android:name=".UserActivity.UserInterface.RegistrationActivity"
+            android:theme="@style/PopUp" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,15 +40,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Pausing.PauseActivity"
-            android:theme="@style/PopUp"/>
-        <activity android:name=".SettingsActivity"
-            android:theme="@style/PopUp"/>
+        <activity
+            android:name=".Pausing.PauseActivity"
+            android:theme="@style/PopUp" />
+        <activity
+            android:name=".SettingsActivity"
+            android:theme="@style/PopUp" />
         <activity android:name=".NewCharacter.SelectCharacterActivity" />
         <activity android:name=".GameActivity" />
-        <activity android:name=".PopUpActivity"/>
-        <activity android:name=".LoadCharacter.LoadCharacterActivity"
-            android:theme="@style/PopUp"/>
+        <activity android:name=".PopUpActivity" />
+        <activity
+            android:name=".LoadCharacter.LoadCharacterActivity"
+            android:theme="@style/PopUp" />
         <activity android:name=".GameMode.GameModeActivity" />
         <activity android:name=".GameEnd.SingleEndActivity" />
         <activity android:name=".GameMode.ArcadeActivity" />
