@@ -22,10 +22,20 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class SelectCharacterActivity extends GameActivity {
+  final private int THIRDCHARACTERSCORE = 100;
+  final private int FOURTHCHARACTERSCORE = 200;
+  final private int FIFTHCHARACTERSCORE = 300;
+
   private int currCharacter;
   private GameCharacter selectedCharacter;
   private Drawable highlight;
   private PoliticGameApp app;
+  private ImageView charAButton;
+  private ImageView charBButton;
+  private ImageView charCButton;
+  private ImageView charDButton;
+  private ImageView charEButton;
+  private TextView totalScoreText;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -36,28 +46,20 @@ public class SelectCharacterActivity extends GameActivity {
     currCharacter = 0;
     highlight = getResources().getDrawable(R.drawable.highlight);
 
-    final ImageView charAButton = findViewById(R.id.imageButton);
-    final ImageView charBButton = findViewById(R.id.imageButton2);
-    final ImageView charCButton = findViewById(R.id.imageButton3);
-    final ImageView charDButton = findViewById(R.id.imageButton4);
-    final ImageView charEButton = findViewById(R.id.imageButton5);
+    charAButton = findViewById(R.id.imageButton);
+    charBButton = findViewById(R.id.imageButton2);
+    charCButton = findViewById(R.id.imageButton3);
+    charDButton = findViewById(R.id.imageButton4);
+    charEButton = findViewById(R.id.imageButton5);
+    totalScoreText = findViewById(R.id.score_count);
     final TextView inputName = findViewById(R.id.name_input);
     final Button submitName = findViewById(R.id.submit_name);
     final Button backButton = findViewById(R.id.backButton);
     final TextView error_name = findViewById(R.id.error_name);
     final TextView error_select = findViewById(R.id.error_character);
-    final ArrayList<ImageView> charArray = new ArrayList<>();
-    charArray.add(charAButton);
-    charArray.add(charBButton);
-    charArray.add(charCButton);
-    charArray.add(charDButton);
-    charArray.add(charEButton);
     // Character A is selected
-    this.setListener(charAButton, charArray, 1);
-    this.setListener(charBButton, charArray, 2);
-    this.setListener(charCButton, charArray, 3);
-    this.setListener(charDButton, charArray, 4);
-    this.setListener(charEButton, charArray, 5);
+
+    setCharacterWheel();
 
     submitName.setOnClickListener(
         new View.OnClickListener() {
@@ -100,6 +102,42 @@ public class SelectCharacterActivity extends GameActivity {
           }
         });
   }
+
+  private void setCharacterWheel(){
+    UserAccount user = app.getCurrentUser();
+    int totalScore = user.getTotalScore();
+
+    ArrayList<ImageView> charArray = new ArrayList<>();
+    charArray.add(charAButton);
+    charArray.add(charBButton);
+    this.setListener(charAButton, charArray, 1);
+    this.setListener(charBButton, charArray, 2);
+
+    String scoreMsg = "Total Score: " + totalScore;
+    totalScoreText.setText(scoreMsg);
+
+    if (totalScore >= THIRDCHARACTERSCORE){
+      charArray.add(charCButton);
+      this.setListener(charCButton, charArray, 3);
+    } else {
+      charCButton.setImageResource(R.drawable.character_3_lock);
+    }
+
+    if (totalScore >= FOURTHCHARACTERSCORE){
+      charArray.add(charDButton);
+      this.setListener(charDButton, charArray, 4);
+    } else {
+      charDButton.setImageResource(R.drawable.character_4_lock);
+    }
+
+    if (totalScore >= FIFTHCHARACTERSCORE){
+      charArray.add(charEButton);
+      this.setListener(charEButton, charArray, 5);
+    } else {
+      charEButton.setImageResource(R.drawable.character_5_lock);
+    }
+  }
+
 
   private void setListener(
           final ImageView charButton, final ArrayList<ImageView> charList, final int i) {

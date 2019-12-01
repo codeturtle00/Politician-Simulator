@@ -5,9 +5,16 @@ import android.os.Bundle;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 
+/**
+ * Inherits from the SpeechResults activity, specialized for when the user inputs an incorrect
+ * answer
+ */
 public class FailureSpeechResult extends SpeechResult {
 
     @Override
+    /**
+     * Initializes result screen for an incorrect answer
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_failure_speech_result);
