@@ -147,6 +147,7 @@ public class LoadCharacterActivity extends PopUpActivity {
       app.setCurrentCharacter(cellNames[currCharacter - 1]);
 
       Intent gameModeSelectIntent = new Intent(this, GameModeActivity.class);
+      overridePendingTransition(0, 0);
       startActivity(gameModeSelectIntent);
       finishAffinity();
     } else findViewById(R.id.errorText).setVisibility(View.VISIBLE);
