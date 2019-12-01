@@ -7,18 +7,16 @@ import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Character.UserTools.UserAccount;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
 /** Handles credentials and retrieves user information. */
-public class LoginDataSource {
+public class LoginDatabaseHandler {
   private Context context;
   private FileSavingService fileSaving;
-  private static final String FILE_NAME = "userLogin.json";
   private PoliticGameApp app;
 
-  public LoginDataSource(Context context) {
+  public LoginDatabaseHandler(Context context) {
     this.context = context;
     this.fileSaving = new FileSavingService(context);
     Activity loginActivity = (Activity) context;
@@ -26,7 +24,7 @@ public class LoginDataSource {
   }
 
   private boolean userAuthentication(String username, String password) {
-    JSONArray jArray = fileSaving.readJsonFile(FILE_NAME);
+    JSONArray jArray = fileSaving.readJsonFile("userLogin.json");
     try {
       for (int i = 0; i < jArray.length(); i++) {
         if (jArray.getJSONObject(i).getString("UserName").equals(username)) {
@@ -41,7 +39,7 @@ public class LoginDataSource {
   }
 
   private boolean userFound(String username) {
-    JSONArray jArray = fileSaving.readJsonFile(FILE_NAME);
+    JSONArray jArray = fileSaving.readJsonFile("userLogin.json");
     try {
       for (int i = 0; i < jArray.length(); i++) {
         if (jArray.getJSONObject(i).getString("UserName").equals(username)) {
@@ -55,20 +53,35 @@ public class LoginDataSource {
     return false;
   }
 
-  public Result<UserAccount> login(String username, String password) {
+  private Result setAccountCharacter(String username){
+    UserAccount loginUser = new UserAccount(username, this.context);
+    JSONArray jsonFile = fileSaving.readJsonFile("user.json");
     try {
+      for (int i = 0; i < jsonFile.length(); i++) {
+        String userFileName = jsonFile.getJSONObject(i).keys().next();
+        if (userFileName.equals(username)) {
+          loginUser.setCharArray(jsonFile.getJSONObject(i).getJSONArray(username));
+        }
+      }
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+    app.setCurrentUser(loginUser);
+    return new Result.Success(loginUser);
+  }
+
+  /** Precondition: Username and password passed into this class is clean and valid
+   * as it go through FormState
+   */
+  public Result login(String username, String password) {
       if (!this.userFound(username)) {
-        return new Result.NullResult(new IOException("UserNotFound"));
-      } else if (this.userAuthentication(username, password)) {
-        UserAccount user = new UserAccount(username, this.context);
-        app.setCurrentUser(user);
-        System.out.println(app.getCurrentUser().toString());
-        return new Result.Success<>(user);
-      } else {
+        return new Result.InvalidResult.EmptyResult(username);
+      }
+      else if (this.userAuthentication(username, password)) {
+        return setAccountCharacter(username);
+      }
+      else {
         return new Result.Error(new IOException("Error logging in"));
       }
-    } catch (Exception e) {
-      return new Result.Error(new IOException("Error logging in", e));
     }
-  }
 }

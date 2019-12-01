@@ -9,14 +9,14 @@ import com.example.politicgame.Character.UserTools.UserAccount;
 public class LoginRepository {
 
   private static volatile LoginRepository instance;
-  private LoginDataSource dataSource;
+  private LoginDatabaseHandler dataSource;
   private UserAccount user = null;
   // private constructor : singleton access
-  private LoginRepository(LoginDataSource dataSource) {
+  private LoginRepository(LoginDatabaseHandler dataSource) {
     this.dataSource = dataSource;
   }
 
-  public static LoginRepository getInstance(LoginDataSource dataSource) {
+  public static LoginRepository getInstance(LoginDatabaseHandler dataSource) {
     if (instance == null) {
       instance = new LoginRepository(dataSource);
     }
@@ -27,12 +27,12 @@ public class LoginRepository {
     this.user = user;
   }
 
-  public Result<UserAccount> login(String username, String password) {
-    // handle login
-    Result<UserAccount> result = dataSource.login(username, password);
+  public Result login(String username, String password) {
+    Result result = dataSource.login(username, password);
     if (result instanceof Result.Success) {
-      setLoggedInUser(((Result.Success<UserAccount>) result).getData());
+      setLoggedInUser(((Result.Success) result).getData());
     }
     return result;
   }
-}
+    }
+
