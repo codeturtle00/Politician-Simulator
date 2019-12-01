@@ -9,7 +9,6 @@ import android.widget.Button;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.GameMode.GameMode;
 import com.example.politicgame.GameMode.SpeechArcade;
-import com.example.politicgame.GameMode.StampArcade;
 import com.example.politicgame.Games.SpeechGame.SpeechInstructionActivity;
 import com.example.politicgame.R;
 

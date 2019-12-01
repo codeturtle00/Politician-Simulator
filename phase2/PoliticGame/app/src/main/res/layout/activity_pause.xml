@@ -23,8 +23,9 @@
 
     <ImageView
         android:id="@+id/pause_menu_image"
-        android:layout_width="308dp"
-        android:layout_height="372dp"
+        android:layout_width="329dp"
+        android:layout_height="393dp"
+        android:layout_marginTop="64dp"
         android:contentDescription="@string/pause_menu_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

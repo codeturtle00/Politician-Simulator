@@ -1,98 +1,81 @@
 package com.example.politicgame.UserActivity.RegisterActivity;
 
-import androidx.annotation.Nullable;
-
-import androidx.lifecycle.Observer;
-
+import androidx.annotation.StringRes;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import com.example.politicgame.Common.FileSavingService;
-import com.example.politicgame.GameActivity;
-import com.example.politicgame.MainActivity;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.FormState;
+import com.example.politicgame.UserActivity.LoginActivity.LoggedInUserView;
+import com.example.politicgame.UserActivity.LoginActivity.LoginActivity;
+import com.example.politicgame.UserActivity.UserPopUpActivity;
 
-public class RegistrationActivity extends GameActivity {
+public class RegistrationActivity extends UserPopUpActivity {
   private RegisterViewModel registerViewModel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.registerViewModel = new RegisterViewModel(this);
+    this.registerViewModel = new RegisterViewModel(this, new RegistrationDatabaseHandler(this));
     setContentView(R.layout.activity_registration);
     setTitle("Registration");
     app = (PoliticGameApp) getApplication();
-    /** Declare features in this page */
-    final EditText username = findViewById(R.id.username);
-    final EditText password = findViewById(R.id.password);
-    final Button saveButton = findViewById(R.id.save);
+    // Declare features in this page
+    final EditText usernameEditText = findViewById(R.id.username);
+    final EditText passwordEditText = findViewById(R.id.password);
+    final Button registerButton = findViewById(R.id.save);
+    final ProgressBar loadingProgressBar = findViewById(R.id.loading);
     final Button backButton = findViewById(R.id.sign_out);
-    backButton.setOnClickListener(
-        new View.OnClickListener() {
-          public void onClick(View v) {
-            BackToMenu();
-          }
-        });
-
-    registerViewModel
-        .getRegisterFormState()
-        .observe(
-            this,
-            new Observer<FormState>() {
-              @Override
-              public void onChanged(@Nullable FormState RegisterFormState) {
-                if (RegisterFormState == null) {
-                  return;
-                }
-                saveButton.setEnabled(RegisterFormState.isDataValid());
-                if (RegisterFormState.getUsernameError() != null) {
-                  username.setError(getString(RegisterFormState.getUsernameError()));
-                }
-                if (RegisterFormState.getPasswordError() != null) {
-                  password.setError(getString(RegisterFormState.getPasswordError()));
-                }
-              }
-            });
-
-    TextWatcher afterTextChangedListener =
-        new TextWatcher() {
-          @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-          @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {}
-          @Override
-          public void afterTextChanged(Editable s) {
-            registerViewModel.registerDataValidate(username.getText().toString(), password.getText().toString());
-          }
-        };
-    username.addTextChangedListener(afterTextChangedListener);
-    password.addTextChangedListener(afterTextChangedListener);
-    saveButton.setOnClickListener(
+    // Observe the form state of the username and password, set error state if there is a formState
+    // Error
+    setFormStateListener(registerViewModel, registerButton, usernameEditText, passwordEditText);
+    // SetupTextWatcher
+    textWatcher(registerViewModel, usernameEditText, passwordEditText);
+    // Set up keyboard listener
+    setKeyBoardListener(registerViewModel, usernameEditText, passwordEditText);
+    // Observe the login result and go to different use cases based on the result
+    setModelResultListener(registerViewModel, loadingProgressBar);
+    registerButton.setOnClickListener(
         new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            registerViewModel.saveUserToDb(
-                username.getText().toString(), password.getText().toString());
+            registerViewModel.databaseRequest(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+            System.out.println("register");
           }
         });
 
     backButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            BackToMenu();
+            BackToLogin();
           }
         });
   }
-    /** Returns to main menu */
-  public void BackToMenu() {
-    Intent switchBabyIntent = new Intent(this, MainActivity.class);
-    startActivity(switchBabyIntent);
+  /** Returns to main menu */
+  public void BackToLogin() {
+    Intent switchLogin = new Intent(this, LoginActivity.class);
+    startActivity(switchLogin);
     finish();
+  }
+  /** Display user name if login in successfully */
+  @Override
+  protected void updateUiWithUser(LoggedInUserView model) {
+    String registerInfo = getString(R.string.registerInfo) + model.getDisplayName();
+    Toast.makeText(getApplicationContext(), registerInfo, Toast.LENGTH_LONG).show();
+    finish();
+  }
+  /** If have error login in,stay in Login In Page and clear username and password */
+  @Override
+  protected void databaseAccessDeny(@StringRes Integer errorString) {
+    Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+  }
+  /** If no user found in the database,go to Register Page */
+  @Override
+  protected void invalidUserMessage(String invalidMessage) {
+    Toast.makeText(getApplicationContext(), invalidMessage, Toast.LENGTH_SHORT).show();
   }
 }

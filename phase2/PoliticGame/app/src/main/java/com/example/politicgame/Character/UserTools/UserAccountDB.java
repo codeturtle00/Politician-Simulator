@@ -19,14 +19,29 @@ class UserAccountDB {
     this.displayName = displayName;
   }
 
+  /**
+   * Writes the changes of charArray to user.json
+   *
+   * @param context The context this method was originated from
+   * @param fileSaving  The FileSavingService we are saving with
+   * @param charArray   The JSONArray we are using to overwrite with
+   */
   void saveToDb(Context context, FileSavingService fileSaving, JSONArray charArray) {
     if (new File(context.getFilesDir() + "/" + FILE_NAME).exists()) {
+      //If the file already exists, write to it with this method
       saveExist(fileSaving, charArray);
     } else {
+      //If the file does not exist, create and write to it with this method
       saveNotExist(fileSaving, charArray);
     }
   }
 
+  /**
+   * Overwrites the data for a specific character with charArray
+   *
+   * @param fileSaving  The FileSavingService we are saving with
+   * @param charArray   The JSONArray we are using to overwrite with
+   */
   private void saveExist(FileSavingService fileSaving, JSONArray charArray) {
     try {
       JSONObject userObject = new JSONObject();
@@ -39,6 +54,12 @@ class UserAccountDB {
     }
   }
 
+  /**
+   * Writes the data for a specific character with charArray
+   *
+   * @param fileSaving  The FileSavingService we are saving with
+   * @param charArray   The JSONArray we are using to write with
+   */
   private void saveNotExist(FileSavingService fileSaving, JSONArray charArray) {
     try {
       JSONObject userObject = new JSONObject();

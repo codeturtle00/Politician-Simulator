@@ -1,5 +1,7 @@
 package com.example.politicgame.LoadCharacter;
 
+import android.view.View;
+
 public class LoadedCell implements CellInfo {
     private String BUTTONTEXT = "Delete";
     private String cellText;
@@ -10,12 +12,17 @@ public class LoadedCell implements CellInfo {
         this.charName = charName;
     }
 
-    /**Returns the text for the cell's button
+    /**
+     * Show the cell's Delete Character button. Removes the cell's Create Character
+     * button, since character already exists.
      *
-     * @return Text for the cell's button. Returns "Delete"
+     * @param createButton Button for character creation
+     * @param deleteButton Button for character deletion
      */
-    public String getButtonText(){return BUTTONTEXT;}
-
+    public void setCreateDeleteButtons(View createButton, View deleteButton){
+    createButton.setVisibility(View.GONE);
+    deleteButton.setVisibility(View.VISIBLE);
+  }
 
     /**Returns the text for the inside of the cell
      *

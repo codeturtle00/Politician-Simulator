@@ -16,7 +16,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.GameMode.GameMode;
-import com.example.politicgame.Games.SpeechGame.SpeechInstructionActivity;
 import com.example.politicgame.Pausing.PauseButton;
 import com.example.politicgame.R;
 
@@ -60,7 +59,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     // Event Action
     eventActionText = findViewById(R.id.eventActionText);
-    eventActionText.setText("test");
+    eventActionText.setText("Welcome to the Baby Game!");
 
     // Timer View
     timerDisplay = findViewById(R.id.timerDisplay);
@@ -68,16 +67,6 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     // Generate Pause Button
     new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
-
-    // TODO: DELETE WHEN GAME IS FINISHED
-    Button next = findViewById(R.id.nextGame);
-    next.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            openSpeechGame();
-          }
-        });
   }
 
   /** Pauses game. */

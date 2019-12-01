@@ -1,6 +1,5 @@
 package com.example.politicgame.Pausing;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,14 +9,8 @@ import com.example.politicgame.Character.SpriteSetter;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.PopUpActivity;
 import com.example.politicgame.R;
-import com.example.politicgame.MainActivity;
-import com.example.politicgame.Character.UserTools.UserAccount;
 
 public class PauseActivity extends PopUpActivity {
-
-  private final int DEFAULT_CODE = 0;
-  private final int RESUME_CODE = 1;
-  private final int QUIT_CODE = 2;
 
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -36,7 +29,7 @@ public class PauseActivity extends PopUpActivity {
     resumeB.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            returnRequest(RESUME_CODE);
+            returnRequest(GameActivity.RESUME_CODE);
           }
         });
 
@@ -45,21 +38,8 @@ public class PauseActivity extends PopUpActivity {
     loggedInB.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            openMainActivity();
+            returnRequest(GameActivity.QUIT_TO_MENU_CODE);
           }
         });
-  }
-
-  private void openMainActivity() {
-    Intent MainActivityIntent = new Intent(this, MainActivity.class);
-    startActivity(MainActivityIntent);
-  }
-
-  private void returnRequest(int requestCode) {
-    Intent resultIntent = new Intent();
-    resultIntent.putExtra("result", requestCode);
-
-    setResult(RESULT_OK, resultIntent);
-    finish();
   }
 }

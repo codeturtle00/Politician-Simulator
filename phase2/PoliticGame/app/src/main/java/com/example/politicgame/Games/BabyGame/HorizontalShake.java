@@ -15,18 +15,15 @@ class HorizontalShake extends Event {
   /**
    * Creates this HorizontalShake event.
    *
-   * @param babyX the X coordinate of the baby
-   * @param babyY the Y coordinate of the baby
-   * @param babyWidth the width of the baby
-   * @param babyHeight the height of the baby
+   * @param baby The Baby this event is acting upon
    * @param res the resources to draw the baby
    */
-  HorizontalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
-    super(babyX, babyY, babyWidth, babyHeight, res);
+  HorizontalShake(Baby baby, Resources res) {
+    super(baby, res);
     Bitmap img = BitmapFactory.decodeResource(res, R.drawable.leftrightarrow);
     setImg(img);
-    setX((int) (Math.random() * (babyWidth / 3) + babyX));
-    setY((int) (Math.random() * (babyHeight / 2) + babyY + (babyHeight / 2)));
+    setX((int) (Math.random() * (getBabyWidth() / 3) + getBabyX()));
+    setY((int) (Math.random() * (getBabyHeight() / 2) + getBabyY() + (getBabyHeight() / 2)));
   }
 
   /**
@@ -50,6 +47,9 @@ class HorizontalShake extends Event {
       float movingY,
       float finalX,
       float finalY) {
+
+    getBaby().setX(getBabyX() + (int) (movingX - initialX));
+    getBaby().setY(getBabyY() + (int) (movingY - initialY));
 
     if (swipesLeft > 0 && Math.abs(movingY - getY()) < 50) {
       if (initialX - movingX > 100 && moveLeft) {

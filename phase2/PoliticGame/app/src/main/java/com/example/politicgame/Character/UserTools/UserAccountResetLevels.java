@@ -9,6 +9,12 @@ import org.json.JSONObject;
 class UserAccountResetLevels {
     UserAccountResetLevels() {}
 
+    /**
+     * Resets all the levels scores to their default values for a specific character
+     *
+     * @param charArray The JSONArray we want to reset
+     * @param charName  The name of the character whom we want to reset
+     */
     void resetLevels(JSONArray charArray, String charName) {
         try {
             for (int i = 0; i < charArray.length(); i++) {

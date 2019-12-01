@@ -1,5 +1,7 @@
 package com.example.politicgame.Games.BabyGame;
 
+import android.util.Log;
+
 import static java.lang.Thread.sleep;
 
 public class EventsGenerator implements Runnable {
@@ -21,6 +23,7 @@ public class EventsGenerator implements Runnable {
         sleep(500);
       } catch (Exception e) {
         e.printStackTrace();
+        Log.e("EventsGenerator", "Exception");
       }
     }
   }

@@ -47,5 +47,18 @@ public class SingleMode implements GameMode, Serializable {
     }
 
 
+    /**
+     * Returns if the game is complete, in any single-game mode's case this will always return false
+     * as this is used to check if we should skip games to move on
+     *
+     * @param app           The current instance of PoliticGameApp. This needs to be declared here
+     *                      as the arcade mode's saving requires access to PoliticGameApp, but the
+     *                      class cannot be Serializable if it is declared as an instance variable
+     *                      as children of the Application class are not Serializable and thus
+     *                      cannot be included as fields in Serializable classes
+     *                      cannot be included as fields in Serializable classes
+     *
+     * @return  false, will always return false for SingleMode.java
+     */
     public boolean isGameComplete (PoliticGameApp app){return false;}
 }

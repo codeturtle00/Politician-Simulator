@@ -77,7 +77,7 @@ public class MainActivity extends GameActivity {
   }
 
   private void selectCharacterButton() {
-    final Button selectCharactersButton = findViewById(R.id.select_character);
+    final Button selectCharactersButton = findViewById(R.id.play);
 
     if (app.getCurrentUser() == null) {
       selectCharactersButton.setEnabled(false);
@@ -143,6 +143,5 @@ public class MainActivity extends GameActivity {
   public void openLoadCharacter () {
     Intent loadCharacters = new Intent(this, LoadCharacterActivity.class);
     startActivity(loadCharacters);
-    finish();
   }
 }
