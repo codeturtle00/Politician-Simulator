@@ -8,7 +8,6 @@ import android.widget.ImageView;
 
 import com.example.politicgame.Character.SpriteSetter;
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.GameEnd.SaveInfo;
 import com.example.politicgame.GameMode.GameModeModel.BabyArcade;
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.R;

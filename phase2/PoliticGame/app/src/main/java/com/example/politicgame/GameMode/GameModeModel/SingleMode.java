@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.GameEnd.SingleEndActivity;
+import com.example.politicgame.GameMode.SingleEndActivity;
 
 public class SingleMode implements GameMode {
     private String levelName;

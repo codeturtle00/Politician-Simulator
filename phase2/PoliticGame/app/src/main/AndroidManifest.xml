@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/BlueTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".GameEnd.SummaryActivity"></activity>
+        <activity android:name=".GameMode.SummaryActivity"></activity>
         <activity android:name=".Games.SpeechGame.SpeechInstructionActivity" />
         <activity android:name=".Games.StampGame.StampActivityWon" />
         <activity android:name=".Games.StampGame.StampActivityLost" />
@@ -48,7 +48,7 @@
         <activity android:name=".LoadCharacter.LoadCharacterActivity"
             android:theme="@style/PopUp"/>
         <activity android:name=".GameMode.GameModeActivity" />
-        <activity android:name=".GameEnd.SingleEndActivity" />
+        <activity android:name=".GameMode.SingleEndActivity" />
         <activity android:name=".GameMode.ArcadeActivity" />
     </application>
 

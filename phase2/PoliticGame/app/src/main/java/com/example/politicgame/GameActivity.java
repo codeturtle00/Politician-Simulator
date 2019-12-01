@@ -7,13 +7,8 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.Character.UserTools.UserAccount;
-import com.example.politicgame.GameEnd.SummaryActivity;
+import com.example.politicgame.GameMode.SummaryActivity;
 import com.example.politicgame.Leaderboard.LeaderBoardActivity;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * GameActivity includes code every minigame activity should have. To implement into a minigame's

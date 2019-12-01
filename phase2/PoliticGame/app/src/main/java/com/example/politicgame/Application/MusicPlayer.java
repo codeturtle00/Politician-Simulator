@@ -4,7 +4,7 @@ import android.media.MediaPlayer;
 
 import com.example.politicgame.R;
 
-public class MusicPlayer {
+class MusicPlayer {
 
     // PoliticGameApp
     private PoliticGameApp app;
