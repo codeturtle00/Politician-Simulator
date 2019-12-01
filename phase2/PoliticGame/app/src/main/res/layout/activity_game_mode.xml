@@ -8,48 +8,6 @@
     android:background="?attr/backColor">
 
     <TextView
-        android:id="@+id/ArcadeMode"
-        android:layout_width="314dp"
-        android:layout_height="86dp"
-        android:layout_marginTop="36dp"
-        android:text="\nElection Mode"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/game_mode_title" />
-
-    <TextView
-        android:id="@+id/BabyGameMode"
-        android:layout_width="314dp"
-        android:layout_height="86dp"
-        android:layout_marginTop="36dp"
-        android:text="\nBaby Game"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ArcadeMode" />
-
-    <TextView
-        android:id="@+id/SpeechGameMode"
-        android:layout_width="314dp"
-        android:layout_height="86dp"
-        android:layout_marginTop="36dp"
-        android:text="\nSpeech Game"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BabyGameMode" />
-
-    <TextView
         android:id="@+id/game_mode_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,17 +21,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/StampGameMode"
-        android:layout_width="314dp"
-        android:layout_height="86dp"
-        android:layout_marginTop="36dp"
-        android:text="\nStamp Game"
+    <Button
+        android:id="@+id/ArcadeMode"
+        style="@style/Button"
+        android:layout_width="224dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="24dp"
+        android:text="Election Mode"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_mode_title" />
+
+    <Button
+        android:id="@+id/BabyGameMode"
+        style="@style/Button"
+        android:layout_width="224dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="24dp"
+        android:text="Baby Game"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ArcadeMode" />
+
+    <Button
+        android:id="@+id/SpeechGameMode"
+        style="@style/Button"
+        android:layout_width="224dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="20dp"
+        android:text="Speech Game"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BabyGameMode" />
+
+    <Button
+        android:id="@+id/StampGameMode"
+        style="@style/Button"
+        android:layout_width="224dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="20dp"
+        android:text="Stamp Game"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SpeechGameMode" />
 

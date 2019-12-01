@@ -1,6 +1,7 @@
 package com.example.politicgame.NewCharacter;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,6 +62,10 @@ public class SelectCharacterActivity extends GameActivity {
 
     setCharacterWheel();
 
+    //Set initial text instructions
+    error_select.setTextColor(Color.parseColor("#FFFFFF"));
+    error_select.setText("Swipe below for more characters");
+
     submitName.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
@@ -74,21 +79,20 @@ public class SelectCharacterActivity extends GameActivity {
             }
 
             if (currCharacter == 0) {
+              error_select.setTextColor(Color.parseColor("#F44336"));
               error_select.setText("Swipe and tap the icons to select a character");
             } else {
               error_select.setText("");
             }
 
             if (name.equals("")) {
-              Log.i("error_name","Enter a character name");
+              Log.i("error_name", "Enter a character name");
               error_name.setText("Enter a character name");
-            }
-            else if (!isUnique){
-              Log.i("error_name","Character name already exists for this user");
+            } else if (!isUnique) {
+              Log.i("error_name", "Character name already exists for this user");
               error_name.setText("Character name already exists for this user");
-            }
-            else {
-              Log.i("error_name","Empty Error String");
+            } else {
+              Log.i("error_name", "Empty Error String");
               error_name.setText("");
             }
           }
