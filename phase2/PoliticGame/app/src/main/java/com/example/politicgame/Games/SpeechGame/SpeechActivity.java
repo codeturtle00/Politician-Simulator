@@ -74,11 +74,6 @@ public class SpeechActivity extends GameActivity {
     public void compare(View view) {
         EditText editText = findViewById(R.id.answer);
         presenter.setUserInput(editText.getText().toString());
-
-        boolean exit = presenter.isExitPoint();
-        if (exit) {
-            saveGame(presenter.getCurRating(), "LEVEL2");
-        }
         presenter.updateRating();
 
         Log.i("gm == null", String.valueOf(getIntent().getSerializableExtra("GameMode") == null));

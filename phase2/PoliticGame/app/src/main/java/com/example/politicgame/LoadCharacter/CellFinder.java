@@ -13,11 +13,20 @@ import java.util.Iterator;
 public class CellFinder {
     private UserAccount userAcc;
 
-    public CellFinder(UserAccount userAcc){
+    CellFinder(UserAccount userAcc){
         this.userAcc = userAcc;
     }
 
-    public CellInfo[] getCellInfo(JSONObject charCell) {
+
+    /**
+     * Returns an array of instances of CellInfo that represent the information to be shown in the
+     * cells in the activity
+     *
+     * @param charCell  A JSONObject representing the existing characters and their info
+     * @return          An array of CellInfo objects containing information on what to show in the
+     *
+     */
+    CellInfo[] getCellInfo(JSONObject charCell) {
         Log.i("Read charCell", "THE JSON OUTPUT IS HERE");
         Log.i("Read charCell", charCell.toString());
 
@@ -72,7 +81,12 @@ public class CellFinder {
         return cellData;
     }
 
-    public JSONObject getExistingCharacters() {
+    /**
+     * Returns a JSONObject of the existing characters
+     *
+     * @return  A JSONObject of the existing characters
+     */
+    JSONObject getExistingCharacters() {
         JSONArray charArray = userAcc.getCharArray();
         JSONObject returnChar = new JSONObject();
 

@@ -3,13 +3,12 @@ package com.example.politicgame.GameMode;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Games.StampGame.StampInstructionActivity;
 
 public class SpeechArcade extends ArcadeMode{
     private static final String LEVEL_NAME = "LEVEL2";
 
-    public SpeechArcade(/*PoliticGameApp app*/){ super(/*app,*/ LEVEL_NAME); }
+    public SpeechArcade(){ super(LEVEL_NAME); }
 
     /**
      * Returns the Intent to the next required activity
@@ -19,7 +18,7 @@ public class SpeechArcade extends ArcadeMode{
      */
     public Intent next(Context lastActivity){
         Intent switchStampIntent = new Intent(lastActivity, StampInstructionActivity.class);
-        switchStampIntent.putExtra("GameMode", new StampArcade(/*app*/));
+        switchStampIntent.putExtra("GameMode", new StampArcade());
         return switchStampIntent;
     }
 }

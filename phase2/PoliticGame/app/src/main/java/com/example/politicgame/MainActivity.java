@@ -48,6 +48,11 @@ public class MainActivity extends GameActivity {
     generateSelectCharacterButton(findViewById(R.id.play));
   }
 
+  /**
+   * Generate the leaderboard button's onClickListener
+   *
+   * @param boardButton The button we want to set the leaderboard listener to
+   */
   private void generateLeaderboardButton(View boardButton) {
     boardButton.setOnClickListener(
         new View.OnClickListener() {
@@ -57,6 +62,12 @@ public class MainActivity extends GameActivity {
         });
   }
 
+  /**
+   * Set the select character button which is turned off when the user has not logged in yet, but is
+   * enabled once the user logs in
+   *
+   * @param selectCharactersButton  The button we want to set the select character button behaviour to
+   */
   private void generateSelectCharacterButton(View selectCharactersButton) {
     if (app.getCurrentUser() == null) {
       selectCharactersButton.setEnabled(false);
@@ -71,6 +82,12 @@ public class MainActivity extends GameActivity {
     }
   }
 
+  /**
+   * Set the login button which allows the user to log in if the user is not already, and then allows
+   * the user to sign out if the user is already logged in
+   *
+   * @param loginButton The button that we want to set the log in behaviour to
+   */
   private void generateLoginButton(TextView loginButton) {
 
     // Login Button changes to Sign Out if already logged in
@@ -96,6 +113,11 @@ public class MainActivity extends GameActivity {
     }
   }
 
+  /**
+   * Sets the settings button
+   *
+   * @param settingButton The button we want to set the settings behaviour to
+   */
   private void generateSettingsButton(View settingButton) {
     settingButton.setOnClickListener(
         new View.OnClickListener() {
@@ -105,12 +127,18 @@ public class MainActivity extends GameActivity {
         });
   }
 
+  /**
+   * Opens the login popup page
+   */
   public void openLoginPage() {
     Intent loginPageIntent = new Intent(this, LoginActivity.class);
     startActivity(loginPageIntent);
     overridePendingTransition(R.anim.slide_up, 0);
   }
 
+  /**
+   * Opens the leaderboard page
+   */
   public void openLeaderBoard() {
     Intent switchBoardIntent = new Intent(this, LeaderBoardActivity.class);
     switchBoardIntent.putExtra("BoardType", "Election Mode");
@@ -118,11 +146,17 @@ public class MainActivity extends GameActivity {
     finish();
   }
 
+  /**
+   * Opens the settings popup page
+   */
   public void openSettings() {
     Intent pauseMenuIntent = new Intent(this, SettingsActivity.class);
     startActivityForResult(pauseMenuIntent, 2);
   }
 
+  /**
+   * Opens the load character popup page
+   */
   public void openLoadCharacter() {
     Intent loadCharacters = new Intent(this, LoadCharacterActivity.class);
     startActivity(loadCharacters);

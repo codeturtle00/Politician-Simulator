@@ -72,18 +72,16 @@ public class LoadCharacterActivity extends PopUpActivity {
     // Fills cells with proper information from the user
     populateCells();
 
-
-    /**
-     * Cell 1
-     */
+    /** Cell 1 */
     charButton[0].setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            currCharacter = 1;
-
-            //Highlight the cell
-            charButton[0].setBackground(highlight);
-            charButton[1].setBackground(null);
+            // Highlight the cell
+            if (cellLoaded[0]) {
+              currCharacter = 1;
+              charButton[0].setBackground(highlight);
+              charButton[1].setBackground(null);
+            }
           }
         });
 
@@ -93,11 +91,12 @@ public class LoadCharacterActivity extends PopUpActivity {
     charButton[1].setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            currCharacter = 2;
-
             //Highlight the cell
-            charButton[1].setBackground(highlight);
-            charButton[0].setBackground(null);
+            if (cellLoaded[1]) {
+              currCharacter = 2;
+              charButton[1].setBackground(highlight);
+              charButton[0].setBackground(null);
+            }
           }
         });
 

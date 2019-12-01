@@ -18,6 +18,13 @@ public class SingleBoardGetter extends BoardLoader{
         this.levelName = levelName;
     }
 
+    /**
+     * Returns a JSONArray containing scores, characters and users based off of the initially
+     * constructed levelName
+     *
+     * @return  A JSONArray containing JSONObjects that represent the scores and, the user and
+     *          character that achieved it
+     */
     JSONArray getScores(){
         JSONArray jsonList = this.fileSaving.readJsonFile(FILE_NAME);
         JSONArray boardList = new JSONArray();

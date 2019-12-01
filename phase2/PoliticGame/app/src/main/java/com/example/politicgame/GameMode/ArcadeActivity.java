@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.politicgame.Character.SpriteSetter;
-import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.GameEnd.SaveInfo;
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;

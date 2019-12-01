@@ -3,14 +3,13 @@ package com.example.politicgame.GameMode;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.GameEnd.SummaryActivity;
 
 public class StampArcade extends ArcadeMode{
     private static final String LEVEL_NAME = "LEVEL3";
 
-    public StampArcade(/*PoliticGameApp app*/){
-        super(/*app,*/ LEVEL_NAME);
+    public StampArcade(){
+        super(LEVEL_NAME);
     }
 
     /**
