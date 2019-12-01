@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.politicgame.GameActivity;
 import com.example.politicgame.GameMode.GameModeActivity;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.NewCharacter.SelectCharacterActivity;
@@ -147,8 +148,8 @@ public class LoadCharacterActivity extends PopUpActivity {
 
       Intent gameModeSelectIntent = new Intent(this, GameModeActivity.class);
       startActivity(gameModeSelectIntent);
-      finish();
-    }
+      finishAffinity();
+    } else findViewById(R.id.errorText).setVisibility(View.VISIBLE);
   }
 
 
