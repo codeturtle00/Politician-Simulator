@@ -10,10 +10,10 @@ import com.example.politicgame.R;
  */
 public class SuccessSpeechResult extends SpeechResult{
 
-    @Override
     /**
      * Initializes result screen for correct answer
      */
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success_speech_result);
