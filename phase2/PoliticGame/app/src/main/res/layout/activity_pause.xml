@@ -5,7 +5,7 @@
     android:id="@+id/pauseLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pausebackground">
+    android:background="?attr/popupBackground2">
 
     <Button
         android:id="@+id/resume"

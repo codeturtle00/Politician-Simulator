@@ -3,5 +3,8 @@
     <declare-styleable name="GameAppTheme">
         <attr name="backColor" format="color" />
         <attr name="textColor" format="color" />
+        <attr name="popupBackground" format="integer" />
+        <attr name="popupBackground2" format="integer" />
+        <attr name="buttonBackground" format="integer" />
     </declare-styleable>
 </resources>

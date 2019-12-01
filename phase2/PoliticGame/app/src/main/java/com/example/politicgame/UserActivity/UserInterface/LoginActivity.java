@@ -33,11 +33,6 @@ public class LoginActivity extends UserPopUpActivity {
     super.onCreate(savedInstanceState);
 
     app = (PoliticGameApp) getApplication();
-    if (app.isThemeBlue()) {
-      setTheme(R.style.BlueTheme);
-    } else {
-      setTheme(R.style.RedTheme);
-    }
 
     setContentView(R.layout.activity_login);
     setTitle(R.string.login);
