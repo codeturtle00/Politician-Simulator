@@ -1,11 +1,10 @@
-package com.example.politicgame.Leaderboard.BoardModel;
+package com.example.politicgame.Leaderboard;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
 
-public interface LeaderBoard {
+interface LeaderBoard {
 
     /**
      * Returns the the Leaderboard's scores through a list of JSONObjects

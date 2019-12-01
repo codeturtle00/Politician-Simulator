@@ -1,4 +1,4 @@
-package com.example.politicgame.Leaderboard.BoardModel;
+package com.example.politicgame.Leaderboard;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,8 +9,8 @@ import org.json.JSONObject;
 
 import java.util.Iterator;
 
-public class ElectionBoardGetter extends BoardLoader{
-    public ElectionBoardGetter(Context lastContext){
+class ElectionBoardGetter extends BoardLoader{
+    ElectionBoardGetter(Context lastContext){
         super(lastContext);
     }
 

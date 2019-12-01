@@ -11,9 +11,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.Leaderboard.BoardModel.ElectionBoardGetter;
-import com.example.politicgame.Leaderboard.BoardModel.LeaderBoard;
-import com.example.politicgame.Leaderboard.BoardModel.SingleBoardGetter;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.R;
 
@@ -51,7 +48,7 @@ public class LeaderBoardActivity extends GameActivity
 
     // Creating adapter for spinner
     ArrayAdapter<String> dataAdapter =
-        new ArrayAdapter<String>(this, R.layout.board_spinner_layout, boards);
+        new ArrayAdapter<>(this, R.layout.board_spinner_layout, boards);
 
     // Drop down layout style - list view with radio button
     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -109,7 +106,7 @@ public class LeaderBoardActivity extends GameActivity
 
     // Sets the new mode and reloads the leaderboard so as long as the selected item is not the
     // currently selected item
-    if (item != boardType) {
+    if (!item.equals(boardType)) {
       if (item.equals(MODEONE)) {
         Log.i("ItemSelected", "Election mode leaderboard selected");
         boardType = MODEONE;

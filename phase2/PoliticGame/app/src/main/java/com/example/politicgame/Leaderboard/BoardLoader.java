@@ -1,4 +1,4 @@
-package com.example.politicgame.Leaderboard.BoardModel;
+package com.example.politicgame.Leaderboard;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class BoardLoader implements LeaderBoard {
+abstract class BoardLoader implements LeaderBoard {
   final String FILE_NAME = "user.json";
   FileSavingService fileSaving;
 
@@ -32,7 +32,7 @@ public abstract class BoardLoader implements LeaderBoard {
    * @param charScores The JSONArray with JSONObjects elements structured in the above format
    * @return A list of the top 3 characters in JSONObjects with the above format
    */
-  List<JSONObject> sortBoard(JSONArray charScores) {
+  private List<JSONObject> sortBoard(JSONArray charScores) {
 
     JSONObject first = new JSONObject();
     JSONObject second = new JSONObject();
