@@ -52,4 +52,27 @@
     <string name ="game_mode_title">Select a Game Mode</string>
     <string name="main_menu">Main Menu</string>
     <string name="login">Login</string>
+    <string name="pos_verb_campaign">campaign with the best interests of</string>
+    <string name="pos_verb_aid">send aid to</string>
+    <string name="pos_verb_donate">donate money to charities that work with</string>
+    <string name="pos_verb_gift">gift a bouquet of flowers to</string>
+    <string name="neg_verb_sendPolice">send a police squad to detain and imprison</string>
+    <string name="neg_verb_punch">punch the daylights out of</string>
+    <string name="neg_verb_launchNuke">launch nukes against</string>
+    <string name="neg_verb_sendArmy">send an army against</string>
+    <string name="neg_verb_launchInvest">launch an investigation against</string>
+    <string name="neg_verb_laugh">personally find and laugh at</string>
+    <string name="pos_NotC_Noun_Gandhi">Gandhi, a recently popular peace advocate who campaigns in India</string>
+    <string name="pos_NotC_Noun_JohnOlive">the popular late-night TV show host John Olive Oil</string>
+    <string name="pos_NotC_Noun_BillRye">Bill Rye, a once popular figure in science who recently published a paper on the benefits of foot rubs</string>
+    <string name="pos_NotC_Noun_ToeKnee">Toe-Knee, a rising star in the genre of Jazz, who recently released his hit album "CS Blues"</string>
+    <string name="pos_NotC_Noun_Jacki">Jacki, a citizen who has been wrongfully imprisoned in the country of Canada for not holding the door for the boy behind him</string>
+    <string name="neg_NotC_Noun_leaderKorea">the leader of North Coreeah, who is planning a nuclear strike</string>
+    <string name="neg_NotC_Noun_Colin">Colin, a medical practitioner found to have cheated on his medical exams after a related illegal nose smuggling ring was busted</string>
+    <string name="neg_NotC_Noun_Kavin">Kavin, a phantom thief who masterminded the theft all the laptop chargers, but not the laptops, at the University of Toronto last Fall</string>
+    <string name="pos_C_Noun_Puppy">puppies, specifically the ones at the Downtown Toronto Dog Shelter</string>
+    <string name="pos_C_Noun_Peacock">Boundless Peacocks, the very last of their species</string>
+    <string name="pos_C_Noun_students">sad computer science students at the University of Toronto</string>
+    <string name="neg_C_Noun_sealClubber">seal clubbers, who have hunted and killed countless baby seals</string>
+    <string name="neg_C_Noun_thieves">thieves, who have stolen goods from innocent students</string>
 </resources>

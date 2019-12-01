@@ -1,5 +1,6 @@
 package com.example.politicgame.Games.StampGame;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -11,7 +12,12 @@ import java.util.List;
  * The Game handler for Stamp Game It is in charge of updating the score and storing the score for
  * the stamp game that is going on
  */
-class StampGameHandler {
+ class StampGameHandler {
+
+  private StringListManager stringManager;
+
+  private Context context;
+
   /** The list of verbs being used in game handler to construct Prompts */
   private List<Word> verbs;
 
@@ -60,71 +66,32 @@ class StampGameHandler {
    * <p>We construct one prompt when we instantiate the stampGameHandler, and we replace the
    * currentPrompt whenever the updateRating() method is called.
    */
-  StampGameHandler() {
+  StampGameHandler(Context context) {
+    this.context = context;
+    stringManager = new StringListManager(context);
     verbs = new ArrayList<>();
     nouns = new ArrayList<>();
     prompts = new ArrayList<>();
 
-    // Positive verbs that has a positive effect on the object
-    List<String> verbListPositive =
-        new ArrayList<>(
-            Arrays.asList(
-                "campaign with the best interests of",
-                "send aid to",
-                "donate money to charities that work with",
-                "gift a bouquet of flowers to"));
 
-    addWordToList(verbListPositive, verbs, "posVerb");
 
-    // Positive verbs that has a negative effect on the object
-    List<String> verbListNegative =
-        new ArrayList<>(
-            Arrays.asList(
-                "send a police squad to detain and imprison",
-                "punch the daylights out of",
-                "launch nukes against",
-                "send an army against",
-                "launch an investigation against",
-                "personally find and laugh at"));
+    addWordToList(stringManager.getPosVerbStringList(), verbs, "posVerb");
 
-    addWordToList(verbListNegative, verbs, "negVerb");
 
-    // Positive nouns that are not amountable
-    List<String> nounListPositiveNA =
-        new ArrayList<>(
-            Arrays.asList(
-                "Gandhi, a recently popular peace advocate who campaigns in India",
-                "the popular late-night TV show host John Olive Oil",
-                "Bill Rye, a once popular figure in science who recently published a paper on the benefits of foot rubs",
-                "Toe-Knee, a rising star in the genre of Jazz, who recently released his hit album \"CS Blues\"",
-                "Jacki, a citizen who has been wrongfully imprisoned in the country of Canada for not holding the door for the boy behind him"));
 
-    addWordToList(nounListPositiveNA, nouns, "posNounNA");
+    addWordToList(stringManager.getNegVerbStringList(), verbs, "negVerb");
 
-    // Positive nouns that are amountable
-    List<String> nounListPositiveYA =
-        new ArrayList<>(
-            Arrays.asList(
-                "puppies, specifically the ones at the Downtown Toronto Dog Shelter",
-                "Boundless Peacocks, the very last of their species",
-                "sad computer science students at the University of Toronto"));
 
-    addWordToList(nounListPositiveYA, nouns, "posNounYA");
+    addWordToList(stringManager.getPosNotCNounStringList(), nouns, "posNounNA");
 
-    // Negative nouns that are not amountable
-    List<String> nounListNegativeNA =
-        new ArrayList<>(
-            Arrays.asList(
-                "the leader of North Coreeah, who is planning a nuclear strike",
-                "Colin, a medical practitioner found to have cheated on his medical exams after a related illegal nose smuggling ring was busted",
-                "Kavin, a phantom thief who masterminded the theft all the laptop chargers, but not the laptops, at the University of Toronto last Fall"));
 
-    addWordToList(nounListNegativeNA, nouns, "negNounNA");
+    addWordToList(stringManager.getPosCNounStringList(), nouns, "posNounYA");
 
-    // Negative nouns that are amountable
-    List<String> nounListNegativeYA = new ArrayList<>(Arrays.asList("seal clubbers"));
 
-    addWordToList(nounListNegativeYA, nouns, "negNounYA");
+    addWordToList(stringManager.getNegNotCNounStringList(), nouns, "negNounNA");
+
+
+    addWordToList(stringManager.getNegCNounStringList(), nouns, "negNounYA");
   }
 
   /**
