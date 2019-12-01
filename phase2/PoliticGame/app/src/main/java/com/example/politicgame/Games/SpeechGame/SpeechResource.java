@@ -4,27 +4,42 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class SpeechResource implements Serializable {
+    private ArrayList<String> prompt;
+    private ArrayList<ArrayList<String>> choice;
+    private ArrayList<String> answer;
+    private int dataBaseNum;
+
+    /**Getter for the list of prompts
+     *
+     * @return prompt: ArrayList containing every possible prompt
+     */
     public ArrayList<String> getPrompt() {
         return prompt;
     }
 
-    public ArrayList<ArrayList<String>> getChoice() {
+    /**Getter for the list of choices
+     *
+     * @return choice: ArrayList for every possible choice
+     */
+    ArrayList<ArrayList<String>> getChoice() {
         return choice;
     }
 
+    /**Getter for the list of answers
+     *
+     * @return answer: ArrayList for every possible answer
+     */
     public ArrayList<String> getAnswer() {
         return answer;
     }
 
-    private ArrayList<String> prompt;
-    private ArrayList<ArrayList<String>> choice;
-    private ArrayList<String> answer;
-
-    public int getDataBaseNum() {
+    /**Getter for database number
+     *
+     * @return dataBaseNum: int for databse number
+     */
+    int getDataBaseNum() {
         return dataBaseNum;
     }
-
-    private int dataBaseNum;
 
     /**
      * Constructor which initializes all the possible prompts, answers, and choices

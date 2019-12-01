@@ -18,11 +18,12 @@ public class SpeechResult extends GameActivity implements Serializable {
     private SpeechPresenter presenter;
     private final String LEVEL_NAME = "LEVEL2";
 
-    @Override
+
     /**
      * Initializes this activity and retrieves the necessary information from the presenter to be
      * displayed
      */
+    @Override
     protected void onStart() {
         super.onStart();
 
@@ -57,10 +58,10 @@ public class SpeechResult extends GameActivity implements Serializable {
 
     }
 
-    @Override
     /**
      * Creates activity
      */
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech_result);

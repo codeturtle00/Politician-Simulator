@@ -73,9 +73,17 @@ class ProposalsManager {
      * Return a list of proposals contain with number of proposals equal to size;
      * @param size the number of proposals contained in the list returned
      * @return a list of proposals
+     *
+     * precondition: 0 < size <= proposals.size()
      */
     List<Proposal> generateProposalList(int size){
         List<Proposal> result = new ArrayList<>();
+
+        //this ensures that we can generate the maximum amount of proposals when the size given is out of range
+        if (size > proposals.size() || size <= 0){
+            size = proposals.size();
+        }
+
         List<Proposal> proposalsCopy = new ArrayList<>(proposals);
         for (int i = 0; i < size; i++){
             Proposal proposal = proposalsCopy.get((int) (Math.random() * (proposalsCopy.size())));
