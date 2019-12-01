@@ -10,19 +10,18 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.Leaderboard.BoardModel.ElectionBoardGetter;
+import com.example.politicgame.Leaderboard.BoardModel.LeaderBoard;
+import com.example.politicgame.Leaderboard.BoardModel.SingleBoardGetter;
 import com.example.politicgame.MainActivity;
 import com.example.politicgame.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 public class LeaderBoardActivity extends GameActivity
@@ -32,7 +31,6 @@ public class LeaderBoardActivity extends GameActivity
   private final String MODETHREE = "Speech Game";
   private final String MODEFOUR = "Stamp Game";
   private final String FILE_NAME = "user.json";
-  private FileSavingService fileSaving;
 
   private String boardType;
 
@@ -42,8 +40,6 @@ public class LeaderBoardActivity extends GameActivity
     setContentView(R.layout.activity_leader_board);
 
     setTitle("Leaderboard");
-
-    this.fileSaving = new FileSavingService(this);
 
     // Implementation for the Spinner
     boardType = getIntent().getStringExtra("BoardType");
@@ -148,7 +144,7 @@ public class LeaderBoardActivity extends GameActivity
    *
    * @param boardType The board type we want to generate a board for
    */
-  public void updateBoard(String boardType) {
+  private void updateBoard(String boardType) {
     LeaderBoard board = getLeaderBoard(boardType);
     List<JSONObject> boardCell = board.getBoard();
 

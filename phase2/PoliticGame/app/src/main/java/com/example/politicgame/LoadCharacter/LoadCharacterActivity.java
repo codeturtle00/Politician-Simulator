@@ -16,14 +16,12 @@ import com.example.politicgame.NewCharacter.SelectCharacterActivity;
 import com.example.politicgame.PopUpActivity;
 import com.example.politicgame.R;
 
-import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.Character.UserTools.UserAccount;
 
 public class LoadCharacterActivity extends PopUpActivity {
   protected PoliticGameApp app;
   private final int TOTAL_CELLS = 2;
   private final String FILE_NAME = "user.json";
-  private FileSavingService fileSaving;
   private Drawable highlight;
   private int currCharacter;
 

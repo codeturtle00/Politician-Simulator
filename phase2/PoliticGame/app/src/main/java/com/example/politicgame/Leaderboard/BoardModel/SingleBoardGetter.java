@@ -1,4 +1,4 @@
-package com.example.politicgame.Leaderboard;
+package com.example.politicgame.Leaderboard.BoardModel;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,12 +8,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Iterator;
-import java.util.List;
 
 public class SingleBoardGetter extends BoardLoader{
     private String levelName;
 
-    SingleBoardGetter(Context lastContext, String levelName){
+    public SingleBoardGetter(Context lastContext, String levelName){
         super(lastContext);
         this.levelName = levelName;
     }

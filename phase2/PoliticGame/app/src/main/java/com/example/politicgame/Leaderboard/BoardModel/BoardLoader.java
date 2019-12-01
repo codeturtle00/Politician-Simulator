@@ -1,4 +1,4 @@
-package com.example.politicgame.Leaderboard;
+package com.example.politicgame.Leaderboard.BoardModel;
 
 import android.content.Context;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package com.example.politicgame.Leaderboard;
+package com.example.politicgame.Leaderboard.BoardModel;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,4 +13,6 @@ public interface LeaderBoard {
      * @return  The list of JSONObjects containing the top 3 characters, users and their scores
      */
     public List<JSONObject> getBoard();
+
+
 }
