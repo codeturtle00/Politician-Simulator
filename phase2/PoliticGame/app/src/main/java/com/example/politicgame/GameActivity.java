@@ -109,15 +109,6 @@ public abstract class GameActivity extends AppCompatActivity {
     finish();
   }
 
-  // openLoggedIn() is depreciated as LoggedInActivity class is now unused
-  /*
-  public void openLoggedIn() {
-    Intent loggedIntent = new Intent(this, LoggedInActivity.class);
-    startActivity(loggedIntent);
-    finish();
-  }
-  */
-
   /** Opens the summary page. */
   public void openSummary() {
     Intent summaryIntent = new Intent(this, SummaryActivity.class);
