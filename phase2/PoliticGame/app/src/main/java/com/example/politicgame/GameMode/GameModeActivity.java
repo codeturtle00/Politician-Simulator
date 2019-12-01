@@ -11,6 +11,7 @@ import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.Games.SpeechGame.SpeechInstructionActivity;
 import com.example.politicgame.Games.StampGame.StampInstructionActivity;
 import com.example.politicgame.LoadCharacter.LoadCharacterActivity;
+import com.example.politicgame.MainActivity;
 import com.example.politicgame.R;
 
 public class GameModeActivity extends GameActivity {
@@ -64,7 +65,7 @@ public class GameModeActivity extends GameActivity {
         backGameMode.setOnClickListener(
             new View.OnClickListener() {
                 public void onClick(View v) {
-                    openLoadCharacter();
+                    openMainMenu();
                 }
             });
     }
@@ -113,16 +114,6 @@ public class GameModeActivity extends GameActivity {
         Intent startStampGame = new Intent(this, StampInstructionActivity.class);
         startStampGame.putExtra("GameMode", new SingleMode(STAMPLEVEL));
         startActivity(startStampGame);
-        finish();
-    }
-
-
-    /**
-     * Go back to the load character menu
-     */
-    private void openLoadCharacter () {
-        Intent loadCharacters = new Intent(this, LoadCharacterActivity.class);
-        startActivity(loadCharacters);
         finish();
     }
 }
