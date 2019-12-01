@@ -65,7 +65,7 @@ class BabyView extends SurfaceView implements ViewUpdater {
             canvas = holder.lockCanvas();
             holderWidth = holder.getSurfaceFrame().width();
             holderHeight = holder.getSurfaceFrame().height();
-            baby = new Baby(holderWidth / 2, holderHeight / 2, getResources());
+            baby = new Baby(holderWidth / 2, holderHeight / 2, getResources(), 2000);
 
             // Set the baby in the eventManager.
             System.out.println(baby);

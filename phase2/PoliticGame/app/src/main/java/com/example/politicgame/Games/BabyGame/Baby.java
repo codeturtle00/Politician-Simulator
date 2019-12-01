@@ -40,11 +40,11 @@ class Baby {
    * @param centerY the Y coordinate of the center of the Baby
    * @param res the resources used to draw the Baby
    */
-  Baby(int centerX, int centerY, Resources res) {
+  Baby(int centerX, int centerY, Resources res, int width) {
     paint = new Paint();
 
     babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
-    babyImg = Bitmap.createScaledBitmap(babyImg, 640, 971, false);
+    babyImg = Bitmap.createScaledBitmap(babyImg, width, (width * 44 / 29), false);
 
     // width and height needs to be changed to dynamically scaled depending on holder width/height
     width = babyImg.getWidth();

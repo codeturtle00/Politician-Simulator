@@ -27,6 +27,7 @@
         android:id="@+id/babyFrame"
         android:layout_width="388dp"
         android:layout_height="626dp"
+        app:layout_constraintTop_toBottomOf="@id/eventActionText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -52,12 +53,12 @@
         android:id="@+id/eventActionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:textColor= "#BDBDBD"
+        android:textColor= "#E7E7E7"
         android:fontFamily= "@font/pixelfont"
         android:textSize="20sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/scoreDisplay" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
