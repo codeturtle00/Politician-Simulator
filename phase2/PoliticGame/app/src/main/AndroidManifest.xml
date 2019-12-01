@@ -13,7 +13,6 @@
         android:theme="@style/BlueTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".GameEnd.SummaryActivity"></activity>
-        <activity android:name=".UserActivity.LoginActivity.LoggedInActivity" />
         <activity android:name=".Games.SpeechGame.SpeechInstructionActivity" />
         <activity android:name=".Games.StampGame.StampActivityWon" />
         <activity android:name=".Games.StampGame.StampActivityLost" />

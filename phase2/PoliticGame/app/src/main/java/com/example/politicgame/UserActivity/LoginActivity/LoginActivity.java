@@ -31,13 +31,17 @@ public class LoginActivity extends UserPopUpActivity {
   public void onCreate(Bundle savedInstanceState) {
     // Set up theme,layout,title for loginActivity
     super.onCreate(savedInstanceState);
+
     app = (PoliticGameApp) getApplication();
     if (app.isThemeBlue()) {
       setTheme(R.style.BlueTheme);
     } else {
       setTheme(R.style.RedTheme);
+    }
+
     setContentView(R.layout.activity_login);
     setTitle(R.string.login);
+
     this.loginViewModel =
         ViewModelProviders.of(this, new LoginViewModelFactory(this)).get(LoginViewModel.class);
 
@@ -87,7 +91,7 @@ public class LoginActivity extends UserPopUpActivity {
             goToRegister();
           }
         });
-  }}
+  }
   /** Display user name if login in successfully */
   @Override
   protected void updateUiWithUser(LoggedInUserView model) {
