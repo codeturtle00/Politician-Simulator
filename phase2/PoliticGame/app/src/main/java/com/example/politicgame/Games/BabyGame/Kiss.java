@@ -12,19 +12,16 @@ class Kiss extends Event {
   /**
    * Creates this Kiss event.
    *
-   * @param babyX the X coordinate of the baby
-   * @param babyY the Y coordinate of the baby
-   * @param babyWidth the width of the baby
-   * @param babyHeight the height of the baby
+   * @param baby The Baby this event is acting upon
    * @param res the resources to draw the baby
    */
-  Kiss(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
-    super(babyX, babyY, babyWidth, babyHeight, res);
+  Kiss(Baby baby, Resources res) {
+    super(baby, res);
     Bitmap kiss = BitmapFactory.decodeResource(res, R.drawable.kisslips);
     kiss = Bitmap.createScaledBitmap(kiss, 120, 72, false);
     setImg(kiss);
-    setX((int) (Math.random() * (babyWidth / 2) + babyX));
-    setY((int) (Math.random() * (babyHeight / 2) + babyY));
+    setX((int) (Math.random() * (getBabyWidth() / 2) + getBabyX()));
+    setY((int) (Math.random() * (getBabyHeight() / 2) + getBabyY()));
   }
 
   /**

@@ -15,16 +15,13 @@ class VerticalShake extends Event {
   /**
    * Creates this VerticalShake event.
    *
-   * @param babyX the X coordinate of the baby
-   * @param babyY the Y coordinate of the baby
-   * @param babyWidth the width of the baby
-   * @param babyHeight the height of the baby
+   * @param baby The Baby this event is acting upon
    * @param res the resources to draw the baby
    */
-  VerticalShake(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
-    super(babyX, babyY, babyWidth, babyHeight, res);
-    setX((int) (Math.random() * (babyWidth / 3) + babyX));
-    setY((int) (Math.random() * (babyHeight / 2) + babyY + (babyHeight / 2)));
+  VerticalShake(Baby baby, Resources res) {
+    super(baby, res);
+    setX((int) (Math.random() * (getBabyWidth() / 3) + getBabyX()));
+    setY((int) (Math.random() * (getBabyHeight() / 2) + getBabyY() + (getBabyHeight() / 2)));
     Bitmap img = BitmapFactory.decodeResource(res, R.drawable.updownarrow);
     setImg(img);
   }
@@ -50,6 +47,9 @@ class VerticalShake extends Event {
       float movingY,
       float finalX,
       float finalY) {
+
+    getBaby().setX(getBabyX() + (int) (movingX - initialX));
+    getBaby().setY(getBabyY() + (int) (movingY - initialY));
 
     if (swipesLeft > 0 && Math.abs(movingX - getX()) < 50) {
       if (initialY - movingY > 100 && !moveUp) {

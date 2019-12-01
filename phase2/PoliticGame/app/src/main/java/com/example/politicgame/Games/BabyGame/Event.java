@@ -9,6 +9,9 @@ import android.view.View;
 /** A superclass of every event in this game. */
 abstract class Event {
 
+  /** The Baby this event is acting upon */
+  private Baby baby;
+
   /** The Baby's X coordinate. */
   private final int babyX;
 
@@ -42,20 +45,18 @@ abstract class Event {
   /**
    * Creates this Event object.
    *
-   * @param babyX the X coordinate of the Baby
-   * @param babyY the Y coordinate of the Baby
-   * @param babyWidth the width of the Baby
-   * @param babyHeight the height of the Baby
-   * @param res the resources used
+   * @param baby The Baby this event is acting upon
+   * @param res the resources to draw the baby
    */
-  Event(int babyX, int babyY, int babyWidth, int babyHeight, Resources res) {
-    this.babyX = babyX;
-    this.babyY = babyY;
-    this.babyWidth = babyWidth;
-    this.babyHeight = babyHeight;
+  Event(Baby baby, Resources res) {
+    this.baby = baby;
+    this.babyX = baby.getX();
+    this.babyY = baby.getY();
+    this.babyWidth = baby.getWidth();
+    this.babyHeight = baby.getHeight();
     this.res = res;
     this.paint = new Paint();
-    paint.setAlpha(180);
+    paint.setAlpha(250);
   }
 
   /**
@@ -64,8 +65,8 @@ abstract class Event {
    * @param v the View being used
    * @param initialX the X coordinate of the initial touch
    * @param initialY the Y coordinate of the initial touch
-   * @param movingX
-   * @param movingY
+   * @param movingX the updated X coordinate from finger movement
+   * @param movingY the updated Y coordinate from finger movement
    * @param finalX the X coordinate of where the touch ended
    * @param finalY the Y coordinate of where the touch ended
    * @return value to change baby happiness by
@@ -79,6 +80,11 @@ abstract class Event {
       float finalX,
       float finalY);
 
+  /**
+   * Draws this event at the set coordinates.
+   *
+   * @param canvas the canvas which to draw the event
+   */
   void draw(Canvas canvas) {
     System.out.println("Drawing " + img + " at " + x + "," + y);
     int adjustedX = x - imgWidth() / 2;
@@ -87,42 +93,93 @@ abstract class Event {
     System.out.println("Event drawn!");
   }
 
+  /** Returns Baby */
+  Baby getBaby() {
+    return baby;
+  }
+
+  /** Returns original X coordinate of baby */
+  int getBabyX() {
+    return this.babyX;
+  }
+
+  /** Returns original Y coordinate of baby */
+  int getBabyY() {
+    return this.babyY;
+  }
+
+  /**
+   * Sets X coordinate of event.
+   *
+   * @param x X coordinate of event
+   */
   void setX(int x) {
     this.x = x;
   }
 
+  /**
+   * Sets Y coordinate of event.
+   *
+   * @param y Y coordinate of event
+   */
   void setY(int y) {
     this.y = y;
   }
 
+  /** Returns X coordinate of event. */
   int getX() {
     return x;
   }
 
+  /** Returns Y coordinate of event. */
   int getY() {
     return y;
   }
 
+  /** Returns width of baby. */
+  int getBabyWidth() {
+    return babyWidth;
+  }
+
+  /** Returns height of baby. */
+  int getBabyHeight() {
+    return babyHeight;
+  }
+
+  /**
+   * Sets this event's image
+   *
+   * @param img this event's image
+   */
   void setImg(Bitmap img) {
     this.img = img;
   }
 
+  /** Returns this event's image. */
   Bitmap getImg() {
     return img;
   }
 
+  /** Returns the width of the event's image. */
   int imgWidth() {
     return img.getWidth();
   }
 
+  /** Returns the height of the event's image. */
   int imgHeight() {
     return img.getHeight();
   }
 
+  /**
+   * Sets this event to be interacted with.
+   *
+   * @param interaction whether this event has been interacted with
+   */
   void setInteraction(boolean interaction) {
     this.interaction = interaction;
   }
 
+  /** Returns if this event has been interacted with. */
   boolean getInteraction() {
     return interaction;
   }
