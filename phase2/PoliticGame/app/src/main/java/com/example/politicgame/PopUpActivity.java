@@ -15,6 +15,7 @@ public abstract class PopUpActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.PopUp);
         super.onCreate(savedInstanceState);
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -27,7 +28,6 @@ public abstract class PopUpActivity extends FragmentActivity {
 
         app = (PoliticGameApp) getApplication();
 
-        setTheme(R.style.PopUp);
     }
 
     protected void returnRequest(int requestCode) {
