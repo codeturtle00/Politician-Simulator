@@ -24,7 +24,8 @@ public abstract class GameActivity extends AppCompatActivity {
 
   public static final int DEFAULT_CODE = 0;
   public static final int RESUME_CODE = 1;
-  public static final int QUIT_CODE = 2;
+  public static final int QUIT_TO_MENU_CODE = 2;
+
 
   protected PoliticGameApp app;
 
@@ -139,10 +140,10 @@ public abstract class GameActivity extends AppCompatActivity {
       if (resultCode == RESULT_OK) {
         int userInput = data.getIntExtra("result", 0);
 
-        if (userInput == 1) {
-          Log.i("Pause Result", "User has decided to resume play");
-        } else if (userInput == 2) {
-          Log.i("Pause Result", "User has decided to quit the game");
+        if (userInput == GameActivity.RESUME_CODE) {
+          Log.i("onActivityResult", "User has decided to resume play");
+        } else if (userInput == GameActivity.QUIT_TO_MENU_CODE) {
+          Log.i("onActivityResult", "User has decided to return to menu");
           openMainMenu();
         }
       } else {

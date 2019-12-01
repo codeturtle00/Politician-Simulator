@@ -38,7 +38,7 @@ public class PauseActivity extends PopUpActivity {
     loggedInB.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            returnRequest(GameActivity.QUIT_CODE);
+            returnRequest(GameActivity.QUIT_TO_MENU_CODE);
           }
         });
   }
