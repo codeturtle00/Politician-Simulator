@@ -29,36 +29,74 @@ public class SaveInfo {
         currentUser.saveToDb();
     }
 
+    /**
+     * Reset the level data for the current user's character
+     */
     public void resetLevels (){
         currentUser.resetLevels(charName);
         currentUser.saveToDb();
     }
 
+    /**
+     * Saves the info for a single-game mode game
+     *
+     * @param levelName The name of the level we are saving to
+     */
     void singleSaveInfo(String levelName){
         currentUser.singleSave(levelName, charName, totalScore);
         currentUser.saveToDb();
     }
 
+    /**
+     * Returns the current user as a UserAccount object
+     *
+     * @return  The UserAccount representation of the current user
+     */
     public UserAccount getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * Sets the new current user
+     *
+     * @param currentUser   The new current user
+     */
     public void setCurrentUser(UserAccount currentUser) {
         this.currentUser = currentUser;
     }
 
+    /**
+     * Returns the current character's name
+     *
+     * @return  The name of the current character
+     */
     public String getCharName() {
         return charName;
     }
 
+    /**
+     * Sets the new current character
+     *
+     * @param charName  The name of the new character
+     */
     public void setCharName(String charName) {
         this.charName = charName;
     }
 
+    /**
+     * Returns the character's total score for that save instance
+     *
+     * @return  The character's total score for this save instance
+     */
     public int getTotalScore() {
         return totalScore;
     }
 
+    /**
+     * Sets the character's total score again
+     *
+     * @param totalScore    The new totalScore
+     */
     public void setTotalScore(int totalScore) {
         this.totalScore = totalScore;
     }

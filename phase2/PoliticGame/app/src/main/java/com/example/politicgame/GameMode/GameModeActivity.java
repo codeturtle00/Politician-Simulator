@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.Games.BabyGame.BabyActivity;
@@ -25,7 +24,7 @@ public class GameModeActivity extends GameActivity {
 
 
         // User clicked arcade mode
-        final TextView startArcadeMode = findViewById(R.id.ArcadeMode);
+        final Button startArcadeMode = findViewById(R.id.ArcadeMode);
         startArcadeMode.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -34,7 +33,7 @@ public class GameModeActivity extends GameActivity {
                 });
 
         // User clicked BabyGame Mode
-        final TextView startBabyMode = findViewById(R.id.BabyGameMode);
+        final Button startBabyMode = findViewById(R.id.BabyGameMode);
         startBabyMode.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -43,7 +42,7 @@ public class GameModeActivity extends GameActivity {
                 });
 
         // User clicked SpeechGame Mode
-        final TextView startSpeechMode = findViewById(R.id.SpeechGameMode);
+        final Button startSpeechMode = findViewById(R.id.SpeechGameMode);
         startSpeechMode.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -52,7 +51,7 @@ public class GameModeActivity extends GameActivity {
                 });
 
         // User clicked StampGame Mode
-        final TextView startStampMode = findViewById(R.id.StampGameMode);
+        final Button startStampMode = findViewById(R.id.StampGameMode);
         startStampMode.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
