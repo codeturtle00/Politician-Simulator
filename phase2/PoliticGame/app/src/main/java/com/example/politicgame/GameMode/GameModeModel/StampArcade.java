@@ -1,4 +1,4 @@
-package com.example.politicgame.GameMode;
+package com.example.politicgame.GameMode.GameModeModel;
 
 import android.content.Context;
 import android.content.Intent;

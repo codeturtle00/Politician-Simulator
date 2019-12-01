@@ -1,4 +1,4 @@
-package com.example.politicgame.GameMode;
+package com.example.politicgame.GameMode.GameModeModel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import com.example.politicgame.Games.SpeechGame.SpeechInstructionActivity;
 public class BabyArcade extends ArcadeMode{
     private static final String LEVEL_NAME = "LEVEL1";
 
-    BabyArcade(){ super(LEVEL_NAME); }
+    public BabyArcade(){ super(LEVEL_NAME); }
 
     /**
      * Returns the Intent to the next required activity

@@ -1,4 +1,4 @@
-package com.example.politicgame.GameMode;
+package com.example.politicgame.GameMode.GameModeModel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,13 +6,11 @@ import android.content.Intent;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.GameEnd.SingleEndActivity;
 
-import java.io.Serializable;
-
-public class SingleMode implements GameMode, Serializable {
+public class SingleMode implements GameMode {
     private String levelName;
     private int score;
 
-    SingleMode(String level_name){
+    public SingleMode(String level_name){
         this.levelName = level_name;
     }
 

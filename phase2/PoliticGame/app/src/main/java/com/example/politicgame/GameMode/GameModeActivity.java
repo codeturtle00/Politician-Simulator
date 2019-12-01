@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.politicgame.GameActivity;
+import com.example.politicgame.GameMode.GameModeModel.SingleMode;
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.Games.SpeechGame.SpeechInstructionActivity;
 import com.example.politicgame.Games.StampGame.StampInstructionActivity;
