@@ -22,6 +22,8 @@ class EventManager implements View.OnTouchListener {
   /** This game's Baby */
   private Baby baby;
 
+  private EventFactory eventFactory = new EventFactory();
+
   private float initialX;
   private float initialY;
   private float movingX;
@@ -48,22 +50,16 @@ class EventManager implements View.OnTouchListener {
 
     // Only 1-4 will trigger an event
     if (randomNum == 1) {
-      HorizontalShake horizontalShake = new HorizontalShake(baby, babyResources);
-      events.add(horizontalShake);
+      events.add(eventFactory.createEvent("HORIZONTALSHAKE", baby, babyResources));
       Log.d("EventManager", "HorizontalShake started");
-
     } else if (randomNum == 2) {
-      VerticalShake verticalShake = new VerticalShake(baby, babyResources);
-      events.add(verticalShake);
+      events.add(eventFactory.createEvent("VERTICALSHAKE", baby, babyResources));
       Log.d("EventManager", "VerticalShake started");
-
     } else if (randomNum == 3) {
-      Kiss kiss = new Kiss(baby, babyResources);
-      events.add(kiss);
+      events.add(eventFactory.createEvent("KISS", baby, babyResources));
       Log.d("EventManager", "Kiss started");
     } else if (randomNum == 4) {
-      Tickle tickle = new Tickle(baby, babyResources);
-      events.add(tickle);
+      events.add(eventFactory.createEvent("TICKLE", baby, babyResources));
       Log.d("EventManager", "Tickle started");
     }
   }
