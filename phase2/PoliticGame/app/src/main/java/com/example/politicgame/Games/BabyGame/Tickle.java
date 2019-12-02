@@ -1,6 +1,5 @@
 package com.example.politicgame.Games.BabyGame;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -13,23 +12,9 @@ class Tickle extends Event {
   private int left;
   private int right;
 
-  /**
-   * Creates this Tickle event.
-   *
-   * @param baby The Baby this event is acting upon
-   * @param res the resources to draw the baby
-   */
-  Tickle(Baby baby, Resources res) {
-    super(baby, res);
-    Bitmap tickle = BitmapFactory.decodeResource(res, R.drawable.tickle);
-    tickle = Bitmap.createScaledBitmap(tickle, 180, 180, false);
-    setImg(tickle);
-    left = getBabyX() + (getBabyWidth() / 5);
-    right = getBabyX() + getBabyWidth() - (getBabyWidth() / 5);
-    int side = Math.random() < 0.5 ? 0 : 1;
-    if (side == 0) setX(left);
-    else setX(right);
-    setY((getBabyHeight() / 3) + getBabyY());
+  /** Creates this Tickle event. */
+  Tickle() {
+    super();
   }
 
   /**
@@ -57,9 +42,9 @@ class Tickle extends Event {
     if (numTickles > 0 && Math.abs(finalX - initialX) < 20 && Math.abs(finalY - initialY) < 20) {
       if (!getInteraction()
           && -20 < finalX - getX()
-          && finalX - getX() < imgWidth() + 20
+          && finalX - getX() < getImgWidth() + 20
           && -20 < finalY - getY()
-          && finalY - getY() < imgHeight() + 20) {
+          && finalY - getY() < getImgHeight() + 20) {
         numTickles--;
         if (getX() == left) {
           setX(right);
@@ -73,5 +58,18 @@ class Tickle extends Event {
       }
     }
     return 0;
+  }
+
+  @Override
+  void setEventVitals() {
+    Bitmap tickle = BitmapFactory.decodeResource(getRes(), R.drawable.tickle);
+    tickle = Bitmap.createScaledBitmap(tickle, 180, 180, false);
+    setImg(tickle);
+    left = getBabyX() + (getBabyWidth() / 5);
+    right = getBabyX() + getBabyWidth() - (getBabyWidth() / 5);
+    int side = Math.random() < 0.5 ? 0 : 1;
+    if (side == 0) setX(left);
+    else setX(right);
+    setY((getBabyHeight() / 3) + getBabyY());
   }
 }

@@ -1,6 +1,5 @@
 package com.example.politicgame.Games.BabyGame;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -12,21 +11,9 @@ class HorizontalShake extends Event {
   private int swipesLeft = 3;
   private boolean moveLeft = true;
 
-  /**
-   * Creates this HorizontalShake event.
-   *
-   * @param baby The Baby this event is acting upon
-   * @param res the resources to draw the baby
-   */
-  HorizontalShake(Baby baby, Resources res) {
-    super(baby, res);
-    Bitmap img = BitmapFactory.decodeResource(res, R.drawable.leftrightarrow);
-    img =
-        Bitmap.createScaledBitmap(
-            img, (int) (getBabyWidth() / 1.8), (int) (getBabyWidth() / 1.8), false);
-    setImg(img);
-    setX((int) ((0.5 - Math.random()) * getBabyWidth() / 2) + getBabyX() + getBabyWidth() / 2);
-    setY((int) (Math.random() * getBabyHeight() / 4) + getBabyY() + (getBabyHeight() / 2));
+  /** Creates this HorizontalShake event. */
+  HorizontalShake() {
+    super();
   }
 
   /**
@@ -57,7 +44,7 @@ class HorizontalShake extends Event {
         Log.d("HorizontalShake", "Swiping Left, swipesLeft = " + swipesLeft);
         setImg(
             Bitmap.createScaledBitmap(
-                getImg(), (int) (imgWidth() * 1.1), (int) (imgHeight() * 1.1), false));
+                getImg(), (int) (getImgWidth() * 1.1), (int) (getImgHeight() * 1.1), false));
         moveLeft = false;
         if (swipesLeft == 0) setInteraction(true);
         return 5;
@@ -66,12 +53,23 @@ class HorizontalShake extends Event {
         Log.d("HorizontalShake", "Swiping Right, swipesLeft = " + swipesLeft);
         setImg(
             Bitmap.createScaledBitmap(
-                getImg(), (int) (imgWidth() * 1.1), (int) (imgHeight() * 1.1), false));
+                getImg(), (int) (getImgWidth() * 1.1), (int) (getImgHeight() * 1.1), false));
         moveLeft = true;
         if (swipesLeft == 0) setInteraction(true);
         return 5;
       }
     }
     return 0;
+  }
+
+  @Override
+  void setEventVitals() {
+    Bitmap img = BitmapFactory.decodeResource(getRes(), R.drawable.leftrightarrow);
+    img =
+        Bitmap.createScaledBitmap(
+            img, (int) (getBabyWidth() / 1.8), (int) (getBabyWidth() / 1.8), false);
+    setImg(img);
+    setX((int) ((0.5 - Math.random()) * getBabyWidth() / 2) + getBabyX() + getBabyWidth() / 2);
+    setY((int) (Math.random() * getBabyHeight() / 4) + getBabyY() + (getBabyHeight() / 2));
   }
 }

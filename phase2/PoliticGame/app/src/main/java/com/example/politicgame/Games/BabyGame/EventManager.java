@@ -22,8 +22,6 @@ class EventManager implements View.OnTouchListener {
   /** This game's Baby */
   private Baby baby;
 
-  private EventFactory eventFactory = new EventFactory();
-
   private float initialX;
   private float initialY;
   private float movingX;
@@ -47,20 +45,31 @@ class EventManager implements View.OnTouchListener {
     Log.d("Running random event", defaultView.toString());
     Random rand = new Random();
     final int randomNum = rand.nextInt(7); // Generates number between 0 and 5
+    EventBuilder eventBuilder = null;
 
     // Only 1-4 will trigger an event
     if (randomNum == 1) {
-      events.add(eventFactory.createEvent("HORIZONTALSHAKE", baby, babyResources));
+      eventBuilder = new EventBuilder("HORIZONTALSHAKE");
       Log.d("EventManager", "HorizontalShake started");
     } else if (randomNum == 2) {
-      events.add(eventFactory.createEvent("VERTICALSHAKE", baby, babyResources));
+      eventBuilder = new EventBuilder("VERTICALSHAKE");
       Log.d("EventManager", "VerticalShake started");
     } else if (randomNum == 3) {
-      events.add(eventFactory.createEvent("KISS", baby, babyResources));
+      eventBuilder = new EventBuilder("KISS");
       Log.d("EventManager", "Kiss started");
     } else if (randomNum == 4) {
-      events.add(eventFactory.createEvent("TICKLE", baby, babyResources));
+      eventBuilder = new EventBuilder("TICKLE");
       Log.d("EventManager", "Tickle started");
+    }
+    if (eventBuilder != null) {
+      events.add(
+          eventBuilder
+              .addBabyX(baby.getX())
+              .addBabyY(baby.getY())
+              .addBabyWidth(baby.getWidth())
+              .addBabyHeight(baby.getHeight())
+              .addBabyRes(babyResources)
+              .build());
     }
   }
 

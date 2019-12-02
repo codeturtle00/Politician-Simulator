@@ -9,20 +9,17 @@ import android.view.View;
 /** A superclass of every event in this game. */
 abstract class Event {
 
-  /** The Baby this event is acting upon */
-  private Baby baby;
-
   /** The Baby's X coordinate. */
-  private final int babyX;
+  private int babyX;
 
   /** The Baby's Y coordinate. */
-  private final int babyY;
+  private int babyY;
 
   /** The Baby's width. */
-  private final int babyWidth;
+  private int babyWidth;
 
   /** The Baby's height. */
-  private final int babyHeight;
+  private int babyHeight;
 
   /** The X coordinate to create the event. */
   private int x;
@@ -42,19 +39,8 @@ abstract class Event {
   /** Whether this event has been interacted with. */
   private boolean interaction = false;
 
-  /**
-   * Creates this Event object.
-   *
-   * @param baby The Baby this event is acting upon
-   * @param res the resources to draw the baby
-   */
-  Event(Baby baby, Resources res) {
-    this.baby = baby;
-    this.babyX = baby.getX();
-    this.babyY = baby.getY();
-    this.babyWidth = baby.getWidth();
-    this.babyHeight = baby.getHeight();
-    this.res = res;
+  /** Creates this Event object. */
+  Event() {
     this.paint = new Paint();
     paint.setAlpha(250);
   }
@@ -81,6 +67,12 @@ abstract class Event {
       float finalY);
 
   /**
+   * Sets event's image, coordinates, and other information after it has been created. This allows
+   * the event to be properly used in the game.
+   */
+  abstract void setEventVitals();
+
+  /**
    * Draws this event at the set coordinates.
    *
    * @param canvas the canvas which to draw the event
@@ -88,23 +80,68 @@ abstract class Event {
   void draw(Canvas canvas) {
     paint.setAlpha(220);
     System.out.println("Drawing " + img + " at " + x + "," + y);
-    int adjustedX = x - imgWidth() / 2;
-    int adjustedY = y - imgHeight() / 2;
+    int adjustedX = x - getImgWidth() / 2;
+    int adjustedY = y - getImgHeight() / 2;
     canvas.drawBitmap(img, adjustedX, adjustedY, paint);
     System.out.println("Event drawn!");
   }
 
-  /** Returns Baby */
-  Baby getBaby() {
-    return baby;
+  /**
+   * Sets X coordinate of baby.
+   *
+   * @param babyX X coordinate of baby
+   */
+  void setBabyX(int babyX) {
+    this.babyX = babyX;
   }
 
-  /** Returns original X coordinate of baby */
+  /**
+   * Sets Y coordinate of baby.
+   *
+   * @param babyY Y coordinate of baby
+   */
+  void setBabyY(int babyY) {
+    this.babyY = babyY;
+  }
+
+  /**
+   * Sets width of baby.
+   *
+   * @param babyWidth width of baby
+   */
+  void setBabyWidth(int babyWidth) {
+    this.babyWidth = babyWidth;
+  }
+
+  /**
+   * Sets height of baby.
+   *
+   * @param babyHeight height of baby
+   */
+  void setBabyHeight(int babyHeight) {
+    this.babyHeight = babyHeight;
+  }
+
+  /**
+   * Sets resources used to draw events.
+   *
+   * @param res resources used to draw events
+   */
+  void setRes(Resources res) {
+    this.res = res;
+  }
+
+  /** Returns the resources used to draw this event. */
+  Resources getRes() {
+    return this.res;
+  }
+
+  /** Returns X coordinate of baby */
   int getBabyX() {
     return this.babyX;
   }
 
-  /** Returns original Y coordinate of baby */
+  /** Returns Y coordinate of baby */
   int getBabyY() {
     return this.babyY;
   }
@@ -162,12 +199,12 @@ abstract class Event {
   }
 
   /** Returns the width of the event's image. */
-  int imgWidth() {
+  int getImgWidth() {
     return img.getWidth();
   }
 
   /** Returns the height of the event's image. */
-  int imgHeight() {
+  int getImgHeight() {
     return img.getHeight();
   }
 

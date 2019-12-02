@@ -1,6 +1,5 @@
 package com.example.politicgame.Games.BabyGame;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -9,19 +8,9 @@ import android.view.View;
 import com.example.politicgame.R;
 
 class Kiss extends Event {
-  /**
-   * Creates this Kiss event.
-   *
-   * @param baby The Baby this event is acting upon
-   * @param res the resources to draw the baby
-   */
-  Kiss(Baby baby, Resources res) {
-    super(baby, res);
-    Bitmap kiss = BitmapFactory.decodeResource(res, R.drawable.kisslips);
-    kiss = Bitmap.createScaledBitmap(kiss, 120, 72, false);
-    setImg(kiss);
-    setX((int) (Math.random() * (getBabyWidth() / 2) + getBabyX()));
-    setY((int) (Math.random() * (getBabyHeight() / 2) + getBabyY()));
+  /** Creates this Kiss event. */
+  Kiss() {
+    super();
   }
 
   /**
@@ -48,14 +37,23 @@ class Kiss extends Event {
     if (Math.abs(finalX - initialX) < 20 && Math.abs(finalY - initialY) < 20) {
       if (!getInteraction()
           && -20 < finalX - getX()
-          && finalX - getX() < imgWidth() + 20
+          && finalX - getX() < getImgWidth() + 20
           && -20 < finalY - getY()
-          && finalY - getY() < imgHeight() + 20) {
+          && finalY - getY() < getImgHeight() + 20) {
         Log.d("Kiss", "Score increased");
         setInteraction(true);
         return 10;
       }
     }
     return 0;
+  }
+
+  @Override
+  void setEventVitals() {
+    Bitmap kiss = BitmapFactory.decodeResource(getRes(), R.drawable.kisslips);
+    kiss = Bitmap.createScaledBitmap(kiss, 120, 72, false);
+    setImg(kiss);
+    setX((int) (Math.random() * (getBabyWidth() / 2) + getBabyX()));
+    setY((int) (Math.random() * (getBabyHeight() / 2) + getBabyY()));
   }
 }
