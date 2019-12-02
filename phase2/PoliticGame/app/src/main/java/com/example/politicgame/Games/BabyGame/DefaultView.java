@@ -15,4 +15,11 @@ interface DefaultView {
    * @param happinessChange the amount to change happiness by
    */
   void updateScore(int happinessChange);
+
+  /**
+   * Sets activity DefaultView controls
+   *
+   * @param defaultActivity activity DefaultView controls
+   */
+  void setDefaultBGActivity(DefaultBGActivity defaultActivity);
 }

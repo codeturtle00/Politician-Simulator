@@ -155,7 +155,7 @@ class BabyDefaultView extends SurfaceView implements DefaultView {
    *
    * @param defaultBGActivity the DefaultBGActivity
    */
-  void setDefaultBGActivity(DefaultBGActivity defaultBGActivity) {
+  public void setDefaultBGActivity(DefaultBGActivity defaultBGActivity) {
     this.defaultBGActivity = defaultBGActivity;
   }
 
