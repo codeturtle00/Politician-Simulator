@@ -1,4 +1,4 @@
-package com.example.politicgame.LoadCharacter;
+package com.example.politicgame.CharacterSelect;
 
 import android.view.View;
 

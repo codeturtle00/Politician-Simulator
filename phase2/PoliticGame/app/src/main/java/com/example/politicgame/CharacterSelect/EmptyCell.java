@@ -1,12 +1,12 @@
-package com.example.politicgame.LoadCharacter;
+package com.example.politicgame.CharacterSelect;
 
 import android.view.View;
 
-public class EmptyCell implements CellInfo {
+class EmptyCell implements CellInfo {
     private final String BUTTONTEXT = "New";
     private final String CELLTEXT = "";
 
-    public EmptyCell(){}
+    EmptyCell(){}
 
     /**
      * Removes the cell's Delete Character button. Shows the cell's Create Character

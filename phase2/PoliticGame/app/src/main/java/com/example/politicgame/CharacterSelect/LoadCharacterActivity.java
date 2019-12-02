@@ -1,4 +1,4 @@
-package com.example.politicgame.LoadCharacter;
+package com.example.politicgame.CharacterSelect;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -9,21 +9,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.politicgame.GameActivity;
 import com.example.politicgame.GameMode.GameModeActivity;
 import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.NewCharacter.SelectCharacterActivity;
 import com.example.politicgame.PopUpActivity;
 import com.example.politicgame.R;
 
-import com.example.politicgame.Common.FileSavingService;
 import com.example.politicgame.Character.UserTools.UserAccount;
 
 public class LoadCharacterActivity extends PopUpActivity {
   protected PoliticGameApp app;
   private final int TOTAL_CELLS = 2;
   private final String FILE_NAME = "user.json";
-  private FileSavingService fileSaving;
   private Drawable highlight;
   private int currCharacter;
 
@@ -72,18 +68,16 @@ public class LoadCharacterActivity extends PopUpActivity {
     // Fills cells with proper information from the user
     populateCells();
 
-
-    /**
-     * Cell 1
-     */
+    /** Cell 1 */
     charButton[0].setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            currCharacter = 1;
-
-            //Highlight the cell
-            charButton[0].setBackground(highlight);
-            charButton[1].setBackground(null);
+            // Highlight the cell
+            if (cellLoaded[0]) {
+              currCharacter = 1;
+              charButton[0].setBackground(highlight);
+              charButton[1].setBackground(null);
+            }
           }
         });
 
@@ -93,11 +87,12 @@ public class LoadCharacterActivity extends PopUpActivity {
     charButton[1].setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            currCharacter = 2;
-
             //Highlight the cell
-            charButton[1].setBackground(highlight);
-            charButton[0].setBackground(null);
+            if (cellLoaded[1]) {
+              currCharacter = 2;
+              charButton[1].setBackground(highlight);
+              charButton[0].setBackground(null);
+            }
           }
         });
 

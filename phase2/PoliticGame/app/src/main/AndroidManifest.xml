@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/BlueTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".GameEnd.SummaryActivity"></activity>
+        <activity android:name=".GameMode.SummaryActivity"></activity>
         <activity android:name=".Games.SpeechGame.SpeechInstructionActivity" />
         <activity android:name=".Games.StampGame.StampActivityWon" />
         <activity android:name=".Games.StampGame.StampActivityLost" />
@@ -27,11 +27,12 @@
         <activity android:name=".Games.SpeechGame.SpeechActivity" />
         <activity android:name=".Games.BabyGame.BabyActivity" />
         <activity android:name=".Games.BabyGame.BabyGameInstruction" />
-        <activity android:name=".UserActivity.UserInterface.LoggedInActivity"/>
-        <activity android:name=".UserActivity.UserInterface.LoginActivity"
-            android:theme="@style/PopUp"/>
-        <activity android:name=".UserActivity.UserInterface.RegistrationActivity"
-            android:theme="@style/PopUp"/>
+        <activity
+            android:name=".UserActivity.UserInterface.LoginActivity"
+            android:theme="@style/PopUp" />
+        <activity
+            android:name=".UserActivity.UserInterface.RegistrationActivity"
+            android:theme="@style/PopUp" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,13 +44,13 @@
             android:theme="@style/PopUp"/>
         <activity android:name=".SettingsActivity"
             android:theme="@style/PopUp"/>
-        <activity android:name=".NewCharacter.SelectCharacterActivity" />
+        <activity android:name=".CharacterSelect.SelectCharacterActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".PopUpActivity"/>
-        <activity android:name=".LoadCharacter.LoadCharacterActivity"
+        <activity android:name=".CharacterSelect.LoadCharacterActivity"
             android:theme="@style/PopUp"/>
         <activity android:name=".GameMode.GameModeActivity" />
-        <activity android:name=".GameEnd.SingleEndActivity" />
+        <activity android:name=".GameMode.SingleEndActivity" />
         <activity android:name=".GameMode.ArcadeActivity" />
     </application>
 

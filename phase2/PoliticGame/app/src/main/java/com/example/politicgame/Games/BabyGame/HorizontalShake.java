@@ -21,9 +21,10 @@ class HorizontalShake extends Event {
   HorizontalShake(Baby baby, Resources res) {
     super(baby, res);
     Bitmap img = BitmapFactory.decodeResource(res, R.drawable.leftrightarrow);
+    img = Bitmap.createScaledBitmap(img, (int)(getBabyWidth()/1.8), (int)(getBabyWidth()/1.8), false);
     setImg(img);
-    setX((int) (Math.random() * (getBabyWidth() / 3) + getBabyX()));
-    setY((int) (Math.random() * (getBabyHeight() / 2) + getBabyY() + (getBabyHeight() / 2)));
+    setX((int) ((0.5-Math.random()) * getBabyWidth() / 2) + getBabyX() + getBabyWidth() / 2);
+    setY((int) (Math.random() * getBabyHeight() / 4) + getBabyY() + (getBabyHeight() / 2));
   }
 
   /**
@@ -57,7 +58,7 @@ class HorizontalShake extends Event {
         Log.d("HorizontalShake", "Swiping Left, swipesLeft = " + swipesLeft);
         setImg(
             Bitmap.createScaledBitmap(
-                getImg(), (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false));
+                getImg(), (int) (imgWidth() * 1.1), (int) (imgHeight() * 1.1), false));
         moveLeft = false;
         if (swipesLeft == 0) setInteraction(true);
         return 5;
@@ -66,7 +67,7 @@ class HorizontalShake extends Event {
         Log.d("HorizontalShake", "Swiping Right, swipesLeft = " + swipesLeft);
         setImg(
             Bitmap.createScaledBitmap(
-                getImg(), (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false));
+                getImg(), (int) (imgWidth() * 1.1), (int) (imgHeight() * 1.1), false));
         moveLeft = true;
         if (swipesLeft == 0) setInteraction(true);
         return 5;

@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.Application.PoliticGameApp;
-import com.example.politicgame.GameMode.GameMode;
+import com.example.politicgame.GameMode.GameModeModel.GameMode;
 import com.example.politicgame.R;
 
 public class StampActivityWon extends GameActivity {

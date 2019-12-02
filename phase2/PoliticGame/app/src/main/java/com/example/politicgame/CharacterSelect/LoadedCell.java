@@ -1,13 +1,13 @@
-package com.example.politicgame.LoadCharacter;
+package com.example.politicgame.CharacterSelect;
 
 import android.view.View;
 
-public class LoadedCell implements CellInfo {
+class LoadedCell implements CellInfo {
     private String BUTTONTEXT = "Delete";
     private String cellText;
     private String charName;
 
-    public LoadedCell(String msg, String charName){
+    LoadedCell(String msg, String charName){
         this.cellText = msg;
         this.charName = charName;
     }

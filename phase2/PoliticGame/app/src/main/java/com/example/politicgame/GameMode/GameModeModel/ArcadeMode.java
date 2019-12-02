@@ -1,4 +1,4 @@
-package com.example.politicgame.GameMode;
+package com.example.politicgame.GameMode.GameModeModel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,10 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
-
-public abstract class ArcadeMode implements GameMode, Serializable {
-    /*protected PoliticGameApp app;*/
+public abstract class ArcadeMode implements GameMode {
     private String levelName;
 
     /**
@@ -23,8 +20,7 @@ public abstract class ArcadeMode implements GameMode, Serializable {
      *
      * @param level_name    The name of the level as specified in the JSON files
      */
-    ArcadeMode(/*PoliticGameApp app,*/ String level_name){
-        /*this.app = app;*/
+    ArcadeMode(String level_name){
         this.levelName = level_name;
     }
 

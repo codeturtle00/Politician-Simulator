@@ -16,7 +16,7 @@
     <string name="stamp_instruction_body">In this game you are sorting out the policies of your party. As the campaign leader, you decide what your party should fight for. However, the general populace will not always be happy with what you decide on, so use your judgement to decide what may be best for the country.</string>
     <string name="open_the_game">Open The Game!</string>
     <string name="stamp_game_no">No</string>
-    <string name="stamp_game_proposal">number of proposals left</string>
+    <string name="stamp_game_proposal">proposals left</string>
     <string name="stamp_game_rating">your current rating</string>
     <string name="stamp_game_proposal_left">0</string>
     <string name="stamp_game_rating_score">50%</string>
@@ -82,4 +82,75 @@
     <string name="promptStarter_2">This just in, based on the rumors from our excited supporters, is it true that you would</string>
     <string name="promptStarter_3">Greetings, based on the meeting result last week, are you going to</string>
     <string name="promptStarter_4">Nice to meet you. I am one of your many campaign assistants and was wondering if you would like to</string>
+
+    <string name= "Q1">The country needs more budget to spend on improving public education and there is discussion for raising the money</string>
+    <string name="Q1A">taxes</string>
+    <string name="Q1B">environment</string>
+    <string name="Q1C">religion</string>
+    <string name="Q1D">military</string>
+    <string name="A1">taxes</string>
+
+    <string name="Q2">Many young people in the country are struggling to pay back student loans and there is discussion for the government to relieve this debt</string>
+    <string name="Q2A">immigration</string>
+    <string name="Q2B">healthCare</string>
+    <string name="Q2C">corporations</string>
+    <string name="Q2D">taxes</string>
+    <string name="A2">taxes</string>
+
+    <string name="Q3">Climate change is rising threat to the planet and there is discussion to expand on the country\'s renewable energy sources</string>
+    <string name="Q3A">energy</string>
+    <string name="Q3B">economy</string>
+    <string name="Q3C">unions</string>
+    <string name="Q3D">trade</string>
+    <string name="A3">energy</string>
+
+    <string name="Q4" >The homelessness rate in the country is rising each year and there is discussion to introduce a universal basic income</string>
+    <string name="Q4A">immigration</string>
+    <string name="Q4B">poverty</string>
+    <string name="Q4C">internet</string>
+    <string name="Q4D">security</string>
+    <string name="A4">poverty</string>
+
+    <string name="Q5">Surveys show that many citizens do not like their governors on the provincial and municipal level and there is discussion to introduce a term limit"</string>
+    <string name="Q5A">voting</string>
+    <string name="Q5B">education</string>
+    <string name="Q5C">taxes</string>
+    <string name="Q5D">medication</string>
+    <string name="A5">voting</string>
+
+    <string name="Q6">A recent trend shows that many corporations are outsourcing jobs to other parts of the world and there is discussion so keep jobs domestic</string>
+    <string name="Q6A">diversity</string>
+    <string name="Q6B">religion</string>
+    <string name="Q6C">healthCare</string>
+    <string name="Q6D">economy</string>
+    <string name="A6">economy</string>
+
+    <string name="Q7">Genetically modified foods is a controversial topic and there is discussion to heavily regulate them or ban them</string>
+    <string name="Q7A">energy</string>
+    <string name="Q7B">corporations</string>
+    <string name="Q7C">agriculture</string>
+    <string name="Q7D">voting</string>
+    <string name="A7">agriculture</string>
+
+    <string name="Q8"> New strains of diseases are on the rise and there is discussion for the government to introduce mandatory vaccinations</string>
+    <string name="Q8A">trade</string>
+    <string name="Q8B">military</string>
+    <string name="Q8C">education</string>
+    <string name="Q8D">healthCare</string>
+    <string name="A8">healthCare</string>
+
+    <string name="Q9">Studies have shown that a 4 day work week increases productivity and there is discussion for this change to be implemented</string>
+    <string name="Q9A">security</string>
+    <string name="Q9B">corporations</string>
+    <string name="Q9C">immigration</string>
+    <string name="Q9D">poverty</string>
+    <string name="A9">corporations</string>
+
+    <string name="Q10">Older citizens are struggling to retire at reasonable age and there is discussion to increase senior assissance</string>
+    <string name="Q10A">pension</string>
+    <string name="Q10B">internet</string>
+    <string name="Q10C">military</string>
+    <string name="Q10D">diversity</string>
+    <string name="A10">pension</string>
+
 </resources>

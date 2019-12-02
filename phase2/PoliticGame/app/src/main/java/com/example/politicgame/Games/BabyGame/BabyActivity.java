@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.GameMode.GameMode;
+import com.example.politicgame.GameMode.GameModeModel.GameMode;
 import com.example.politicgame.Pausing.PauseButton;
 import com.example.politicgame.R;
 

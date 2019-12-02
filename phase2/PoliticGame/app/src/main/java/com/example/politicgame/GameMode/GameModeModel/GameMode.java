@@ -1,11 +1,13 @@
-package com.example.politicgame.GameMode;
+package com.example.politicgame.GameMode.GameModeModel;
 
 import android.content.Context;
 import android.content.Intent;
 
 import com.example.politicgame.Application.PoliticGameApp;
 
-public interface GameMode {
+import java.io.Serializable;
+
+public interface GameMode extends Serializable {
 
     /**
      * Returns an intent which directs the last activity to the next required activity. Depending on

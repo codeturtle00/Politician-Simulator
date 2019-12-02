@@ -1,8 +1,8 @@
-package com.example.politicgame.GameEnd;
+package com.example.politicgame.GameMode;
 
 import com.example.politicgame.Character.UserTools.UserAccount;
 
-public class SaveInfo {
+class SaveInfo {
     private UserAccount currentUser;
     private String charName;
     private int totalScore;
@@ -14,7 +14,7 @@ public class SaveInfo {
      * @param charName      The currently selected character, used to identify the character to save to
      * @param totalScore    The total score for that character's playthrough
      */
-    public SaveInfo(UserAccount currentUser, String charName, int totalScore){
+    SaveInfo(UserAccount currentUser, String charName, int totalScore){
         this.currentUser = currentUser;
         this.charName = charName;
         this.totalScore = totalScore;
@@ -32,7 +32,7 @@ public class SaveInfo {
     /**
      * Reset the level data for the current user's character
      */
-    public void resetLevels (){
+    void resetLevels (){
         currentUser.resetLevels(charName);
         currentUser.saveToDb();
     }
@@ -45,24 +45,6 @@ public class SaveInfo {
     void singleSaveInfo(String levelName){
         currentUser.singleSave(levelName, charName, totalScore);
         currentUser.saveToDb();
-    }
-
-    /**
-     * Returns the current user as a UserAccount object
-     *
-     * @return  The UserAccount representation of the current user
-     */
-    public UserAccount getCurrentUser() {
-        return currentUser;
-    }
-
-    /**
-     * Sets the new current user
-     *
-     * @param currentUser   The new current user
-     */
-    public void setCurrentUser(UserAccount currentUser) {
-        this.currentUser = currentUser;
     }
 
     /**
@@ -81,23 +63,5 @@ public class SaveInfo {
      */
     public void setCharName(String charName) {
         this.charName = charName;
-    }
-
-    /**
-     * Returns the character's total score for that save instance
-     *
-     * @return  The character's total score for this save instance
-     */
-    public int getTotalScore() {
-        return totalScore;
-    }
-
-    /**
-     * Sets the character's total score again
-     *
-     * @param totalScore    The new totalScore
-     */
-    public void setTotalScore(int totalScore) {
-        this.totalScore = totalScore;
     }
 }

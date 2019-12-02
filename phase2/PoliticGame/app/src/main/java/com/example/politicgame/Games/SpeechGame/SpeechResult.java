@@ -8,8 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.GameMode.GameMode;
-import com.example.politicgame.Games.StampGame.StampInstructionActivity;
+import com.example.politicgame.GameMode.GameModeModel.GameMode;
 import com.example.politicgame.R;
 
 import java.io.Serializable;

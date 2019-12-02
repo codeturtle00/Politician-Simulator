@@ -1,23 +1,13 @@
-package com.example.politicgame.LoadCharacter;
+package com.example.politicgame.CharacterSelect;
 
-import android.util.Log;
-
-import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.Character.UserTools.UserAccount;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-
-public class FillCellFacade {
+class FillCellFacade {
 
     private UserAccount userAcc;
     private CellFinder cf;
 
-    public FillCellFacade(UserAccount userAcc){
+    FillCellFacade(UserAccount userAcc){
         this.userAcc = userAcc;
         cf = new CellFinder(this.userAcc);
     }
@@ -32,10 +22,7 @@ public class FillCellFacade {
      *
      * @return A CellInfo array containing the information for each cell
      */
-    public CellInfo[] getCells(){
-        JSONObject charCell = cf.getExistingCharacters(); // Get this here to later parse for more info
-        CellInfo[] returnCells = cf.getCellInfo(charCell);
-
-        return returnCells;
+    CellInfo[] getCells(){
+        return cf.getCellInfo();
     }
 }

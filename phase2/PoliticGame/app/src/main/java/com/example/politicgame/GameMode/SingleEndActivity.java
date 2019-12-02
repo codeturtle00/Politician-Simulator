@@ -1,19 +1,14 @@
-package com.example.politicgame.GameEnd;
+package com.example.politicgame.GameMode;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.politicgame.Character.SpriteSetter;
-import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.GameActivity;
 import com.example.politicgame.R;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class SingleEndActivity extends GameActivity{
     private final String SCORE_ID = "score";

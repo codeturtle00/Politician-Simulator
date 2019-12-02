@@ -21,7 +21,6 @@ public class UserAccount {
   private FileSavingService fileSaving;
   private static final String FILE_NAME = "user.json";
   private Context context;
-  private String displayName;
 
   private UserAccountChar userAccountChar;
   private UserAccountDB userAccountDB;
@@ -30,7 +29,6 @@ public class UserAccount {
   private UserScore userScore;
 
   public UserAccount(String displayName, Context context) {
-    this.displayName = displayName;
     this.context = context;
     this.fileSaving = new FileSavingService(context);
     this.userAccountChar = new UserAccountChar(displayName);
@@ -38,24 +36,6 @@ public class UserAccount {
     this.userAccountResetLevels = new UserAccountResetLevels();
     this.userAccountAddScore = new UserAccountAddScore();
     this.userScore = new UserScore(context, displayName);
-  }
-
-  /**
-   * Sets the game character to currentCharacter.
-   *
-   * @param currentCharacter the character to be set
-   */
-  public void setCurrentCharacter(GameCharacter currentCharacter) {
-    userAccountChar.setCurrentCharacter(currentCharacter);
-  }
-
-  /**
-   * Returns this game's character.
-   *
-   * @return the character to be returned
-   */
-  public GameCharacter getCurrentCharacter() {
-    return userAccountChar.getCurrentCharacter();
   }
 
   /**
@@ -174,9 +154,7 @@ public class UserAccount {
    */
   public void singleSave (String levelName, String charName, int score){
     userScore.addScore(score);
-
     JSONArray charArray = getCharArray();
-
     try {
       for (int i = 0; i < charArray.length(); i++) {
         JSONObject currentChar = charArray.getJSONObject(i);

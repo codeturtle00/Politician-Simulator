@@ -7,9 +7,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.politicgame.Character.SpriteSetter;
-import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.GameEnd.SaveInfo;
+import com.example.politicgame.GameMode.GameModeModel.BabyArcade;
 import com.example.politicgame.Games.BabyGame.BabyGameInstruction;
 import com.example.politicgame.R;
 
@@ -98,9 +97,9 @@ public class ArcadeActivity extends GameActivity {
 
     /**
      * Checks if there is an existing playthrough of an Arcade game mode
-     * @return
+     * @return  Is there an existing playthrough of the Arcade game mode?
      */
-    public boolean existingArcade(){
+    private boolean existingArcade(){
         return (new BabyArcade()).isGameComplete(app);
     }
 }

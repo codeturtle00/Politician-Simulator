@@ -1,4 +1,4 @@
-package com.example.politicgame.NewCharacter;
+package com.example.politicgame.CharacterSelect;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -107,6 +107,10 @@ public class SelectCharacterActivity extends GameActivity {
         });
   }
 
+  /**
+   * Sets the character wheel. Checks which characters the user is allowed to select and sets
+   * listeners to the ones the user has unlocked
+   */
   private void setCharacterWheel(){
     UserAccount user = app.getCurrentUser();
     int totalScore = user.getTotalScore();
@@ -143,6 +147,13 @@ public class SelectCharacterActivity extends GameActivity {
   }
 
 
+  /**
+   * Sets a listener for the character button passed through
+   *
+   * @param charButton  The character button we want to set a listener for
+   * @param charList    The list of characters that the listener will interact with
+   * @param i           The number that represents the character's position
+   */
   private void setListener(
           final ImageView charButton, final ArrayList<ImageView> charList, final int i) {
     charButton.setOnClickListener(
@@ -158,7 +169,12 @@ public class SelectCharacterActivity extends GameActivity {
             });
   }
 
-  public void characterSet(String name) {
+  /**
+   * Sets the character by initializing their save data and saving it to the JSON files
+   *
+   * @param name  The name of the character we are creating
+   */
+  private void characterSet(String name) {
     UserAccount user = app.getCurrentUser();
     JSONObject newChar = selectedCharacter.getJsonChar(name);
     String charName = newChar.keys().next();
@@ -182,7 +198,10 @@ public class SelectCharacterActivity extends GameActivity {
     startGameModeSelection();
   }
 
-  public void startGameModeSelection() {
+  /**
+   * Opens the game mode selection screen so that the user can begin play
+   */
+  private void startGameModeSelection() {
     Intent gameModeSelectIntent = new Intent(this, GameModeActivity.class);
     startActivity(gameModeSelectIntent);
     finish();

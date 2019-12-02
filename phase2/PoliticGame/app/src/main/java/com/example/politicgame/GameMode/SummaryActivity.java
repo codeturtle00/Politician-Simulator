@@ -1,4 +1,4 @@
-package com.example.politicgame.GameEnd;
+package com.example.politicgame.GameMode;
 
 import android.os.Bundle;
 import android.util.Log;

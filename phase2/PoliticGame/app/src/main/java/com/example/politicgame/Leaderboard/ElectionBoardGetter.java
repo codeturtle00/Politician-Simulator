@@ -3,16 +3,13 @@ package com.example.politicgame.Leaderboard;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.politicgame.Common.FileSavingService;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Iterator;
-import java.util.List;
 
-public class ElectionBoardGetter extends BoardLoader{
+class ElectionBoardGetter extends BoardLoader{
     ElectionBoardGetter(Context lastContext){
         super(lastContext);
     }
