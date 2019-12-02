@@ -23,6 +23,7 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
 
   /** This game's level. */
   private final String LEVEL_NAME = "LEVEL1";
+
   private final int INIT_HAPPINESS = 50;
   private static final int INIT_MILLISEC = 60000;
 
@@ -33,11 +34,12 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
 
   private Score score;
 
-
   private int happiness;
 
   /** The game's babyGameTimer. */
   private BabyGameTimer babyGameTimer;
+
+  private boolean gameFinished;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
     setTitle("The Baby Game");
     setContentView(R.layout.activity_baby);
     timerDisplay = findViewById(R.id.timerDisplay);
-
+    gameFinished = false;
     babyView = new BabyDefaultView(this);
     babyView.setDefaultBGActivity(this);
 
@@ -143,10 +145,15 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
     score.updateScore(happinessChange);
     happiness = score.getHappiness();
     babyView.setBabyMood(happiness);
-    if (happiness == 0) {
-      gameOver();
-    } else if (happiness == 100) {
-      gameOutro();
+
+    if (!gameFinished) {
+      if (happiness == 0) {
+        gameFinished = true;
+        gameOver();
+      } else if (happiness == 100) {
+        gameFinished = true;
+        gameOutro();
+      }
     }
   }
 
