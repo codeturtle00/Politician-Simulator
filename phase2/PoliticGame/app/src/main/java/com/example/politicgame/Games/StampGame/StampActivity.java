@@ -52,21 +52,13 @@ public class StampActivity extends GameActivity {
     button2.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            // Code here executes on main thread after user presses button
-            gameHandler.changeRating(rating, true);
-            gameHandler.changeProposalNum(proposalLeft);
-            gameHandler.setPrompt(promptDisplay);
-            if (gameHandler.intFromTextView(rating) == 0
-                || (gameHandler.intFromTextView(rating) < 50 && gameHandler.getPromptsSize(proposalLeft) == 0)) {
-              openStampLost();
-              //        finish();
-
-            } else if (gameHandler.intFromTextView(rating) == 100
-                || (gameHandler.intFromTextView(rating) >= 50 && gameHandler.getPromptsSize(proposalLeft) == 0)) {
+            gameHandler.updateCurrentScore(true);
+            if (gameHandler.checkGameWon() == 1) {
               openStampWon();
-              //        finish();
-
+            } else if (gameHandler.checkGameWon() == 0) {
+              openStampLost();
             }
+            gameHandler.changeDisplay(proposalLeft, rating, promptDisplay);
           }
         });
 
@@ -78,29 +70,21 @@ public class StampActivity extends GameActivity {
     button3.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            // Code here executes on main thread after user presses button
-            gameHandler.changeRating(rating, false);
-            gameHandler.changeProposalNum(proposalLeft);
-            gameHandler.setPrompt(promptDisplay);
-            if (gameHandler.intFromTextView(rating) == 0
-                || (gameHandler.intFromTextView(rating) < 50 && gameHandler.getPromptsSize(proposalLeft) == 0)) {
-              openStampLost();
-              //        finish();
-
-            } else if (gameHandler.intFromTextView(rating) == 100
-                || (gameHandler.intFromTextView(rating) >= 50 && gameHandler.getPromptsSize(proposalLeft) == 0)) {
+            gameHandler.updateCurrentScore(false);
+            if (gameHandler.checkGameWon() == 1) {
               openStampWon();
-              //        finish();
-
+            } else if (gameHandler.checkGameWon() == 0) {
+              openStampLost();
             }
+            gameHandler.changeDisplay(proposalLeft, rating, promptDisplay);
           }
         });
 
     new PauseButton((ConstraintLayout) findViewById(R.id.stampLayout), this);
 
-    // Set up prompts
-    gameHandler.changeProposalNum(proposalLeft);
-    gameHandler.setPrompt(promptDisplay);
+    gameHandler.displayCurrentPrompt(promptDisplay);
+    gameHandler.displayCurrentScore(rating);
+    gameHandler.displayProposalLeft(proposalLeft);
 
     // Set the sprite for the game menu
     final ImageView pauseImage = findViewById(R.id.stamp_game_character_image);
@@ -110,18 +94,18 @@ public class StampActivity extends GameActivity {
 
   public void openStampLost() {
     Intent stampLostIntent = new Intent(this, StampActivityLost.class);
-    stampLostIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
+    stampLostIntent.putExtra("GameMode", getIntent().getSerializableExtra("GameMode"));
     stampLostIntent.putExtra("score", gameHandler.getCurrentScore());
-    //saveGame(gameHandler.getCurrentScore(), LEVEL_NAME);
+    // saveGame(gameHandler.getCurrentScore(), LEVEL_NAME);
     startActivity(stampLostIntent);
     finish();
   }
 
   public void openStampWon() {
     Intent stampWonIntent = new Intent(this, StampActivityWon.class);
-    stampWonIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
+    stampWonIntent.putExtra("GameMode", getIntent().getSerializableExtra("GameMode"));
     stampWonIntent.putExtra("score", gameHandler.getCurrentScore());
-    //saveGame(gameHandler.getCurrentScore(), LEVEL_NAME);
+    // saveGame(gameHandler.getCurrentScore(), LEVEL_NAME);
     startActivity(stampWonIntent);
     finish();
   }

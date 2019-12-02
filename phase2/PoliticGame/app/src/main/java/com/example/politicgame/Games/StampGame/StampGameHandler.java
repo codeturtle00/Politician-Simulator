@@ -10,12 +10,10 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * The Game handler for Stamp Game It is in charge of updating the score and storing the score for
+ * The Game handler for Stamp Game. It is in charge of updating the score and storing the score for
  * the stamp game that is going on
  */
 class StampGameHandler {
-
-  private Context context;
 
   private WordListManager wordListManager;
 
@@ -23,194 +21,56 @@ class StampGameHandler {
 
   private ProposalsManager proposalsManager;
 
-  /** The list of verbs being used in game handler to construct Prompts */
-  private List<Word> verbs;
-
-  /** The list of nouns being used in game handler to construct Prompts */
-  private List<Word> nouns;
-
-  /** The current score of the user, it is being displayed by TextView as well */
-  private int currentScore;
-
-  /** The list of Prompts (ie. Proposals) that has been given to the user */
-  private List<Proposal> prompts;
-
-  /** The current Prompt being given to the user */
-  private Proposal currentPrompt;
-
-  /** The verb used for when we run out of prompts */
-  private Verb emptyAction = new Verb("", 0);
-
-  /** The Noun used for when we run out of prompts */
-  private Noun emptyNoun = new Noun("", 0, false);
-
-  /** The list of Strings we use to form the beginning of a proposal */
-  private List<String> promptBeginList;
+  private TextViewManager textViewManager;
 
   /**
    * The constructor for the game handler
    *
-   * <p>We construct one prompt when we instantiate the stampGameHandler, and we replace the
-   * currentPrompt whenever the updateRating() method is called.
+   * @param context The context of the handler, this is passed in from StampActivity, and is used to
+   *     instantiate StringListManager;
    */
   StampGameHandler(Context context) {
-    this.context = context;
     this.stringListManager = new StringListManager(context);
     this.wordListManager = new WordListManager(this.stringListManager);
 
-    verbs = wordListManager.getVerbs();
-    nouns = wordListManager.getNouns();
-    promptBeginList = stringListManager.getPromptStartList();
+    List<Word> verbs = wordListManager.getVerbs();
+    List<Word> nouns = wordListManager.getNouns();
+    List<String> promptBeginList = stringListManager.getPromptStartList();
     proposalsManager = new ProposalsManager(nouns, verbs, promptBeginList);
 
-    prompts = proposalsManager.generateProposalList(10);
-    for (Proposal proposal: prompts){
-      System.out.println(proposal.getString());
-    }
+    List<Proposal> prompts = proposalsManager.generateProposalList(10);
+    this.textViewManager = new TextViewManager(prompts, proposalsManager.generateEmptyProposal());
   }
 
-  /** Generate a prompt, if the verbs or nouns are empty, we will generate an emptyPrompt */
-  private void createPrompt() {
-    // For when we have a male or female player
-
-    int verbIndex = (int) (Math.random() * (verbs.size()));
-    int nounIndex = (int) (Math.random() * (nouns.size()));
-
-    if (verbs.isEmpty() || nouns.isEmpty()) {
-      currentPrompt = new Proposal("", emptyAction, emptyNoun);
-
-    } else {
-
-      String promptBegin = promptBeginList.get((int) (Math.random() * (promptBeginList.size())));
-
-      if (((Noun) nouns.get(nounIndex)).getAmountable()) {
-        int amount = (int) (Math.random() * (1000));
-        currentPrompt =
-            new Proposal(
-                promptBegin,
-                ((Verb) verbs.remove(verbIndex)),
-                ((Noun) nouns.remove(nounIndex)),
-                amount);
-      } else {
-        currentPrompt =
-            new Proposal(
-                promptBegin, ((Verb) verbs.remove(verbIndex)), ((Noun) nouns.remove(nounIndex)));
-      }
-
-      prompts.add(currentPrompt);
-    }
+  /** This changes the display of the Activity when yes or no button is pressed */
+  void changeDisplay(
+      TextView proposalLeftDisplay, TextView currentScoreDisplay, TextView npcPrompt) {
+    this.textViewManager.changeDisplay(proposalLeftDisplay, currentScoreDisplay, npcPrompt);
   }
 
-  /**
-   * Change the npcPrompt to a new prompt
-   *
-   * @param npcPrompt the TextView object that displays npcPrompt
-   */
-  void setPrompt(TextView npcPrompt) {
-    this.createPrompt();
-    String npcProposal = this.getCurrentPrompt().getString();
-    npcPrompt.setText(npcProposal);
+  /** The three methods below are used to display the initial values when the game starts */
+  void displayCurrentPrompt(TextView tv) {
+    this.textViewManager.displayCurrentPrompt(tv);
   }
 
-  private Proposal getCurrentPrompt() {
-    return currentPrompt;
+  void displayProposalLeft(TextView tv) {
+    this.textViewManager.displayProposalLeft(tv);
   }
 
-  private int getCurrentPromptScore() {
-    return currentPrompt.getCategory();
+  void displayCurrentScore(TextView tv) {
+    this.textViewManager.displayCurrentScore(tv);
   }
 
-  /** @return the list of prompts in prompts */
-  public List<Proposal> getPrompts() {
-    return prompts;
-  }
-
-  /**
-   * Return the integer representation of the text tv is representing
-   *
-   * @param tv the TextView object
-   * @return the integer representation of tv
-   */
-  Integer intFromTextView(TextView tv) {
-    String oldString = tv.getText().toString();
-    return Integer.valueOf(oldString.substring(0, oldString.length() - 1));
-  }
-
-  private void setCurrentScore(int newScore) {
-    currentScore = newScore;
-  }
-
+  /** Return the currentScore of the user, this is used to record score on leaderboard */
   int getCurrentScore() {
-    return currentScore;
+    return this.textViewManager.getCurrentScore();
   }
 
-  /**
-   * Changed the rating depending on the button click
-   *
-   * @param rating the TextView object that displays rating
-   * @param clickedYes the boolean value expressing whether the user pressed yes or no
-   */
-  void changeRating(TextView rating, boolean clickedYes) {
-    Integer currentScore = intFromTextView(rating);
-    Integer minScore = 0;
-    Integer maxScore = 100;
-    int updatedScore;
-
-    Integer scoreChange = this.getCurrentPromptScore();
-    if (!clickedYes) {
-      updatedScore = currentScore - scoreChange;
-    } else {
-      updatedScore = currentScore + scoreChange;
-    }
-
-    if (currentScore >= 0 && currentScore <= 100) {
-      if (updatedScore >= 0 && updatedScore <= 100) {
-        updateRating(rating, updatedScore);
-      } else if (updatedScore < 0) {
-        updateRating(rating, minScore);
-      } else {
-        updateRating(rating, maxScore);
-      }
-    }
+  int checkGameWon() {
+    return this.textViewManager.checkGameWon();
   }
 
-  /**
-   * updates the rating that is being displayed on screen
-   *
-   * @param rating TextView object of the rating
-   * @param ratingInt the new value of the rating
-   */
-  private void updateRating(TextView rating, Integer ratingInt) {
-    String newRating = ratingInt.toString() + '%';
-    rating.setText(newRating);
-    setCurrentScore(ratingInt);
-    Log.i("Stamp Score", ((Integer) getCurrentScore()).toString());
-  }
-
-  /**
-   * updates the number of proposals arrow_left that is being displayed on screen
-   *
-   * @param proposal TextView object of the proposal
-   * @param proposalLeft the integer value of the number of proposal arrow_left to be given to the
-   *     user
-   */
-  private void updateProposal(TextView proposal, Integer proposalLeft) {
-    String proposalLeftString = proposalLeft.toString();
-    proposal.setText(proposalLeftString);
-  }
-
-  /**
-   * change the proposal number displayed to the number of proposals arrow_left
-   *
-   * @param proposalNum the minimum of {size of verbs, size of nouns};
-   */
-  void changeProposalNum(TextView proposalNum) {
-    int currentProposalLeft = Math.min(verbs.size(), nouns.size());
-    updateProposal(proposalNum, currentProposalLeft);
-  }
-
-  int getPromptsSize(TextView proposalLeft) {
-    String oldString = proposalLeft.getText().toString();
-    return Integer.valueOf(oldString);
+  void updateCurrentScore(boolean clickedYes) {
+    this.textViewManager.updateCurrentScore(clickedYes);
   }
 }
