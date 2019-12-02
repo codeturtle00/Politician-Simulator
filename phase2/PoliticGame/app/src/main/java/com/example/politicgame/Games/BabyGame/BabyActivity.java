@@ -79,7 +79,7 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
   }
 
   /** Opens the next level. */
-  void openSpeechGame() {
+  void openNextActivity() {
     GameMode gm = (GameMode) getIntent().getSerializableExtra("GameMode");
 
     // These two lines replace the two below
@@ -133,7 +133,7 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             gameOutroDialog.dismiss();
-            openSpeechGame();
+            openNextActivity();
           }
         });
     gameOutroDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
