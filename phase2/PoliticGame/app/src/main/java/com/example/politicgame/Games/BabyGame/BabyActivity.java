@@ -80,7 +80,7 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
   }
 
   /** Saves stats and opens the next level. */
-  void openSpeechGame() {
+  void openNextGame() {
     GameMode gm = (GameMode) getIntent().getSerializableExtra("GameMode");
     gm.save(app, happiness);
     Intent switchSpeechIntent = gm.next(this);
@@ -128,7 +128,7 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             gameOutroDialog.dismiss();
-            openSpeechGame();
+            openNextGame();
           }
         });
     gameOutroDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
