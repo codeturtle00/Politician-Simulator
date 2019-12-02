@@ -17,7 +17,7 @@ public class StampInstructionActivity extends GameActivity {
   public void onCreate(Bundle savedInstanceState) {
     app = (PoliticGameApp) getApplication();
 
-    if (((GameMode)getIntent().getSerializableExtra("GameMode")).isGameComplete(app)) {
+    if (((GameMode) getIntent().getSerializableExtra("GameMode")).isGameComplete(app)) {
       openSummary();
     }
 
@@ -46,7 +46,7 @@ public class StampInstructionActivity extends GameActivity {
 
   public void startStampGame() {
     Intent startStampGame = new Intent(this, StampActivity.class);
-    startStampGame.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
+    startStampGame.putExtra("GameMode", getIntent().getSerializableExtra("GameMode"));
     startActivity(startStampGame);
     finish();
   }

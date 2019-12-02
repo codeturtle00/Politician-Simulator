@@ -21,18 +21,28 @@ import java.util.ArrayList;
 
 public class SpeechActivity extends GameActivity {
     private SpeechPresenter presenter;
+    private SpeechTimer timer;
+    private int num= 5;
 
     /**
      * Initializes the activity
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech);
-
+        timer = new SpeechTimer();
         setTitle("The Speech Game");
 
         new PauseButton((ConstraintLayout) findViewById(R.id.speechLayout), this);
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+    if (this.timer.getTimes() >= this.num) {
+        openMainMenu();
+        }
     }
 
     /**
@@ -75,21 +85,18 @@ public class SpeechActivity extends GameActivity {
         EditText editText = findViewById(R.id.answer);
         presenter.setUserInput(editText.getText().toString());
         presenter.updateRating();
-
         Log.i("gm == null", String.valueOf(getIntent().getSerializableExtra("GameMode") == null));
-
+        this.timer.addTimes();
         if (presenter.matches()) {
             Intent successfulIntent = new Intent(this, SuccessSpeechResult.class);
             successfulIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
             successfulIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
             startActivityForResult(successfulIntent, 5);
-            //finish();
         } else {
             Intent failIntent = new Intent(this, FailureSpeechResult.class);
             failIntent.putExtra("SPEECH PRESENTER", presenter); // pass the presenter
             failIntent.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
             startActivityForResult(failIntent, 5);
-            //finish();
         }
     }
 
