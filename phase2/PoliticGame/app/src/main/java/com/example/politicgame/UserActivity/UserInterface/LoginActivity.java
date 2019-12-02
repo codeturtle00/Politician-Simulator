@@ -15,9 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.UserModel.LoggedInUserView;
 import com.example.politicgame.UserActivity.UserModel.LoginViewModel;
-import com.example.politicgame.UserActivity.UserDatabase.LoginViewModelFactory;
+import com.example.politicgame.UserActivity.UserModel.LoginViewModelFactory;
 
 /** An activity responsible for login */
 public class LoginActivity extends UserPopUpActivity {
@@ -34,11 +33,6 @@ public class LoginActivity extends UserPopUpActivity {
     super.onCreate(savedInstanceState);
 
     app = (PoliticGameApp) getApplication();
-    if (app.isThemeBlue()) {
-      setTheme(R.style.BlueTheme);
-    } else {
-      setTheme(R.style.RedTheme);
-    }
 
     setContentView(R.layout.activity_login);
     setTitle(R.string.login);

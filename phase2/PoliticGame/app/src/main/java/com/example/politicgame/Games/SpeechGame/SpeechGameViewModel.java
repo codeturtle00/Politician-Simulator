@@ -16,6 +16,7 @@ public class SpeechGameViewModel extends ViewModel implements Serializable {
     private SpeechRepository speechRepo;
     private SpeechAwardPoints rating;
     private boolean exitPoint = false;
+    private final int ROUNDNUM = 6;
 
     /**Retrieves the prompts from the SpeechRepository object
      *
@@ -122,8 +123,6 @@ public class SpeechGameViewModel extends ViewModel implements Serializable {
     int getCurRating() {
         return rating.getCurrentPoints();
     }
-
-    private final int ROUNDNUM = 6;
 
     /**
      * Decides on the number of prompts the player must answer

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backColor"
-    tools:context=".GameEnd.SummaryActivity">
+    tools:context=".GameMode.SummaryActivity">
 
     <Button
         android:id="@+id/save_main_menu"

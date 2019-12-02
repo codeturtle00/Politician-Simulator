@@ -20,9 +20,10 @@ class VerticalShake extends Event {
    */
   VerticalShake(Baby baby, Resources res) {
     super(baby, res);
-    setX((int) (Math.random() * (getBabyWidth() / 3) + getBabyX()));
-    setY((int) (Math.random() * (getBabyHeight() / 2) + getBabyY() + (getBabyHeight() / 2)));
+    setX((int) ((0.5-Math.random()) * getBabyWidth() / 2) + getBabyX() + getBabyWidth() / 2);
+    setY((int) (Math.random() * getBabyHeight() / 4) + getBabyY() + (getBabyHeight() / 2));
     Bitmap img = BitmapFactory.decodeResource(res, R.drawable.updownarrow);
+    img = Bitmap.createScaledBitmap(img, (int)(getBabyWidth()/1.8), (int)(getBabyWidth()/1.8), false);
     setImg(img);
   }
 
@@ -58,7 +59,7 @@ class VerticalShake extends Event {
         moveUp = true;
         setImg(
             Bitmap.createScaledBitmap(
-                getImg(), (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false));
+                getImg(), (int) (imgWidth() * 1.1), (int) (imgHeight() * 1.1), false));
         if (swipesLeft == 0) setInteraction(true);
         return 5;
       } else if (movingY - initialY > 100 && moveUp) {
@@ -66,7 +67,7 @@ class VerticalShake extends Event {
         Log.d("VerticalShake", "Swiping Right, swipesLeft = " + swipesLeft);
         setImg(
             Bitmap.createScaledBitmap(
-                getImg(), (int) (imgWidth() * 1.1), (int) (imgWidth() * 1.1), false));
+                getImg(), (int) (imgWidth() * 1.1), (int) (imgHeight() * 1.1), false));
         moveUp = false;
         if (swipesLeft == 0) setInteraction(true);
         return 5;

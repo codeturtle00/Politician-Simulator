@@ -8,9 +8,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Iterator;
-import java.util.List;
 
-public class SingleBoardGetter extends BoardLoader{
+class SingleBoardGetter extends BoardLoader{
     private String levelName;
 
     SingleBoardGetter(Context lastContext, String levelName){
@@ -18,6 +17,13 @@ public class SingleBoardGetter extends BoardLoader{
         this.levelName = levelName;
     }
 
+    /**
+     * Returns a JSONArray containing scores, characters and users based off of the initially
+     * constructed levelName
+     *
+     * @return  A JSONArray containing JSONObjects that represent the scores and, the user and
+     *          character that achieved it
+     */
     JSONArray getScores(){
         JSONArray jsonList = this.fileSaving.readJsonFile(FILE_NAME);
         JSONArray boardList = new JSONArray();

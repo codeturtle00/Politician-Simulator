@@ -86,6 +86,7 @@ abstract class Event {
    * @param canvas the canvas which to draw the event
    */
   void draw(Canvas canvas) {
+    paint.setAlpha(220);
     System.out.println("Drawing " + img + " at " + x + "," + y);
     int adjustedX = x - imgWidth() / 2;
     int adjustedY = y - imgHeight() / 2;

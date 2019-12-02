@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.UserModel.LoggedInUserView;
 import com.example.politicgame.UserActivity.UserModel.RegisterViewModel;
 import com.example.politicgame.UserActivity.UserDatabase.RegistrationDatabaseHandler;
 

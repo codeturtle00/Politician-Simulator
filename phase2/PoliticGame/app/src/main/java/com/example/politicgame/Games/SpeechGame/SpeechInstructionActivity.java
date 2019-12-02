@@ -6,10 +6,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.politicgame.GameActivity;
-import com.example.politicgame.GameMode.GameMode;
-import com.example.politicgame.GameMode.StampArcade;
+import com.example.politicgame.GameMode.GameModeModel.GameMode;
+import com.example.politicgame.GameMode.GameModeModel.StampArcade;
 import com.example.politicgame.Games.StampGame.StampInstructionActivity;
-import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.R;
 
 /**
@@ -17,11 +16,10 @@ import com.example.politicgame.R;
  */
 public class SpeechInstructionActivity extends GameActivity {
     private SpeechPresenter presenter = new SpeechPresenter();
-    final private String LEVEL_NAME = "LEVEL2";
 
     @Override
     /**
-     * Initializes the
+     * Initializes this activity
      */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

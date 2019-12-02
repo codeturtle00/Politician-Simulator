@@ -65,7 +65,7 @@ public class SpeechRepository implements Serializable {
      *
      * @param numRange: int representing the number of questions to be used
      */
-    public void loadQuestions(int numRange) {
+    void loadQuestions(int numRange) {
         List<Integer> numRanges = randomSelection(Math.min(numRange, speechResource.getDataBaseNum() - 1));
         for (int i : numRanges) {
             prompt.add(this.speechResource.getPrompt().get(i));

@@ -7,6 +7,9 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backColor">@color/backgroundBlue</item>
         <item name="textColor">@color/textWhite</item>
+        <item name="popupBackground">@drawable/blue_popup</item>
+        <item name="popupBackground2">@drawable/green_popup</item>
+        <item name="buttonBackground">@drawable/greenbutton</item>
     </style>
 
 
@@ -17,6 +20,9 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backColor">@color/backgroundRed</item>
         <item name="textColor">@color/textWhite</item>
+        <item name="popupBackground">@drawable/red_popup</item>
+        <item name="popupBackground2">@drawable/yellow_popup</item>
+        <item name="buttonBackground">@drawable/redbutton</item>
     </style>
 
     <style name="PopUp" >
@@ -26,11 +32,12 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
+
     </style>
 
     <style name="Button" >
         <item name="android:textStyle">bold</item>
-        <item name="android:background">@drawable/greenbutton</item>
+        <item name="android:background">?attr/buttonBackground</item>
         <item name="android:textColor">@color/textWhite</item>
         <item name="android:fontFamily">@font/pixelfont</item>
         <item name="android:textAllCaps">false</item>

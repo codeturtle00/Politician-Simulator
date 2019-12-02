@@ -22,10 +22,10 @@ import java.util.ArrayList;
 public class SpeechActivity extends GameActivity {
     private SpeechPresenter presenter;
 
-    @Override
     /**
      * Initializes the activity
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech);
@@ -55,10 +55,11 @@ public class SpeechActivity extends GameActivity {
         editText.setText("");
     }
 
-    @Override
+
     /**
      * Initializes the SpeechPresenter object and regularly updates the prompts and answer choices
      */
+    @Override
     protected void onStart() {
         super.onStart();
         presenter = (SpeechPresenter) this.getIntent().getSerializableExtra("SPEECH PRESENTER");
@@ -73,11 +74,6 @@ public class SpeechActivity extends GameActivity {
     public void compare(View view) {
         EditText editText = findViewById(R.id.answer);
         presenter.setUserInput(editText.getText().toString());
-
-        boolean exit = presenter.isExitPoint();
-        if (exit) {
-            saveGame(presenter.getCurRating(), "LEVEL2");
-        }
         presenter.updateRating();
 
         Log.i("gm == null", String.valueOf(getIntent().getSerializableExtra("GameMode") == null));

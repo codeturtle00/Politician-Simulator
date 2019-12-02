@@ -20,7 +20,11 @@ public abstract class PopUpActivity extends FragmentActivity {
     int height = dm.heightPixels;
     getWindow().setLayout((int) (width * .8), (int) (height * .8));
     app = (PoliticGameApp) getApplication();
-    setTheme(R.style.PopUp);
+      if (app.isThemeBlue()) {
+          setTheme(R.style.BlueTheme);
+      } else {
+          setTheme(R.style.RedTheme);
+      }
   }
 
    protected void returnRequest(int requestCode) {

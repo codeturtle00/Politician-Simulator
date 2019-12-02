@@ -4,9 +4,8 @@ import android.content.Context;
 
 import com.example.politicgame.Character.UserTools.UserAccount;
 import com.example.politicgame.R;
-import com.example.politicgame.UserActivity.UserInterface.ViewModelResult;
 import com.example.politicgame.UserActivity.UserDatabase.RegistrationDatabaseHandler;
-import com.example.politicgame.UserActivity.UserDatabase.Result;
+import com.example.politicgame.UserActivity.UserInterface.LoggedInUserView;
 
 
 public class RegisterViewModel extends UserViewModel {
@@ -17,7 +16,7 @@ public class RegisterViewModel extends UserViewModel {
   }
 @Override
   public void databaseRequest(String userName,String password){
-    Result result = registerSaving.register(userName,password);
+    Result result = registerSaving.connectDatabase(userName,password);
     if (result instanceof Result.Success) {
       UserAccount account = ((Result.Success) result).getData();
       this.app.setCurrentUser(account);

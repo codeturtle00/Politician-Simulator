@@ -9,15 +9,12 @@
 
     <TextView
         android:id="@+id/game_mode_title"
+        style="@style/menuTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:text="@string/game_mode_title"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +26,7 @@
         android:layout_marginTop="24dp"
         android:text="Election Mode"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_mode_title" />
@@ -42,7 +39,7 @@
         android:layout_marginTop="24dp"
         android:text="Baby Game"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ArcadeMode" />
@@ -55,7 +52,7 @@
         android:layout_marginTop="20dp"
         android:text="Speech Game"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BabyGameMode" />
@@ -68,7 +65,7 @@
         android:layout_marginTop="20dp"
         android:text="Stamp Game"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SpeechGameMode" />
@@ -78,12 +75,11 @@
         style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go Back"
+        android:text="@string/main_menu"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StampGameMode"
-        app:layout_constraintVertical_bias="0.33" />
+        app:layout_constraintTop_toBottomOf="@+id/StampGameMode" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

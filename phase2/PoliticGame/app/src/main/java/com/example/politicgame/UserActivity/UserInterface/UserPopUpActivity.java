@@ -17,9 +17,7 @@ import androidx.lifecycle.Observer;
 
 import com.example.politicgame.Application.PoliticGameApp;
 import com.example.politicgame.PopUpActivity;
-import com.example.politicgame.UserActivity.UserInterface.FormState;
-import com.example.politicgame.UserActivity.UserInterface.ViewModelResult;
-import com.example.politicgame.UserActivity.UserModel.LoggedInUserView;
+import com.example.politicgame.UserActivity.UserModel.ViewModelResult;
 import com.example.politicgame.UserActivity.UserModel.UserViewModel;
 
 abstract class UserPopUpActivity extends PopUpActivity {
