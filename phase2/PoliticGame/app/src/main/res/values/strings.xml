@@ -16,7 +16,7 @@
     <string name="stamp_instruction_body">In this game you are sorting out the policies of your party. As the campaign leader, you decide what your party should fight for. However, the general populace will not always be happy with what you decide on, so use your judgement to decide what may be best for the country.</string>
     <string name="open_the_game">Open The Game!</string>
     <string name="stamp_game_no">No</string>
-    <string name="stamp_game_proposal">number of proposals left</string>
+    <string name="stamp_game_proposal">proposals left</string>
     <string name="stamp_game_rating">your current rating</string>
     <string name="stamp_game_proposal_left">0</string>
     <string name="stamp_game_rating_score">50%</string>
