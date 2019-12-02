@@ -18,7 +18,6 @@ public class PoliticGameApp extends Application {
 
 
 
-
   public void onCreate() {
     super.onCreate();
 
@@ -29,7 +28,6 @@ public class PoliticGameApp extends Application {
     musicHandler = new MusicPlayer(this);
 
   }
-
 
   // Methods for tracking current user
 

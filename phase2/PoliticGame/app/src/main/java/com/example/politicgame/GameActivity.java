@@ -23,6 +23,7 @@ public abstract class GameActivity extends AppCompatActivity {
   public static final int REFRESH_BG = 3;
   protected PoliticGameApp app;
 
+
   protected void onStart() {
     if (app.isThemeBlue()) {
       setTheme(R.style.BlueTheme);
