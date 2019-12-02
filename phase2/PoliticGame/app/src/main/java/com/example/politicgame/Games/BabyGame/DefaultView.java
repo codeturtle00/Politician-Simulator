@@ -1,11 +1,11 @@
 package com.example.politicgame.Games.BabyGame;
 
 /**
- * An interface designed to provide a dependency injection between BabyView and EventManager.
- * EventManager needs to access certain parts of BabyView but cannot do so directly because BabyView
+ * An interface designed to provide a dependency injection between BabyDefaultView and EventManager.
+ * EventManager needs to access certain parts of BabyDefaultView but cannot do so directly because BabyDefaultView
  * depends on EventManager.
  */
-interface ViewUpdater {
+interface DefaultView {
   /** Draws baby and events. */
   void drawUpdate();
 

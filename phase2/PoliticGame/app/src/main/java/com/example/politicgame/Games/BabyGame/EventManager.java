@@ -16,8 +16,8 @@ class EventManager implements View.OnTouchListener {
   /** Resources for the baby. */
   private Resources babyResources;
 
-  /** ViewUpdater object managed by this EventManager. */
-  private ViewUpdater viewUpdater;
+  /** DefaultView object managed by this EventManager. */
+  private DefaultView defaultView;
 
   /** This game's Baby */
   private Baby baby;
@@ -32,17 +32,17 @@ class EventManager implements View.OnTouchListener {
    * Initializes a new EventManager which manages screen touches and events.
    *
    * @param babyResources resources needed to draw the baby
-   * @param viewUpdater ViewUpdater this EventManager updates.
+   * @param defaultView DefaultView this EventManager updates.
    */
-  EventManager(Resources babyResources, ViewUpdater viewUpdater) {
+  EventManager(Resources babyResources, DefaultView defaultView) {
     events = new ArrayList<>();
     this.babyResources = babyResources;
-    this.viewUpdater = viewUpdater;
+    this.defaultView = defaultView;
   }
 
   /** Randomly generates an event. */
   void randomEvent() {
-    Log.d("Running random event", viewUpdater.toString());
+    Log.d("Running random event", defaultView.toString());
     Random rand = new Random();
     final int randomNum = rand.nextInt(7); // Generates number between 0 and 5
 
@@ -51,7 +51,7 @@ class EventManager implements View.OnTouchListener {
       HorizontalShake horizontalShake =
           new HorizontalShake(baby, babyResources);
       events.add(horizontalShake);
-      viewUpdater.updateEventAction(
+      defaultView.updateEventAction(
           "Cradle the baby! Slowly swipe back and forth along the arrow.");
       Log.d("EventManager", "HorizontalShake started");
 
@@ -59,19 +59,19 @@ class EventManager implements View.OnTouchListener {
       VerticalShake verticalShake =
           new VerticalShake(baby, babyResources);
       events.add(verticalShake);
-      viewUpdater.updateEventAction(
+      defaultView.updateEventAction(
           "Cradle the baby! Slowly swipe back and forth along the arrow.");
       Log.d("EventManager", "VerticalShake started");
 
     } else if (randomNum == 3) {
       Kiss kiss = new Kiss(baby, babyResources);
       events.add(kiss);
-      viewUpdater.updateEventAction("Kiss the baby! Tap the kiss icon.");
+      defaultView.updateEventAction("Kiss the baby! Tap the kiss icon.");
       Log.d("EventManager", "Kiss started");
     } else if (randomNum == 4) {
       Tickle tickle = new Tickle(baby, babyResources);
       events.add(tickle);
-      viewUpdater.updateEventAction("Tickle the baby! Tap on the tickle icons.");
+      defaultView.updateEventAction("Tickle the baby! Tap on the tickle icons.");
       Log.d("EventManager", "Tickle started");
     }
   }
@@ -152,16 +152,16 @@ class EventManager implements View.OnTouchListener {
 
   /** Updates the game. */
   void update() {
-    viewUpdater.drawUpdate();
+    defaultView.drawUpdate();
   }
 
   /**
-   * Updates ViewUpdater rather than updating BabyView directly to prevent dependency on BabyView.
+   * Updates DefaultView rather than updating BabyDefaultView directly to prevent dependency on BabyDefaultView.
    *
    * @param happinessChange the amount to change happiness by
    */
   private void updateScore(int happinessChange) {
-    viewUpdater.updateScore(happinessChange);
+    defaultView.updateScore(happinessChange);
   }
 
   /**
