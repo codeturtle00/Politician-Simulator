@@ -23,9 +23,6 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
   /** This game's level. */
   private final String LEVEL_NAME = "LEVEL1";
 
-  /** The TextView used to display the action to be performed. */
-  private TextView eventActionText;
-
   /** The TextView used to display the remaining time. */
   private TextView timerDisplay;
 
@@ -56,10 +53,6 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
 
     // Initialize Score
     score = new Score((TextView) findViewById(R.id.scoreDisplay), initHappiness);
-
-    // Event Action
-    eventActionText = findViewById(R.id.eventActionText);
-    eventActionText.setText("Welcome to the Baby Game!");
 
     // BabyGameTimer View
     timerDisplay = findViewById(R.id.timerDisplay);
@@ -178,23 +171,5 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
       timerDisplay.setText(timeLeft);
       updateScore(-1);
     }
-  }
-
-  /**
-   * Tells user what action to perform.
-   *
-   * @param eventAction the action to perform
-   */
-  public void updateEventAction(final String eventAction) {
-    System.out.println("we hav arrived");
-    runOnUiThread(
-        new Runnable() {
-
-          @Override
-          public void run() {
-            eventActionText.setText(eventAction);
-          }
-        });
-    System.out.println("Event action set!");
   }
 }

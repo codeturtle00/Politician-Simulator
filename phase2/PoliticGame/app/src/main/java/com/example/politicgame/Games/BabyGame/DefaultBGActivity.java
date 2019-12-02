@@ -15,13 +15,6 @@ interface DefaultBGActivity {
   void updateScore(int happinessChange);
 
   /**
-   * Updates event action in BabyActivity.
-   *
-   * @param eventAction the new event to perform
-   */
-  void updateEventAction(String eventAction);
-
-  /**
    * Updates the remaining time.
    *
    * @param time the remaining time

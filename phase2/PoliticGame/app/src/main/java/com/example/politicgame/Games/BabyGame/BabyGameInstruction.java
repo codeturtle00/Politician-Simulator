@@ -19,7 +19,7 @@ public class BabyGameInstruction extends GameActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    if (((GameMode)getIntent().getSerializableExtra("GameMode")).isGameComplete(app)) {
+    if (((GameMode) getIntent().getSerializableExtra("GameMode")).isGameComplete(app)) {
       Log.i("BabyGame", "BabyGame is already complete, move on");
       openSpeechGame();
     }
@@ -41,7 +41,7 @@ public class BabyGameInstruction extends GameActivity {
   /** Starts the baby game */
   void startBabyGame() {
     Intent startBabyGame = new Intent(this, BabyActivity.class);
-    startBabyGame.putExtra("GameMode",getIntent().getSerializableExtra("GameMode"));
+    startBabyGame.putExtra("GameMode", getIntent().getSerializableExtra("GameMode"));
     startActivity(startBabyGame);
     finish();
   }
@@ -49,7 +49,7 @@ public class BabyGameInstruction extends GameActivity {
   /** Opens the next level */
   void openSpeechGame() {
     Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
-    switchSpeechIntent.putExtra("GameMode", new SpeechArcade(/*app*/));
+    switchSpeechIntent.putExtra("GameMode", new SpeechArcade(/*app*/ ));
     startActivity(switchSpeechIntent);
     finish();
   }

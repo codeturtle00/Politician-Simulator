@@ -15,8 +15,8 @@ import java.util.ConcurrentModificationException;
 class BabyDefaultView extends SurfaceView implements DefaultView {
 
   /**
-   * The DefaultBGActivity stored in this BabyDefaultView, using dependency injection to call methods in
-   * BabyActivity.
+   * The DefaultBGActivity stored in this BabyDefaultView, using dependency injection to call
+   * methods in BabyActivity.
    */
   private DefaultBGActivity defaultBGActivity;
 
@@ -37,8 +37,8 @@ class BabyDefaultView extends SurfaceView implements DefaultView {
   private Baby baby;
 
   /**
-   * Creates the BabyDefaultView object which tells BabyActivity what animations to draw, scores to update,
-   * times to update, and instructions to display.
+   * Creates the BabyDefaultView object which tells BabyActivity what animations to draw, scores to
+   * update, times to update, and instructions to display.
    *
    * @param context the surface context
    */
@@ -65,7 +65,9 @@ class BabyDefaultView extends SurfaceView implements DefaultView {
             canvas = holder.lockCanvas();
             holderWidth = holder.getSurfaceFrame().width();
             holderHeight = holder.getSurfaceFrame().height();
-            baby = new Baby(holderWidth / 2, holderHeight / 2, getResources(), (int)(holderWidth * 0.8));
+            baby =
+                new Baby(
+                    holderWidth / 2, holderHeight / 2, getResources(), (int) (holderWidth * 0.8));
 
             // Set the baby in the eventManager.
             System.out.println(baby);
@@ -146,19 +148,6 @@ class BabyDefaultView extends SurfaceView implements DefaultView {
   @Override
   public void updateScore(int happinessChange) {
     defaultBGActivity.updateScore(happinessChange);
-  }
-
-  /**
-   * Updates the event action to be performed.
-   *
-   * @param eventAction the action to be performed
-   */
-  @Override
-  public void updateEventAction(String eventAction) {
-    System.out.println("arrived in babyView with string" + eventAction);
-    System.out.println(defaultBGActivity);
-    defaultBGActivity.updateEventAction(eventAction);
-    drawUpdate();
   }
 
   /**
