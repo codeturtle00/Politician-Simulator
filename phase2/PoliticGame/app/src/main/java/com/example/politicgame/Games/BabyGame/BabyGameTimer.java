@@ -13,8 +13,8 @@ class BabyGameTimer {
   private DefaultBGActivity defaultBGActivity;
 
   /** Creates a new timer. */
-  BabyGameTimer(DefaultBGActivity defaultBGActivity) {
-    timeLeftInMillis = 60000;
+  BabyGameTimer(DefaultBGActivity defaultBGActivity, int initTime) {
+    timeLeftInMillis = initTime;
     this.defaultBGActivity = defaultBGActivity;
   }
 

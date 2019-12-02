@@ -20,8 +20,11 @@ import com.example.politicgame.Pausing.PauseButton;
 import com.example.politicgame.R;
 
 public class BabyActivity extends GameActivity implements DefaultBGActivity {
+
   /** This game's level. */
   private final String LEVEL_NAME = "LEVEL1";
+  private final int INIT_HAPPINESS = 50;
+  private static final int INIT_MILLISEC = 60000;
 
   /** The TextView used to display the remaining time. */
   private TextView timerDisplay;
@@ -29,6 +32,7 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
   private BabyDefaultView babyView;
 
   private Score score;
+
 
   private int happiness;
 
@@ -38,31 +42,27 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
-    int initHappiness = 50;
-
-    // Embed BabyDefaultView into xml layout
+    setTitle("The Baby Game");
     setContentView(R.layout.activity_baby);
+    timerDisplay = findViewById(R.id.timerDisplay);
+
     babyView = new BabyDefaultView(this);
     babyView.setDefaultBGActivity(this);
 
+    // Embed DefaultView into xml layout
     FrameLayout babyFrame = findViewById(R.id.babyFrame);
     babyFrame.addView(babyView);
 
-    setTitle("The Baby Game");
-
     // Initialize Score
-    score = new Score((TextView) findViewById(R.id.scoreDisplay), initHappiness);
+    score = new Score((TextView) findViewById(R.id.scoreDisplay), INIT_HAPPINESS);
 
     // BabyGameTimer View
-    timerDisplay = findViewById(R.id.timerDisplay);
-    babyGameTimer = new BabyGameTimer(this);
+    babyGameTimer = new BabyGameTimer(this, INIT_MILLISEC);
 
     // Generate Pause Button
     new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
   }
 
-  /** Pauses game. */
   @Override
   protected void onPause() {
     super.onPause();
@@ -70,7 +70,6 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
     babyView.pause();
   }
 
-  /** Resumes game. */
   @Override
   protected void onResume() {
     super.onResume();
@@ -78,17 +77,11 @@ public class BabyActivity extends GameActivity implements DefaultBGActivity {
     babyView.resume();
   }
 
-  /** Opens the next level. */
+  /** Saves stats and opens the next level. */
   void openSpeechGame() {
     GameMode gm = (GameMode) getIntent().getSerializableExtra("GameMode");
-
-    // These two lines replace the two below
     gm.save(app, happiness);
     Intent switchSpeechIntent = gm.next(this);
-
-    // Intent switchSpeechIntent = new Intent(this, SpeechInstructionActivity.class);
-    // saveGame(happiness, LEVEL_NAME);
-
     startActivity(switchSpeechIntent);
     finish();
   }
