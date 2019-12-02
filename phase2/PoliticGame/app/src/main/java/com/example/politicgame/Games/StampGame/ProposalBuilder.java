@@ -8,8 +8,6 @@ interface ProposalBuilder {
 
   public void setNoun(Noun noun);
 
-  //public void setHasCountableNoun(Boolean countable);
-
   public void setProposal();
 
   public Proposal getInstance();

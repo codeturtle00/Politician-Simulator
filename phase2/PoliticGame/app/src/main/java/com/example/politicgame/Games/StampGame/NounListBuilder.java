@@ -4,9 +4,10 @@ import java.util.List;
 
 public class NounListBuilder extends AbstractWordListBuilder {
 
+  /** This shows whether the builder is building a list of countable nouns*/
   private boolean countable;
 
-   void setCountable(boolean countable) {
+  void setCountable(boolean countable) {
     this.countable = countable;
   }
 

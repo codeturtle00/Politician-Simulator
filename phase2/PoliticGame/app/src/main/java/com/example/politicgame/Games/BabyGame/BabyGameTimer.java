@@ -2,20 +2,20 @@ package com.example.politicgame.Games.BabyGame;
 
 import android.os.CountDownTimer;
 
-class Timer {
+class BabyGameTimer {
   /** Time arrow_left. */
   private long timeLeftInMillis;
 
   /** Countdown timer */
   private CountDownTimer timer;
 
-  /** This Timer's BabyDraw. */
-  private BabyDraw babyDraw;
+  /** This BabyGameTimer's DefaultBGActivity. */
+  private DefaultBGActivity defaultBGActivity;
 
   /** Creates a new timer. */
-  Timer(BabyDraw babyDraw) {
+  BabyGameTimer(DefaultBGActivity defaultBGActivity) {
     timeLeftInMillis = 60000;
-    this.babyDraw = babyDraw;
+    this.defaultBGActivity = defaultBGActivity;
   }
 
   /** Cancels current timer object */
@@ -36,11 +36,11 @@ class Timer {
             timeLeftInMillis = millisUntilFinished;
             Integer timeLeft = (int) timeLeftInMillis / 1000;
             System.out.println(timeLeft);
-            babyDraw.updateTime(timeLeft.toString(), false);
+            defaultBGActivity.updateTime(timeLeft.toString(), false);
           }
 
           public void onFinish() {
-            babyDraw.updateTime("Time's up!", true);
+            defaultBGActivity.updateTime("Time's up!", true);
           }
         };
     timer.start();

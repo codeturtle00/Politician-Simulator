@@ -3,7 +3,7 @@ package com.example.politicgame.Games.StampGame;
 import java.util.ArrayList;
 import java.util.List;
 
-/** This is the class that contains different list of */
+/** This is the class that contains different list of words */
 class WordListManager {
 
   private List<Word> Verbs = new ArrayList<>();

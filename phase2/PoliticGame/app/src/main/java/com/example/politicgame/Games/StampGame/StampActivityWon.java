@@ -38,7 +38,7 @@ public class StampActivityWon extends GameActivity {
         });
   }
 
-  public void openFromStamp(){
+  public void openFromStamp() {
     GameMode gm = (GameMode) getIntent().getSerializableExtra("GameMode");
 
     gm.save(app, getIntent().getIntExtra("score", 0));

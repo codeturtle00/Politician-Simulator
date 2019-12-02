@@ -15,12 +15,6 @@ class Baby {
   /** This Baby's Y coordinate. */
   private int y;
 
-  /** The original X coordinate of this Baby */
-  private int originalX;
-
-  /** The original Y coordinate of this Baby */
-  private int originalY;
-
   /** This Baby's width. */
   private int width;
 
@@ -52,8 +46,6 @@ class Baby {
 
     x = centerX - (width / 2);
     y = centerY - (height / 2);
-    originalX = x;
-    originalY = y;
   }
 
   /**
@@ -96,20 +88,14 @@ class Baby {
     babyImg = Bitmap.createScaledBitmap(babyImg, width, height, false);
   }
 
-  /** Resets the baby's coordinates to the original ones when drawn. */
-  void resetCoordinates() {
-    this.x = originalX;
-    this.y = originalY;
-  }
-
   /** Returns the original X coordinate of the baby. */
   int getX() {
-    return this.originalX;
+    return this.x;
   }
 
   /** Returns the original Y coordinate of the baby. */
   int getY() {
-    return this.originalY;
+    return this.y;
   }
 
   /** Sets the X coordinate of the baby. */

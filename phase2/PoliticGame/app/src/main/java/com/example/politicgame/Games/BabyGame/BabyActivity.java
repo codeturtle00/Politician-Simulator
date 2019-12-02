@@ -19,24 +19,21 @@ import com.example.politicgame.GameMode.GameModeModel.GameMode;
 import com.example.politicgame.Pausing.PauseButton;
 import com.example.politicgame.R;
 
-public class BabyActivity extends GameActivity implements BabyDraw {
+public class BabyActivity extends GameActivity implements DefaultBGActivity {
   /** This game's level. */
   private final String LEVEL_NAME = "LEVEL1";
-
-  /** The TextView used to display the action to be performed. */
-  private TextView eventActionText;
 
   /** The TextView used to display the remaining time. */
   private TextView timerDisplay;
 
-  private BabyView babyView;
+  private BabyDefaultView babyView;
 
   private Score score;
 
   private int happiness;
 
-  /** The game's timer. */
-  private Timer timer;
+  /** The game's babyGameTimer. */
+  private BabyGameTimer babyGameTimer;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -44,10 +41,10 @@ public class BabyActivity extends GameActivity implements BabyDraw {
 
     int initHappiness = 50;
 
-    // Embed BabyView into xml layout
+    // Embed BabyDefaultView into xml layout
     setContentView(R.layout.activity_baby);
-    babyView = new BabyView(this);
-    babyView.setBabyDraw(this);
+    babyView = new BabyDefaultView(this);
+    babyView.setDefaultBGActivity(this);
 
     FrameLayout babyFrame = findViewById(R.id.babyFrame);
     babyFrame.addView(babyView);
@@ -57,13 +54,9 @@ public class BabyActivity extends GameActivity implements BabyDraw {
     // Initialize Score
     score = new Score((TextView) findViewById(R.id.scoreDisplay), initHappiness);
 
-    // Event Action
-    eventActionText = findViewById(R.id.eventActionText);
-    eventActionText.setText("Welcome to the Baby Game!");
-
-    // Timer View
+    // BabyGameTimer View
     timerDisplay = findViewById(R.id.timerDisplay);
-    timer = new Timer(this);
+    babyGameTimer = new BabyGameTimer(this);
 
     // Generate Pause Button
     new PauseButton((ConstraintLayout) findViewById(R.id.babyLayout), this);
@@ -73,7 +66,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   @Override
   protected void onPause() {
     super.onPause();
-    timer.pause();
+    babyGameTimer.pause();
     babyView.pause();
   }
 
@@ -81,7 +74,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   @Override
   protected void onResume() {
     super.onResume();
-    timer.resume();
+    babyGameTimer.resume();
     babyView.resume();
   }
 
@@ -165,7 +158,7 @@ public class BabyActivity extends GameActivity implements BabyDraw {
   }
 
   /**
-   * Updates the time displayed after each timer tick.
+   * Updates the time displayed after each babyGameTimer tick.
    *
    * @param time the time remaining in the game
    * @param outOfTime whether the time is up or not
@@ -178,23 +171,5 @@ public class BabyActivity extends GameActivity implements BabyDraw {
       timerDisplay.setText(timeLeft);
       updateScore(-1);
     }
-  }
-
-  /**
-   * Tells user what action to perform.
-   *
-   * @param eventAction the action to perform
-   */
-  public void updateEventAction(final String eventAction) {
-    System.out.println("we hav arrived");
-    runOnUiThread(
-        new Runnable() {
-
-          @Override
-          public void run() {
-            eventActionText.setText(eventAction);
-          }
-        });
-    System.out.println("Event action set!");
   }
 }

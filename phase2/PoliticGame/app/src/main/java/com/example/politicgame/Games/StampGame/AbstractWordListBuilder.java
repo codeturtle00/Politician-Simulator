@@ -5,20 +5,15 @@ import java.util.List;
 
 public abstract class AbstractWordListBuilder implements WordListBuilder {
 
-  /**
-   * The list of Word this builder constructs
-   */
+  /** The list of Word this builder constructs */
   private List<Word> wordList = new ArrayList<>();
 
-  /**
-   * Whether the list of word to be constructed contains positive or negative words
-   */
+  /** Whether the list of word to be constructed contains positive or negative words */
   private boolean isPositive;
 
-    /**
-     * The minimum and maximum score a word can obtain
-     */
+  /** The minimum and maximum score a word can obtain */
   private int min = 1;
+
   private int max = 5;
 
   /**
@@ -36,19 +31,17 @@ public abstract class AbstractWordListBuilder implements WordListBuilder {
     return wordList;
   }
 
-    boolean isPositive() {
-        return isPositive;
-    }
+  boolean isPositive() {
+    return isPositive;
+  }
 
+  int getMin() {
+    return min;
+  }
 
-
-    int getMin() {
-        return min;
-    }
-
-    int getMax() {
-        return max;
-    }
+  int getMax() {
+    return max;
+  }
 
   public void setIsPositive(boolean isPositive) {
     this.isPositive = isPositive;

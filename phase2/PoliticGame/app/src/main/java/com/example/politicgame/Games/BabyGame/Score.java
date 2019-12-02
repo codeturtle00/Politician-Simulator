@@ -3,8 +3,6 @@ package com.example.politicgame.Games.BabyGame;
 import android.graphics.Color;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
-
 public class Score {
 
   private TextView scoreBox;
@@ -21,9 +19,8 @@ public class Score {
   void updateScore(int happinessChange) {
 
     // Change color of text depending on score change
-    if (happinessChange < -1 ) scoreBox.setTextColor(Color.parseColor("#ffcccc"));
-    else if (happinessChange > 1)
-      scoreBox.setTextColor(Color.parseColor("#b3ffb3"));
+    if (happinessChange < -1) scoreBox.setTextColor(Color.parseColor("#ffcccc"));
+    else if (happinessChange > 1) scoreBox.setTextColor(Color.parseColor("#b3ffb3"));
     else scoreBox.setTextColor(Color.parseColor("#ffffff"));
 
     // Check if bounds reached

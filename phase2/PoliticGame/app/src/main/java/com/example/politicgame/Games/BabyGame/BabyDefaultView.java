@@ -12,15 +12,15 @@ import android.view.SurfaceView;
 
 import java.util.ConcurrentModificationException;
 
-class BabyView extends SurfaceView implements ViewUpdater {
+class BabyDefaultView extends SurfaceView implements DefaultView {
 
   /**
-   * The BabyDraw stored in this BabyView, using dependency injection to call methods in
-   * BabyActivity.
+   * The DefaultBGActivity stored in this BabyDefaultView, using dependency injection to call
+   * methods in BabyActivity.
    */
-  private BabyDraw babyDraw;
+  private DefaultBGActivity defaultBGActivity;
 
-  /** The EventManager stored in this BabyView. */
+  /** The EventManager stored in this BabyDefaultView. */
   private EventManager eventManager;
 
   /** Holder width. */
@@ -37,15 +37,15 @@ class BabyView extends SurfaceView implements ViewUpdater {
   private Baby baby;
 
   /**
-   * Creates the BabyView object which tells BabyActivity what animations to draw, scores to update,
-   * times to update, and instructions to display.
+   * Creates the BabyDefaultView object which tells BabyActivity what animations to draw, scores to
+   * update, times to update, and instructions to display.
    *
    * @param context the surface context
    */
-  BabyView(Context context) {
+  BabyDefaultView(Context context) {
     super(context);
 
-    this.babyDraw = (BabyDraw) context;
+    this.defaultBGActivity = (DefaultBGActivity) context;
 
     // EventManager will manage the events for this game.
     eventManager = new EventManager(getResources(), this);
@@ -65,7 +65,9 @@ class BabyView extends SurfaceView implements ViewUpdater {
             canvas = holder.lockCanvas();
             holderWidth = holder.getSurfaceFrame().width();
             holderHeight = holder.getSurfaceFrame().height();
-            baby = new Baby(holderWidth / 2, holderHeight / 2, getResources(), (int)(holderWidth * 0.8));
+            baby =
+                new Baby(
+                    holderWidth / 2, holderHeight / 2, getResources(), (int) (holderWidth * 0.8));
 
             // Set the baby in the eventManager.
             System.out.println(baby);
@@ -138,36 +140,23 @@ class BabyView extends SurfaceView implements ViewUpdater {
   }
 
   /**
-   * Updates BabyDraw rather than directly updating BabyActivity to prevent dependency on
+   * Updates DefaultBGActivity rather than directly updating BabyActivity to prevent dependency on
    * BabyActivity.
    *
    * @param happinessChange the amount to change happiness by
    */
   @Override
   public void updateScore(int happinessChange) {
-    babyDraw.updateScore(happinessChange);
+    defaultBGActivity.updateScore(happinessChange);
   }
 
   /**
-   * Updates the event action to be performed.
+   * Sets the DefaultBGActivity for this BabyDefaultView.
    *
-   * @param eventAction the action to be performed
+   * @param defaultBGActivity the DefaultBGActivity
    */
-  @Override
-  public void updateEventAction(String eventAction) {
-    System.out.println("arrived in babyView with string" + eventAction);
-    System.out.println(babyDraw);
-    babyDraw.updateEventAction(eventAction);
-    drawUpdate();
-  }
-
-  /**
-   * Sets the BabyDraw for this BabyView.
-   *
-   * @param babyDraw the BabyDraw
-   */
-  void setBabyDraw(BabyDraw babyDraw) {
-    this.babyDraw = babyDraw;
+  void setDefaultBGActivity(DefaultBGActivity defaultBGActivity) {
+    this.defaultBGActivity = defaultBGActivity;
   }
 
   void pause() {
