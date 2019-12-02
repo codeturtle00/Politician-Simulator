@@ -46,7 +46,7 @@ public class SpeechResult extends GameActivity implements Serializable {
         next.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        openStampGame();
+                        openNextActivity();
                     }
                 });
 
@@ -76,7 +76,7 @@ public class SpeechResult extends GameActivity implements Serializable {
     /**
      * Goes into StampGame
      */
-    public void openStampGame() {
+    public void openNextActivity() {
         GameMode gm = (GameMode) getIntent().getSerializableExtra("GameMode");
 
         Log.i("gm == null", String.valueOf(gm == null));
