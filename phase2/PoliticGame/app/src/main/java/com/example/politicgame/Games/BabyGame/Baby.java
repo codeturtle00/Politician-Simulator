@@ -25,6 +25,9 @@ class Baby {
   private Paint paint;
 
   /** The image to draw. */
+  private Bitmap happyBabyImg;
+  private Bitmap sadBabyImg;
+  private Bitmap cryBabyImg;
   private Bitmap babyImg;
 
   /**
@@ -41,8 +44,18 @@ class Baby {
     this.width = width;
     this.height = width * 44 / 29;
 
-    babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
-    babyImg = Bitmap.createScaledBitmap(babyImg, width, height, false);
+    // Initiates all forms of baby
+    happyBabyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
+    happyBabyImg = Bitmap.createScaledBitmap(happyBabyImg, width, height, false);
+
+    sadBabyImg = BitmapFactory.decodeResource(res, R.drawable.sadbaby);
+    sadBabyImg = Bitmap.createScaledBitmap(sadBabyImg, width, height, false);
+
+    cryBabyImg = BitmapFactory.decodeResource(res, R.drawable.crybaby);
+    cryBabyImg = Bitmap.createScaledBitmap(cryBabyImg, width, height, false);
+
+    //default babyImg is happy
+    babyImg = happyBabyImg;
 
     x = centerX - (width / 2);
     y = centerY - (height / 2);
@@ -60,32 +73,23 @@ class Baby {
 
   /**
    * Sets this Baby to be crying.
-   *
-   * @param res the resources used to draw the Baby
    */
-  void setCry(Resources res) {
-    babyImg = BitmapFactory.decodeResource(res, R.drawable.crybaby);
-    babyImg = Bitmap.createScaledBitmap(babyImg, width, height, false);
+  void setCry() {
+    babyImg = cryBabyImg;
   }
 
   /**
    * Sets this Baby to be sad.
-   *
-   * @param res the resources used to draw the Baby
    */
-  void setSad(Resources res) {
-    babyImg = BitmapFactory.decodeResource(res, R.drawable.sadbaby);
-    babyImg = Bitmap.createScaledBitmap(babyImg, width, height, false);
+  void setSad() {
+    babyImg = sadBabyImg;
   }
 
   /**
    * Sets this Baby to be happy.
-   *
-   * @param res the resources used to draw the Baby
    */
-  void setHappy(Resources res) {
-    babyImg = BitmapFactory.decodeResource(res, R.drawable.baby);
-    babyImg = Bitmap.createScaledBitmap(babyImg, width, height, false);
+  void setHappy() {
+    babyImg = happyBabyImg;
   }
 
   /** Returns the original X coordinate of the baby. */

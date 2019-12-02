@@ -123,11 +123,11 @@ class BabyDefaultView extends SurfaceView implements DefaultView {
    */
   void setBabyMood(int happiness) {
     if (happiness <= 20) {
-      baby.setCry(getResources());
+      baby.setCry();
     } else if (happiness <= 80) {
-      baby.setSad(getResources());
+      baby.setSad();
     } else {
-      baby.setHappy(getResources());
+      baby.setHappy();
     }
   }
 
